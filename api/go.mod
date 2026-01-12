@@ -1,3 +1,3 @@
-module api
+module handler
 
 go 1.20
