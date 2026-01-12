@@ -64,6 +64,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "404 Not Found: %s\n", fsPath)
 			fmt.Fprintf(w, "CWD: %s\n", getCwd())
 			fmt.Fprintf(w, "Tried: %v\n", candidates)
+			
+			fmt.Fprintf(w, "\n--- File System Dump ---\n")
+			filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+				if err != nil {
+					return nil
+				}
+				fmt.Fprintf(w, "%s\n", path)
+				return nil
+			})
 			return
 		}
 
