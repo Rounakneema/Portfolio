@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "vercel-build": "tsc -b && vite build && cd ../blog && npm install && npm run build && cd .. && mkdir -p api/static/portfolio && mkdir -p api/static/blog && cp -r professional_portfolio/dist/* api/static/portfolio && cp -r blog/out/* api/static/blog && echo 'DEBUG: Listing api directory:' && ls -R api"
+    "vercel-build": "tsc -b && vite build && cd ../blog && npm install && npm run build && cd .. && mkdir -p api/static/portfolio && mkdir -p api/static/blog && cp -r professional_portfolio/dist/* api/static/portfolio && cp -r blog/out/* api/static/blog && node bundler.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
