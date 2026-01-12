@@ -35,6 +35,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			if fallback != "" {
 				fallback = strings.ReplaceAll(fallback, "\\", "/")
 				content, ok = assets.Assets[fallback]
+				if ok {
+					assetPath = fallback
+				}
 			}
 		}
 
