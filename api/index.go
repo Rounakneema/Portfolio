@@ -31,6 +31,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		
 		content, ok := assets.Assets[assetPath]
 		if !ok {
+			// Try adding /index.html (standard Clean URL behavior)
+			dirIndex := strings.TrimSuffix(assetPath, "/") + "/index.html"
+			content, ok = assets.Assets[dirIndex]
+			if ok {
+				assetPath = dirIndex
+			}
+		}
+
+		if !ok {
 			// Try fallback
 			if fallback != "" {
 				fallback = strings.ReplaceAll(fallback, "\\", "/")
