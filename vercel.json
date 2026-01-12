@@ -2,25 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "professional_portfolio/package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "dist"
-            }
+            "src": "api/index.go",
+            "use": "@vercel/go"
         }
     ],
     "routes": [
         {
-            "src": "/blog/(.*)",
-            "dest": "/blog/$1"
-        },
-        {
-            "src": "/assets/(.*)",
-            "dest": "/assets/$1"
-        },
-        {
             "src": "/(.*)",
-            "dest": "/$1"
+            "dest": "/api/index.go"
         }
     ],
     "buildCommand": "cd professional_portfolio && npm run vercel-build",
