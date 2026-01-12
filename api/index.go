@@ -8,6 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"handler/assets"
 )
 
 // Handler is the entry point for Vercel Serverless Functions
@@ -27,12 +29,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		// Normalizing path separator to forward slash for map lookup
 		assetPath = strings.ReplaceAll(assetPath, "\\", "/")
 		
-		content, ok := Assets[assetPath]
+		content, ok := assets.Assets[assetPath]
 		if !ok {
 			// Try fallback
 			if fallback != "" {
 				fallback = strings.ReplaceAll(fallback, "\\", "/")
-				content, ok = Assets[fallback]
+				content, ok = assets.Assets[fallback]
 			}
 		}
 
