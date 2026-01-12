@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-//go:embed static/*
+//go:embed static
 var staticFiles embed.FS
 
 // Handler is the entry point for Vercel Serverless Functions
