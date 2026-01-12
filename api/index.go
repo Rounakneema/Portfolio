@@ -70,13 +70,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, finalPath)
 	}
 
-	// 1. Serve Blog requests (/blog/...)
-	if strings.HasPrefix(reqPath, "/blog/") {
-		relPath := strings.TrimPrefix(reqPath, "/blog/")
+	// 1. Serve Blog requests (/blog or /blog/...)
+	if reqPath == "/blog" || strings.HasPrefix(reqPath, "/blog/") {
+		relPath := strings.TrimPrefix(reqPath, "/blog")
 		if relPath == "" || relPath == "/" {
-			relPath = "index.html"
+			relPath = "/index.html"
 		}
 		// Blog is in static/blog
+		// Remove leading slash from relPath for filepath.Join to work consistently as relative
+		relPath = strings.TrimPrefix(relPath, "/")
 		serveFile(filepath.Join("blog", relPath), filepath.Join("blog", "index.html"))
 		return
 	}
