@@ -1,14 +1,12 @@
 package api
 
 import (
-	"embed"
-	"io/fs"
+	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 )
-
-//go:embed all:static
-var staticFiles embed.FS
 
 // Handler is the entry point for Vercel Serverless Functions
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -22,56 +20,78 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	// Determine request path
 	reqPath := r.URL.Path
 
-	// 1. Serve Blog requests (/blog/...)
-	if strings.HasPrefix(reqPath, "/blog/") {
-		// Strip /blog/ prefix and serve from static/blog
-		blogFS, err := fs.Sub(staticFiles, "static/blog")
-		if err != nil {
-			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	// Helper to serve files from disk (instead of embed)
+	// We assume "api/static" or "static" is available relative to the working directory or root
+	serveFile := func(fsPath string, fallback string) {
+		// Check local relative path first (common in Vercel)
+		// Try combinations of paths since Vercel Lambda CWD can vary
+		candidates := []string{
+			filepath.Join("api", "static", fsPath), // Monorepo structure
+			filepath.Join("static", fsPath),        // Configured includeFiles
+			fsPath,                                 // Direct relative
+		}
+
+		var finalPath string
+		found := false
+		for _, p := range candidates {
+			if info, err := os.Stat(p); err == nil && !info.IsDir() {
+				finalPath = p
+				found = true
+				break
+			}
+		}
+
+		if !found {
+			if fallback != "" {
+				// Try finding fallback
+				for _, p := range candidates {
+					// Replace filename in p with fallback filename
+					dir := filepath.Dir(p)
+					fbPath := filepath.Join(dir, filepath.Base(fallback))
+					if info, err := os.Stat(fbPath); err == nil && !info.IsDir() {
+						finalPath = fbPath
+						found = true
+						break
+					}
+				}
+			}
+		}
+
+		if !found {
+			// Debug: file not found, list directory to help diagnosis
+			w.Header().Set("Content-Type", "text/plain")
+			w.WriteHeader(http.StatusNotFound)
+			fmt.Fprintf(w, "404 Not Found: %s\n", fsPath)
+			fmt.Fprintf(w, "CWD: %s\n", getCwd())
+			fmt.Fprintf(w, "Tried: %v\n", candidates)
 			return
 		}
 
-		// Rewrite path for file server: /blog/foo -> /foo
-		r.URL.Path = strings.TrimPrefix(reqPath, "/blog")
-		if r.URL.Path == "" {
-			r.URL.Path = "/"
+		http.ServeFile(w, r, finalPath)
+	}
+
+	// 1. Serve Blog requests (/blog/...)
+	if strings.HasPrefix(reqPath, "/blog/") {
+		relPath := strings.TrimPrefix(reqPath, "/blog/")
+		if relPath == "" || relPath == "/" {
+			relPath = "index.html"
 		}
-		http.FileServer(http.FS(blogFS)).ServeHTTP(w, r)
+		// Blog is in static/blog
+		serveFile(filepath.Join("blog", relPath), filepath.Join("blog", "index.html"))
 		return
 	}
 
 	// 2. Serve Portfolio requests (SPA)
-	// Serve from static/portfolio
-	portfolioFS, err := fs.Sub(staticFiles, "static/portfolio")
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+	relPath := strings.TrimPrefix(reqPath, "/")
+	if relPath == "" {
+		relPath = "index.html"
 	}
+	// Portfolio is in static/portfolio
+	// Use index.html as fallback for SPA routing
+	serveFile(filepath.Join("portfolio", relPath), filepath.Join("portfolio", "index.html"))
+}
 
-	// Check if file exists in portfolio fs
-	// If not, serve index.html (SPA Fallback)
-	// fs.Sub returns an fs.FS. We use fs.Stat or fs.Open to check existence.
-	f, err := portfolioFS.Open(strings.TrimPrefix(reqPath, "/"))
-	if err == nil {
-		// File exists
-		f.Close()
-		http.FileServer(http.FS(portfolioFS)).ServeHTTP(w, r)
-	} else {
-		// File not found, serve index.html
-		content, err := fs.ReadFile(portfolioFS, "index.html")
-		if err != nil {
-			// If index.html is missing, something is wrong with build
-			http.Error(w, "Not Found", http.StatusNotFound)
-			return
-		}
-		// Try to deduce content type
-		if strings.HasSuffix(reqPath, ".css") {
-			w.Header().Set("Content-Type", "text/css")
-		} else if strings.HasSuffix(reqPath, ".js") {
-			w.Header().Set("Content-Type", "application/javascript")
-		} else {
-			w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		}
-		w.Write(content)
-	}
+func getCwd() string {
+	d, _ := os.Getwd()
+	return d
 }
