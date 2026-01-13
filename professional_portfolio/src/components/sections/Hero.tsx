@@ -50,7 +50,12 @@ export function Hero() {
                                     SQUARE<br />
                                     BW / HIGH RES
                                 </div>
-                                { <img src="https://github.com/rounakneema.png" className="absolute inset-0 w-full h-full object-cover grayscale sepia-[0.2] brightness-110 contrast-90"
+                                { <img src="https://github.com/rounakneema.png" <img
+  src="https://github.com/rounakneema.png"
+  className="absolute inset-0 w-full h-full object-cover brightness-105 contrast-95"
+  alt="Profile"
+/>
+"
  />}
                             </div>
                         </motion.div>
