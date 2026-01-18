@@ -19,7 +19,7 @@ export function ProjectsSection() {
                 { label: 'Outcome', text: 'Reduced recon time significantly and provided actionable difference reports.' }
             ],
             links: [
-                { label: 'VIEW SOURCE', icon: Github, primary: true, url: 'https://github.com/rounakneema/Revealr' },
+                { label: 'VIEW SOURCE', icon: Github, primary: true, url: 'https://github.com/Rounakneema/Advance-Network-Scanner' },
                 { label: 'BENCHMARKS', icon: FileCode, primary: false, url: '#' }
             ],
             terminal: {
@@ -70,7 +70,7 @@ export function ProjectsSection() {
                 { label: 'Achievement', text: 'Deployed full stack solution solving real-world transit document retrieval issues.' }
             ],
             links: [
-                { label: 'VIEW SOURCE', icon: Github, primary: true, url: 'https://github.com/rounakneema/MetroMind' },
+                { label: 'VIEW SOURCE', icon: Github, primary: true, url: 'https://github.com/Rounakneema/METRO_MIND' },
                 { label: 'ARCHAGRAM', icon: LayoutDashboard, primary: false, url: '#' }
             ],
             screenshot: true
