@@ -1,3 +1,5 @@
+'use client';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, FileCode, LayoutDashboard, Terminal, X, ExternalLink } from 'lucide-react';
 import { useState } from 'react';

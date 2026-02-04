@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Terminal, Shield, Code2 } from 'lucide-react';
 
