@@ -20,7 +20,7 @@ export function PortfolioLink() {
 
     return (
         <a
-            href="https://rounakneema.vercel.app"
+            href="https://rounakneema.in"
             target="_blank"
             rel="noopener noreferrer"
             className="fixed top-6 right-6 z-50 flex items-center gap-3 px-5 py-2.5 rounded-full glass-panel hover:bg-white/10 transition-all group border border-cyan/20 hover:border-cyan/50"

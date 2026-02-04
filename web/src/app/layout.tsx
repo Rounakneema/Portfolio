@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s // Rounak Neema',
   },
   description: 'Portfolio of Rounak Neema, a DevOps & Security Engineer from NMIMS University. Specializing in Cloud Native, Red Teaming, and Infrastructure Automation.',
-  metadataBase: new URL('https://rounakneema.vercel.app'),
+  metadataBase: new URL('https://rounakneema.in'),
   alternates: {
     canonical: '/',
   },
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
     'Kubernetes',
     'Cybersecurity Portfolio'
   ],
-  authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.vercel.app' }],
+  authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.in' }],
   creator: 'Rounak Neema',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://rounakneema.vercel.app',
+    url: 'https://rounakneema.in',
     title: 'Rounak Neema // DevOps & Security Engineer',
     description: 'Portfolio of Rounak Neema. Building secure cloud infrastructure and automating defense systems.',
     siteName: 'Rounak Neema',

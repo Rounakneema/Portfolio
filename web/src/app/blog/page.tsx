@@ -1,33 +1,29 @@
-import { getAllPosts, getAllTags } from '@/lib/posts';
-import { ArchiveList } from '@/components/ArchiveList';
+import { getAllPosts } from '@/lib/posts';
+import { PostList } from '@/components/PostList';
+import { ScrambleText } from '@/components/ScrambleText';
 
 export const metadata = {
     title: 'Engineering Logs // Rounak',
-    description: 'Technical blog by Rounak Neema covering DevOps, Red Teaming, and System Architecture.',
-    alternates: {
-        canonical: '/blog',
-    },
+    description: 'Detailed breakdowns of systems I\'ve built, security research, and engineering challenges.',
 };
 
-export default function BlogHome() {
+export default function BlogPage() {
     const posts = getAllPosts();
-    const tags = getAllTags();
+    // Extract unique tags from all posts
+    const allTags = Array.from(new Set(posts.flatMap(post => post.tags || []))).sort();
 
     return (
-        <div className="container mx-auto px-6 py-24">
-            <div className="max-w-4xl mx-auto">
-                <header className="mb-16">
-                    <h1 className="text-4xl md:text-5xl font-mono font-bold mb-6 flex items-center gap-4">
-                        <span className="text-blue-600">#</span>
-                        ENGINEERING_LOGS
-                    </h1>
-                    <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-                        Documenting the journey through DevOps, Security Research, and System Architecture.
-                    </p>
-                </header>
+        <div className="min-h-screen pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+            <header className="mb-24 text-center">
+                <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-black mb-6">
+                    <ScrambleText text="WRITING LOGS" />
+                </h1>
+                <p className="text-gray-500 font-medium text-lg max-w-xl mx-auto leading-relaxed">
+                    Detailed breakdowns of systems I've built, security research, and engineering challenges.
+                </p>
+            </header>
 
-                <ArchiveList posts={posts} />
-            </div>
+            <PostList initialPosts={posts} allTags={allTags} />
         </div>
     );
 }

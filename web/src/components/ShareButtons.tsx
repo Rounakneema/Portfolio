@@ -6,7 +6,7 @@ interface ShareButtonsProps {
 }
 
 export function ShareButtons({ title, slug }: ShareButtonsProps) {
-    const url = `https://rounakneema.vercel.app/blog/posts/${slug}`;
+    const url = `https://rounakneema.in/blog/posts/${slug}`;
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(window.location.href);

@@ -4,8 +4,8 @@ export default function JsonLd() {
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: 'Rounak Neema',
-        url: 'https://rounakneema.vercel.app',
-        image: 'https://rounakneema.vercel.app/og-image.png',
+        url: 'https://rounakneema.in',
+        image: 'https://rounakneema.in/og-image.png',
         sameAs: [
             'https://github.com/rounakneema',
             'https://www.linkedin.com/in/Rnks23',

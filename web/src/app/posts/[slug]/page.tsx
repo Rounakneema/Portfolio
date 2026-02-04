@@ -94,7 +94,8 @@ export default async function PostPage({ params }: PostPageProps) {
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                                     <span className="text-gray-500">AUTHOR:</span>
-                                    <a href="https://rounakneema.vercel.app" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline hover:text-blue-800 transition-colors">
+                                    <a href="https://rounakneema.in" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline hover:text-blue-800 transition-colors">
+
                                         ROUNAK
                                     </a>
                                 </div>
