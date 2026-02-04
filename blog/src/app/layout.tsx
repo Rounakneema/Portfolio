@@ -6,24 +6,24 @@ import { UnifiedFooter } from '@/components/UnifiedFooter';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Engineering Logs // Rounak',
-  description: 'A personal collection of engineering logs, security research, and learnings.',
-  metadataBase: new URL('https://rounakneema.vercel.app/blog'),
+  title: 'Archive // Rounak',
+  description: 'A personal archive of engineering logs, security research, and CTF writeups.',
+  metadataBase: new URL('https://rounakneema.in/blog'),
   keywords: ['Cybersecurity', 'DevOps', 'Engineering', 'Go', 'Security Research', 'CTF'],
-  authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.vercel.app' }],
+  authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.in' }],
   openGraph: {
-    title: 'Engineering Logs // Rounak',
-    description: 'A personal collection of engineering logs, security research, and learnings.',
-    url: 'https://rounakneema.vercel.app',
-    siteName: 'Engineering Logs',
+    title: 'Archive // Rounak',
+    description: 'A personal archive of engineering logs, security research, and CTF writeups.',
+    url: 'https://rounakneema.in',
+    siteName: 'Archive',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Engineering Logs // Rounak',
+    title: 'Archive // Rounak',
     description: 'Security Research & Engineering Logs',
-    creator: '@rounakneema', // Assumption based on pattern, can be updated later
+    creator: '@rounakneema',
   },
 };
 
