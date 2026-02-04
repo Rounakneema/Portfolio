@@ -29,6 +29,9 @@ export function Navbar() {
 
                 {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-8">
+                    <a href="/" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-2 tracking-wide">
+                        <span className="text-accent">/</span> HOME
+                    </a>
                     <a href="https://github.com/rounakneema" target="_blank" rel="noopener noreferrer" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-2 tracking-wide">
                         <Github className="w-5 h-5" /> GITHUB
                     </a>
@@ -67,6 +70,9 @@ export function Navbar() {
                         className="md:hidden border-b border-border bg-white overflow-hidden"
                     >
                         <div className="px-6 py-4 flex flex-col gap-4">
+                            <a href="/" className="text-sm font-bold flex items-center gap-3 py-2">
+                                <span className="text-accent">/</span> HOME
+                            </a>
                             <a href="#" className="text-sm font-bold flex items-center gap-3 py-2">
                                 <Github className="w-4 h-4" /> GITHUB
                             </a>
