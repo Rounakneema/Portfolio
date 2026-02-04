@@ -13,7 +13,7 @@ export function AboutSection() {
                     viewport={{ once: true }}
                     className="glass-panel p-8 md:p-12"
                 >
-                    <h2 className="text-2xl font-bold mb-6">BACKGROUND</h2>
+                    <h2 className="text-2xl font-bold mb-6">INTRODUCTION</h2>
                     <p className="text-secondary leading-relaxed mb-6 font-medium">
                         Final-year Computer Science student at NMIMS University with a deep focus on DevSecOps and Offensive Security.
                     </p>

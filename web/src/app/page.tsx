@@ -2,8 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Terminal, Shield, Cpu } from 'lucide-react';
 
 export const metadata = {
-  title: 'Rounak Neema // DevOps & Security-Focused Platform Engineer',
-  description: 'The central hub for Rounak Neema\'s engineering portfolio, archive of technical logs, and project case studies. Building secure cloud-native systems.',
+  title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
 };
 
 export default function Home() {

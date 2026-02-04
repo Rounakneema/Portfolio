@@ -1,4 +1,5 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from 'next';
 
 // ... inside the default export function, likely near JsonLd or children ...
 // Wait, I should not use comment placeholders in ReplacementContent if I want to be precise.
@@ -11,26 +12,21 @@ import JsonLd from '@/components/JsonLd';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Rounak Neema // DevOps & Security Engineer',
-    template: '%s // Rounak Neema',
-  },
-  description: 'Portfolio of Rounak Neema, a DevOps & Security Engineer from NMIMS University. Specializing in Cloud Native, Red Teaming, and Infrastructure Automation.',
+  title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
+  description: 'DevOps and security-focused platform engineer. Portfolio, projects, and engineering logs covering cloud infrastructure, DevSecOps, automation, and offensive security.',
   metadataBase: new URL('https://rounakneema.in'),
   alternates: {
     canonical: '/',
   },
   keywords: [
     'Rounak Neema',
-    'Rounak Neema NMIMS',
     'DevOps Engineer',
     'Security Engineer',
     'Cloud Security',
     'Red Teaming',
-    'NMIMS Shirpur',
-    'Golang Developer',
+    'Golang',
     'Kubernetes',
-    'Cybersecurity Portfolio'
+    'Cybersecurity',
   ],
   authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.in' }],
   creator: 'Rounak Neema',
@@ -38,35 +34,21 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://rounakneema.in',
-    title: 'Rounak Neema // DevOps & Security Engineer',
-    description: 'Portfolio of Rounak Neema. Building secure cloud infrastructure and automating defense systems.',
+    title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
+    description: 'DevOps and security-focused platform engineer. Portfolio, projects, and engineering logs covering cloud infrastructure, DevSecOps, automation, and offensive security.',
     siteName: 'Rounak Neema',
-    images: [
-      {
-        url: '/og-image.png', // We should ensure this exists
-        width: 1200,
-        height: 630,
-        alt: 'Rounak Neema Portfolio',
-      },
-    ],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Rounak Neema' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rounak Neema // DevOps & Security Engineer',
-    description: 'Building secure cloud infrastructure and automating defense systems.',
+    title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
+    description: 'DevOps and security-focused platform engineer. Portfolio, projects, and engineering logs covering cloud infrastructure, DevSecOps, automation, and offensive security.',
     creator: '@rounakneema',
     images: ['/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 
@@ -100,6 +82,26 @@ export default function RootLayout({
         </div>
 
         <JsonLd />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Rounak Neema",
+              "url": "https://rounakneema.in",
+              "sameAs": [
+                "https://github.com/rounakneema",
+                "https://linkedin.com/in/Rnks23"
+              ],
+              "jobTitle": "DevOps & Security-Focused Platform Engineer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "NMIMS University"
+              }
+            })
+          }}
+        />
         <SpeedInsights />
       </body>
     </html>

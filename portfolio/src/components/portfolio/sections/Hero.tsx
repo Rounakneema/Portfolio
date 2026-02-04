@@ -49,7 +49,7 @@ export function Hero() {
                             <div className="w-full h-full bg-gray-100 border border-border flex items-center justify-center relative overflow-hidden group">
                                 <img
                                     src="/portfolio/me.png"
-                                    className="absolute inset-0 w-full h-full object-cover contrast-110"
+                                    className="absolute inset-0 w-full h-full object-cover saturate-125"
                                     alt="Rounak Neema"
                                 />
                             </div>
