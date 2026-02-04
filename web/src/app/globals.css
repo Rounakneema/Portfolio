@@ -3,20 +3,8 @@
 
 @import "tailwindcss";
 
-@theme {
-  --color-paper: #F9FAFB;
-  --color-surface: #FFFFFF;
-  --color-border: #E5E7EB;
-  --color-black: #111827;
-  --color-secondary: #4B5563;
-  --color-accent: #2563EB;
-  --color-warning: #F59E0B;
-
-  --font-sans: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  --background-image-grid-pattern: linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
-}
+@import 'highlight.js/styles/github-dark.css';
+@import "tailwindcss";
 
 :root {
   --cyan: #2563EB;
@@ -24,33 +12,7 @@
   --void: #F9FAFB;
 }
 
-@layer utilities {
-  .bg-grid {
-    background-size: 40px 40px;
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-  }
 
-  .mono-tag {
-    @apply font-mono text-[0.7rem] uppercase tracking-[0.05em] px-2 py-1 bg-gray-100 border border-border rounded text-secondary;
-  }
-
-  .section-label {
-    @apply font-mono text-xs font-bold uppercase tracking-[0.1em] text-gray-400 mb-6 block;
-  }
-
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px);
-    @apply border border-border transition-all duration-300;
-  }
-
-  .glass-panel:hover {
-    @apply border-accent shadow-lg -translate-y-0.5;
-  }
-}
 
 
 body {

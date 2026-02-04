@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { getAllPosts } from '@/lib/posts';
 import { GlobalSearchWrapper } from '@/components/GlobalSearchWrapper';
-import { PortfolioLink } from '@/components/PortfolioLink';
-import { UnifiedFooter } from '@/components/UnifiedFooter';
 import JsonLd from '@/components/JsonLd';
 import './globals.css';
 
@@ -90,16 +88,13 @@ export default function RootLayout({
         <div className="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl pointer-events-none z-[-1]"></div>
         <div className="fixed top-[20%] left-[-10%] w-[600px] h-[600px] bg-indigo-50/40 rounded-full blur-3xl pointer-events-none z-[-1]"></div>
 
-        <PortfolioLink />
 
         <div className="relative z-10 flex-1 w-full text-black">
           {children}
         </div>
 
         <JsonLd />
-        {/* <GlobalSearchWrapper posts={posts} /> */}
 
-        <UnifiedFooter />
       </body>
     </html>
   );
