@@ -19,7 +19,7 @@ export default function Home() {
         </div>
 
         <ScrambleText
-          text="WRITING LOGS"
+          text="ARCHIVE"
           className="text-6xl md:text-8xl font-black tracking-tighter text-black mb-6"
         />
         <p className="text-gray-500 font-medium text-lg max-w-xl mx-auto leading-relaxed">
