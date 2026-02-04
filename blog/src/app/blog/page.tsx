@@ -2,8 +2,11 @@ import { getAllPosts, getAllTags } from '@/lib/posts';
 import { PostList } from '@/components/PostList';
 
 export const metadata = {
-    title: 'Blog // Rounak',
-    description: 'Engineering logs and security research.',
+    title: 'Engineering Logs // Rounak',
+    description: 'Technical blog by Rounak Neema covering DevOps, Red Teaming, and System Architecture.',
+    alternates: {
+        canonical: '/blog',
+    },
 };
 
 export default function BlogHome() {

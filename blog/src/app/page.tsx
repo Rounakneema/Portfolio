@@ -1,5 +1,9 @@
 import { redirect } from 'next/navigation';
 
+export const metadata = {
+  description: 'The central hub for Rounak Neema\'s engineering portfolio, technical blog, and project case studies. DevOps, Security, and Cloud Infrastructure.',
+};
+
 export default function Home() {
   // Redirect to Portfolio as the main landing page for now, 
   // or build the specific "Hub" landing page here.

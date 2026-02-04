@@ -3,27 +3,66 @@ import { getAllPosts } from '@/lib/posts';
 import { GlobalSearchWrapper } from '@/components/GlobalSearchWrapper';
 import { PortfolioLink } from '@/components/PortfolioLink';
 import { UnifiedFooter } from '@/components/UnifiedFooter';
+import JsonLd from '@/components/JsonLd';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Engineering Logs // Rounak',
-  description: 'A personal collection of engineering logs, security research, and learnings.',
-  metadataBase: new URL('https://rounakneema.vercel.app/blog'),
-  keywords: ['Cybersecurity', 'DevOps', 'Engineering', 'Go', 'Security Research', 'CTF'],
+  title: {
+    default: 'Rounak Neema // DevOps & Security Engineer',
+    template: '%s // Rounak Neema',
+  },
+  description: 'Portfolio of Rounak Neema, a DevOps & Security Engineer from NMIMS University. Specializing in Cloud Native, Red Teaming, and Infrastructure Automation.',
+  metadataBase: new URL('https://rounakneema.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  keywords: [
+    'Rounak Neema',
+    'Rounak Neema NMIMS',
+    'DevOps Engineer',
+    'Security Engineer',
+    'Cloud Security',
+    'Red Teaming',
+    'NMIMS Shirpur',
+    'Golang Developer',
+    'Kubernetes',
+    'Cybersecurity Portfolio'
+  ],
   authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.vercel.app' }],
+  creator: 'Rounak Neema',
   openGraph: {
-    title: 'Engineering Logs // Rounak',
-    description: 'A personal collection of engineering logs, security research, and learnings.',
-    url: 'https://rounakneema.vercel.app',
-    siteName: 'Engineering Logs',
-    locale: 'en_US',
     type: 'website',
+    locale: 'en_US',
+    url: 'https://rounakneema.vercel.app',
+    title: 'Rounak Neema // DevOps & Security Engineer',
+    description: 'Portfolio of Rounak Neema. Building secure cloud infrastructure and automating defense systems.',
+    siteName: 'Rounak Neema',
+    images: [
+      {
+        url: '/og-image.png', // We should ensure this exists
+        width: 1200,
+        height: 630,
+        alt: 'Rounak Neema Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Engineering Logs // Rounak',
-    description: 'Security Research & Engineering Logs',
-    creator: '@rounakneema', // Assumption based on pattern, can be updated later
+    title: 'Rounak Neema // DevOps & Security Engineer',
+    description: 'Building secure cloud infrastructure and automating defense systems.',
+    creator: '@rounakneema',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -57,6 +96,7 @@ export default function RootLayout({
           {children}
         </div>
 
+        <JsonLd />
         {/* <GlobalSearchWrapper posts={posts} /> */}
 
         <UnifiedFooter />

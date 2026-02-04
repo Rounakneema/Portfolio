@@ -8,7 +8,10 @@ import { Footer } from '@/components/portfolio/layout/Footer';
 
 export const metadata = {
     title: 'Portfolio // Rounak',
-    description: 'Full stack developer & security researcher portfolio.',
+    description: 'Rounak Neema\'s professional portfolio. DevOps Engineer and Security Researcher from NMIMS seeking internships. Skills: Go, Kubernetes, Cloud Security.',
+    alternates: {
+        canonical: '/portfolio',
+    },
 };
 
 export default function PortfolioPage() {
