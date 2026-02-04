@@ -4,6 +4,10 @@ import './styles.css';
 export const metadata: Metadata = {
     title: 'Portfolio // Rounak Neema',
     description: 'Rounak Neema - DevOps & Security Engineer Portfolio',
+    metadataBase: new URL('https://rounakneema.in/portfolio'),
+    alternates: {
+        canonical: './',
+    },
 };
 
 export default function RootLayout({

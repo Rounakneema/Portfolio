@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Archive // Rounak',
   description: 'A personal archive of engineering logs, security research, and CTF writeups.',
   metadataBase: new URL('https://rounakneema.in/blog'),
+  alternates: {
+    canonical: './',
+  },
   keywords: ['Cybersecurity', 'DevOps', 'Engineering', 'Go', 'Security Research', 'CTF'],
   authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.in' }],
   openGraph: {
