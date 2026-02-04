@@ -2,41 +2,62 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-function run(cmd, cwd) {
-    console.log(`[EXEC] ${cmd} in ${cwd}`);
-    execSync(cmd, { stdio: 'inherit', cwd });
+const rootDir = process.cwd();
+const apiStaticDir = path.join(rootDir, 'api', 'static');
+
+// Helper to run commands
+const run = (cmd, cwd) => {
+    console.log(`Running: ${cmd} in ${cwd}`);
+    execSync(cmd, { cwd, stdio: 'inherit' });
+};
+
+// Clean api/static
+if (fs.existsSync(apiStaticDir)) {
+    fs.rmSync(apiStaticDir, { recursive: true, force: true });
+}
+fs.mkdirSync(apiStaticDir, { recursive: true });
+
+// 1. Build Web (Root)
+const webDir = path.join(rootDir, 'web');
+if (fs.existsSync(webDir)) {
+    run('npm install', webDir);
+    run('npm run build', webDir);
+    // Copy web/out content directly to api/static (Root)
+    const webOut = path.join(webDir, 'out');
+    fs.cpSync(webOut, apiStaticDir, { recursive: true });
 }
 
-const ROOT = path.resolve(__dirname, '..');
-const BACKEND_STATIC = path.join(ROOT, 'backend', 'static');
+// 2. Build Blog
+const blogDir = path.join(rootDir, 'blog');
+if (fs.existsSync(blogDir)) {
+    run('npm install', blogDir);
+    run('npm run build', blogDir); // This outputs to blog/out with basePath /blog baked in? 
+    // Wait, next export with basePath usually puts assets under out/basePath or expects it.
+    // If basePath is /blog, Next.js generates folder 'out' containing files. 
+    // We should copy 'blog/out' to 'api/static/blog' OR 'api/static/' depending on internal structure.
+    // Usually 'out' contains the static files. If basePath is set, assets are usually prefix-safe.
+    // However, for filesystem routing, we physically need a 'blog' folder in static.
 
-// 1. Clean
-console.log('Cleaning backend/static...');
-if (fs.existsSync(BACKEND_STATIC)) {
-    fs.rmSync(BACKEND_STATIC, { recursive: true, force: true });
+    // Let's create api/static/blog and copy 'blog/out' content there? 
+    // OR if 'blog/out' already has 'blog' folder inside? 
+    // Typically 'next export' with basePath doesn't create the folder inside 'out'.
+    // So we manually copy to subfolder.
+    const blogOut = path.join(blogDir, 'out');
+    const destBlog = path.join(apiStaticDir, 'blog');
+    fs.mkdirSync(destBlog, { recursive: true });
+    fs.cpSync(blogOut, destBlog, { recursive: true });
 }
-fs.mkdirSync(path.join(BACKEND_STATIC, 'portfolio'), { recursive: true });
-fs.mkdirSync(path.join(BACKEND_STATIC, 'blog'), { recursive: true });
 
-// 2. Build Portfolio
-console.log('Building Portfolio...');
-run('npm run build', path.join(ROOT, 'professional_portfolio'));
+// 3. Build Portfolio
+const portfolioDir = path.join(rootDir, 'portfolio');
+if (fs.existsSync(portfolioDir)) {
+    run('npm install', portfolioDir);
+    run('npm run build', portfolioDir);
+    const portfolioOut = path.join(portfolioDir, 'out');
+    const destPortfolio = path.join(apiStaticDir, 'portfolio');
+    fs.mkdirSync(destPortfolio, { recursive: true });
+    // Same logic as blog, copy content to subfolder
+    fs.cpSync(portfolioOut, destPortfolio, { recursive: true });
+}
 
-// 2.5 Generate Blog Index
-console.log('Generating Blog Index...');
-run('node scripts/generate-blog-index.js', ROOT);
-
-// 3. Build Blog
-console.log('Building Blog...');
-run('npm run build', path.join(ROOT, 'blog'));
-
-// 4. Move Assets
-console.log('Moving Portfolio Assets...');
-// Move contents of professional_portfolio/dist to backend/static/portfolio
-fs.cpSync(path.join(ROOT, 'professional_portfolio', 'dist'), path.join(BACKEND_STATIC, 'portfolio'), { recursive: true });
-
-console.log('Moving Blog Assets...');
-// Move contents of blog/out to backend/static/blog
-fs.cpSync(path.join(ROOT, 'blog', 'out'), path.join(BACKEND_STATIC, 'blog'), { recursive: true });
-
-console.log('Build Complete. Run "go run main.go" in backend directory.');
+console.log('All builds completed and merged into api/static');

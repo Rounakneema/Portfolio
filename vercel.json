@@ -10,6 +10,6 @@
             "destination": "/api/index.go"
         }
     ],
-    "buildCommand": "cd web && npm install && npm run build && cd .. && rm -rf api/static && mkdir -p api/static && cp -r web/out/* api/static/ && node bundler.js",
-    "outputDirectory": "web/out"
+    "buildCommand": "node scripts/build-all.js && node bundler.js",
+    "outputDirectory": "api/static"
 }
