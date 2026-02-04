@@ -10,6 +10,6 @@
             "destination": "/api/index.go"
         }
     ],
-    "buildCommand": "cd professional_portfolio && npm run vercel-build",
-    "outputDirectory": "professional_portfolio/dist"
+    "buildCommand": "cd blog && npm install && npm run build && cd .. && rm -rf api/static && mkdir -p api/static && cp -r blog/out/* api/static/ && node bundler.js",
+    "outputDirectory": "blog/out"
 }
