@@ -47,12 +47,11 @@ export function Hero() {
                             <div className="absolute inset-0 border border-black/10 rotate-3"></div>
                             <div className="absolute inset-0 border border-black/10 -rotate-3"></div>
                             <div className="w-full h-full bg-gray-100 border border-border flex items-center justify-center relative overflow-hidden group">
-                                <div className="text-xs font-mono text-center text-gray-400 p-4">
-                                    [PROFILE_PIC]<br />
-                                    SQUARE<br />
-                                    BW / HIGH RES
-                                </div>
-                                {/* <img src="/path-to-your-image.jpg" className="absolute inset-0 w-full h-full object-cover grayscale contrast-125" alt="Profile" /> */}
+                                <img
+                                    src="/portfolio/me.png"
+                                    className="absolute inset-0 w-full h-full object-cover grayscale contrast-125"
+                                    alt="Rounak Neema"
+                                />
                             </div>
                         </motion.div>
 

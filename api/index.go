@@ -48,16 +48,27 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if !ok {
-			// Fallback to 404.html if it exists
-			if _, ok404 := assets.Assets["404.html"]; ok404 {
-				assetPath = "404.html"
-				content = assets.Assets[assetPath]
-				w.WriteHeader(http.StatusNotFound)
-			} else {
-				w.Header().Set("Content-Type", "text/plain")
-				w.WriteHeader(http.StatusNotFound)
-				fmt.Fprintf(w, "404 Not Found: %s\n", r.URL.Path)
-				return
+			// SPA Fallback Logic for Sub-Apps
+			if strings.HasPrefix(reqPath, "/portfolio/") {
+				assetPath = "portfolio/index.html"
+				content, ok = assets.Assets[assetPath]
+			} else if strings.HasPrefix(reqPath, "/blog/") {
+				assetPath = "blog/index.html"
+				content, ok = assets.Assets[assetPath]
+			}
+			
+			// Global 404 Fallback
+			if !ok {
+				if _, ok404 := assets.Assets["404.html"]; ok404 {
+					assetPath = "404.html"
+					content = assets.Assets[assetPath]
+					w.WriteHeader(http.StatusNotFound)
+				} else {
+					w.Header().Set("Content-Type", "text/plain")
+					w.WriteHeader(http.StatusNotFound)
+					fmt.Fprintf(w, "404 Not Found: %s\n", r.URL.Path)
+					return
+				}
 			}
 		}
 
