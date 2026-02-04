@@ -1,5 +1,5 @@
 import { getAllPosts, getAllTags } from '@/lib/posts';
-import { PostList } from '@/components/PostList';
+import { ArchiveList } from '@/components/ArchiveList';
 
 export const metadata = {
     title: 'Engineering Logs // Rounak',
@@ -26,7 +26,7 @@ export default function BlogHome() {
                     </p>
                 </header>
 
-                <PostList initialPosts={posts} allTags={tags} />
+                <ArchiveList posts={posts} />
             </div>
         </div>
     );
