@@ -1,5 +1,8 @@
 'use client';
 
+import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export function PortfolioLink() {
@@ -7,6 +10,11 @@ export function PortfolioLink() {
 
     // Hide on blog post pages to prevent overlap
     if (pathname.startsWith('/posts/')) {
+        return null;
+    }
+
+    // Safety: Never show on portfolio pages to avoid overlap
+    if (pathname?.startsWith('/portfolio')) {
         return null;
     }
 
