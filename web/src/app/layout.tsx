@@ -1,4 +1,5 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from 'next';
 
 // ... inside the default export function, likely near JsonLd or children ...
@@ -118,6 +119,7 @@ export default function RootLayout({
           }}
         />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

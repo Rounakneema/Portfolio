@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from 'next';
 import { getAllPosts } from '@/lib/posts';
 import { GlobalSearchWrapper } from '@/components/GlobalSearchWrapper';
@@ -65,6 +66,7 @@ export default function RootLayout({
         {/* <GlobalSearchWrapper posts={posts} /> */}
 
         <UnifiedFooter />
+        <Analytics />
       </body>
     </html>
   );
