@@ -56,9 +56,7 @@ export default function RootLayout({
 
         <PortfolioLink />
 
-        <a href="/" className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full glass-panel hover:bg-white/50 transition-all group border border-gray-200 text-xs font-bold font-mono text-gray-500 hover:text-black">
-          ← HUB
-        </a>
+
 
         <div className="relative z-10 flex-1 w-full text-black">
           {children}

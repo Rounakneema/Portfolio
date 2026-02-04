@@ -54,11 +54,15 @@ export default async function PostPage({ params }: PostPageProps) {
             <CodeBlockEnhancer />
 
             {/* Top Navigation Bar */}
-            <nav className="glass-header fixed top-0 left-0 right-0 z-40 px-6 py-4 flex justify-between items-center">
+            <a href="/blog" className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full glass-panel hover:bg-white/50 transition-all group border border-gray-200 text-xs font-bold font-mono text-gray-500 hover:text-black">
+                ← ARCHIVE
+            </a>
+
+            <nav className="glass-header fixed top-0 left-0 right-0 z-40 px-6 py-4 flex justify-between items-center pl-40">
                 <div className="font-mono text-xs md:text-sm text-gray-500 flex items-center gap-2">
                     <Link href="/" className="hover:text-cyan transition-colors">ROOT</Link>
                     <span>/</span>
-                    <Link href="/" className="hover:text-cyan transition-colors">ARCHIVES</Link>
+                    <Link href="/blog" className="hover:text-cyan transition-colors">ARCHIVES</Link>
                     <span>/</span>
                     <span className="text-cyan uppercase">OP-{post.slug.substring(0, 8)}</span>
                 </div>

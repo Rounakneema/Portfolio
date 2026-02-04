@@ -10,6 +10,10 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-24 relative">
+      <a href="/" className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full glass-panel hover:bg-white/50 transition-all group border border-gray-200 text-xs font-bold font-mono text-gray-500 hover:text-black">
+        ← HUB
+      </a>
+
       <header className="mb-24 text-center">
         <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full mb-8 bg-gray-100 border border-gray-200">
           <span className="relative flex h-2 w-2">
