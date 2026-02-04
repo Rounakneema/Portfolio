@@ -15,7 +15,7 @@ export function AboutSection() {
                 >
                     <h2 className="text-2xl font-bold mb-6">INTRODUCTION</h2>
                     <p className="text-secondary leading-relaxed mb-6 font-medium">
-                        Final-year Computer Science student at NMIMS University with a deep focus on DevSecOps and Offensive Security.
+                        I am an early-career DevOps and security-focused engineer with hands-on experience in cloud infrastructure, DevSecOps pipelines, security automation, and offensive security labs. This portfolio presents my technical skills, projects, and engineering background.
                     </p>
                     <p className="text-secondary leading-relaxed mb-6 text-sm">
                         Unlike typical students, I don't just study theory. I build and break real infrastructure in my home lab. I have extensive hands-on experience deploying Kubernetes clusters, writing custom security tools in Go, and simulating Red Team operations in controlled environments.
