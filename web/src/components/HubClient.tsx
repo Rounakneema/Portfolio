@@ -106,29 +106,12 @@ export function HubClient() {
                 </motion.div>
 
                 <div className="md:col-span-4 flex flex-col gap-6">
-                    {/* Secondary Action: Projects */}
+                    {/* Secondary Action: Archive (Prioritized) */}
                     <motion.div
                         className="flex-1"
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.7, type: "spring" }}
-                    >
-                        <Link href="/projects" className="h-full group p-8 bg-white/80 backdrop-blur-sm border-2 border-zinc-100 hover:border-emerald-600 hover:shadow-lg rounded-xl flex flex-col justify-center transition-all hover:-translate-y-0.5 relative overflow-hidden block">
-                            <div className="relative z-10">
-                                <h3 className="text-lg font-bold mb-2 group-hover:text-emerald-600 transition-colors flex items-center gap-2">
-                                    PROJECTS HUB <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                </h3>
-                                <p className="text-xs text-zinc-500 font-sans">Case studies & deep dives.</p>
-                            </div>
-                        </Link>
-                    </motion.div>
-
-                    {/* Secondary Action: Archive */}
-                    <motion.div
-                        className="flex-1"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.8, type: "spring" }}
                     >
                         <Link href="/blog" className="h-full group p-8 bg-white/80 backdrop-blur-sm border-2 border-zinc-100 hover:border-blue-600 hover:shadow-lg rounded-xl flex flex-col justify-center transition-all hover:-translate-y-0.5 relative overflow-hidden block">
                             <div className="relative z-10">
@@ -136,6 +119,23 @@ export function HubClient() {
                                     ARCHIVE <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </h3>
                                 <p className="text-xs text-zinc-500 font-sans">Engineering logs & research.</p>
+                            </div>
+                        </Link>
+                    </motion.div>
+
+                    {/* Secondary Action: Projects (Empty/De-prioritized) */}
+                    <motion.div
+                        className="flex-1"
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.8, type: "spring" }}
+                    >
+                        <Link href="/projects" className="h-full group p-8 bg-white/80 backdrop-blur-sm border-2 border-zinc-100 hover:border-emerald-600 hover:shadow-lg rounded-xl flex flex-col justify-center transition-all hover:-translate-y-0.5 relative overflow-hidden block">
+                            <div className="relative z-10">
+                                <h3 className="text-lg font-bold mb-2 group-hover:text-emerald-600 transition-colors flex items-center gap-2">
+                                    PROJECTS HUB <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </h3>
+                                <p className="text-xs text-zinc-500 font-sans">Case studies & deep dives.</p>
                             </div>
                         </Link>
                     </motion.div>
