@@ -152,7 +152,7 @@ export function HubClient() {
             >
                 <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-6">About This Hub</h4>
                 <p className="text-zinc-500 text-sm leading-relaxed mb-8 max-w-xl mx-auto">
-                    This website serves as a central hub for my portfolio, projects, and engineering write-ups focused on DevOps, cloud infrastructure, and security engineering.
+                    This website serves as a central hub for my portfolio, projects, and engineering write-ups focused on DevOps, cloud infrastructure, cybersecurity, and penetration testing.
                 </p>
 
                 {/* Semantic Text Navigation for Crawlers */}

@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     'Golang',
     'Kubernetes',
     'Cybersecurity',
+    'Penetration Tester',
+    'Cybersecurity Engineer',
+    'Ethical Hacker',
   ],
   authors: [{ name: 'Rounak Neema', url: 'https://rounakneema.in' }],
   creator: 'Rounak Neema',
@@ -94,7 +97,7 @@ export default function RootLayout({
                 "https://github.com/rounakneema",
                 "https://linkedin.com/in/Rnks23"
               ],
-              "jobTitle": "DevOps Engineer | Security Engineer | Platform Engineer",
+              "jobTitle": "DevOps Engineer | Security Engineer | Penetration Tester",
               "worksFor": {
                 "@type": "Organization",
                 "name": "NMIMS University"
@@ -104,6 +107,7 @@ export default function RootLayout({
                 "Cloud Infrastructure",
                 "Cybersecurity",
                 "DevSecOps",
+                "Penetration Testing",
                 "Go (Progamming Language)",
                 "Kubernetes",
                 "Automation",
