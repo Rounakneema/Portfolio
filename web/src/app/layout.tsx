@@ -1,4 +1,10 @@
-import type { Metadata } from 'next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+// ... inside the default export function, likely near JsonLd or children ...
+// Wait, I should not use comment placeholders in ReplacementContent if I want to be precise.
+// I will use strict StartLine/EndLine or carefully construct the replacement.
+// Let's modify imports first then the body.
+
 import { getAllPosts } from '@/lib/posts';
 import { GlobalSearchWrapper } from '@/components/GlobalSearchWrapper';
 import JsonLd from '@/components/JsonLd';
@@ -94,7 +100,7 @@ export default function RootLayout({
         </div>
 
         <JsonLd />
-
+        <SpeedInsights />
       </body>
     </html>
   );
