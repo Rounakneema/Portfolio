@@ -25,14 +25,22 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	reqPath := r.URL.Path
 
 	// Helper to serve files from In-Memory Assets map
-	serveAsset := func(assetPath string, fallback string) {
+	serveAsset := func(assetPath string) {
 		// Normalizing path separator to forward slash for map lookup
+		assetPath = strings.TrimPrefix(assetPath, "/")
+		if assetPath == "" {
+			assetPath = "index.html"
+		}
+		
 		assetPath = strings.ReplaceAll(assetPath, "\\", "/")
 		
 		content, ok := assets.Assets[assetPath]
 		if !ok {
-			// Try adding /index.html (standard Clean URL behavior)
+			// Try adding /index.html (standard Clean URL behavior for Next.js trailingSlash: true)
 			dirIndex := strings.TrimSuffix(assetPath, "/") + "/index.html"
+			// Check if dirIndex starts with slash, remove it if so
+			dirIndex = strings.TrimPrefix(dirIndex, "/")
+			
 			content, ok = assets.Assets[dirIndex]
 			if ok {
 				assetPath = dirIndex
@@ -40,30 +48,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if !ok {
-			// Try fallback
-			if fallback != "" {
-				fallback = strings.ReplaceAll(fallback, "\\", "/")
-				content, ok = assets.Assets[fallback]
-				if ok {
-					assetPath = fallback
-				}
+			// Fallback to 404.html if it exists
+			if _, ok404 := assets.Assets["404.html"]; ok404 {
+				assetPath = "404.html"
+				content = assets.Assets[assetPath]
+				w.WriteHeader(http.StatusNotFound)
+			} else {
+				w.Header().Set("Content-Type", "text/plain")
+				w.WriteHeader(http.StatusNotFound)
+				fmt.Fprintf(w, "404 Not Found: %s\n", r.URL.Path)
+				return
 			}
-		}
-
-		if !ok {
-			w.Header().Set("Content-Type", "text/plain")
-			w.WriteHeader(http.StatusNotFound)
-			fmt.Fprintf(w, "404 Not Found: %s\n", assetPath)
-			// Debug: List available keys if not found (optional, maybe unsafe for prod but good for debugging)
-			// fmt.Fprintf(w, "Available: %v\n", reflect.ValueOf(Assets).MapKeys())
-			return
 		}
 
 		// Determine Content-Type
 		ext := filepath.Ext(assetPath)
 		ctype := mime.TypeByExtension(ext)
 		if ctype == "" {
-			// specific overrides if mime package fails (common in slim environments)
 			if ext == ".css" {
 				ctype = "text/css"
 			} else if ext == ".js" {
@@ -80,24 +81,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		http.ServeContent(w, r, assetPath, time.Now(), bytes.NewReader(content))
 	}
 
-	// 1. Serve Blog requests (/blog or /blog/...)
-	if reqPath == "/blog" || strings.HasPrefix(reqPath, "/blog/") {
-		relPath := strings.TrimPrefix(reqPath, "/blog")
-		if relPath == "" || relPath == "/" {
-			relPath = "index.html"
-		}
-		relPath = strings.TrimPrefix(relPath, "/")
-		
-		// Map to "blog/..."
-		serveAsset("blog/"+relPath, "blog/index.html")
-		return
-	}
-
-	// 2. Serve Portfolio requests (SPA)
-	relPath := strings.TrimPrefix(reqPath, "/")
-	if relPath == "" {
-		relPath = "index.html"
-	}
-	// Map to "portfolio/..."
-	serveAsset("portfolio/"+relPath, "portfolio/index.html")
+	serveAsset(reqPath)
 }
