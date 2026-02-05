@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { ArrowUpRight, Shield, Terminal, Cpu } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { WebTerminal } from './WebTerminal';
 
 export function HubClient() {
     return (
@@ -20,10 +19,8 @@ export function HubClient() {
                     VIEW PORTFOLIO <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
             </motion.div>
-
             {/* Hero Section */}
             <header className="mb-16 text-center max-w-4xl mx-auto mt-20">
-                <WebTerminal />
 
                 <motion.h1
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -202,6 +199,6 @@ export function HubClient() {
             <footer className="text-xs text-zinc-300 py-6">
                 &copy; {new Date().getFullYear()} Rounak Neema
             </footer>
-        </div>
+        </div >
     );
 }
