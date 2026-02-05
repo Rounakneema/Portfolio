@@ -4,6 +4,7 @@ import { getAllPosts } from '@/lib/posts';
 import { GlobalSearchWrapper } from '@/components/GlobalSearchWrapper';
 import { PortfolioLink } from '@/components/PortfolioLink';
 import { UnifiedFooter } from '@/components/UnifiedFooter';
+import { TitleHandler } from '@/components/TitleHandler';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-screen flex flex-col selection:bg-blue-100 selection:text-blue-900 bg-gray-50 text-black">
+        <TitleHandler />
         {/* Engineering Grid Background */}
         <div className="fixed inset-0 z-[-1] opacity-[0.4]" style={{
           backgroundImage: `linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px)`,

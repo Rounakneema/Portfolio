@@ -72,6 +72,42 @@ export function HubClient() {
                         <Cpu className="w-4 h-4 text-purple-600" /> Cloud + DevSecOps Focus
                     </div>
                 </motion.div>
+
+                {/* Main Actions / Socials */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.55 }}
+                    className="flex flex-wrap justify-center items-center gap-4 mb-16"
+                >
+                    <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-black text-white px-8 py-4 rounded-full font-bold tracking-wide hover:scale-105 transition-transform shadow-xl flex items-center gap-3 text-sm md:text-base border border-transparent hover:border-emerald-500/50"
+                    >
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                        </span>
+                        DOWNLOAD RESUME
+                    </a>
+
+                    <div className="h-8 w-px bg-zinc-300 mx-2 hidden sm:block"></div>
+
+                    <a href="mailto:rounakneema414@gmail.com" className="px-6 py-3 rounded-full bg-white border border-zinc-200 hover:border-black font-bold text-zinc-600 hover:text-black transition-all hover:shadow-md flex items-center gap-2 text-sm">
+                        EMAIL ME
+                    </a>
+
+                    <div className="flex gap-2">
+                        <a href="https://github.com/rounakneema" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white border border-zinc-200 hover:border-black hover:bg-black hover:text-white transition-all hover:shadow-md group">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/Rnks23" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white border border-zinc-200 hover:border-[#0077b5] hover:bg-[#0077b5] hover:text-white transition-all hover:shadow-md">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                    </div>
+                </motion.div>
             </header>
 
             {/* Main Navigation - The "Funnel" */}
