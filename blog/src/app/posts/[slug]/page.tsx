@@ -1,3 +1,4 @@
+// ... imports
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
@@ -9,6 +10,7 @@ import { CodeBlockEnhancer } from '@/components/CodeBlockEnhancer';
 import { RelatedPosts } from '@/components/RelatedPosts';
 // import { NewsletterForm } from '@/components/NewsletterForm';
 import { ReadingFrame } from '@/components/ReadingFrame';
+import BlogPostSchema from '@/components/BlogPostSchema';
 import type { Metadata } from 'next';
 
 interface PostPageProps {
@@ -47,9 +49,11 @@ export default async function PostPage({ params }: PostPageProps) {
     }
 
     const contentHtml = await markdownToHtml(post.content);
+    const postUrl = `https://rounakneema.in/blog/posts/${slug}`;
 
     return (
         <div className="min-h-screen">
+            <BlogPostSchema post={post} url={postUrl} />
             <ReadingProgress />
             <CodeBlockEnhancer />
 

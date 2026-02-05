@@ -86,38 +86,7 @@ export default function RootLayout({
         </div>
 
         <JsonLd />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Rounak Neema",
-              "url": "https://rounakneema.in",
-              "sameAs": [
-                "https://github.com/rounakneema",
-                "https://linkedin.com/in/Rnks23"
-              ],
-              "jobTitle": "DevOps Engineer | Security Engineer | Penetration Tester",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "NMIMS University"
-              },
-              "knowsAbout": [
-                "DevOps",
-                "Cloud Infrastructure",
-                "Cybersecurity",
-                "DevSecOps",
-                "Penetration Testing",
-                "Go (Progamming Language)",
-                "Kubernetes",
-                "Automation",
-                "Network Security"
-              ],
-              "description": "Early-career DevOps and security-focused engineer with hands-on experience in cloud infrastructure, DevSecOps pipelines, security automation, and offensive security labs."
-            })
-          }}
-        />
+
         <SpeedInsights />
         <Analytics />
       </body>
