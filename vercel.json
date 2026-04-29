@@ -10,6 +10,5 @@
             "destination": "/api/index.go"
         }
     ],
-    "buildCommand": "node scripts/build-all.js && node bundler.js",
-    "outputDirectory": "api/static"
+    "buildCommand": "node scripts/build-all.js"
 }

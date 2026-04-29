@@ -2,7 +2,9 @@ package handler
 
 import (
 	"bytes"
+	"embed"
 	"fmt"
+	"io/fs"
 	"mime"
 	"net/http"
 	"path/filepath"
@@ -10,85 +12,93 @@ import (
 	"time"
 )
 
+//go:embed static
+var staticFiles embed.FS
+
 // Handler is the entry point for Vercel Serverless Functions
 func Handler(w http.ResponseWriter, r *http.Request) {
-	// Add Security Headers
+	// Security Headers
 	w.Header().Set("X-Content-Type-Options", "nosniff")
 	w.Header().Set("X-Frame-Options", "DENY")
 	w.Header().Set("X-XSS-Protection", "1; mode=block")
 	w.Header().Set("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; img-src 'self' data: https:; font-src 'self' https: data:;")
 	w.Header().Set("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
 
-	// Determine request path
 	reqPath := r.URL.Path
 
-	// Helper to serve files from In-Memory Assets map
 	serveAsset := func(assetPath string) {
-		// Normalizing path separator to forward slash for map lookup
 		assetPath = strings.TrimPrefix(assetPath, "/")
 		if assetPath == "" {
 			assetPath = "index.html"
 		}
-		
 		assetPath = strings.ReplaceAll(assetPath, "\\", "/")
-		
-		content, ok := Assets[assetPath]
-		if !ok {
-			// Try adding /index.html (standard Clean URL behavior for Next.js trailingSlash: true)
-			dirIndex := strings.TrimSuffix(assetPath, "/") + "/index.html"
-			// Check if dirIndex starts with slash, remove it if so
-			dirIndex = strings.TrimPrefix(dirIndex, "/")
-			
-			content, ok = Assets[dirIndex]
-			if ok {
-				assetPath = dirIndex
+
+		// Embed FS paths are prefixed with "static/"
+		fsPath := "static/" + assetPath
+
+		content, err := fs.ReadFile(staticFiles, fsPath)
+		if err != nil {
+			// Try /index.html (clean URL fallback)
+			dirIndex := strings.TrimSuffix(fsPath, "/") + "/index.html"
+			content, err = fs.ReadFile(staticFiles, dirIndex)
+			if err == nil {
+				assetPath = strings.TrimPrefix(dirIndex, "static/")
+				fsPath = dirIndex
 			}
 		}
 
-		if !ok {
+		if err != nil {
 			// SPA Fallback Logic for Sub-Apps
 			if strings.HasPrefix(reqPath, "/portfolio/") {
-				assetPath = "portfolio/index.html"
-				content, ok = Assets[assetPath]
+				fsPath = "static/portfolio/index.html"
+				content, err = fs.ReadFile(staticFiles, fsPath)
 			} else if strings.HasPrefix(reqPath, "/blog/") {
-				assetPath = "blog/index.html"
-				content, ok = Assets[assetPath]
+				fsPath = "static/blog/index.html"
+				content, err = fs.ReadFile(staticFiles, fsPath)
 			}
-			
+
 			// Global 404 Fallback
-			if !ok {
-				if _, ok404 := Assets["404.html"]; ok404 {
-					assetPath = "404.html"
-					content = Assets[assetPath]
+			if err != nil {
+				notFoundContent, notFoundErr := fs.ReadFile(staticFiles, "static/404.html")
+				if notFoundErr == nil {
 					w.WriteHeader(http.StatusNotFound)
+					ext := filepath.Ext("404.html")
+					ctype := resolveMime(ext)
+					w.Header().Set("Content-Type", ctype)
+					http.ServeContent(w, r, "404.html", time.Now(), bytes.NewReader(notFoundContent))
 				} else {
 					w.Header().Set("Content-Type", "text/plain")
 					w.WriteHeader(http.StatusNotFound)
 					fmt.Fprintf(w, "404 Not Found: %s\n", r.URL.Path)
-					return
 				}
+				return
 			}
 		}
 
-		// Determine Content-Type
-		ext := filepath.Ext(assetPath)
-		ctype := mime.TypeByExtension(ext)
-		if ctype == "" {
-			if ext == ".css" {
-				ctype = "text/css"
-			} else if ext == ".js" {
-				ctype = "application/javascript"
-			} else if ext == ".html" {
-				ctype = "text/html"
-			} else if ext == ".svg" {
-				ctype = "image/svg+xml"
-			} else {
-				ctype = "application/octet-stream"
-			}
-		}
+		ext := filepath.Ext(fsPath)
+		ctype := resolveMime(ext)
 		w.Header().Set("Content-Type", ctype)
-		http.ServeContent(w, r, assetPath, time.Now(), bytes.NewReader(content))
+		http.ServeContent(w, r, fsPath, time.Now(), bytes.NewReader(content))
 	}
 
 	serveAsset(reqPath)
+}
+
+func resolveMime(ext string) string {
+	ctype := mime.TypeByExtension(ext)
+	if ctype != "" {
+		return ctype
+	}
+	switch ext {
+	case ".css":
+		return "text/css"
+	case ".js":
+		return "application/javascript"
+	case ".html":
+		return "text/html"
+	case ".svg":
+		return "image/svg+xml"
+	default:
+		return "application/octet-stream"
+	}
 }
