@@ -11,7 +11,7 @@ export function Hero() {
     ];
 
     return (
-        <header className="mb-32">
+        <header className="mb-20">
             <div className="flex flex-col lg:flex-row justify-between items-end border-b border-black pb-8 mb-8 gap-8">
                 <div>
                     <motion.div
@@ -48,7 +48,7 @@ export function Hero() {
                             <div className="absolute inset-0 border border-black/10 -rotate-3"></div>
                             <div className="w-full h-full bg-gray-100 border border-border flex items-center justify-center relative overflow-hidden group">
                                 <img
-                                    src="/portfolio/me.png"
+                                    src="/portfolio/me.jpg"
                                     className="absolute inset-0 w-full h-full object-cover saturate-125"
                                     alt="Rounak Neema"
                                 />

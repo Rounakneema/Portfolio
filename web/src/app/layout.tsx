@@ -14,7 +14,7 @@ import { TitleHandler } from '@/components/TitleHandler';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
+  title: 'Rounak Neema | DevOps Engineer & Penetration Tester',
   description: 'DevOps and security-focused platform engineer. Portfolio, projects, and engineering logs covering cloud infrastructure, DevSecOps, automation, and offensive security.',
   metadataBase: new URL('https://rounakneema.in'),
   alternates: {
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://rounakneema.in',
-    title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
+    title: 'Rounak Neema | DevOps Engineer & Penetration Tester',
     description: 'DevOps and security-focused platform engineer. Portfolio, projects, and engineering logs covering cloud infrastructure, DevSecOps, automation, and offensive security.',
     siteName: 'Rounak Neema',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Rounak Neema' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
+    title: 'Rounak Neema | DevOps Engineer & Penetration Tester',
     description: 'DevOps and security-focused platform engineer. Portfolio, projects, and engineering logs covering cloud infrastructure, DevSecOps, automation, and offensive security.',
     creator: '@rounakneema',
     images: ['/og-image.png'],

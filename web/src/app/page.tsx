@@ -1,7 +1,7 @@
 import { HubClient } from '@/components/HubClient';
 
 export const metadata = {
-  title: 'Rounak Neema | DevOps & Security-Focused Platform Engineer',
+  title: 'Rounak Neema | DevOps Engineer & Penetration Tester',
 };
 
 export default function Home() {

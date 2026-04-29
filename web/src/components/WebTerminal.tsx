@@ -5,7 +5,7 @@ import { Terminal } from 'lucide-react';
 
 export function WebTerminal() {
     const [text, setText] = useState('');
-    const fullText: string = '> Loading Profile...\n> Role: DevOps_&_Security_Engineer\n> Stack: Cloud • Go • K8s • CI/CD\n> Status: OPEN_TO_WORK\n> welcome_recruiter.';
+    const fullText: string = '> Loading Profile...\n> Role: DevOps_&_Security_Engineer\n> Focus: Pentesting_&_Cloud_Infra\n> Status: OPEN_TO_WORK\n> welcome_recruiter.';
 
     useEffect(() => {
         let index = 0;

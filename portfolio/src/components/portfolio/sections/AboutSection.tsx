@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export function AboutSection() {
     return (
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
             <div className="lg:col-span-8">
                 <span className="section-label">// CANDIDATE PROFILE</span>
                 <motion.div
@@ -15,13 +15,13 @@ export function AboutSection() {
                 >
                     <h2 className="text-2xl font-bold mb-6">INTRODUCTION</h2>
                     <p className="text-secondary leading-relaxed mb-6 font-medium">
-                        I am an early-career DevOps and security-focused engineer with hands-on experience in cloud infrastructure, DevSecOps pipelines, security automation, and offensive security labs. This portfolio presents my technical skills, projects, and engineering background.
+                        I am an early-career DevOps Engineer and Penetration Tester with hands-on experience in cloud infrastructure, security automation, and offensive security labs. I specialize in building secure CI/CD pipelines and conducting vulnerability assessments across cloud-native environments.
                     </p>
                     <p className="text-secondary leading-relaxed mb-6 text-sm">
                         Unlike typical students, I don't just study theory. I build and break real infrastructure in my home lab. I have extensive hands-on experience deploying Kubernetes clusters, writing custom security tools in Go, and simulating Red Team operations in controlled environments.
                     </p>
                     <p className="text-secondary leading-relaxed mb-6 text-sm border-l-2 border-accent pl-4">
-                        <strong className="text-black">Goal:</strong> Seeking an internship or entry-level role where I can contribute to securing cloud infrastructure and automating defense pipelines.
+                        <strong className="text-black">Goal:</strong> Seeking an internship or entry-level role as a DevOps Engineer, Security Engineer, or Penetration Tester where I can contribute to infrastructure defense and automation.
                     </p>
                 </motion.div>
             </div>
@@ -42,7 +42,7 @@ export function AboutSection() {
                         </div>
                         <div className="flex justify-between border-b border-gray-100 pb-2">
                             <span className="font-mono text-xs text-gray-400">FOCUS</span>
-                            <span className="font-bold text-sm text-right">DevOps<br />Cybersecurity</span>
+                            <span className="font-bold text-sm text-right">DevOps<br />Cybersecurity<br />Pentesting</span>
                         </div>
                         <div className="flex justify-between border-b border-gray-100 pb-2">
                             <span className="font-mono text-xs text-gray-400">LOCATION</span>

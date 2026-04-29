@@ -2,11 +2,11 @@ import { Github, Linkedin, FileText } from 'lucide-react';
 
 export function Footer() {
     return (
-        <footer id="contact" className="bg-black text-white px-8 md:px-12 py-32 rounded-t-[3rem] -mx-6 md:-mx-12">
+        <footer id="contact" className="bg-black text-white px-8 md:px-12 py-16 rounded-t-[3rem] -mx-6 md:-mx-12">
             <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
                 <div className="flex flex-col md:flex-row justify-between items-end gap-12">
                     <div>
-                        <h2 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter">
+                        <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
                             LET'S<br />CONNECT.
                         </h2>
                         <div className="text-xl md:text-2xl text-secondary mb-12 max-w-2xl leading-relaxed">

@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export function LookingForSection() {
     return (
-        <section className="mb-48">
+        <section className="mb-24">
             <span className="section-label text-base md:text-lg mb-12">// WHAT I'M LOOKING FOR</span>
 
             <motion.div

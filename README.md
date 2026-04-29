@@ -1,7 +1,7 @@
 # Rounak Neema
 
 <!-- Replace the source URL below with your actual profile image or banner URL -->
-<img src="YOUR_IMAGE_URL_HERE" alt="Rounak Neema Profile Image" width="150" style="border-radius: 50%;"/>
+<img src="https://rounakneema.in/portfolio/me.jpg" alt="Rounak Neema Profile Image" width="150" style="border-radius: 50%;"/>
 
 **Security-Oriented Software Engineer | DevSecOps | Systems & Infrastructure**
 

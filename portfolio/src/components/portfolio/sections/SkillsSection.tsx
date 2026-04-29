@@ -52,7 +52,7 @@ export function SkillsSection() {
     ];
 
     return (
-        <section className="mb-48">
+        <section className="mb-24">
             <span className="section-label text-sm">// TECHNICAL ARSENAL (VERIFIED)</span>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

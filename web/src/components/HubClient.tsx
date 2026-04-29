@@ -37,7 +37,7 @@ export function HubClient() {
                     transition={{ delay: 0.3 }}
                     className="text-xl md:text-2xl text-zinc-800 font-bold mb-6 tracking-tight"
                 >
-                    DevOps & Security-Focused Platform Engineer
+                    DevOps, Security Engineer & Penetration Tester
                 </motion.h2>
 
                 <motion.p
@@ -66,7 +66,7 @@ export function HubClient() {
                     </div>
                     <div className="w-1.5 h-1.5 bg-zinc-300 rounded-full my-auto hidden md:block"></div>
                     <div className="flex items-center gap-2 hover:text-purple-700 transition-colors cursor-default">
-                        <Cpu className="w-4 h-4 text-purple-600" /> Cloud + DevSecOps Focus
+                        <Cpu className="w-4 h-4 text-purple-600" /> Cloud + Pentesting Focus
                     </div>
                 </motion.div>
 
