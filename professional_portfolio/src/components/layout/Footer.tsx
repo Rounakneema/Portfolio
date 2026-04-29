@@ -40,7 +40,7 @@ export function Footer() {
                 <div className="text-right flex flex-col justify-end">
                     <p className="text-sm text-gray-500 max-w-md ml-auto leading-relaxed">
                         &copy; {new Date().getFullYear()} Rounak Neema.<br />
-                        Built with React, Vite & Tailwind.
+
                     </p>
                 </div>
             </div>

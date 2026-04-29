@@ -1,6 +1,6 @@
 # Personal Blog
 
-A premium, SEO-optimized blog built with Next.js, TypeScript, and Tailwind CSS.
+A premium, SEO-optimized blog.
 
 ## Features
 
