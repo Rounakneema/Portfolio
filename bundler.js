@@ -3,7 +3,7 @@ const path = require('path');
 
 const inputDir = path.join(__dirname, 'api', 'static');
 // Output to subpackage to avoid Vercel Function detection
-const outputFile = path.join(__dirname, 'api', 'assets', 'data.go');
+const outputFile = path.join(__dirname, 'api', 'assets.go');
 
 const walkSync = (dir, filelist = []) => {
     const files = fs.readdirSync(dir);
@@ -34,7 +34,7 @@ if (!fs.existsSync(inputDir)) {
 
 const files = walkSync(inputDir);
 // Use package assets
-let goContent = `package assets
+let goContent = `package handler
 
 var Assets = map[string][]byte{
 `;

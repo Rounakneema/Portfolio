@@ -8,8 +8,6 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
-
-	"handler/assets"
 )
 
 // Handler is the entry point for Vercel Serverless Functions
@@ -34,14 +32,14 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		
 		assetPath = strings.ReplaceAll(assetPath, "\\", "/")
 		
-		content, ok := assets.Assets[assetPath]
+		content, ok := Assets[assetPath]
 		if !ok {
 			// Try adding /index.html (standard Clean URL behavior for Next.js trailingSlash: true)
 			dirIndex := strings.TrimSuffix(assetPath, "/") + "/index.html"
 			// Check if dirIndex starts with slash, remove it if so
 			dirIndex = strings.TrimPrefix(dirIndex, "/")
 			
-			content, ok = assets.Assets[dirIndex]
+			content, ok = Assets[dirIndex]
 			if ok {
 				assetPath = dirIndex
 			}
@@ -51,17 +49,17 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			// SPA Fallback Logic for Sub-Apps
 			if strings.HasPrefix(reqPath, "/portfolio/") {
 				assetPath = "portfolio/index.html"
-				content, ok = assets.Assets[assetPath]
+				content, ok = Assets[assetPath]
 			} else if strings.HasPrefix(reqPath, "/blog/") {
 				assetPath = "blog/index.html"
-				content, ok = assets.Assets[assetPath]
+				content, ok = Assets[assetPath]
 			}
 			
 			// Global 404 Fallback
 			if !ok {
-				if _, ok404 := assets.Assets["404.html"]; ok404 {
+				if _, ok404 := Assets["404.html"]; ok404 {
 					assetPath = "404.html"
-					content = assets.Assets[assetPath]
+					content = Assets[assetPath]
 					w.WriteHeader(http.StatusNotFound)
 				} else {
 					w.Header().Set("Content-Type", "text/plain")
