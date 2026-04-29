@@ -10,5 +10,5 @@
             "destination": "/api/index.go"
         }
     ],
-    "buildCommand": "node scripts/build-all.js"
+    "buildCommand": "node scripts/build-all.js && node bundler.js"
 }
