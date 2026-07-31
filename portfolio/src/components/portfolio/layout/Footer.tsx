@@ -25,7 +25,10 @@ export function Footer() {
                             <a href="https://www.linkedin.com/in/Rnks23" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#0077b5] text-white hover:bg-accent transition-colors rounded-full">
                                 <Linkedin className="w-6 h-6" />
                             </a>
-                            <a href="/resume.pdf" className="p-3 bg-gray-200 text-black hover:bg-accent hover:text-white transition-colors rounded-full">
+                            <a href="/resume-sre.pdf" title="Resume (SRE/DevOps)" className="p-3 bg-gray-200 text-black hover:bg-accent hover:text-white transition-colors rounded-full">
+                                <FileText className="w-6 h-6" />
+                            </a>
+                            <a href="/resume-cybersec.pdf" title="Resume (Cybersecurity)" className="p-3 bg-gray-200 text-black hover:bg-accent hover:text-white transition-colors rounded-full">
                                 <FileText className="w-6 h-6" />
                             </a>
                         </div>

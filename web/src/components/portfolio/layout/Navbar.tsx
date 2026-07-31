@@ -3,6 +3,7 @@
 import { FileText, Github, Linkedin, Menu, X, PenTool } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ResumeDropdown } from './ResumeDropdown';
 
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,14 +39,7 @@ export function Navbar() {
                     <a href="https://www.linkedin.com/in/Rnks23" target="_blank" rel="noopener noreferrer" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-2 tracking-wide">
                         <Linkedin className="w-5 h-5" /> LINKEDIN
                     </a>
-                    <a
-                        href="/resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-black text-white px-6 py-3 text-sm font-bold tracking-wide hover:bg-accent transition-colors flex items-center gap-2 rounded-sm"
-                    >
-                        <FileText className="w-4 h-4" /> DOWNLOAD RESUME (PDF)
-                    </a>
+                    <ResumeDropdown />
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -73,8 +67,11 @@ export function Navbar() {
                             <a href="#" className="text-sm font-bold flex items-center gap-3 py-2">
                                 <Linkedin className="w-4 h-4" /> LINKEDIN
                             </a>
-                            <a href="/resume.pdf" className="text-sm font-bold flex items-center gap-3 py-2 text-accent">
-                                <FileText className="w-4 h-4" /> DOWNLOAD RESUME
+                            <a href="/resume-sre.pdf" className="text-sm font-bold flex items-center gap-3 py-2 text-accent">
+                                <FileText className="w-4 h-4" /> RESUME (SRE/DEVOPS)
+                            </a>
+                            <a href="/resume-cybersec.pdf" className="text-sm font-bold flex items-center gap-3 py-2 text-accent">
+                                <FileText className="w-4 h-4" /> RESUME (CYBERSEC)
                             </a>
                         </div>
                     </motion.div>

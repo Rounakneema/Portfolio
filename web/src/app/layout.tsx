@@ -17,9 +17,7 @@ export const metadata: Metadata = {
   title: 'Rounak Neema | DevOps Engineer & Penetration Tester',
   description: 'DevOps and security-focused platform engineer. Portfolio, projects, and engineering logs covering cloud infrastructure, DevSecOps, automation, and offensive security.',
   metadataBase: new URL('https://rounakneema.in'),
-  alternates: {
-    canonical: '/',
-  },
+  alternates: {},
   keywords: [
     'Rounak Neema',
     'DevOps Engineer',

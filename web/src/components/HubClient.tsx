@@ -1,10 +1,23 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight, Shield, Terminal, Cpu } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight, Shield, Terminal, Cpu, ChevronDown, FileText } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
 
 export function HubClient() {
+    const [isResumeOpen, setIsResumeOpen] = useState(false);
+    const resumeDropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (resumeDropdownRef.current && !resumeDropdownRef.current.contains(event.target as Node)) {
+                setIsResumeOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
     return (
         <div className="min-h-screen flex flex-col items-center justify-center text-zinc-900 font-mono p-6 relative bg-transparent">
 
@@ -77,18 +90,50 @@ export function HubClient() {
                     transition={{ delay: 0.55 }}
                     className="flex flex-wrap justify-center items-center gap-4 mb-16"
                 >
-                    <a
-                        href="/resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-black text-white px-8 py-4 rounded-full font-bold tracking-wide hover:scale-105 transition-transform shadow-xl flex items-center gap-3 text-sm md:text-base border border-transparent hover:border-emerald-500/50"
-                    >
-                        <span className="relative flex h-3 w-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                        </span>
-                        DOWNLOAD RESUME
-                    </a>
+                    <div className="relative" ref={resumeDropdownRef}>
+                        <button
+                            onClick={() => setIsResumeOpen(!isResumeOpen)}
+                            className="bg-black text-white px-8 py-4 rounded-full font-bold tracking-wide hover:scale-105 transition-transform shadow-xl flex items-center gap-3 text-sm md:text-base border border-transparent hover:border-emerald-500/50 focus:outline-none"
+                        >
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                            </span>
+                            DOWNLOAD RESUME <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isResumeOpen ? 'rotate-180' : ''}`} />
+                        </button>
+                        <AnimatePresence>
+                            {isResumeOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    transition={{ duration: 0.15 }}
+                                    className="absolute left-0 mt-2 w-full bg-white border border-zinc-200 shadow-xl z-50 rounded-xl overflow-hidden"
+                                >
+                                    <div className="flex flex-col text-left">
+                                        <a
+                                            href="/resume-sre.pdf"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-6 py-4 text-sm font-bold hover:bg-zinc-100 transition-colors border-b border-zinc-100 text-black flex items-center gap-3"
+                                            onClick={() => setIsResumeOpen(false)}
+                                        >
+                                            <FileText className="w-4 h-4 text-emerald-600" /> SRE / DevOps
+                                        </a>
+                                        <a
+                                            href="/resume-cybersec.pdf"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-6 py-4 text-sm font-bold hover:bg-zinc-100 transition-colors text-black flex items-center gap-3"
+                                            onClick={() => setIsResumeOpen(false)}
+                                        >
+                                            <FileText className="w-4 h-4 text-emerald-600" /> Cybersecurity
+                                        </a>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
 
                     <div className="h-8 w-px bg-zinc-300 mx-2 hidden sm:block"></div>
 
