@@ -16,11 +16,16 @@ var assets = map[string][]byte{}
 // projectSubdomains maps subdomain prefixes to project slugs
 var projectSubdomains = map[string]string{
 	"revealr":       "revealr",
-	"osa":           "osa",
 	"metromind":     "metromind",
-	"pipelineforge": "pipelineforge",
+	"osa":           "osa",
+	"sortmail":      "sortmail",
 	"spqr":          "spqr",
+	"pipelineforge": "pipelineforge",
+	"devcontext":    "devcontext",
+	"axiom-os":      "axiom-os",
+	"dizzy":         "dizzy",
 }
+
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Content-Type-Options", "nosniff")

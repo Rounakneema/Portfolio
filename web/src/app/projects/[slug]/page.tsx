@@ -11,9 +11,33 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
     const project = getProjectBySlug(params.slug);
     if (!project) return {};
+    
     return {
-        title: `${project.title} // Rounak Neema`,
-        description: project.fullDescription,
+        title: `${project.title} | Rounak Neema`,
+        description: project.fullDescription.substring(0, 160),
+        keywords: [project.title, ...project.tech, project.category, 'Rounak Neema', 'Projects'],
+        openGraph: {
+            title: `${project.title} | Project by Rounak Neema`,
+            description: project.fullDescription.substring(0, 160),
+            url: `https://${project.subdomain}`,
+            siteName: 'Rounak Neema',
+            images: [
+                {
+                    url: '/og-image.png', // Assuming default og-image for now
+                    width: 1200,
+                    height: 630,
+                    alt: project.title,
+                }
+            ],
+            locale: 'en_US',
+            type: 'article',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${project.title} | Rounak Neema`,
+            description: project.fullDescription.substring(0, 160),
+            creator: '@rounakneema',
+        }
     };
 }
 

@@ -1,0 +1,27 @@
+# Rounak Neema
+
+> Security-Oriented Software Engineer | DevSecOps | Systems & Infrastructure
+
+Rounak Neema is a platform engineer focusing on high-performance networking, offline security tooling, AI integrations, and DevSecOps.
+
+## Portfolio & Hub
+- **Main Website**: https://rounakneema.in
+- **Blog**: https://rounakneema.in/blog
+- **Portfolio**: https://rounakneema.in/portfolio
+- **Projects Hub**: https://rounakneema.in/projects
+
+## Projects
+- **Revealr** (revealr.rounakneema.in): High-concurrency adaptive network scanner achieving 50k ports/min in Go.
+- **MetroMind** (metromind.rounakneema.in): Enterprise AI Document Intelligence platform for Kochi Metro using microservices.
+- **OSA** (osa.rounakneema.in): Offline Security Auditor in Go, detecting threats in air-gapped environments.
+- **SortMail** (sortmail.rounakneema.in): AI operating layer for professional email.
+- **SPQR** (spqr.rounakneema.in): Native RPS tracking for PostgreSQL distributed sharding router.
+- **PipelineForge** (pipelineforge.rounakneema.in): DevSecOps GitOps deployment pipeline optimizing containers by 99.3%.
+- **DevContext.AI / Klarity** (devcontext.rounakneema.in): AI repository intelligence that analyzes codebases to generate mock interviews.
+- **AXIOM OS** (axiom-os.rounakneema.in): Zero-cloud personal OS layer focusing on behavioral telemetry and accountability.
+- **Dizzy** (dizzy.rounakneema.in): Voice-to-Figma generative UI via Figma MCP.
+
+## Contact
+Email: neemarounak9171@gmail.com
+GitHub: https://github.com/Rounakneema
+LinkedIn: https://linkedin.com/in/rnks23

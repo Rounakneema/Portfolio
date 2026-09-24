@@ -19,7 +19,7 @@ export type Project = {
     slug: string;
     title: string;
     subtitle: string;
-    status: 'active' | 'wip' | 'archived';
+    status: 'active' | 'wip' | 'archived' | 'concept';
     category: string;
     tags: Tag[];
     challenge: string;
@@ -40,9 +40,9 @@ export const projects: Project[] = [
     {
         slug: 'revealr',
         title: 'Revealr',
-        subtitle: 'High-Performance Network Scanner',
+        subtitle: 'Adaptive Network Scanner with Vulnerability Mapping',
         status: 'active',
-        category: 'Security Tooling',
+        category: 'Cybersecurity',
         subdomain: 'revealr.rounakneema.in',
         tags: [
             { text: 'GO', type: 'blue' },
@@ -51,15 +51,15 @@ export const projects: Project[] = [
         ],
         tech: ['Go', 'Python', 'SQLite', 'Raw Sockets', 'Concurrency'],
         challenge:
-            'Network scanning on local networks required high throughput and stateful tracking of changes across time.',
+            'Traditional scanners give port status and generic vulnerability results, but lack stateful tracking and extensibility to detect network drift or map vulnerabilities offline.',
         solution:
-            'High-concurrency adaptive network scanner using raw sockets, achieving 50k ports/min with a stateful SQLite-backed engine.',
+            'A hybrid adaptive network scanner achieving 50k ports/min with a stateful SQLite-backed engine and modular Python vulnerability mapping.',
         fullDescription:
-            'Revealr is a high-performance network scanner built in Go. It uses raw sockets for custom packet generation and achieves throughput of 50k ports/minute. It features a stateful engine using SQLite to resume scans and perform historical diffing to detect new services. A Python plugin system allows custom service fingerprinting and vulnerability checks without recompiling the core.',
+            'Revealr is a high-performance network scanner built in Go. It uses raw sockets for custom packet generation and achieves throughput of 50k ports/minute. It features a stateful engine using SQLite to resume scans and perform historical diffing to detect new services. A Python plugin system allows custom service fingerprinting and offline vulnerability checks without recompiling the core. Scanning profiles (Paranoid, Stealthy, Polite) control timing behavior based on engagement requirements.',
         bullets: [
             { label: 'Throughput', text: 'Achieves 50,000 ports/minute scan throughput on local networks using raw sockets.' },
-            { label: 'Architecture', text: 'Stateful engine with SQLite for resuming interrupted scans and historical service diffing.' },
-            { label: 'Extensibility', text: 'Python plugin system for custom service fingerprinting and vulnerability checks.' },
+            { label: 'Architecture', text: 'Stateful engine with SQLite for resuming interrupted scans and historical service diffing (Network Drift).' },
+            { label: 'Extensibility', text: 'Python plugin system for custom service fingerprinting and offline vulnerability mapping.' },
             { label: 'Outcome', text: 'Reduced recon time significantly and provided actionable difference reports between scans.' },
         ],
         links: [
@@ -85,11 +85,47 @@ export const projects: Project[] = [
         },
     },
     {
+        slug: 'metromind',
+        title: 'MetroMind',
+        subtitle: 'Enterprise AI Document Intelligence',
+        status: 'archived',
+        category: 'Microservices / AI',
+        subdomain: 'metromind.rounakneema.in',
+        tags: [
+            { text: 'MICROSERVICES', type: 'purple' },
+            { text: 'DOCKER', type: 'default' },
+            { text: 'AI/OCR', type: 'default' },
+        ],
+        tech: ['Go', 'Python', 'Docker', 'RabbitMQ', 'Vector DB', 'OCR', 'RBAC'],
+        challenge:
+            'Managing and semantically searching large volumes of transit documents across departments is inefficient without intelligent tooling and strict role-based access.',
+        solution:
+            'AI-powered document intelligence platform with 12+ containerized microservices, OCR pipelines, vector search, and 100% audit logging.',
+        fullDescription:
+            'MetroMind is a microservices-based document intelligence platform built for the Smart India Hackathon (Kochi Metro problem statement). It orchestrates 12+ Dockerized services to provide OCR, vector search, and RBAC-controlled document management. The system includes an API Gateway, strict Multi-Tenancy isolation, and 100% Audit Logging for privileged operations, ensuring enterprise-level security for transit document retrieval.',
+        bullets: [
+            { label: 'Scale', text: '12+ containerized microservices fully managed via Docker Compose.' },
+            { label: 'Security', text: 'API Gateway, Role-Based Access Control (RBAC), and 100% Audit Logging for privileged operations.' },
+            { label: 'Stack', text: 'Go & Python backends, Docker, Vector DB, RabbitMQ for async messaging.' },
+            { label: 'Achievement', text: 'Built and deployed a full-stack multi-tenant solution for the Smart India Hackathon.' },
+        ],
+        links: [
+            { label: 'VIEW SOURCE', icon: 'Github', primary: true, url: 'https://github.com/rounakneema/MetroMind' },
+            { label: 'ARCHITECTURE', icon: 'LayoutDashboard', primary: false, url: '#' },
+        ],
+        metrics: [
+            { label: 'Services', value: '12+' },
+            { label: 'Search', value: 'Vector' },
+            { label: 'Queue', value: 'RabbitMQ' },
+            { label: 'Auth', value: 'RBAC' },
+        ],
+    },
+    {
         slug: 'osa',
         title: 'OSA',
         subtitle: 'Offline Security Auditor',
-        status: 'active',
-        category: 'Security / Analytics',
+        status: 'wip',
+        category: 'Security Analytics',
         subdomain: 'osa.rounakneema.in',
         tags: [
             { text: 'GO', type: 'blue' },
@@ -100,19 +136,19 @@ export const projects: Project[] = [
         challenge:
             'Security analytics in air-gapped environments is extremely difficult without heavy runtime dependencies like ELK or Splunk.',
         solution:
-            'Single-binary offline security auditor with built-in statistical detection engines — no runtime dependencies required.',
+            'Single-binary offline security auditor with built-in statistical detection engines (Z-Score & Markov Chains) — no runtime dependencies required.',
         fullDescription:
-            'OSA (Offline Security Auditor) is an air-gapped security analytics engine compiled as a single Go binary. It performs log ingestion and statistical anomaly detection without any runtime dependencies, making it ideal for isolated secure zones. Detection engines include Z-Score analysis, Probability Matrices, and Markov Chain transition models.',
+            'OSA (Offline Security Auditor) is an air-gapped security analytics engine compiled as a single Go binary. It performs log ingestion and statistical anomaly detection without any runtime dependencies, making it ideal for isolated secure zones. It supports real-time streaming and historical batch analysis. Detection engines include Z-Score analysis for statistical outliers and Markov Chain models for behavioral sequential deviations. It reduced false positives by 38% in tests compared to baseline methods.',
         bullets: [
-            { label: 'Core Innovation', text: 'Zero-dependency single binary architecture — runs anywhere Go compiles to.' },
+            { label: 'Core Innovation', text: 'Zero-dependency single binary architecture — runs anywhere Go compiles to (<200ms latency).' },
             { label: 'Detection Engines', text: 'Statistical anomaly detection using Z-Score, Probability Matrices, and Markov Chains.' },
-            { label: 'Log Pipeline', text: 'Log ingestion pipeline supporting historical backfill and real-time monitoring.' },
-            { label: 'Target Use Case', text: 'High-security isolated environments where cloud SIEMs are inaccessible.' },
+            { label: 'Log Pipeline', text: 'Dual-mode log ingestion pipeline supporting historical backfill and real-time monitoring across 5 sources.' },
+            { label: 'Target Use Case', text: 'High-security isolated air-gapped environments where cloud SIEMs are inaccessible.' },
         ],
         links: [],
         metrics: [
             { label: 'Binary Deps', value: '0' },
-            { label: 'Language', value: 'Go' },
+            { label: 'Latency', value: '<200ms' },
             { label: 'Detection', value: '3 Engines' },
             { label: 'Deploy', value: 'Air-Gapped' },
         ],
@@ -129,127 +165,204 @@ export const projects: Project[] = [
         },
     },
     {
-        slug: 'metromind',
-        title: 'MetroMind',
-        subtitle: 'AI-Powered Document Intelligence Platform',
-        status: 'archived',
-        category: 'Microservices / AI',
-        subdomain: 'metromind.rounakneema.in',
+        slug: 'sortmail',
+        title: 'SortMail',
+        subtitle: 'AI Operating Layer for Professional Email',
+        status: 'wip',
+        category: 'AI SaaS',
+        subdomain: 'sortmail.rounakneema.in',
         tags: [
-            { text: 'MICROSERVICES', type: 'purple' },
-            { text: 'DOCKER', type: 'default' },
-            { text: 'AI/OCR', type: 'default' },
+            { text: 'PYTHON', type: 'blue' },
+            { text: 'AI', type: 'purple' },
+            { text: 'SAAS', type: 'yellow' },
         ],
-        tech: ['Go', 'Python', 'Docker', 'RabbitMQ', 'Vector DB', 'OCR', 'RBAC'],
+        tech: ['Python', 'SQLAlchemy', 'OAuth', 'Docker', 'Stripe', 'Claude/LLMs'],
         challenge:
-            'Managing and semantically searching large volumes of transit documents across departments is inefficient without intelligent tooling.',
+            'Professionals receiving 40+ emails daily struggle with prioritization, actionable task extraction, and secure attachment analysis without giving up data privacy.',
         solution:
-            'AI-powered document intelligence platform with 12+ containerized microservices, OCR pipelines, and vector search.',
+            'An AI operating layer that ingests email via OAuth, performs BLUF summarization, extracts tasks & deadlines, and handles secure attachment analysis.',
         fullDescription:
-            'MetroMind is a microservices-based document intelligence platform built for the Smart India Hackathon (Kochi Metro problem statement). It orchestrates 12+ Dockerized services to provide OCR, vector search, and RBAC-controlled document management. The system includes an API Gateway, Audit Logging, and real-time document ingestion pipelines — deployed as a full stack solution for real-world transit document retrieval.',
+            'SortMail is an AI operating layer over professional email (Gmail/Outlook). It features an Executive Briefing Engine for BLUF-style summaries, an Attachment Intelligence engine with strict security controls (virus scanning, size limits), a Smart Reply generator, and a Deadline Extractor that syncs with calendars. Built with enterprise SaaS security in mind, utilizing JWT auth, Stripe billing, GDPR compliance mechanisms, and extensive rate limiting.',
         bullets: [
-            { label: 'Scale', text: '12+ containerized microservices fully managed via Docker Compose.' },
-            { label: 'Features', text: 'API Gateway, RBAC, Audit Logging, OCR, and Vector Search pipelines.' },
-            { label: 'Stack', text: 'Go & Python backends, Docker, Vector DB, RabbitMQ for async messaging.' },
-            { label: 'Achievement', text: 'Built and deployed a full-stack solution for the Smart India Hackathon problem statement.' },
+            { label: 'AI Engines', text: 'Executive Briefing, Task & Priority, Smart Reply, and Deadline Extraction engines.' },
+            { label: 'Security', text: 'Strict OAuth handling, MIME/size validation, virus scanning, and SQL injection protection.' },
+            { label: 'SaaS Architecture', text: 'Built with Stripe webhooks, GDPR deletion processes, and comprehensive API rate limiting.' },
+            { label: 'Observability', text: 'Production monitoring using Sentry, Better Stack, and AWS CloudWatch.' },
+        ],
+        links: [],
+        metrics: [
+            { label: 'Engines', value: '4 AI Models' },
+            { label: 'Integration', value: 'Gmail/Outlook' },
+            { label: 'Security', value: 'GDPR/PCI' },
+            { label: 'Status', value: 'SaaS WIP' },
+        ],
+    },
+    {
+        slug: 'spqr',
+        title: 'SPQR (Contribution)',
+        subtitle: 'Smart Packet Query & Routing Engine / Postgres Sharding',
+        status: 'active',
+        category: 'Distributed Systems',
+        subdomain: 'spqr.rounakneema.in',
+        tags: [
+            { text: 'GO', type: 'blue' },
+            { text: 'NETWORKING', type: 'green' },
+            { text: 'OPEN SOURCE', type: 'red' },
+        ],
+        tech: ['Go', 'PostgreSQL', 'Distributed Routing', 'Observability'],
+        challenge:
+            'Needed real-time Request Per Second (RPS) tracking across a distributed PostgreSQL sharding router to diagnose performance bottlenecks.',
+        solution:
+            'Implemented native RPS observability instrumentation into the SPQR routing layer for production-grade throughput visibility.',
+        fullDescription:
+            'SPQR is a PostgreSQL distributed sharding router. My open-source contribution involved implementing native Request Per Second (RPS) tracking across the distributed routing layer. This added critical observability and performance instrumentation to a production-grade Go codebase, allowing administrators to properly diagnose routing bottlenecks and throughput issues.',
+        bullets: [
+            { label: 'Contribution', text: 'Implemented RPS observability for distributed PostgreSQL routing.' },
+            { label: 'Impact', text: 'Provided crucial visibility into query throughput to diagnose bottlenecks.' },
+            { label: 'Skills', text: 'Demonstrated ability to work within an external, serious production-grade Go codebase.' },
+            { label: 'Environment', text: 'Navigated pull requests, code reviews, and distributed systems architecture.' },
         ],
         links: [
-            { label: 'VIEW SOURCE', icon: 'Github', primary: true, url: 'https://github.com/rounakneema/MetroMind' },
-            { label: 'ARCHITECTURE', icon: 'LayoutDashboard', primary: false, url: '#' },
+            { label: 'VIEW SOURCE', icon: 'Github', primary: true, url: 'https://github.com/pg-sharding/spqr' },
         ],
         metrics: [
-            { label: 'Services', value: '12+' },
-            { label: 'Search', value: 'Vector' },
-            { label: 'Queue', value: 'RabbitMQ' },
-            { label: 'Auth', value: 'RBAC' },
+            { label: 'Language', value: 'Go' },
+            { label: 'Database', value: 'PostgreSQL' },
+            { label: 'Role', value: 'Contributor' },
+            { label: 'Focus', value: 'Observability' },
         ],
     },
     {
         slug: 'pipelineforge',
         title: 'PipelineForge',
-        subtitle: 'CI/CD Orchestration Engine',
+        subtitle: 'DevSecOps GitOps Pipeline Automation',
         status: 'wip',
-        category: 'DevOps / Platform Engineering',
+        category: 'DevSecOps',
         subdomain: 'pipelineforge.rounakneema.in',
         tags: [
-            { text: 'GO', type: 'blue' },
             { text: 'DEVOPS', type: 'yellow' },
-            { text: 'YAML-DSL', type: 'default' },
+            { text: 'KUBERNETES', type: 'blue' },
+            { text: 'SECURITY', type: 'red' },
         ],
-        tech: ['Go', 'YAML DSL', 'Docker', 'gRPC', 'Webhooks'],
+        tech: ['GitHub Actions', 'Docker', 'Kubernetes', 'Helm', 'Trivy', 'k6'],
         challenge:
-            'Existing CI/CD platforms are either too opinionated (GitHub Actions) or too complex to self-host (Jenkins). There was a need for a lightweight, extensible alternative.',
+            'Manual deployments suffer from poor auditability, lack automated vulnerability scanning, missing rollbacks, and unrestricted network access.',
         solution:
-            'A lightweight self-hostable CI/CD orchestration engine with a custom YAML DSL, webhook-triggered pipeline execution, and a gRPC runner protocol.',
+            'A comprehensive DevSecOps pipeline orchestrating Docker builds, Trivy security gates, and Kubernetes GitOps deployments with 99.3% image size optimization.',
         fullDescription:
-            'PipelineForge is a self-hostable CI/CD orchestration engine built in Go. It defines a custom YAML-based DSL for pipeline configuration, triggers runs via webhooks from any VCS, and communicates with distributed runner agents over gRPC. Designed to be minimal, auditable, and fully self-contained.',
+            'PipelineForge represents a full DevSecOps GitOps pipeline. It automates container builds, integrates Trivy for security vulnerability scanning, and manages deployments to Kubernetes. Key achievements include optimizing container images from 1.1GB to 8MB (99.3% reduction) using distroless multi-stage builds. The Kubernetes setup features HPA, NetworkPolicies, zero-downtime rolling updates, and was load-tested with k6 for 500 virtual users.',
         bullets: [
-            { label: 'DSL', text: 'Custom YAML pipeline DSL for defining stages, jobs, and conditional flows.' },
-            { label: 'Triggers', text: 'Webhook-triggered execution supporting GitHub, Gitea, and generic HTTP hooks.' },
-            { label: 'Runners', text: 'Distributed runner agents communicating with the orchestrator over gRPC.' },
-            { label: 'Philosophy', text: 'Minimal, auditable, and self-contained — no external databases required at base config.' },
+            { label: 'Optimization', text: 'Reduced container size by 99.3% (1.1GB to 8MB) using multi-stage distroless builds.' },
+            { label: 'Security Gates', text: 'Integrated Trivy vulnerability scanning into the CI/CD deployment flow.' },
+            { label: 'Kubernetes', text: 'Implemented NetworkPolicies, resource quotas, HPA, and readiness/liveness probes.' },
+            { label: 'Validation', text: 'Validated zero-downtime rolling updates using k6 load testing with 500 virtual users.' },
         ],
         links: [],
         metrics: [
-            { label: 'Language', value: 'Go' },
-            { label: 'Protocol', value: 'gRPC' },
-            { label: 'Config', value: 'YAML DSL' },
-            { label: 'Status', value: 'WIP' },
+            { label: 'Size Reduction', value: '99.3%' },
+            { label: 'Load Test', value: '500 VUs' },
+            { label: 'Orchestration', value: 'K8s' },
+            { label: 'Status', value: 'Implemented' },
         ],
-        terminal: {
-            command: './pipelineforge run --pipeline .forge/build.yaml',
-            output: [
-                { text: '[FORGE] Pipeline: build-and-test', color: 'text-blue-400' },
-                { text: '[STAGE 1] → checkout', color: 'text-gray-300' },
-                { text: '[STAGE 2] → go build ./...         ✓', color: 'text-green-400' },
-                { text: '[STAGE 3] → go test ./...          ✓', color: 'text-green-400' },
-                { text: '[STAGE 4] → docker build -t app .  ✓', color: 'text-green-400' },
-                { text: '[FORGE] Pipeline complete in 14.2s', color: 'text-blue-400' },
-            ],
-        },
     },
     {
-        slug: 'spqr',
-        title: 'SPQR',
-        subtitle: 'Smart Packet Query & Routing Engine',
-        status: 'wip',
-        category: 'Networking / Security',
-        subdomain: 'spqr.rounakneema.in',
+        slug: 'devcontext',
+        title: 'Klarity.ai / DevContext.AI',
+        subtitle: 'AI Repository Intelligence for Recruiters',
+        status: 'active',
+        category: 'AI Tooling',
+        subdomain: 'devcontext.rounakneema.in',
         tags: [
-            { text: 'GO', type: 'blue' },
-            { text: 'NETWORKING', type: 'green' },
-            { text: 'eBPF', type: 'red' },
+            { text: 'TYPESCRIPT', type: 'blue' },
+            { text: 'AWS', type: 'yellow' },
+            { text: 'LLMs', type: 'purple' },
         ],
-        tech: ['Go', 'eBPF', 'XDP', 'libpcap', 'BPF Maps'],
+        tech: ['React', 'TypeScript', 'AWS SAM', 'Amazon Bedrock', 'Claude 3.5 Sonnet', 'DynamoDB'],
         challenge:
-            'Deep packet inspection and dynamic traffic routing based on application-layer content is expensive at high bandwidth on traditional userspace tools.',
+            'Recruiters and interviewers struggle to understand architectural decisions, code complexity, and individual contributions just by looking at a GitHub repository.',
         solution:
-            'An eBPF/XDP-accelerated packet processing engine with a rule-based query language for real-time traffic classification and routing decisions.',
+            'A 3-stage AI intelligence pipeline that transforms GitHub repos into recruiter-ready reports and simulated interview sessions.',
         fullDescription:
-            'SPQR (Smart Packet Query & Routing) is a high-performance packet processing engine leveraging eBPF/XDP for kernel-space packet interception. It exposes a query language that allows users to define real-time routing rules based on packet headers and payload patterns. BPF Maps are used for kernel-userspace state sharing without expensive context switches.',
+            'DevContext.AI is an intelligence platform that analyzes GitHub repositories to generate employability scores, code-quality metrics, and mock interviews. The system uses a grounded AI approach, referencing specific files and line numbers to avoid hallucination, and distinguishes between developer code and boilerplate framework code. It utilizes a multi-model strategy via Amazon Bedrock (Claude Haiku for fast reviews, Sonnet for deep architecture analysis).',
         bullets: [
-            { label: 'Kernel-Space', text: 'eBPF/XDP programs for packet interception at NIC level — before kernel TCP stack.' },
-            { label: 'Query Engine', text: 'Custom rule language for classifying and routing packets based on L3/L4 attributes.' },
-            { label: 'State Sharing', text: 'BPF Maps for efficient lock-free kernel-to-userspace state synchronization.' },
-            { label: 'Performance', text: 'Achieves line-rate processing on commodity hardware for common rule patterns.' },
+            { label: 'Pipeline', text: '3-stage pipeline: Project Review (~30s), Intelligence Report, and Interview Simulation.' },
+            { label: 'Grounding', text: 'AI claims are grounded in actual repository evidence (file paths and line numbers) to prevent hallucination.' },
+            { label: 'Scale Targets', text: 'Designed for 10+ concurrent analyses, 50MB repositories, and >50K tokens.' },
+            { label: 'Architecture', text: 'React frontend, AWS SAM serverless backend, DynamoDB, and WebSocket protocols.' },
         ],
         links: [],
         metrics: [
-            { label: 'Language', value: 'Go + eBPF' },
-            { label: 'Layer', value: 'XDP / L2' },
-            { label: 'IPC', value: 'BPF Maps' },
-            { label: 'Status', value: 'WIP' },
+            { label: 'Speed', value: '~30s initial' },
+            { label: 'Models', value: 'Claude Family' },
+            { label: 'Backend', value: 'AWS Serverless' },
+            { label: 'Context', value: '>50k tokens' },
         ],
-        terminal: {
-            command: 'sudo ./spqr attach eth0 --rules rules.spqr',
-            output: [
-                { text: '[SPQR] Loading eBPF program → eth0', color: 'text-blue-400' },
-                { text: '[XDP]  Program attached successfully', color: 'text-green-400' },
-                { text: '[RULE] DROP src=10.0.0.5/32 dport=22', color: 'text-red-400' },
-                { text: '[RULE] REDIRECT src=0.0.0.0/0 dport=80 → 10.0.0.10:8080', color: 'text-yellow-400' },
-                { text: '[SPQR] Processing @ line rate. Rules active: 2', color: 'text-blue-400' },
-            ],
-        },
+    },
+    {
+        slug: 'axiom-os',
+        title: 'AXIOM OS',
+        subtitle: 'Zero-Cloud Local Personal Operating System',
+        status: 'concept',
+        category: 'Local AI / OS',
+        subdomain: 'axiom-os.rounakneema.in',
+        tags: [
+            { text: 'GO', type: 'blue' },
+            { text: 'LOCAL AI', type: 'purple' },
+            { text: 'SYSTEMS', type: 'green' },
+        ],
+        tech: ['Go', 'SQLite', 'Ollama', 'Qwen 2.5', 'Telemetry'],
+        challenge:
+            'Current productivity assistants rely on cloud LLMs (privacy concerns) and act generically rather than enforcing personal accountability based on actual system behavior.',
+        solution:
+            'A local-first, zero-cloud personal operating system that observes telemetry, understands structured goals, and intervenes contextually using local AI.',
+        fullDescription:
+            'AXIOM OS is an architectural design for a personal OS layer. It features a Go telemetry daemon (Specter) to collect local signals, a SQLite memory layer, and an AI brain powered by Ollama (Qwen 2.5). The core principle separates deterministic system state (measurement, policy) from AI interpretation, ensuring interventions are based on factual data, not LLM hallucinations. It includes a confrontational personality layer for strict goal alignment.',
+        bullets: [
+            { label: 'Local-First', text: 'Zero-cloud architecture ensuring all behavioral telemetry stays on the local machine.' },
+            { label: 'Telemetry', text: 'Go-based Specter daemon collecting file, shell, and browser activity.' },
+            { label: 'Determinism', text: 'Strict separation of deterministic measurement/policy from AI reasoning and conversation.' },
+            { label: 'Intervention', text: 'Policy-controlled accountability system capable of contextual roasts and Focus Scoring.' },
+        ],
+        links: [],
+        metrics: [
+            { label: 'Cloud Deps', value: '0' },
+            { label: 'Telemetry', value: 'Specter (Go)' },
+            { label: 'Memory', value: 'SQLite' },
+            { label: 'AI Layer', value: 'Ollama' },
+        ],
+    },
+    {
+        slug: 'dizzy',
+        title: 'Dizzy',
+        subtitle: 'Voice-to-Native-Figma UI Creation Concept',
+        status: 'concept',
+        category: 'Design Engineering',
+        subdomain: 'dizzy.rounakneema.in',
+        tags: [
+            { text: 'GENERATIVE UI', type: 'purple' },
+            { text: 'VOICE', type: 'red' },
+            { text: 'FIGMA', type: 'blue' },
+        ],
+        tech: ['Voice/JEV', 'Figma MCP', 'Semantic Buffer', 'Agents'],
+        challenge:
+            'Traditional generative UI tools output flattened PNGs or uneditable code. Designers need voice-driven generation that produces native, editable Figma objects.',
+        solution:
+            'An agentic architecture translating streaming speech into a semantic command buffer, generating structured design operations via Figma MCP.',
+        fullDescription:
+            'Dizzy is a product architecture concept for voice-driven UI design. Instead of generating images, it streams voice input to an agent that builds a semantic command buffer. This buffer translates intent into structured operations for the Figma MCP, allowing the system to progressively modify native Figma designs. Later commands can intelligently update earlier decisions rather than creating entirely new assets.',
+        bullets: [
+            { label: 'Native Output', text: 'Manipulates native Figma objects via Figma MCP instead of generating images.' },
+            { label: 'Semantic Buffer', text: 'Maintains structured design state to allow progressive and contextual modifications.' },
+            { label: 'Workflow', text: 'JEV/Streaming Voice → Agent Intent → Design Operations → Figma MCP.' },
+            { label: 'Vision', text: 'Expanding into an agentic product design loop integrating visual comparison and code generation.' },
+        ],
+        links: [],
+        metrics: [
+            { label: 'Input', value: 'Streaming Voice' },
+            { label: 'Output', value: 'Figma Native' },
+            { label: 'Integration', value: 'Figma MCP' },
+            { label: 'State', value: 'Semantic Buffer' },
+        ],
     },
 ];
 
