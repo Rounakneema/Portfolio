@@ -29,6 +29,11 @@ export default function middleware(req: NextRequest) {
     subdomain = hostWithoutPort.replace('.localhost', '');
   }
 
+  // Strip 'www.' if someone explicitly typed it on a subdomain
+  if (subdomain.startsWith('www.')) {
+    subdomain = subdomain.replace('www.', '');
+  }
+
   // If accessed via a specific subdomain (e.g. revealr.rounakneema.in)
   if (subdomain && subdomain !== 'www') {
     // Avoid double prefixing
