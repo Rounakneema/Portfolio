@@ -11,10 +11,11 @@ const iconMap: Record<string, React.ElementType> = {
     LayoutDashboard,
 };
 
-const statusConfig = {
+const statusConfig: Record<string, { label: string, class: string }> = {
     active: { label: 'ACTIVE', class: 'bg-green-50 text-green-700 border-green-200' },
     wip: { label: 'IN PROGRESS', class: 'bg-yellow-50 text-yellow-700 border-yellow-200' },
     archived: { label: 'ARCHIVED', class: 'bg-gray-100 text-gray-500 border-gray-200' },
+    concept: { label: 'CONCEPT', class: 'bg-purple-50 text-purple-700 border-purple-200' },
 };
 
 const tagColors: Record<string, string> = {
