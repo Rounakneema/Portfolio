@@ -46,7 +46,7 @@ function HeroCard({ project }: { project: Project }) {
                             {project.title}
                         </h3>
                         <p className="text-zinc-400 font-mono text-sm mb-5">{project.subtitle}</p>
-                        <p className="text-zinc-300 text-base leading-relaxed mb-6 line-clamp-3">{project.fullDescription}</p>
+                        <p className="text-zinc-300 text-base md:text-lg leading-relaxed mb-8 line-clamp-3">{project.fullDescription}</p>
                         <div className="flex flex-wrap gap-2 mb-6">
                             {project.tags.map(t => (
                                 <span key={t.text} className="text-[10px] font-bold font-mono px-2.5 py-1 rounded border border-zinc-600 text-zinc-400 tracking-wider">{t.text}</span>
@@ -113,7 +113,7 @@ function ProjectCard({ project, index, size = 'md' }: { project: Project; index:
                     </div>
 
                     {/* Challenge (short) */}
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 flex-grow mb-5">
+                    <p className="text-gray-600 text-base leading-relaxed line-clamp-3 flex-grow mb-6">
                         {project.challenge}
                     </p>
 
@@ -178,7 +178,7 @@ function ConceptCard({ project, index }: { project: Project; index: number }) {
                             </span>
                         ))}
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 flex-grow mb-5">{project.challenge}</p>
+                    <p className="text-gray-600 text-base leading-relaxed line-clamp-3 flex-grow mb-6">{project.challenge}</p>
                     <div className="flex items-center gap-2 text-xs font-mono text-purple-400 group-hover:text-purple-600 transition-colors mt-auto pt-4 border-t border-purple-100">
                         <ExternalLink className="w-3.5 h-3.5" />{project.subdomain}
                     </div>
@@ -204,7 +204,7 @@ function ArchivedCard({ project, index }: { project: Project; index: number }) {
                             <h3 className="text-lg font-black text-gray-600 group-hover:text-black transition-colors">{project.title}</h3>
                             <span className="text-[10px] font-mono text-gray-400 hidden sm:block">{project.subtitle}</span>
                         </div>
-                        <p className="text-sm text-gray-500 line-clamp-1">{project.challenge}</p>
+                        <p className="text-base text-gray-500 line-clamp-2 md:line-clamp-1">{project.challenge}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 shrink-0 hidden md:flex">
                         {project.tags.slice(0, 3).map(tag => (
