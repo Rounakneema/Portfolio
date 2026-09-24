@@ -5,82 +5,133 @@ import Link from 'next/link';
 import { ArrowUpRight, Github, FileCode, LayoutDashboard, ExternalLink } from 'lucide-react';
 import { projects, type Project } from '@/lib/projects';
 
-const iconMap: Record<string, React.ElementType> = {
-    Github,
-    FileCode,
-    LayoutDashboard,
-};
+const iconMap: Record<string, React.ElementType> = { Github, FileCode, LayoutDashboard };
 
-const statusConfig: Record<string, { label: string, class: string }> = {
-    active: { label: 'ACTIVE', class: 'bg-green-50 text-green-700 border-green-200' },
-    wip: { label: 'IN PROGRESS', class: 'bg-yellow-50 text-yellow-700 border-yellow-200' },
-    archived: { label: 'ARCHIVED', class: 'bg-gray-100 text-gray-500 border-gray-200' },
-    concept: { label: 'CONCEPT', class: 'bg-purple-50 text-purple-700 border-purple-200' },
+const statusConfig: Record<string, { label: string; class: string; dot: string }> = {
+    active:   { label: 'ACTIVE',       class: 'bg-green-50 text-green-700 border-green-200',   dot: 'bg-green-500' },
+    wip:      { label: 'IN PROGRESS',  class: 'bg-yellow-50 text-yellow-700 border-yellow-200', dot: 'bg-yellow-500' },
+    archived: { label: 'ARCHIVED',     class: 'bg-gray-100 text-gray-500 border-gray-200',      dot: 'bg-gray-400' },
+    concept:  { label: 'CONCEPT',      class: 'bg-purple-50 text-purple-700 border-purple-200', dot: 'bg-purple-500' },
 };
 
 const tagColors: Record<string, string> = {
-    blue: 'bg-blue-50 text-blue-700 border-blue-200',
-    green: 'bg-green-50 text-green-700 border-green-200',
-    purple: 'bg-purple-50 text-purple-700 border-purple-200',
-    red: 'bg-red-50 text-red-700 border-red-200',
-    yellow: 'bg-yellow-50 text-yellow-700 border-yellow-200',
+    blue:    'bg-blue-50 text-blue-700 border-blue-200',
+    green:   'bg-green-50 text-green-700 border-green-200',
+    purple:  'bg-purple-50 text-purple-700 border-purple-200',
+    red:     'bg-red-50 text-red-700 border-red-200',
+    yellow:  'bg-yellow-50 text-yellow-700 border-yellow-200',
     default: 'bg-gray-100 text-gray-600 border-gray-200',
 };
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+const sectionConfig = {
+    active:   { title: 'ACTIVE',      desc: 'Currently maintained & deployed', border: 'border-green-200',  bg: 'bg-green-500' },
+    wip:      { title: 'IN PROGRESS', desc: 'Under active development',         border: 'border-yellow-200', bg: 'bg-yellow-500' },
+    concept:  { title: 'CONCEPTS',    desc: 'Designed, exploring feasibility',  border: 'border-purple-200', bg: 'bg-purple-500' },
+    archived: { title: 'ARCHIVED',    desc: 'Completed & reference projects',   border: 'border-gray-200',   bg: 'bg-gray-400' },
+};
+
+// ── Hero card (active featured) ──────────────────────────────────────
+function HeroCard({ project }: { project: Project }) {
+    return (
+        <Link href={`/projects/${project.slug}`} className="group block col-span-2">
+            <div className="h-full border-2 border-black rounded-xl p-8 bg-black text-white hover:bg-zinc-900 transition-all duration-300 relative overflow-hidden">
+                <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" /><span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" /></span>
+                            <span className="text-[10px] font-mono text-green-400 tracking-widest uppercase">Featured · Active</span>
+                        </div>
+                        <h3 className="text-4xl md:text-5xl font-black leading-none mb-2 group-hover:text-blue-400 transition-colors">
+                            {project.title}
+                        </h3>
+                        <p className="text-zinc-400 font-mono text-xs mb-5">{project.subtitle}</p>
+                        <p className="text-zinc-300 text-sm leading-relaxed mb-5 line-clamp-3">{project.fullDescription}</p>
+                        <div className="flex flex-wrap gap-1.5 mb-5">
+                            {project.tags.map(t => (
+                                <span key={t.text} className="text-[9px] font-bold font-mono px-2 py-0.5 rounded border border-zinc-600 text-zinc-400 tracking-wider">{t.text}</span>
+                            ))}
+                        </div>
+                        <div className="flex items-center gap-2 text-xs font-bold text-blue-400 group-hover:gap-4 transition-all">
+                            VIEW PROJECT <ArrowUpRight className="w-3.5 h-3.5" />
+                        </div>
+                    </div>
+                    {project.terminal && (
+                        <div className="bg-zinc-950 rounded-lg p-5 font-mono text-xs border border-zinc-800">
+                            <div className="flex items-center gap-1.5 mb-3 pb-2 border-b border-zinc-800">
+                                <div className="flex gap-1"><div className="w-2.5 h-2.5 rounded-full bg-red-500" /><div className="w-2.5 h-2.5 rounded-full bg-yellow-500" /><div className="w-2.5 h-2.5 rounded-full bg-green-500" /></div>
+                                <span className="text-zinc-500 text-[9px] ml-1">bash</span>
+                            </div>
+                            <div className="flex gap-1.5 text-white mb-2">
+                                <span className="text-blue-500">➜</span><span className="text-zinc-500">~</span>
+                                <span className="break-all">{project.terminal.command}</span>
+                            </div>
+                            <div className="space-y-1 pl-2 border-l border-zinc-700/50">
+                                {project.terminal.output.map((line, i) => (
+                                    <div key={i} className={`${line.color} text-[10px]`}>{line.text}</div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </Link>
+    );
+}
+
+// ── Standard card ────────────────────────────────────────────────────
+function ProjectCard({ project, index, size = 'md' }: { project: Project; index: number; size?: 'sm' | 'md' | 'lg' }) {
     const status = statusConfig[project.status];
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.35, delay: index * 0.06 }}
+            className="h-full"
         >
             <Link href={`/projects/${project.slug}`} className="group block h-full">
-                <div className="h-full border border-gray-200 rounded-xl p-8 bg-white hover:border-black hover:shadow-2xl transition-all duration-300 flex flex-col">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-6">
-                        <div>
-                            <span className={`inline-block text-[10px] font-bold font-mono tracking-widest border px-3 py-1 rounded-full mb-3 ${status.class}`}>
-                                {status.label}
-                            </span>
-                            <h3 className="text-3xl font-black text-black group-hover:text-blue-600 transition-colors leading-tight">
+                <div className={`h-full border border-gray-200 rounded-xl bg-white hover:border-black hover:shadow-lg transition-all duration-300 flex flex-col ${size === 'lg' ? 'p-7' : 'p-5'}`}>
+                    {/* Title row */}
+                    <div className="flex items-start justify-between mb-3">
+                        <div className="flex-1 min-w-0">
+                            <h3 className={`font-black text-black group-hover:text-blue-600 transition-colors leading-tight ${size === 'lg' ? 'text-2xl' : 'text-xl'}`}>
                                 {project.title}
                             </h3>
-                            <p className="text-sm text-gray-500 font-mono mt-1">{project.subtitle}</p>
+                            <p className="text-xs text-gray-400 font-mono mt-0.5 line-clamp-1">{project.subtitle}</p>
                         </div>
-                        <ArrowUpRight className="w-5 h-5 text-gray-300 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-1" />
+                        <ArrowUpRight className="w-4 h-4 text-gray-300 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
                     </div>
 
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
                         {project.tags.map(tag => (
-                            <span key={tag.text} className={`text-[10px] font-bold font-mono px-3 py-1 rounded border tracking-wider ${tagColors[tag.type]}`}>
+                            <span key={tag.text} className={`text-[9px] font-bold font-mono px-2 py-0.5 rounded border tracking-wider ${tagColors[tag.type]}`}>
                                 {tag.text}
                             </span>
                         ))}
                     </div>
 
-                    {/* Description */}
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-                        {project.fullDescription}
+                    {/* Challenge (short) */}
+                    <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 flex-grow mb-4">
+                        {project.challenge}
                     </p>
 
-                    {/* Metrics */}
+                    {/* Metrics row */}
                     {project.metrics && (
-                        <div className="grid grid-cols-2 gap-3 mb-6 pt-6 border-t border-gray-100">
-                            {project.metrics.map(m => (
+                        <div className={`grid gap-2 pt-3 border-t border-gray-100 mb-3 ${project.metrics.length >= 4 ? 'grid-cols-4' : 'grid-cols-2'}`}>
+                            {project.metrics.slice(0, 4).map(m => (
                                 <div key={m.label}>
-                                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider">{m.label}</div>
-                                    <div className="text-sm font-black text-black font-mono">{m.value}</div>
+                                    <div className="text-[9px] font-mono text-gray-400 uppercase tracking-wider">{m.label}</div>
+                                    <div className="text-xs font-black text-black font-mono">{m.value}</div>
                                 </div>
                             ))}
                         </div>
                     )}
 
-                    {/* Subdomain */}
-                    <div className="flex items-center gap-2 text-[11px] font-mono text-gray-400 group-hover:text-blue-500 transition-colors mt-auto pt-4 border-t border-gray-100">
-                        <ExternalLink className="w-3 h-3" />
+                    {/* Subdomain footer */}
+                    <div className="flex items-center gap-1.5 text-[9px] font-mono text-gray-300 group-hover:text-blue-400 transition-colors mt-auto pt-3 border-t border-gray-100">
+                        <ExternalLink className="w-2.5 h-2.5" />
                         {project.subdomain}
                     </div>
                 </div>
@@ -89,113 +140,166 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     );
 }
 
-export function ProjectsHubClient() {
+// ── Section label ────────────────────────────────────────────────────
+function SectionLabel({ status, count }: { status: string; count: number }) {
+    const cfg = sectionConfig[status as keyof typeof sectionConfig];
     return (
-        <div>
-            {/* Stats Bar */}
+        <div className="flex items-center gap-3 mb-4">
+            <div className={`w-2 h-2 rounded-full ${cfg.bg}`} />
+            <span className="text-xs font-black font-mono text-black tracking-widest">{cfg.title}</span>
+            <span className="text-[10px] font-mono text-gray-400">{cfg.desc}</span>
+            <span className="ml-auto text-[10px] font-mono text-gray-300">{count} project{count !== 1 ? 's' : ''}</span>
+        </div>
+    );
+}
+
+// ── Concept card (muted style) ───────────────────────────────────────
+function ConceptCard({ project, index }: { project: Project; index: number }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.35, delay: index * 0.07 }}
+        >
+            <Link href={`/projects/${project.slug}`} className="group block h-full">
+                <div className="h-full border border-dashed border-purple-200 rounded-xl p-5 bg-purple-50/30 hover:bg-purple-50 hover:border-purple-400 transition-all duration-300 flex flex-col">
+                    <div className="flex items-start justify-between mb-3">
+                        <div>
+                            <h3 className="text-xl font-black text-gray-700 group-hover:text-purple-700 transition-colors leading-tight">{project.title}</h3>
+                            <p className="text-xs text-gray-400 font-mono mt-0.5">{project.subtitle}</p>
+                        </div>
+                        <ArrowUpRight className="w-4 h-4 text-purple-200 group-hover:text-purple-500 transition-all shrink-0 ml-2" />
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                        {project.tags.map(tag => (
+                            <span key={tag.text} className="text-[9px] font-bold font-mono px-2 py-0.5 rounded border border-purple-200 text-purple-500 bg-purple-50 tracking-wider">
+                                {tag.text}
+                            </span>
+                        ))}
+                    </div>
+                    <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 flex-grow mb-4">{project.challenge}</p>
+                    <div className="flex items-center gap-1.5 text-[9px] font-mono text-purple-300 group-hover:text-purple-500 transition-colors mt-auto pt-3 border-t border-purple-100">
+                        <ExternalLink className="w-2.5 h-2.5" />{project.subdomain}
+                    </div>
+                </div>
+            </Link>
+        </motion.div>
+    );
+}
+
+// ── Archived horizontal strip ────────────────────────────────────────
+function ArchivedCard({ project, index }: { project: Project; index: number }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: -15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: index * 0.06 }}
+        >
+            <Link href={`/projects/${project.slug}`} className="group block">
+                <div className="border border-gray-100 rounded-lg px-6 py-4 bg-gray-50/50 hover:bg-gray-100 hover:border-gray-300 transition-all duration-300 flex items-center gap-6">
+                    <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 flex-wrap">
+                            <h3 className="text-base font-black text-gray-600 group-hover:text-black transition-colors">{project.title}</h3>
+                            <span className="text-[9px] font-mono text-gray-400 hidden sm:block">{project.subtitle}</span>
+                        </div>
+                        <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">{project.challenge}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 shrink-0 hidden md:flex">
+                        {project.tags.slice(0, 3).map(tag => (
+                            <span key={tag.text} className={`text-[9px] font-bold font-mono px-2 py-0.5 rounded border tracking-wider ${tagColors[tag.type]}`}>{tag.text}</span>
+                        ))}
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-gray-300 group-hover:text-black shrink-0 transition-all" />
+                </div>
+            </Link>
+        </motion.div>
+    );
+}
+
+// ── Main export ──────────────────────────────────────────────────────
+export function ProjectsHubClient() {
+    const active   = projects.filter(p => p.status === 'active');
+    const wip      = projects.filter(p => p.status === 'wip');
+    const concepts = projects.filter(p => p.status === 'concept');
+    const archived = projects.filter(p => p.status === 'archived');
+
+    return (
+        <div className="space-y-14">
+
+            {/* ── Stats bar ─────────────────────────────────────────────── */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-wrap gap-8 mb-20 text-sm font-mono"
+                transition={{ delay: 0.15 }}
+                className="flex flex-wrap gap-8 pb-6 border-b border-gray-100"
             >
-                <div>
-                    <span className="text-gray-400 uppercase tracking-wider text-[11px]">Total Projects</span>
-                    <div className="text-3xl font-black text-black">{projects.length}</div>
-                </div>
-                <div>
-                    <span className="text-gray-400 uppercase tracking-wider text-[11px]">Active</span>
-                    <div className="text-3xl font-black text-green-600">{projects.filter(p => p.status === 'active').length}</div>
-                </div>
-                <div>
-                    <span className="text-gray-400 uppercase tracking-wider text-[11px]">In Progress</span>
-                    <div className="text-3xl font-black text-yellow-600">{projects.filter(p => p.status === 'wip').length}</div>
-                </div>
-                <div>
-                    <span className="text-gray-400 uppercase tracking-wider text-[11px]">Archived</span>
-                    <div className="text-3xl font-black text-gray-400">{projects.filter(p => p.status === 'archived').length}</div>
-                </div>
-                <div>
-                    <span className="text-gray-400 uppercase tracking-wider text-[11px]">Concepts</span>
-                    <div className="text-3xl font-black text-purple-600">{projects.filter(p => p.status === 'concept').length}</div>
-                </div>
+                {[
+                    { label: 'Total',       value: projects.length, color: 'text-black' },
+                    { label: 'Active',      value: active.length,   color: 'text-green-600' },
+                    { label: 'In Progress', value: wip.length,      color: 'text-yellow-600' },
+                    { label: 'Concepts',    value: concepts.length, color: 'text-purple-600' },
+                    { label: 'Archived',    value: archived.length, color: 'text-gray-400' },
+                ].map(s => (
+                    <div key={s.label} className="font-mono">
+                        <div className="text-[10px] text-gray-400 uppercase tracking-wider">{s.label}</div>
+                        <div className={`text-2xl font-black ${s.color}`}>{s.value}</div>
+                    </div>
+                ))}
             </motion.div>
 
-            {/* Featured (First Project - Full Width) */}
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
-            >
-                <Link href={`/projects/${projects[0].slug}`} className="group block">
-                    <div className="border-2 border-black rounded-xl p-10 md:p-14 bg-black text-white hover:bg-zinc-900 transition-all duration-300 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
-
-                        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <div className="flex items-center gap-3 mb-6">
-                                    <span className="text-[10px] font-bold font-mono tracking-widest border border-green-500/50 bg-green-500/10 text-green-400 px-3 py-1 rounded-full">
-                                        FEATURED
-                                    </span>
-                                    <span className={`text-[10px] font-bold font-mono tracking-widest border px-3 py-1 rounded-full ${statusConfig[projects[0].status].class}`}>
-                                        {statusConfig[projects[0].status].label}
-                                    </span>
-                                </div>
-                                <h2 className="text-5xl md:text-7xl font-black mb-4 leading-none group-hover:text-blue-400 transition-colors">
-                                    {projects[0].title}
-                                </h2>
-                                <p className="text-zinc-400 font-mono text-sm mb-6">{projects[0].subtitle}</p>
-                                <p className="text-zinc-300 leading-relaxed mb-8 max-w-lg">
-                                    {projects[0].fullDescription}
-                                </p>
-                                <div className="flex flex-wrap gap-2 mb-8">
-                                    {projects[0].tags.map(tag => (
-                                        <span key={tag.text} className="text-[10px] font-bold font-mono px-3 py-1 rounded border border-zinc-600 text-zinc-400 tracking-wider">
-                                            {tag.text}
-                                        </span>
-                                    ))}
-                                </div>
-                                <div className="flex items-center gap-3 font-bold text-blue-400 group-hover:gap-5 transition-all">
-                                    VIEW PROJECT <ArrowUpRight className="w-5 h-5" />
-                                </div>
-                            </div>
-
-                            {/* Terminal */}
-                            {projects[0].terminal && (
-                                <div className="bg-zinc-950 rounded-lg p-6 font-mono text-xs border border-zinc-800 shadow-2xl">
-                                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-zinc-800">
-                                        <div className="flex gap-1.5">
-                                            <div className="w-3 h-3 rounded-full bg-red-500" />
-                                            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                                            <div className="w-3 h-3 rounded-full bg-green-500" />
-                                        </div>
-                                        <span className="text-zinc-500 text-[10px] ml-2">bash — 80x24</span>
-                                    </div>
-                                    <div className="text-green-400 mb-3 flex items-start gap-2">
-                                        <span className="text-blue-500">➜</span>
-                                        <span className="text-zinc-500">~</span>
-                                        <span className="text-white">{projects[0].terminal.command}</span>
-                                    </div>
-                                    <div className="space-y-1.5 pl-2">
-                                        {projects[0].terminal.output.map((line, i) => (
-                                            <div key={i} className={`${line.color} leading-relaxed`}>{line.text}</div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+            {/* ── ACTIVE ────────────────────────────────────────────────── */}
+            {active.length > 0 && (
+                <section>
+                    <SectionLabel status="active" count={active.length} />
+                    {/* Hero (first active) + 2 side cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <HeroCard project={active[0]} />
+                        <div className="flex flex-col gap-4">
+                            {active.slice(1).map((p, i) => (
+                                <ProjectCard key={p.slug} project={p} index={i} size="md" />
+                            ))}
                         </div>
                     </div>
-                </Link>
-            </motion.div>
+                </section>
+            )}
 
-            {/* Project Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {projects.slice(1).map((project, index) => (
-                    <ProjectCard key={project.slug} project={project} index={index} />
-                ))}
-            </div>
+            {/* ── IN PROGRESS ───────────────────────────────────────────── */}
+            {wip.length > 0 && (
+                <section>
+                    <SectionLabel status="wip" count={wip.length} />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {wip.map((p, i) => (
+                            <ProjectCard key={p.slug} project={p} index={i} size="lg" />
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {/* ── CONCEPTS ──────────────────────────────────────────────── */}
+            {concepts.length > 0 && (
+                <section>
+                    <SectionLabel status="concept" count={concepts.length} />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {concepts.map((p, i) => (
+                            <ConceptCard key={p.slug} project={p} index={i} />
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {/* ── ARCHIVED ──────────────────────────────────────────────── */}
+            {archived.length > 0 && (
+                <section>
+                    <SectionLabel status="archived" count={archived.length} />
+                    <div className="flex flex-col gap-2">
+                        {archived.map((p, i) => (
+                            <ArchivedCard key={p.slug} project={p} index={i} />
+                        ))}
+                    </div>
+                </section>
+            )}
         </div>
     );
 }

@@ -49,11 +49,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <main className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
             <Navbar />
 
-            <div className="px-6 md:px-12 max-w-[1400px] mx-auto pt-32">
+            <div className="px-6 md:px-12 max-w-[1400px] mx-auto pt-24">
                 <ProjectDetailClient project={project} />
             </div>
 
-            <div className="px-6 md:px-12 max-w-[1400px] mx-auto mt-16">
+            <div className="px-6 md:px-12 max-w-[1400px] mx-auto mt-12">
                 <Footer />
             </div>
         </main>
