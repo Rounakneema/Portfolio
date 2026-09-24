@@ -9,8 +9,9 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico, icon.png, public static assets
+     * - robots.txt, sitemap.xml
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|icon.png).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|icon.png|robots.txt|sitemap.xml).*)',
   ],
 };
 
