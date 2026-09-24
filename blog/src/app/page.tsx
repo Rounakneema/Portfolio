@@ -2,6 +2,10 @@ import { getAllPosts } from '@/lib/posts';
 import { PostList } from '@/components/PostList';
 import { ScrambleText } from '@/components/ScrambleText';
 
+export const metadata = {
+  alternates: { canonical: '/blog' }
+};
+
 export default function Home() {
   const posts = getAllPosts();
 

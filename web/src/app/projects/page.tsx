@@ -6,6 +6,7 @@ import { projects } from '@/lib/projects';
 export const metadata = {
     title: 'Projects Hub // Rounak Neema',
     description: 'A collection of engineering projects spanning high-performance network scanning, offline security analytics, DevOps tooling, and microservices platforms.',
+    alternates: { canonical: '/projects' },
 };
 
 export default function ProjectsPage() {
