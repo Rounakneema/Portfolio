@@ -4,39 +4,45 @@ import type { NextRequest } from 'next/server';
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
+     * Match all request paths except:
      * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * - favicon.ico, icon.png, public static assets
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|icon.png).*)',
   ],
 };
 
 export default function middleware(req: NextRequest) {
   const url = req.nextUrl;
-
-  // Get hostname (e.g. 'revealr.rounakneema.in', 'localhost:3000')
   const hostname = req.headers.get('host') || '';
 
-  // Extract the subdomain (e.g. 'revealr')
-  // We assume the root domain is rounakneema.in
-  let currentHost = hostname
-    .replace('.rounakneema.in', '')
-    .replace('.localhost:3000', '');
+  // Clean hostname (strip port if present)
+  const hostWithoutPort = hostname.split(':')[0].toLowerCase();
 
-  // If there's no subdomain (i.e. they hit the raw Vercel URL or the project site domain directly without a prefix),
-  // we could redirect them back to the main portfolio or show a generic project sites index.
-  if (currentHost === 'rounakneema.in' || currentHost === 'localhost:3000') {
-      // In production, rounakneema.in is hosted on a different Vercel project anyway,
-      // but just in case:
-      return NextResponse.redirect('https://rounakneema.in');
+  // Extract subdomain if on rounakneema.in or localhost
+  let subdomain = '';
+  if (hostWithoutPort.endsWith('.rounakneema.in')) {
+    subdomain = hostWithoutPort.replace('.rounakneema.in', '');
+  } else if (hostWithoutPort.endsWith('.localhost')) {
+    subdomain = hostWithoutPort.replace('.localhost', '');
   }
 
-  // Map the subdomain to the /[project] dynamic route
-  // e.g. revealr.rounakneema.in/docs -> /revealr/docs
-  url.pathname = `/${currentHost}${url.pathname}`;
-  
-  return NextResponse.rewrite(url);
+  // If accessed via a specific subdomain (e.g. revealr.rounakneema.in)
+  if (subdomain && subdomain !== 'www') {
+    // Avoid double prefixing
+    if (!url.pathname.startsWith(`/${subdomain}`)) {
+      url.pathname = `/${subdomain}${url.pathname}`;
+    }
+    return NextResponse.rewrite(url);
+  }
+
+  // If accessed directly on root domain or localhost:3000
+  // Allow direct paths like /revealr, /osa, etc. for local dev/preview
+  if (url.pathname === '/') {
+    return NextResponse.redirect('https://rounakneema.in');
+  }
+
+  return NextResponse.next();
 }
