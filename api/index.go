@@ -13,10 +13,36 @@ import (
 // assets is populated by bundler.js at build time (regenerates this entire file)
 var assets = map[string][]byte{}
 
+// projectSubdomains maps subdomain prefixes to project slugs
+var projectSubdomains = map[string]string{
+	"revealr":       "revealr",
+	"osa":           "osa",
+	"metromind":     "metromind",
+	"pipelineforge": "pipelineforge",
+	"spqr":          "spqr",
+}
+
 func Handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Content-Type-Options", "nosniff")
 	w.Header().Set("X-Frame-Options", "DENY")
 	reqPath := r.URL.Path
+
+	// --- Subdomain routing ---
+	host := r.Host
+	// Strip port if present
+	if idx := strings.LastIndex(host, ":"); idx != -1 {
+		host = host[:idx]
+	}
+	// Extract subdomain: e.g. "revealr.rounakneema.in" → "revealr"
+	parts := strings.SplitN(host, ".", 2)
+	if len(parts) == 2 {
+		subdomain := strings.ToLower(parts[0])
+		if slug, ok := projectSubdomains[subdomain]; ok {
+			// Redirect to the project detail page on the main domain
+			http.Redirect(w, r, "https://rounakneema.in/projects/"+slug, http.StatusFound)
+			return
+		}
+	}
 
 	serveAsset := func(assetPath string) {
 		assetPath = strings.TrimPrefix(strings.ReplaceAll(assetPath, "\\", "/"), "/")
@@ -71,3 +97,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	serveAsset(reqPath)
 }
+
