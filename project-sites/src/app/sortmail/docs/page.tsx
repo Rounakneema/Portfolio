@@ -16,13 +16,13 @@ export default function SortMailDocsPage() {
                         &larr; Back
                     </Link>
                     <span className="text-[#333]">|</span>
-                    <Link href="/sortmail" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="" className="text-[#888] hover:text-white transition-colors">
                         Overview
                     </Link>
-                    <Link href="/sortmail/architecture" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/architecture" className="text-[#888] hover:text-white transition-colors">
                         Architecture
                     </Link>
-                    <Link href="/sortmail/decisions" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/decisions" className="text-[#888] hover:text-white transition-colors">
                         Decisions
                     </Link>
                     <span className="text-white font-semibold">

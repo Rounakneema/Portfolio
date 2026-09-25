@@ -48,10 +48,10 @@ export default function SortMailPage() {
                     <Link href="#security" className="text-[#888] hover:text-white transition-colors">
                         Security
                     </Link>
-                    <Link href="/sortmail/architecture" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/architecture" className="text-[#888] hover:text-white transition-colors">
                         Architecture
                     </Link>
-                    <Link href="/sortmail/docs" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/docs" className="text-[#888] hover:text-white transition-colors">
                         Docs
                     </Link>
                 </div>
@@ -167,7 +167,7 @@ export default function SortMailPage() {
                             <p className="text-[#aaa] text-lg leading-relaxed mb-8">
                                 Automatically convert emails into structured tasks (Reply, Review Document, Schedule Meeting). Priority scoring is calculated based on sender importance, urgency signals, and implicit deadlines ("end of week"). The system also features an anti-ghosting tracker for waiting-for-reply threads.
                             </p>
-                            <Link href="/sortmail/architecture" className="inline-flex items-center gap-2 text-amber-500 font-semibold hover:text-amber-400 transition-colors">
+                            <Link href="/architecture" className="inline-flex items-center gap-2 text-amber-500 font-semibold hover:text-amber-400 transition-colors">
                                 Read Architecture Details &rarr;
                             </Link>
                         </article>
@@ -214,7 +214,7 @@ export default function SortMailPage() {
                                     </div>
                                     
                                     <div className="pt-6 border-t border-[#222]">
-                                        <Link href="/sortmail/docs" className="text-sm font-medium text-[#888] hover:text-white transition-colors">
+                                        <Link href="/docs" className="text-sm font-medium text-[#888] hover:text-white transition-colors">
                                             View Engineering Documentation &rarr;
                                         </Link>
                                     </div>

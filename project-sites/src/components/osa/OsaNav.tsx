@@ -6,12 +6,12 @@ export function OsaNav() {
   const pathname = usePathname();
   
   const links = [
-    { label: 'Overview', href: '/osa' },
-    { label: 'Detection', href: '/osa#detection' },
-    { label: 'Architecture', href: '/osa/architecture' },
-    { label: 'Forensics', href: '/osa/forensics' },
-    { label: 'Benchmarks', href: '/osa/benchmarks' },
-    { label: 'Docs', href: '/osa/docs' },
+    { label: 'Overview', href: '/' },
+    { label: 'Detection', href: '/#detection' },
+    { label: 'Architecture', href: '/architecture' },
+    { label: 'Forensics', href: '/forensics' },
+    { label: 'Benchmarks', href: '/benchmarks' },
+    { label: 'Docs', href: '/docs' },
   ];
 
   return (

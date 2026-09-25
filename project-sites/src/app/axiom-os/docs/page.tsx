@@ -23,7 +23,7 @@ export default function AxiomOsDocsPage() {
                     Raw engineering documentation for AXIOM OS. Specter daemon flags, memory schema definitions, and local Ollama setup.
                 </p>
                 <div className="mt-8">
-                    <a href="/axiom-os" className="text-red-500 hover:text-white transition-colors underline decoration-2 underline-offset-4 font-bold uppercase">
+                    <a href="" className="text-red-500 hover:text-white transition-colors underline decoration-2 underline-offset-4 font-bold uppercase">
                         &lt; Return to Overview
                     </a>
                 </div>

@@ -7,13 +7,13 @@ export function AxiomNav() {
     const pathname = usePathname();
 
     const navItems = [
-        { name: 'System', href: '/axiom-os' },
-        { name: 'Telemetry', href: '/axiom-os/telemetry' },
-        { name: 'Memory', href: '/axiom-os/memory' },
-        { name: 'Intelligence', href: '/axiom-os/intelligence' },
-        { name: 'Policies', href: '/axiom-os/policies' },
-        { name: 'Architecture', href: '/axiom-os/architecture' },
-        { name: 'Decisions', href: '/axiom-os/decisions' }
+        { name: 'System', href: '/' },
+        { name: 'Telemetry', href: '/telemetry' },
+        { name: 'Memory', href: '/memory' },
+        { name: 'Intelligence', href: '/intelligence' },
+        { name: 'Policies', href: '/policies' },
+        { name: 'Architecture', href: '/architecture' },
+        { name: 'Decisions', href: '/decisions' }
     ];
 
     return (

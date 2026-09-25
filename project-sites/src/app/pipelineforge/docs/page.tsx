@@ -12,7 +12,7 @@ export default function PipelineForgeDocsPage() {
       {/* Navigation / Header */}
       <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter sticky top-0 bg-[#0a0a0a] z-10">
         <div className="text-xl">
-          <Link href="/pipelineforge" className="hover:bg-white hover:text-black transition-colors px-2 py-1">← BACK TO PROJECT</Link>
+          <Link href="" className="hover:bg-white hover:text-black transition-colors px-2 py-1">← BACK TO PROJECT</Link>
         </div>
         <div className="text-right flex flex-col items-end">
           <div className="bg-white text-black px-2 py-1 text-sm font-black mb-1">DEVSECOPS</div>
@@ -229,7 +229,7 @@ spec:
         
         <footer className="mt-32 pt-12 border-t-4 border-white text-center">
             <p className="text-xl font-bold uppercase mb-4">END OF DOCUMENTATION</p>
-            <Link href="/pipelineforge" className="inline-block border-2 border-white px-6 py-3 hover:bg-white hover:text-black transition-colors font-bold uppercase">
+            <Link href="" className="inline-block border-2 border-white px-6 py-3 hover:bg-white hover:text-black transition-colors font-bold uppercase">
               Return to Overview
             </Link>
         </footer>

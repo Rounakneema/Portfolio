@@ -16,16 +16,16 @@ export default function DecisionsPage() {
                         &larr; Back
                     </Link>
                     <span className="text-[#333]">|</span>
-                    <Link href="/sortmail" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="" className="text-[#888] hover:text-white transition-colors">
                         Overview
                     </Link>
-                    <Link href="/sortmail/architecture" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/architecture" className="text-[#888] hover:text-white transition-colors">
                         Architecture
                     </Link>
                     <span className="text-white font-semibold">
                         Decisions
                     </span>
-                    <Link href="/sortmail/docs" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/docs" className="text-[#888] hover:text-white transition-colors">
                         Docs
                     </Link>
                 </div>

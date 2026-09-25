@@ -66,7 +66,7 @@ export default function RevealrSecurity() {
                 </div>
 
                 <div className="mt-16 flex justify-end">
-                    <Link href="/revealr/docs" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-lime-300 hover:text-lime-200">
+                    <Link href="/docs" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-lime-300 hover:text-lime-200">
                         Next: Documentation <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </div>

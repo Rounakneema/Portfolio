@@ -48,7 +48,7 @@ export default function MetroMindHome() {
                         <span className="text-fuchsia-400 font-bold tracking-widest uppercase text-xs">MetroMind_</span>
                     </div>
                     <div className="flex items-center gap-6 text-xs tracking-widest uppercase">
-                        <Link href="/metromind/architecture" className="hover:text-white transition-colors">Architecture</Link>
+                        <Link href="/architecture" className="hover:text-white transition-colors">Architecture</Link>
                         <a href="https://github.com/rounakneema/MetroMind" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Source</a>
                     </div>
                 </div>

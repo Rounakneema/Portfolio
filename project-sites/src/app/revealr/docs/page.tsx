@@ -76,7 +76,7 @@ export default function RevealrDocs() {
                 </div>
 
                 <div className="mt-16 flex justify-end">
-                    <Link href="/revealr/changelog" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-lime-300 hover:text-lime-200">
+                    <Link href="/changelog" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-lime-300 hover:text-lime-200">
                         Next: Changelog <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </div>

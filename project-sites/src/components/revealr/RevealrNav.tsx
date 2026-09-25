@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -6,22 +6,20 @@ import { Github } from 'lucide-react';
 
 export function RevealrNav() {
   const pathname = usePathname() || '';
-  const isSubfolder = pathname.startsWith('/revealr');
-  const base = isSubfolder ? '/revealr' : '';
-
+    
   const nav = [
-    { href: `${base || '/'}`, label: 'Overview', exact: true },
-    { href: `${base}/architecture`, label: 'Architecture' },
-    { href: `${base}/benchmarks`, label: 'Benchmarks' },
-    { href: `${base}/security`, label: 'Security' },
-    { href: `${base}/docs`, label: 'Docs' },
-    { href: `${base}/changelog`, label: 'Changelog' },
+    { href: "/", label: 'Overview', exact: true },
+    { href: `/architecture`, label: 'Architecture' },
+    { href: `/benchmarks`, label: 'Benchmarks' },
+    { href: `/security`, label: 'Security' },
+    { href: `/docs`, label: 'Docs' },
+    { href: `/changelog`, label: 'Changelog' },
   ];
 
   return (
     <nav className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#080b0a]/85 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
-        <Link href={`${base || '/'}`} className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <span className="text-green-400 text-xl font-black tracking-tight group-hover:text-green-300 transition-colors">
             REVEALR
           </span>
@@ -32,7 +30,7 @@ export function RevealrNav() {
         <div className="hidden items-center gap-6 md:flex">
           {nav.map(n => {
             const isActive = n.exact
-              ? pathname === n.href || pathname === base || pathname === `${base}/`
+              ? pathname === n.href || pathname === "/"
               : pathname.startsWith(n.href);
             return (
               <Link
@@ -62,9 +60,7 @@ export function RevealrNav() {
 
 export function RevealrFooter() {
   const pathname = usePathname() || '';
-  const isSubfolder = pathname.startsWith('/revealr');
-  const base = isSubfolder ? '/revealr' : '';
-
+    
   return (
     <footer className="mt-0 border-t border-white/[0.07] bg-[#080b0a]">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-10 md:flex-row md:px-10">
@@ -80,3 +76,4 @@ export function RevealrFooter() {
     </footer>
   );
 }
+

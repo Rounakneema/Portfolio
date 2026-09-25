@@ -17,7 +17,7 @@ export default function MetroMindArchitecture() {
             <nav className="border-b border-fuchsia-500/20 bg-[#030305] sticky top-0 z-50">
                 <div className="flex h-12 items-center justify-between px-4 md:px-8">
                     <div className="flex items-center gap-4">
-                        <Link href="/metromind" className="text-zinc-500 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                        <Link href="" className="text-zinc-500 hover:text-cyan-400 transition-colors flex items-center gap-2">
                             <ArrowLeft className="w-4 h-4" /> HOME
                         </Link>
                         <span className="text-zinc-700">/</span>
@@ -117,7 +117,7 @@ export default function MetroMindArchitecture() {
                 </section>
 
                 <footer className="p-8 border-t border-fuchsia-500/10 flex justify-end">
-                    <Link href="/metromind" className="text-cyan-400 hover:text-white transition-colors flex items-center gap-2 uppercase tracking-widest text-xs font-bold">
+                    <Link href="" className="text-cyan-400 hover:text-white transition-colors flex items-center gap-2 uppercase tracking-widest text-xs font-bold">
                         Return to overview <ArrowRight className="w-4 h-4" />
                     </Link>
                 </footer>

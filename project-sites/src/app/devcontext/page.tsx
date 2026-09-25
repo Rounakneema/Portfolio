@@ -43,11 +43,11 @@ export default function DevContextPage() {
                     <span className="text-[#58a6ff] bg-[#1f6feb]/10 border border-[#1f6feb]/30 px-2 py-1">Status: {project.status}</span>
                 </div>
                 <nav className="flex gap-6 border-l border-[#333] pl-6 overflow-x-auto w-full md:w-auto">
-                    <Link href="/devcontext" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Analysis Pipeline</Link>
-                    <Link href="/devcontext/grounding" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Grounding</Link>
-                    <Link href="/devcontext/architecture" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Architecture</Link>
-                    <Link href="/devcontext/interview" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Interview Engine</Link>
-                    <Link href="/devcontext/docs" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Docs</Link>
+                    <Link href="" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Analysis Pipeline</Link>
+                    <Link href="/grounding" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Grounding</Link>
+                    <Link href="/architecture" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Architecture</Link>
+                    <Link href="/interview" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Interview Engine</Link>
+                    <Link href="/docs" className="text-[#666] hover:text-[#58a6ff] transition-colors whitespace-nowrap">Docs</Link>
                 </nav>
             </header>
 
@@ -110,7 +110,7 @@ export default function DevContextPage() {
                     </div>
 
                     <div className="mt-12 pt-8 border-t border-[#1f6feb]/30">
-                        <Link href="/devcontext/architecture" className="inline-flex items-center gap-2 bg-[#1f6feb] text-white px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-[#58a6ff] transition-colors">
+                        <Link href="/architecture" className="inline-flex items-center gap-2 bg-[#1f6feb] text-white px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-[#58a6ff] transition-colors">
                             Deep Dive Architecture &rarr;
                         </Link>
                     </div>

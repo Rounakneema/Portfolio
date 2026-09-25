@@ -11,7 +11,7 @@ export default function DecisionsPage() {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
       <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
         <div className="text-xl">
-          <Link href="/pipelineforge" className="hover:bg-white hover:text-black transition-colors px-2 py-1">← BACK TO PIPELINEFORGE</Link>
+          <Link href="" className="hover:bg-white hover:text-black transition-colors px-2 py-1">← BACK TO PIPELINEFORGE</Link>
         </div>
         <div className="text-right flex flex-col items-end">
           <div className="bg-white text-black px-2 py-1 text-sm font-black mb-1">DECISIONS</div>

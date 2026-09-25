@@ -17,13 +17,13 @@ export default function ArchitecturePage() {
                         &larr; Back
                     </Link>
                     <span className="text-[#333]">|</span>
-                    <Link href="/sortmail" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="" className="text-[#888] hover:text-white transition-colors">
                         Overview
                     </Link>
                     <span className="text-white font-semibold">
                         Architecture
                     </span>
-                    <Link href="/sortmail/docs" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/docs" className="text-[#888] hover:text-white transition-colors">
                         Docs
                     </Link>
                 </div>

@@ -43,10 +43,10 @@ const capabilities = [
 ];
 
 const explorerLinks = [
-  { href: '/revealr/architecture', title: 'Architecture', detail: 'The engine, state layer, plugin bridge, and output pipeline.' },
-  { href: '/revealr/benchmarks', title: 'Benchmarks', detail: 'Throughput methodology and performance results.' },
-  { href: '/revealr/security', title: 'Security model', detail: 'Profiles, controls, and responsible-use guardrails.' },
-  { href: '/revealr/docs', title: 'Documentation', detail: 'CLI flags, output formats, and plugin workflows.' },
+  { href: '/architecture', title: 'Architecture', detail: 'The engine, state layer, plugin bridge, and output pipeline.' },
+  { href: '/benchmarks', title: 'Benchmarks', detail: 'Throughput methodology and performance results.' },
+  { href: '/security', title: 'Security model', detail: 'Profiles, controls, and responsible-use guardrails.' },
+  { href: '/docs', title: 'Documentation', detail: 'CLI flags, output formats, and plugin workflows.' },
 ];
 
 export default function RevealrHome() {
@@ -169,8 +169,8 @@ export default function RevealrHome() {
                 <p className="text-sm text-zinc-500 max-w-md">Detailed breakdowns of the scan engine, raw socket methodology, and SQLite state schemas.</p>
             </div>
             <div className="flex gap-4 font-mono text-xs uppercase tracking-widest font-bold">
-                <Link href="/revealr/architecture" className="px-6 py-3 bg-white text-black hover:bg-lime-400 transition-colors">Architecture</Link>
-                <Link href="/revealr/docs" className="px-6 py-3 border border-zinc-700 hover:border-lime-500 hover:text-lime-400 transition-colors text-white">CLI Reference</Link>
+                <Link href="/architecture" className="px-6 py-3 bg-white text-black hover:bg-lime-400 transition-colors">Architecture</Link>
+                <Link href="/docs" className="px-6 py-3 border border-zinc-700 hover:border-lime-500 hover:text-lime-400 transition-colors text-white">CLI Reference</Link>
             </div>
         </div>
       </section>
@@ -188,7 +188,7 @@ export default function RevealrHome() {
         </div>
       </section>
 
-      <section className="border-t border-white/[0.07] px-6 py-16 text-center md:px-10"><Terminal className="mx-auto h-5 w-5 text-lime-300" /><p className="mt-4 text-lg font-bold text-white">Discover thoughtfully. Verify deliberately.</p><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-600">Revealr is designed for legitimate, authorized network security work.</p><Link href="/revealr/security" className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-lime-300 hover:text-lime-200">Review the security model <ArrowRight className="h-3.5 w-3.5" /></Link></section>
+      <section className="border-t border-white/[0.07] px-6 py-16 text-center md:px-10"><Terminal className="mx-auto h-5 w-5 text-lime-300" /><p className="mt-4 text-lg font-bold text-white">Discover thoughtfully. Verify deliberately.</p><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-600">Revealr is designed for legitimate, authorized network security work.</p><Link href="/security" className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-lime-300 hover:text-lime-200">Review the security model <ArrowRight className="h-3.5 w-3.5" /></Link></section>
     
       <section className="mx-auto max-w-4xl px-6 py-24 md:px-10">
         <h2 className="text-2xl font-black text-white mb-8">Frequently Asked Questions</h2>
