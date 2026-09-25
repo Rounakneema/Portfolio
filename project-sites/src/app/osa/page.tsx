@@ -82,6 +82,7 @@ export default function OSAPage() {
                         <Link href="/osa" className="nav-link active">Overview</Link>
                         <Link href="/osa/architecture" className="nav-link">Architecture</Link>
                         <Link href="/osa/decisions" className="nav-link">Decisions</Link>
+                        <Link href="/osa/docs" className="nav-link">Docs</Link>
                     </nav>
 
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">

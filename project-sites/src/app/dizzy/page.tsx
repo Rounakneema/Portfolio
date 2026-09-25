@@ -67,6 +67,10 @@ export default function DizzyPage() {
           <h2 className="text-2xl font-bold uppercase mb-2">/ Trade-offs & Decisions</h2>
           <p className="text-gray-400 group-hover:text-[#111]">Streaming Parsing vs Pure UI Gen</p>
         </Link>
+        <Link href="/dizzy/docs" className="block p-6 brutalist-border transition-colors brutalist-nav-link group md:col-span-2">
+          <h2 className="text-2xl font-bold uppercase mb-2">/ Technical Docs</h2>
+          <p className="text-gray-400 group-hover:text-[#111]">Semantic Buffer AST, Voice-to-JSON, & Figma MCP</p>
+        </Link>
       </nav>
 
       {/* Grid background container */}

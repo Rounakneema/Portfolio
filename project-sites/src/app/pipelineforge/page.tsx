@@ -55,14 +55,18 @@ export default function PipelineForgePage() {
         </section>
 
         {/* Navigation to Sub-pages */}
-        <section className="mb-32 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="mb-32 grid grid-cols-1 md:grid-cols-3 gap-8">
           <Link href="/pipelineforge/architecture" className="group border-4 border-white p-8 hover:bg-white hover:text-black transition-all duration-300 block">
-            <h2 className="text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Architecture →</h2>
+            <h2 className="text-4xl xl:text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Architecture →</h2>
             <p className="text-xl font-medium">Deep dive into the DevSecOps GitOps pipeline topology, cluster design, and data flows.</p>
           </Link>
           <Link href="/pipelineforge/decisions" className="group border-4 border-white p-8 hover:bg-white hover:text-black transition-all duration-300 block">
-            <h2 className="text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Decisions & Metrics →</h2>
+            <h2 className="text-4xl xl:text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Decisions & Metrics →</h2>
             <p className="text-xl font-medium">Technical trade-offs, security gates (Trivy), and performance optimization breakdowns.</p>
+          </Link>
+          <Link href="/pipelineforge/docs" className="group border-4 border-white p-8 hover:bg-white hover:text-black transition-all duration-300 block">
+            <h2 className="text-4xl xl:text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Docs & Code →</h2>
+            <p className="text-xl font-medium">Raw engineering documentation, YAML manifests, CI/CD scripts, and terminal traces.</p>
           </Link>
         </section>
 

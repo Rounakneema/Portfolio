@@ -23,6 +23,7 @@ export default function DevContextPage() {
                     <Link href="/devcontext" className="text-white border-b border-white hover:text-white transition-colors">Overview</Link>
                     <Link href="/devcontext/architecture" className="text-[#666] hover:text-white transition-colors">Architecture</Link>
                     <Link href="/devcontext/decisions" className="text-[#666] hover:text-white transition-colors">Decisions</Link>
+                    <Link href="/devcontext/docs" className="text-[#666] hover:text-white transition-colors">Docs</Link>
                 </nav>
             </header>
 

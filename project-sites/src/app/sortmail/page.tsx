@@ -25,6 +25,9 @@ export default function SortMailPage() {
                     <Link href="/sortmail/decisions" className="text-[#888] hover:text-white transition-colors">
                         [Decisions]
                     </Link>
+                    <Link href="/sortmail/docs" className="text-[#888] hover:text-white transition-colors">
+                        [Docs]
+                    </Link>
                 </div>
                 <div className="flex gap-6">
                     <span className="text-[#666]">STATUS: [WIP]</span>
