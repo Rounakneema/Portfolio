@@ -1,3 +1,4 @@
+﻿import { ProjectFooter } from '@/components/ProjectFooter';
 import React from 'react';
 import { AxiomNav } from '@/components/axiom/AxiomNav';
 
@@ -13,3 +14,6 @@ export default function AxiomOsLayout({
     </div>
   );
 }
+
+
+

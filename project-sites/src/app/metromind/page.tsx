@@ -2,8 +2,6 @@
 import { ShieldAlert, Cpu } from 'lucide-react';
 import type { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { TerminalStream } from '@/components/shared/TerminalStream';
 
 export const metadata: Metadata = {
@@ -141,14 +139,6 @@ export default function MetroMindHome() {
                 </section>
 
                 {/* ─── EntityHeader + ProjectFacts (moved below hero) ─── */}
-                <EntityHeader title="MetroMind" subtitle="Enterprise AI Document Intelligence Platform" />
-                <ProjectFacts facts={[
-                    { label: 'Built by',     value: 'Rounak Neema' },
-                    { label: 'Languages',    value: 'Go & Python' },
-                    { label: 'Architecture', value: '12+ Microservices' },
-                    { label: 'Features',     value: 'OCR & Vector Search' },
-                ]} />
-
                 {/* ─── Tech Stack Marquee ──────────────────────────────── */}
                 <section className="border-b border-fuchsia-500/10 flex overflow-hidden bg-fuchsia-500/5 py-4">
                     <div className="flex gap-8 whitespace-nowrap animate-[marquee_20s_linear_infinite] text-xs tracking-[0.2em] uppercase font-bold text-fuchsia-400/60">
@@ -209,8 +199,6 @@ export default function MetroMindHome() {
                         ))}
                     </div>
                 </section>
-
-                <RelatedProjects />
 
                 <footer className="p-8 text-center text-xs text-zinc-600 flex justify-between items-center">
                     <span>© {new Date().getFullYear()} Rounak Neema</span>

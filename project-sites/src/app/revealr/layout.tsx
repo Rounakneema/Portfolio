@@ -1,3 +1,4 @@
+﻿import { ProjectFooter } from '@/components/ProjectFooter';
 import { RevealrNav, RevealrFooter } from '@/components/revealr/RevealrNav';
 
 export default function RevealrLayout({
@@ -15,3 +16,6 @@ export default function RevealrLayout({
     </div>
   );
 }
+
+
+

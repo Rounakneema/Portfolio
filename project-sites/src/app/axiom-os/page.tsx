@@ -2,8 +2,6 @@ import React from 'react';
 import { Metadata } from 'next';
 import { projects } from '@/lib/projects';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { AxiomHud } from '@/components/axiom/AxiomHud';
 
 export const metadata: Metadata = {
@@ -75,23 +73,7 @@ export default function AxiomOsPage() {
 
             {/* PROJECT METADATA */}
             <div className="px-6 md:px-12 py-12 os-border-b bg-[#050505]">
-                <EntityHeader 
-                    title={project.title}
-                    subtitle={project.subtitle}
-                    category={project.category}
-                    status={project.status}
-                    language={project.tech.join(', ')}
-                    docs="/axiom-os/docs"
-                    architecture="/axiom-os/architecture"
-                />
-                
-                <ProjectFacts facts={[
-                    { label: 'Built by', value: 'Rounak Neema' },
-                    { label: 'Telemetry Daemon', value: 'Go' },
-                    { label: 'Memory', value: 'SQLite' },
-                    { label: 'LLM', value: 'Ollama' }
-                ]} />
-            </div>
+                </div>
 
             <div className="max-w-[1600px] mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-12">
@@ -220,11 +202,7 @@ export default function AxiomOsPage() {
             </footer>
             
             <div className="px-6 md:px-12 pb-12 bg-black pt-12">
-                <RelatedProjects links={[
-                    { name: 'Dizzy — Voice-to-Figma', url: '/dizzy' },
-                    { name: 'Portfolio Main', url: '/' }
-                ]} />
-            </div>
+                </div>
         </main>
     );
 }

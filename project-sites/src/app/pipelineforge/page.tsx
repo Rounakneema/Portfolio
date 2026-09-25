@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
+
+
 import { PipelineSteps } from '@/components/shared/PipelineSteps';
 import { AnimatedStat } from '@/components/shared/AnimatedStat';
 
@@ -57,15 +57,8 @@ export default function PipelineForgePage() {
         </div>
 
         {/* Entity Header & Facts */}
-        <EntityHeader title="PipelineForge" subtitle="GitOps DevSecOps CI/CD Pipeline Automation" />
         <div className="mb-24">
-          <ProjectFacts facts={[
-            { label: 'Built by', value: 'Rounak Neema' },
-            { label: 'Architecture', value: 'Kubernetes & GitHub Actions' },
-            { label: 'Image Reduction', value: '~1.1GB to 8MB (99.3%)' },
-            { label: 'Security', value: 'Trivy' }
-          ]} />
-        </div>
+          </div>
 
         {/* Navigation to Sub-pages */}
         <section className="mb-32 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -137,9 +130,7 @@ export default function PipelineForgePage() {
             ))}
           </div>
         </section>
-        <RelatedProjects />
-
-      </main>
+        </main>
     </div>
   );
 }

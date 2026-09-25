@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import { getProjectBySlug } from '@/lib/projects';
 import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { TerminalStream, LogEntry } from '@/components/shared/TerminalStream';
 
 export const metadata: Metadata = {
@@ -69,23 +67,7 @@ export default function OSAPage() {
                 ]
             }} />
             <div className="max-w-7xl mx-auto px-6 pt-12 md:pt-16">
-                <EntityHeader 
-                    title="OSA" 
-                    subtitle="Offline Security Auditor for Air-Gapped Environments" 
-                    category="Security Auditing" 
-                    status="Stable" 
-                    language="Go" 
-                    docs="/osa/docs" 
-                    architecture="/osa/architecture" 
-                />
-                <ProjectFacts facts={[
-                    { label: 'Built by', value: 'Rounak Neema' },
-                    { label: 'Language', value: 'Go' },
-                    { label: 'Target', value: 'Linux/Windows/Docker logs' },
-                    { label: 'Analytics', value: 'Z-score & Markov Chains' },
-                    { label: 'Key Focus', value: 'air-gapped security auditing' }
-                ]} />
-            </div>
+                </div>
 
             {/* NEW HERO - LOG STREAM */}
             <div className="max-w-7xl mx-auto px-6 py-16">
@@ -245,10 +227,7 @@ export default function OSAPage() {
             </div>
         
             <div className="max-w-7xl mx-auto px-6 pb-24">
-                <RelatedProjects links={[
-                    { name: 'Revealr — Adaptive Network Scanner', url: '/revealr' }
-                ]} />
-            </div>
+                </div>
         </main>
     );
 }

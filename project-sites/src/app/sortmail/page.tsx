@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 
 export const metadata: Metadata = {
     title: 'SortMail — AI Operating Layer for Professional Email',
@@ -121,22 +119,7 @@ export default function SortMailPage() {
             </section>
 
             <div className="px-6 md:px-12 pt-12 pb-12 border-b border-[#222]">
-                <EntityHeader 
-                    title="SortMail"
-                    subtitle="AI Operating Layer for Professional Email"
-                    category="Productivity Tool"
-                    status="Active"
-                    language="Go / Python"
-                    architecture="/sortmail/architecture"
-                    docs="/sortmail/docs"
-                />
-                <ProjectFacts facts={[
-                    { label: "Built by", value: "Rounak Neema" },
-                    { label: "Targets", value: "Gmail & Outlook" },
-                    { label: "Capabilities", value: "Summarization & Deadline Extraction" },
-                    { label: "Architecture", value: "OAuth based, In-memory processing" }
-                ]} />
-            </div>
+                </div>
 
             {/* Main Features */}
             <section className="px-6 md:px-12 py-24">
@@ -256,11 +239,7 @@ export default function SortMailPage() {
             </section>
 
             <div className="px-6 md:px-12 pb-12 bg-[#080808]">
-                <RelatedProjects links={[
-                    { name: "Klarity (DevContext)", url: "/devcontext" },
-                    { name: "Portfolio", url: "/" }
-                ]} />
-            </div>
+                </div>
 
             {/* Footer */}
             <footer className="border-t border-[#222] p-6 md:p-12 text-[#666] text-sm flex flex-col md:flex-row justify-between items-center bg-[#050505]">

@@ -1,8 +1,6 @@
 import { projects } from '@/lib/projects';
 import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { HeroSequence } from './HeroSequence';
 
 export const metadata = {
@@ -57,22 +55,7 @@ export default function DevContextPage() {
                 <HeroSequence />
                 
                 <div className="mt-24 border-t border-[#1f6feb]/30 pt-16">
-                    <EntityHeader 
-                        title="Klarity"
-                        subtitle="AI Repository Intelligence for Technical Recruiting"
-                        category="Recruiting Tech"
-                        status={project.status}
-                        language="React / AWS Serverless"
-                        architecture="/devcontext/architecture"
-                        docs="/devcontext/docs"
-                    />
-                    <ProjectFacts facts={[
-                        { label: "Built by", value: "Rounak Neema" },
-                        { label: "Primary Stack", value: "React & AWS Serverless" },
-                        { label: "AI Engine", value: "Amazon Bedrock / Claude" },
-                        { label: "Key Differentiator", value: "Repository Grounding" }
-                    ]} />
-                </div>
+                    </div>
             </div>
 
             {/* Data Grid */}
@@ -148,11 +131,7 @@ export default function DevContextPage() {
             </section>
 
             <div className="px-4 md:px-8 lg:px-16 pb-16 bg-[#0a0a0a]">
-                <RelatedProjects links={[
-                    { name: "SortMail", url: "/sortmail" },
-                    { name: "Portfolio", url: "/" }
-                ]} />
-            </div>
+                </div>
             {/* Footer */}
             <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
                 <div>DevContext.AI // {new Date().getFullYear()}</div>

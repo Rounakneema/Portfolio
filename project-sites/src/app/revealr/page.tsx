@@ -17,8 +17,8 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
+
+
 import { NetworkTopology } from '@/components/revealr/NetworkTopology';
 
 
@@ -76,24 +76,7 @@ export default function RevealrHome() {
                 { question: "Who built Revealr?", answer: "Revealr was built by Rounak Neema for authorized network security assessments." }
             ]
         }} />
-        <EntityHeader 
-            title="Revealr" 
-            subtitle="High-Speed Go Network Scanner & Vulnerability Mapping Tool" 
-            category="Network Security" 
-            status="Stable" 
-            language="Go" 
-            github="https://github.com/rounakneema/Revealr" 
-            docs="/revealr/docs" 
-            architecture="/revealr/architecture" 
-        />
-        <ProjectFacts facts={[
-            { label: 'Built by', value: 'Rounak Neema' },
-            { label: 'Primary Language', value: 'Go' },
-            { label: 'Max Port Range', value: '65535' },
-            { label: 'State Storage', value: 'SQLite' },
-            { label: 'Scan Time', value: '~0.8s benchmark' }
-        ]} />
-<div className="relative mx-auto mt-16 max-w-6xl rounded-2xl border border-white/10 bg-[#0c100e]/90 p-2 shadow-2xl shadow-black/40 backdrop-blur md:mt-20">
+        <div className="relative mx-auto mt-16 max-w-6xl rounded-2xl border border-white/10 bg-[#0c100e]/90 p-2 shadow-2xl shadow-black/40 backdrop-blur md:mt-20">
           <div className="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-b from-lime-300/20 via-transparent to-transparent blur-sm" />
           <div className="overflow-hidden rounded-xl border border-white/[0.07] bg-[#090c0b]">
             <div className="flex items-center justify-between border-b border-white/[0.07] bg-white/[0.02] px-4 py-3 sm:px-5">
@@ -242,10 +225,7 @@ export default function RevealrHome() {
       </section>
 
       <div className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
-          <RelatedProjects links={[
-              { name: 'OSA — Offline Security Auditor', url: '/osa' }
-          ]} />
-      </div>
+          </div>
 </div>
   );
 }

@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import { getProjectBySlug } from '@/lib/projects';
 import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { EntityHeader } from '@/components/EntityHeader';
-import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { TypeWriter } from '@/components/shared/TypeWriter';
 
 export const metadata: Metadata = {
@@ -70,22 +68,7 @@ export default function DizzyPage() {
 
       {/* Header */}
       <div className="mb-16 relative z-10" id="concept">
-        <EntityHeader 
-            title={project.title}
-            subtitle={project.subtitle}
-            category={project.category}
-            status={project.status}
-            language={project.tech.join(', ')}
-            docs="#architecture"
-            architecture="#architecture"
-        />
-        
-        <ProjectFacts facts={[
-            { label: 'Built by', value: 'Rounak Neema' },
-            { label: 'Domain', value: 'UI Generation' },
-            { label: 'Integrations', value: 'Figma MCP' }
-        ]} />
-      </div>
+        </div>
 
       {/* HERO SEQUENCE */}
       <div className="mb-32 relative z-10 flex flex-col items-center justify-center pt-8" id="voice-to-design">
@@ -262,11 +245,7 @@ export default function DizzyPage() {
       </div>
 
       <div className="relative z-10 mt-16">
-        <RelatedProjects links={[
-            { name: 'AXIOM OS', url: '/axiom-os' },
-            { name: 'Portfolio Main', url: '/' }
-        ]} />
-      </div>
+        </div>
 
     </div>
   );
