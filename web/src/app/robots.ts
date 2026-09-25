@@ -15,6 +15,7 @@ export default function robots(): MetadataRoute.Robots {
         },
         sitemap: [
             'https://rounakneema.in/sitemap.xml',
+            'https://rounakneema.in/projects/sitemap.xml',
             'https://rounakneema.in/blog/sitemap.xml'
         ],
     };
