@@ -6,9 +6,16 @@ export default function robots(): MetadataRoute.Robots {
     return {
         rules: {
             userAgent: '*',
-            allow: '/',
+            allow: [
+                '/',
+                '/projects/',
+                '/blog/'
+            ],
             disallow: '/private/',
         },
-        sitemap: 'https://rounakneema.in/sitemap.xml',
+        sitemap: [
+            'https://rounakneema.in/sitemap.xml',
+            'https://rounakneema.in/blog/sitemap.xml'
+        ],
     };
 }
