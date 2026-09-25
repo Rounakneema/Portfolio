@@ -72,7 +72,6 @@ export function RevealrFooter() {
           Built by <a href="https://rounakneema.in" className="text-white hover:text-green-400 transition-colors">Rounak Neema</a>
         </div>
         <div className="flex items-center gap-6 font-mono text-xs text-zinc-500">
-          <Link href={`${base}/llms.txt`} className="hover:text-green-400 transition-colors">llms.txt</Link>
           <a href="https://rounakneema.in/projects" className="hover:text-white transition-colors">All Projects</a>
           <a href="https://github.com/rounakneema/Revealr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
           <a href="https://rounakneema.in" className="hover:text-white transition-colors">Portfolio</a>
