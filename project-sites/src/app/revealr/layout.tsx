@@ -11,6 +11,7 @@ export default function RevealrLayout({
       <RevealrNav />
       <main className="flex-1">
         {children}
+            <ProjectFooter slug="revealr" />
       </main>
       <RevealrFooter />
     </div>

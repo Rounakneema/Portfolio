@@ -7,6 +7,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       <DizzyNav />
       {children}
+            <ProjectFooter slug="dizzy" />
     </>
   );
 }

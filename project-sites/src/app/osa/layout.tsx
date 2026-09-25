@@ -7,6 +7,7 @@ export default function OsaLayout({ children }: { children: ReactNode }) {
         <div className="bg-[#0a0a0a] min-h-screen">
             <OsaNav />
             {children}
+            <ProjectFooter slug="osa" />
         </div>
     );
 }
