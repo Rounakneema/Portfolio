@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ShieldAlert, Key, Activity, Fingerprint } from 'lucide-react';
+import { ArrowRight, ShieldAlert, Activity } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -22,13 +22,6 @@ export default function RevealrSecurity() {
                 <div className="absolute left-[20%] top-[-10%] h-[300px] w-[600px] rounded-full bg-rose-500/5 blur-[120px]" />
                 <div className="absolute left-1/2 top-0 h-[800px] w-full -translate-x-1/2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyb1VuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOSAxdjM4SDFWMWhMOHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
             </div>
-
-            <nav className="relative z-50 flex h-16 items-center border-b border-white/[0.07] px-6 md:px-10">
-                <Link href="/revealr/benchmarks" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] text-zinc-400 transition-colors hover:bg-white/10 hover:text-white mr-4">
-                    <ArrowLeft className="h-4 w-4" />
-                </Link>
-                <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-200">REVEALR <span className="text-zinc-600">/</span> SECURITY</span>
-            </nav>
 
             <div className="max-w-6xl mx-auto px-6 py-20 md:px-10">
                 <div className="mb-16">

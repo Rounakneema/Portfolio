@@ -1,125 +1,26 @@
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Gauge, Activity, Timer } from 'lucide-react';
+import { Activity, ArrowRight, Gauge, MonitorCog, Network, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Benchmarks — Revealr Network Scanner',
-    description: 'Measured performance data for Revealr: throughput at different rates, latency, and comparison against nmap and masscan on controlled test networks.',
-    alternates: { canonical: 'https://revealr.rounakneema.in/benchmarks' },
+  title: 'Benchmarks — Revealr Network Scanner',
+  description: 'Measured performance methodology and throughput targets for Revealr on controlled, authorized networks.',
+  alternates: { canonical: 'https://revealr.rounakneema.in/benchmarks' },
 };
 
-
+const benchmarkData = [
+  { rate: '5,000', profile: 'Polite', scale: '15%', note: 'IDS-conscious discovery' },
+  { rate: '10,000', profile: 'Default', scale: '30%', note: 'Balanced internal audit' },
+  { rate: '25,000', profile: 'Fast', scale: '58%', note: 'Controlled network use' },
+  { rate: '50,000', profile: 'High throughput', scale: '100%', note: 'LAN benchmark target', featured: true },
+];
 
 export default function RevealrBenchmarks() {
-    return (
-        <div className="relative isolate min-h-screen overflow-hidden bg-[#080b0a] text-zinc-400 font-sans">
-            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px] overflow-hidden">
-                <div className="absolute right-[20%] top-[-10%] h-[300px] w-[600px] rounded-full bg-sky-500/5 blur-[120px]" />
-                <div className="absolute left-1/2 top-0 h-[800px] w-full -translate-x-1/2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyb1VuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOSAxdjM4SDFWMWhMOHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
-            </div>
-
-            <nav className="relative z-50 flex h-16 items-center border-b border-white/[0.07] px-6 md:px-10">
-                <Link href="/revealr/architecture" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] text-zinc-400 transition-colors hover:bg-white/10 hover:text-white mr-4">
-                    <ArrowLeft className="h-4 w-4" />
-                </Link>
-                <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-200">REVEALR <span className="text-zinc-600">/</span> BENCHMARKS</span>
-            </nav>
-
-            <div className="max-w-6xl mx-auto px-6 py-20 md:px-10">
-                <div className="mb-16">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sky-300 mb-4">// Performance Data</p>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">Benchmark Results</h1>
-                    <p className="text-sm leading-6 text-zinc-500 max-w-2xl">
-                        Measured throughput data from controlled test environments. All tests were run on local networks. Internet-facing scans will produce lower throughput due to network latency and packet loss.
-                    </p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-6 mb-16">
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
-                        <Gauge className="w-6 h-6 text-sky-400 mx-auto mb-4" />
-                        <div className="text-3xl font-black text-white">50K+</div>
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Ports / Minute</div>
-                    </div>
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
-                        <Timer className="w-6 h-6 text-lime-400 mx-auto mb-4" />
-                        <div className="text-3xl font-black text-white">~0.8s</div>
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Full 65k Sweep</div>
-                    </div>
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
-                        <Activity className="w-6 h-6 text-amber-400 mx-auto mb-4" />
-                        <div className="text-3xl font-black text-white">Raw</div>
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Socket Layer</div>
-                    </div>
-                </div>
-
-                <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c100e] mb-16 p-8">
-                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-8">Throughput Scaling (Ports per Minute)</h3>
-                    
-                    <div className="space-y-6">
-                        <div>
-                            <div className="flex justify-between text-xs font-mono mb-2">
-                                <span className="text-sky-300 font-bold">50,000+ (Aggressive)</span>
-                                <span className="text-zinc-500">~0.8s / 65k sweep</span>
-                            </div>
-                            <div className="h-2 w-full bg-white/[0.05] rounded-full overflow-hidden">
-                                <div className="h-full bg-sky-400 w-[100%] rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div className="flex justify-between text-xs font-mono mb-2">
-                                <span className="text-lime-300 font-bold">25,000 (Fast)</span>
-                                <span className="text-zinc-500">Not Measured</span>
-                            </div>
-                            <div className="h-2 w-full bg-white/[0.05] rounded-full overflow-hidden">
-                                <div className="h-full bg-lime-400 w-[50%] rounded-full"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div className="flex justify-between text-xs font-mono mb-2">
-                                <span className="text-amber-300 font-bold">10,000 (Polite Default)</span>
-                                <span className="text-zinc-500">Not Measured</span>
-                            </div>
-                            <div className="h-2 w-full bg-white/[0.05] rounded-full overflow-hidden">
-                                <div className="h-full bg-amber-400 w-[20%] rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-8 mb-16">
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-8">
-                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6">Benchmark Conditions</h3>
-                        <ul className="space-y-4 text-xs font-mono">
-                            <li className="flex justify-between border-b border-white/[0.05] pb-2"><span className="text-zinc-500">Environment</span><span className="text-zinc-300">Local Network</span></li>
-                            <li className="flex justify-between border-b border-white/[0.05] pb-2"><span className="text-zinc-500">Transport</span><span className="text-zinc-300">Raw Socket SYN</span></li>
-                            <li className="flex justify-between border-b border-white/[0.05] pb-2"><span className="text-zinc-500">Target</span><span className="text-zinc-300">65,535 Ports</span></li>
-                            <li className="flex justify-between pb-2"><span className="text-zinc-500">Rate Cap</span><span className="text-zinc-300">50,000 probes/min</span></li>
-                        </ul>
-                        <div className="mt-6 text-[10px] text-zinc-500 leading-relaxed border-l-2 border-amber-500/50 pl-3">
-                            <strong className="text-amber-400">Important:</strong> These results represent controlled local-network measurements. They are not a claim of equivalent Internet-wide scanning performance where latency and packet loss dictate throughput.
-                        </div>
-                    </div>
-
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-8">
-                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6">Methodology</h3>
-                        <ol className="space-y-4 text-xs text-zinc-400">
-                            <li className="flex gap-4"><span className="text-sky-400 font-mono">01</span> Generate controlled isolated target environment.</li>
-                            <li className="flex gap-4"><span className="text-sky-400 font-mono">02</span> Execute full 1-65535 port sweep against target.</li>
-                            <li className="flex gap-4"><span className="text-sky-400 font-mono">03</span> Record raw packet dispatch rate at OS level.</li>
-                            <li className="flex gap-4"><span className="text-sky-400 font-mono">04</span> Measure end-to-end completion time.</li>
-                            <li className="flex gap-4"><span className="text-sky-400 font-mono">05</span> Verify scan accuracy against known baseline.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <div className="mt-16 flex justify-end">
-                    <Link href="/revealr/security" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-lime-300 hover:text-lime-200">
-                        Next: Security Model <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                </div>
-            </div>
-        </div>
-    );
+  return <div className="relative isolate overflow-hidden bg-[#080b0a] text-zinc-400"><div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[700px] overflow-hidden"><div className="absolute left-[53%] top-[-330px] h-[720px] w-[720px] rounded-full border border-sky-300/10 bg-sky-400/[0.035] shadow-[0_0_170px_45px_rgba(56,189,248,0.08)]" /><div className="absolute inset-0 bg-[linear-gradient(rgba(125,211,252,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,0.022)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" /></div>
+    <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24"><div className="max-w-3xl"><p className="text-[10px] font-bold uppercase tracking-[0.22em] text-sky-300">Performance profile</p><h1 className="mt-5 text-balance text-5xl font-black leading-[0.93] tracking-[-0.06em] text-white sm:text-6xl md:text-7xl">Tune the signal, not just the speed.</h1><p className="mt-7 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">Revealr exposes rate and profile controls so authorized assessments can match the constraints of the environment—quietly, deliberately, and without losing context.</p></div>
+      <div className="mt-14 grid gap-4 lg:grid-cols-[1.3fr_0.7fr] md:mt-20"><div className="rounded-2xl border border-white/[0.09] bg-[#0b0f10] p-5 shadow-2xl shadow-black/30 sm:p-8"><div className="flex items-center justify-between"><div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.17em] text-zinc-500"><Gauge className="h-3.5 w-3.5 text-sky-300" /> Rate envelope</div><span className="text-[10px] text-zinc-600">probes / minute</span></div><div className="mt-10 space-y-6">{benchmarkData.map((row) => <div key={row.rate}><div className="mb-2 flex items-end justify-between gap-4"><div><span className={`text-sm font-bold ${row.featured ? 'text-sky-200' : 'text-zinc-200'}`}>{row.rate}</span><span className="ml-2 text-xs text-zinc-600">{row.profile}</span></div><span className="text-[10px] text-zinc-600">{row.note}</span></div><div className="h-2 overflow-hidden rounded-full bg-white/[0.05]"><div style={{ width: row.scale }} className={`h-full rounded-full ${row.featured ? 'bg-gradient-to-r from-sky-300 to-cyan-200 shadow-[0_0_16px_rgba(125,211,252,0.45)]' : 'bg-sky-300/40'}`} /></div></div>)}</div><div className="mt-10 rounded-lg border border-sky-300/10 bg-sky-300/[0.045] px-4 py-3 text-xs leading-5 text-sky-100/65">Throughput is a configuration target, not a universal promise. Verify results on the authorized network and hardware that matter to your engagement.</div></div>
+      <div className="rounded-2xl border border-white/[0.09] bg-white/[0.025] p-6"><Activity className="h-5 w-5 text-sky-300" /><p className="mt-8 text-[10px] font-bold uppercase tracking-[0.17em] text-zinc-500">The benchmark rule</p><h2 className="mt-3 text-2xl font-black tracking-tight text-white">Measure the environment you will actually scan.</h2><p className="mt-4 text-sm leading-6 text-zinc-500">Network latency, packet loss, NIC capacity, host behavior, and controls such as IDS all affect observed throughput.</p><div className="mt-8 space-y-3 border-t border-white/[0.07] pt-6"><div className="flex gap-3 text-xs text-zinc-500"><Network className="h-4 w-4 shrink-0 text-sky-300" />Use controlled networks only.</div><div className="flex gap-3 text-xs text-zinc-500"><ShieldCheck className="h-4 w-4 shrink-0 text-sky-300" />Confirm written authorization.</div></div></div></div></section>
+    <section className="border-y border-white/[0.07] bg-white/[0.018]"><div className="mx-auto grid max-w-7xl divide-y divide-white/[0.07] px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:px-10">{[['5K–50K', 'configurable rate range'], ['4', 'scan profiles'], ['SQLite', 'result history']].map(([value, label]) => <div key={label} className="py-7 text-center"><p className="text-xl font-black text-white">{value}</p><p className="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-600">{label}</p></div>)}</div></section>
+    <section className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32"><div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sky-300">Responsible methodology</p><h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-white">A rate is only meaningful with its context.</h2></div><div className="grid gap-4 sm:grid-cols-2">{[{ icon: MonitorCog, title: 'Record the setup', text: 'Capture CPU, RAM, NIC, operating system, target count, and network topology for comparable results.' }, { icon: Network, title: 'Control the target', text: 'Benchmark only against systems and networks you administer or are expressly authorized to assess.' }, { icon: Gauge, title: 'Compare fairly', text: 'Use the same target scope, port range, and collection method when comparing tools or profiles.' }, { icon: ShieldCheck, title: 'Choose the profile', text: 'Start with the least disruptive rate that provides the visibility your engagement needs.' }].map((item) => <article key={item.title} className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-5"><item.icon className="h-5 w-5 text-sky-300" /><h3 className="mt-6 font-bold text-white">{item.title}</h3><p className="mt-2 text-sm leading-6 text-zinc-500">{item.text}</p></article>)}</div></div><div className="mt-16 border-t border-white/[0.07] pt-8"><Link href="/revealr/security" className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-lime-300 transition hover:text-lime-200">Explore the security model <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link></div></section>
+  </div>;
 }

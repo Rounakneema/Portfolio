@@ -19,17 +19,17 @@ export function RevealrNav() {
   ];
 
   return (
-    <nav className="border-b border-zinc-800 sticky top-0 bg-[#0a0a0a]/95 backdrop-blur z-50">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#080b0a]/85 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
         <Link href={`${base || '/'}`} className="flex items-center gap-3 group">
           <span className="text-green-400 text-xl font-black tracking-tight group-hover:text-green-300 transition-colors">
             REVEALR
           </span>
-          <span className="text-zinc-600 text-xs border border-zinc-800 px-1.5 py-0.5 rounded font-mono">
+          <span className="rounded border border-lime-300/15 bg-lime-300/[0.06] px-1.5 py-0.5 text-[9px] text-lime-200/80 font-mono">
             v1.0-beta
           </span>
         </Link>
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden items-center gap-6 md:flex">
           {nav.map(n => {
             const isActive = n.exact
               ? pathname === n.href || pathname === base || pathname === `${base}/`
@@ -39,7 +39,7 @@ export function RevealrNav() {
                 key={n.href}
                 href={n.href}
                 className={`text-xs tracking-wider transition-colors font-mono ${
-                  isActive ? 'text-green-400 font-bold' : 'text-zinc-400 hover:text-white'
+                  isActive ? 'text-lime-300 font-bold' : 'text-zinc-500 hover:text-white'
                 }`}
               >
                 {n.label.toUpperCase()}
@@ -51,7 +51,7 @@ export function RevealrNav() {
           href="https://github.com/rounakneema/Revealr"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-xs border border-zinc-700 px-3 py-1.5 rounded hover:border-green-500 hover:text-green-400 transition-all font-mono"
+          className="flex items-center gap-2 rounded-md border border-white/[0.09] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-300 transition hover:border-lime-300/40 hover:text-lime-200 font-mono"
         >
           <Github className="w-3.5 h-3.5" /> Source
         </a>
@@ -66,8 +66,8 @@ export function RevealrFooter() {
   const base = isSubfolder ? '/revealr' : '';
 
   return (
-    <footer className="border-t border-zinc-800 mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="mt-0 border-t border-white/[0.07] bg-[#080b0a]">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-10 md:flex-row md:px-10">
         <div className="text-sm text-zinc-500 font-mono">
           Built by <a href="https://rounakneema.in" className="text-white hover:text-green-400 transition-colors">Rounak Neema</a>
         </div>

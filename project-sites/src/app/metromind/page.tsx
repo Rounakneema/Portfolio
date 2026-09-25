@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import {
-    ArrowLeft,
     ArrowRight,
     ExternalLink,
     Github,
@@ -90,50 +89,7 @@ export default function MetroMindHome() {
                 />
             </div>
 
-            {/* Navigation */}
-            <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/[0.07] bg-[#050507]/70 backdrop-blur-xl">
-                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-                    <div className="flex items-center gap-4">
-                        <a
-                            href="https://rounakneema.in/projects"
-                            className="group flex items-center gap-2 text-zinc-500 transition hover:text-white"
-                        >
-                            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                            <span className="hidden text-xs font-medium md:block">PROJECTS</span>
-                        </a>
-
-                        <div className="h-4 w-px bg-white/10" />
-
-                        <div className="flex items-center gap-2">
-                            <span className="h-2 w-2 rounded-full bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,.9)]" />
-                            <span className="font-mono text-sm font-bold tracking-[0.22em] text-zinc-200">
-                                METROMIND
-                            </span>
-                        </div>
-                    </div>
-
-                    <div className="hidden items-center gap-8 md:flex">
-                        <Link
-                            href="/architecture"
-                            className="text-xs font-medium tracking-[0.18em] text-zinc-500 transition hover:text-white"
-                        >
-                            ARCHITECTURE
-                        </Link>
-
-                        <a
-                            href="https://github.com/rounakneema/MetroMind"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-xs font-medium tracking-[0.18em] text-zinc-500 transition hover:text-white"
-                        >
-                            SOURCE
-                            <ExternalLink className="h-3 w-3" />
-                        </a>
-                    </div>
-                </div>
-            </nav>
-
-            <div className="mx-auto max-w-7xl px-6 pb-24 pt-32">
+            <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pt-20">
 
                 {/* HERO */}
                 <section className="relative min-h-[720px]">
