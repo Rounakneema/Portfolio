@@ -5,7 +5,11 @@ import { projects } from '@/lib/projects';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = await headers();
   const host = headersList.get('host') || '';
-  const subdomain = host.replace('.rounakneema.in', '').replace('.localhost:3000', '');
+  let subdomain = host.replace('.rounakneema.in', '').replace('.localhost:3000', '');
+
+  if (subdomain.startsWith('www.')) {
+    subdomain = subdomain.replace('www.', '');
+  }
 
   const project = projects.find(p => p.slug === subdomain);
   const baseUrl = `https://${host}`;
