@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Server, Activity, ArrowRight, Shield, Zap } from 'lucide-react';
+import { ArrowLeft, Server, Activity, ArrowRight, Shield, Zap, Database } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
