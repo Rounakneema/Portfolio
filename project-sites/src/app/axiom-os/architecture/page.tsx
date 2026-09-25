@@ -18,17 +18,7 @@ export default function ArchitecturePage() {
                 .grid-bg { background-size: 40px 40px; background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px); }
             `}} />
 
-            <header className="brutalist-border-b p-6 bg-black flex justify-between items-center">
-                <div>
-                    <h1 className="text-2xl font-black uppercase text-white tracking-tighter">
-                        Architecture Spec
-                    </h1>
-                    <p className="text-red-500 text-sm uppercase mt-1">AXIOM OS // System Topology</p>
-                </div>
-                <Link href="/axiom-os" className="text-gray-500 hover:text-white uppercase text-sm border border-gray-800 px-4 py-2 hover:bg-white hover:text-black transition-colors">
-                    &lt; Return Base
-                </Link>
-            </header>
+
 
             <div className="grid grid-cols-1 lg:grid-cols-12 max-w-[1600px] mx-auto min-h-screen">
                 {/* LEFT SIDEBAR */}

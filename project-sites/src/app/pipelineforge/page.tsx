@@ -3,12 +3,24 @@ import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { EntityHeader } from '@/components/EntityHeader';
 import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
+import { PipelineSteps } from '@/components/shared/PipelineSteps';
+import { AnimatedStat } from '@/components/shared/AnimatedStat';
 
 export const metadata: Metadata = {
   title: 'PipelineForge — GitOps DevSecOps CI/CD Pipeline Automation',
   description: 'Zero-touch GitOps CI/CD pipeline and cloud-native Go microservice built to demonstrate production-grade DevOps automation.',
   alternates: { canonical: 'https://pipelineforge.rounakneema.in' },
 };
+
+const pipelineSteps = [
+  { label: 'CODE', sublabel: 'GitHub Actions' },
+  { label: 'BUILD', sublabel: 'Docker Build' },
+  { label: 'SCAN', sublabel: 'Trivy Scan' },
+  { label: 'PACKAGE', sublabel: 'Helm Chart' },
+  { label: 'DEPLOY', sublabel: 'K8s Rollout' },
+  { label: 'VERIFY', sublabel: 'Health Check' },
+  { label: 'DONE', sublabel: '✓' },
+];
 
 export default function PipelineForgePage() {
   return (
@@ -26,7 +38,25 @@ export default function PipelineForgePage() {
       </header>
 
       <main className="p-6 md:p-12 lg:p-24 overflow-hidden">
-        {/* Hero Section */}
+        {/* Hero Section - Interactive Pipeline */}
+        <div className="mb-24 flex flex-col items-center border-4 border-[#30363d] p-8 md:p-16 relative">
+          <div className="absolute top-0 left-0 bg-[#30363d] text-white px-3 py-1 text-xs font-bold uppercase">
+            Control Plane
+          </div>
+          <PipelineSteps 
+            steps={pipelineSteps} 
+            stepDurationMs={700} 
+            successColor="#3fb950" 
+            className="w-full flex justify-center mb-16 overflow-x-auto" 
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-4xl text-center border-t border-[#30363d] pt-12">
+             <AnimatedStat value={99} suffix=".3%" label="IMAGE REDUCTION" className="items-center" />
+             <AnimatedStat prefix="<" value={5} suffix="ms" label="LATENCY" className="items-center" />
+             <AnimatedStat value={500} suffix=" VU" label="LOAD TESTED" className="items-center" />
+          </div>
+        </div>
+
+        {/* Entity Header & Facts */}
         <EntityHeader title="PipelineForge" subtitle="GitOps DevSecOps CI/CD Pipeline Automation" />
         <div className="mb-24">
           <ProjectFacts facts={[

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { EntityHeader } from '@/components/EntityHeader';
 import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
+import { TypeWriter } from '@/components/shared/TypeWriter';
 
 export const metadata: Metadata = {
   title: 'Dizzy — Voice-to-Figma AI Interface Builder',
@@ -64,16 +65,19 @@ export default function DizzyPage() {
         }
       `}} />
 
+      {/* Grid background container */}
+      <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
+
       {/* Header */}
-      <div className="mb-16 relative z-10">
+      <div className="mb-16 relative z-10" id="concept">
         <EntityHeader 
             title={project.title}
             subtitle={project.subtitle}
             category={project.category}
             status={project.status}
             language={project.tech.join(', ')}
-            docs="/dizzy/docs"
-            architecture="/dizzy/architecture"
+            docs="#architecture"
+            architecture="#architecture"
         />
         
         <ProjectFacts facts={[
@@ -83,27 +87,69 @@ export default function DizzyPage() {
         ]} />
       </div>
 
-      {/* Navigation */}
-      <nav className="mb-24 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Link href="/dizzy/architecture" className="block p-6 brutalist-border transition-colors brutalist-nav-link group">
-          <h2 className="text-2xl font-bold uppercase mb-2">/ Architecture Spec</h2>
-          <p className="text-gray-400 group-hover:text-[#111]">JEV Topology & Component Graph</p>
-        </Link>
-        <Link href="/dizzy/decisions" className="block p-6 brutalist-border transition-colors brutalist-nav-link group">
-          <h2 className="text-2xl font-bold uppercase mb-2">/ Trade-offs & Decisions</h2>
-          <p className="text-gray-400 group-hover:text-[#111]">Streaming Parsing vs Pure UI Gen</p>
-        </Link>
-        <Link href="/dizzy/docs" className="block p-6 brutalist-border transition-colors brutalist-nav-link group md:col-span-2">
-          <h2 className="text-2xl font-bold uppercase mb-2">/ Technical Docs</h2>
-          <p className="text-gray-400 group-hover:text-[#111]">Semantic Buffer AST, Voice-to-JSON, & Figma MCP</p>
-        </Link>
-      </nav>
+      {/* HERO SEQUENCE */}
+      <div className="mb-32 relative z-10 flex flex-col items-center justify-center pt-8" id="voice-to-design">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#ff3366] mb-12 text-center uppercase tracking-tighter">
+          Speak Your Interface<br/>Into Existence.
+        </h1>
+        
+        {/* Fake voice input box */}
+        <div className="w-full max-w-2xl bg-black border border-[#ff3366] p-6 rounded-2xl flex items-center mb-12 shadow-[0_0_30px_rgba(255,51,102,0.15)]">
+          <div className="w-6 h-6 rounded-full bg-[#ff3366] animate-pulse mr-6 flex-shrink-0"></div>
+          <div className="text-xl md:text-2xl text-white font-sans font-medium tracking-wide">
+            "<TypeWriter 
+              text="Create a dark SaaS dashboard with sidebar, analytics cards and a live revenue graph." 
+              speedMs={35} 
+            />"
+          </div>
+        </div>
 
-      {/* Grid background container */}
-      <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
+        <div className="text-[#ff3366] font-black text-xl mb-12 animate-bounce uppercase tracking-widest">
+          ↓ Designing...
+        </div>
+
+        {/* Mock generated UI frame */}
+        <div className="w-full max-w-4xl bg-[#f5f5f5] text-black p-8 md:p-12 rounded-xl border-4 border-[#ff3366] shadow-[12px_12px_0px_#ff3366] mb-16 font-mono overflow-x-auto relative">
+          <div className="absolute top-0 left-0 bg-[#ff3366] text-white text-xs font-bold px-3 py-1 rounded-br-lg">GENERATED OUTPUT</div>
+          <pre className="text-sm md:text-base leading-relaxed text-black mt-4 whitespace-pre-wrap font-bold">
+{`┌────────────────────────────────────────────────────────┐
+│ ▌ Dashboard                         ○ ○ ○              │
+│ ────────────────────────────────────────────────────── │
+│                                                        │
+│  [ Total Revenue ]         [ Active Users ]            │
+│  $48,920 ↑ +18.4%          12,490 ↑ +5.2%              │
+│                                                        │
+│  ──────────────────────────╮                           │
+│  Revenue Graph             │                           │
+│     ╭──╮             ╭──╮  │                           │
+│  ───╯  ╰───╮      ╭──╯  ╰──╯                           │
+│            ╰──────╯                                    │
+│  ──────────────────────────╯                           │
+└────────────────────────────────────────────────────────┘`}
+          </pre>
+        </div>
+
+        {/* Semantic update demo */}
+        <div className="w-full max-w-2xl text-left bg-black border border-[#333] p-8 text-lg font-mono brutalist-shadow" id="semantic-state">
+          <div className="mb-6 flex items-start gap-4">
+            <span className="text-[#ff3366] font-black mt-1">USER:</span> 
+            <span className="text-white">"Make the sidebar narrower."</span>
+          </div>
+          
+          <div className="text-gray-500 mb-2 text-sm tracking-widest font-bold">↓ SEMANTIC UPDATE</div>
+          <div className="text-[#e0e0e0] mb-8 bg-[#111] p-4 border-l-2 border-[#ff3366] inline-block font-bold">
+            sidebar.width: <span className="line-through text-gray-500">320</span> → <span className="text-[#ff3366]">240</span>
+          </div>
+          
+          <div className="text-gray-500 mb-2 text-sm tracking-widest font-bold" id="figma-mcp">↓ FIGMA MCP CALL</div>
+          <div className="text-green-500 font-black animate-pulse bg-green-500/10 inline-block px-4 py-2 border border-green-500/30">
+            FRAME UPDATED ✓
+          </div>
+        </div>
+      </div>
 
       {/* Main Content Asymmetric Layout */}
-      <main className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <main className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12" id="architecture">
         
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-16">

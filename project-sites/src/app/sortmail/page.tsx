@@ -31,43 +31,104 @@ export default function SortMailPage() {
     };
 
     return (
-        <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-red-900 selection:text-white">
+        <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-sans selection:bg-amber-500/30 selection:text-white">
             <ProjectJsonLd slug="sortmail" />
+            
             {/* Header / Nav */}
-            <nav className="p-6 md:p-12 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs tracking-widest uppercase gap-4 sticky top-0 bg-[#050505] z-50">
+            <nav className="p-6 md:p-12 border-b border-[#222] flex flex-col md:flex-row justify-between items-start md:items-center text-sm font-medium gap-4 sticky top-0 bg-[#050505]/90 backdrop-blur-md z-50">
                 <div className="flex gap-6 items-center">
-                    <Link href="/" className="hover:text-red-500 transition-colors">
-                        &lt; System.Root
+                    <Link href="/" className="hover:text-amber-500 transition-colors text-[#888]">
+                        &larr; Back
                     </Link>
-                    <span className="text-[#444]">|</span>
-                    <span className="text-white font-bold bg-[#222] px-2 py-1">
-                        [Overview]
+                    <span className="text-[#333]">|</span>
+                    <span className="text-white font-semibold">
+                        Overview
                     </span>
-                    <Link href="/sortmail/architecture" className="text-[#888] hover:text-white transition-colors">
-                        [Architecture]
+                    <Link href="#intelligence" className="text-[#888] hover:text-white transition-colors">
+                        Intelligence
                     </Link>
-                    <Link href="/sortmail/decisions" className="text-[#888] hover:text-white transition-colors">
-                        [Decisions]
+                    <Link href="#security" className="text-[#888] hover:text-white transition-colors">
+                        Security
+                    </Link>
+                    <Link href="/sortmail/architecture" className="text-[#888] hover:text-white transition-colors">
+                        Architecture
                     </Link>
                     <Link href="/sortmail/docs" className="text-[#888] hover:text-white transition-colors">
-                        [Docs]
+                        Docs
                     </Link>
-                </div>
-                <div className="flex gap-6">
-                    <span className="text-[#666]">STATUS: [WIP]</span>
-                    <span className="text-[#666]">VER: 0.9.1a</span>
                 </div>
             </nav>
 
-                        <div className="px-6 md:px-12 pt-12 border-b border-[#333]">
+            {/* Hero Section */}
+            <section className="px-6 md:px-12 pt-24 pb-20 border-b border-[#222] flex flex-col items-center text-center">
+                <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-white mb-6">
+                    YOUR INBOX IS NOT <br/><span className="text-amber-500">YOUR WORKFLOW.</span>
+                </h1>
+                <p className="text-lg md:text-xl text-[#888] max-w-2xl mb-16">
+                    Professionals receiving 30-100+ emails daily struggle with prioritization, actionable task extraction, and secure attachment analysis. SortMail acts as an intelligent layer over existing inboxes.
+                </p>
+
+                {/* Animated Mock Inbox Card */}
+                <div className="w-full max-w-2xl text-left bg-[#0a0a0a] border border-[#222] rounded-xl shadow-2xl overflow-hidden font-mono text-sm mb-6">
+                    <div className="flex items-center justify-between p-4 border-b border-[#222] bg-[#111]">
+                        <div className="flex items-center gap-3">
+                            <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                            <span className="font-semibold text-white">Acme Corp</span>
+                        </div>
+                        <div className="flex items-center gap-4 text-xs">
+                            <span className="text-amber-500 bg-amber-500/10 px-2 py-1 rounded">HIGH PRIORITY</span>
+                            <span className="text-[#666]">2m ago</span>
+                        </div>
+                    </div>
+                    <div className="p-4 border-b border-[#222]">
+                        <div className="text-white font-medium mb-2">Contract approval needed</div>
+                    </div>
+                    <div className="p-4 bg-amber-500/5 border-b border-amber-500/10">
+                        <div className="text-amber-500 text-xs font-bold mb-2 flex items-center gap-2">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            AI SUMMARY
+                        </div>
+                        <div className="text-[#ddd] mb-2">Client needs signed NDA by Friday.</div>
+                        <div className="text-[#aaa] text-xs flex items-center gap-2">
+                            Attachment: NDA_v3.pdf <span className="text-emerald-500">(verified ✓)</span>
+                        </div>
+                    </div>
+                    <div className="p-4 flex items-center justify-between bg-[#111]">
+                        <div className="flex gap-3">
+                            <button className="px-4 py-2 bg-white text-black text-xs font-bold rounded hover:bg-[#ddd] transition-colors">
+                                &rarr; Reply
+                            </button>
+                            <button className="px-4 py-2 bg-[#222] text-white text-xs font-bold rounded hover:bg-[#333] transition-colors border border-[#333]">
+                                &rarr; Review NDA
+                            </button>
+                        </div>
+                        <div className="text-amber-500 text-xs font-medium">
+                            Deadline: Friday 5 PM
+                        </div>
+                    </div>
+                </div>
+
+                {/* Threat Block */}
+                <div className="w-full max-w-2xl text-left bg-[#110000] border border-red-900/50 rounded-xl overflow-hidden font-mono text-sm p-4 flex items-start gap-4">
+                    <div className="mt-0.5 text-red-500">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    </div>
+                    <div>
+                        <div className="text-red-500 font-bold mb-1">⛔ ATTACHMENT THREAT BLOCKED</div>
+                        <div className="text-[#aaa] text-xs">Invoice.pdf.exe <span className="mx-2">|</span> MIME mismatch <span className="mx-2">|</span> application/x-dosexec</div>
+                    </div>
+                </div>
+            </section>
+
+            <div className="px-6 md:px-12 pt-12 pb-12 border-b border-[#222]">
                 <EntityHeader 
                     title="SortMail"
                     subtitle="AI Operating Layer for Professional Email"
                     category="Productivity Tool"
-                    status="WIP (v0.9.1a)"
+                    status="Active"
                     language="Go / Python"
                     architecture="/sortmail/architecture"
-                    docs="/sortmail/decisions"
+                    docs="/sortmail/docs"
                 />
                 <ProjectFacts facts={[
                     { label: "Built by", value: "Rounak Neema" },
@@ -77,67 +138,54 @@ export default function SortMailPage() {
                 ]} />
             </div>
 
-            {/* Terminal Trace / Abstract */}
-            <section className="px-6 md:px-12 py-16 bg-[#0a0a0a] border-b border-[#333]">
-                <div className="max-w-5xl">
-                    <div className="font-mono text-xs text-red-500 mb-6 uppercase tracking-wider">
-                        [Syslog :: Execution Abstract]
-                    </div>
-                    <p className="text-lg md:text-2xl leading-relaxed text-[#ccc]">
-                        Professionals receiving <span className="text-white font-bold bg-[#222] px-2">30-100+ emails daily</span> struggle with prioritization, actionable task extraction, and secure attachment analysis. 
-                        SortMail acts as an intelligent layer over existing inboxes, securely ingesting data to perform <span className="italic text-red-400">BLUF summarization</span>, extract critical deadlines, and conduct strict security filtering before human interaction.
-                    </p>
-                </div>
-            </section>
-
-            {/* Asymmetric Details */}
+            {/* Main Features */}
             <section className="px-6 md:px-12 py-24">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
                     
-                    {/* Left Column - Large Typography Engine descriptions */}
+                    {/* Left Column */}
                     <div className="md:col-span-7 space-y-24">
-                        <article>
-                            <h3 className="text-3xl font-bold uppercase mb-6 tracking-tight flex items-center gap-4 text-white">
-                                <span className="text-red-600 text-sm bg-red-900/20 px-2 py-1 border border-red-900">01.</span>
-                                Executive Briefing Engine
+                        <article id="intelligence">
+                            <h3 className="text-3xl font-bold mb-6 tracking-tight text-white flex items-center gap-4">
+                                <span className="text-amber-500 text-lg bg-amber-500/10 px-3 py-1 rounded-lg font-mono">01</span>
+                                Email Intelligence
                             </h3>
-                            <p className="text-[#999] leading-relaxed mb-8">
+                            <p className="text-[#aaa] text-lg leading-relaxed mb-8">
                                 SortMail bypasses standard thread bloat by deploying a Bottom Line Up Front (BLUF) strategy. Utilizing Claude family LLMs, the engine parses entire conversational graphs, filtering out pleasantries and redundant context, outputting strictly actionable synopses.
                             </p>
-                            <div className="bg-black p-6 border border-[#222] font-mono text-xs md:text-sm text-[#4af626] overflow-x-auto">
-                                <div className="text-[#666] mb-2">// Sample Processing Output</div>
+                            <div className="bg-[#0a0a0a] p-6 border border-[#222] rounded-xl font-mono text-sm text-[#ddd] overflow-x-auto">
+                                <div className="text-[#666] mb-3">// Sample Processing Output</div>
                                 <div>&gt; INGEST: thread_id_948x21</div>
-                                <div>&gt; ANALYZING CONTEXT... [OK]</div>
+                                <div>&gt; ANALYZING CONTEXT... <span className="text-emerald-500">[OK]</span></div>
                                 <div>&gt; EXTRACTING: tasks (2), deadlines (1)</div>
-                                <div className="mt-4 text-white">&gt; BLUF: Client requires signed NDA by EOD Friday before releasing staging environment keys.</div>
+                                <div className="mt-4 text-amber-500 font-medium">&gt; BLUF: Client requires signed NDA by EOD Friday before releasing staging environment keys.</div>
                             </div>
                         </article>
 
-                        <article>
-                            <h3 className="text-3xl font-bold uppercase mb-6 tracking-tight flex items-center gap-4 text-white">
-                                <span className="text-red-600 text-sm bg-red-900/20 px-2 py-1 border border-red-900">02.</span>
-                                Secure Attachment Intelligence
+                        <article id="security">
+                            <h3 className="text-3xl font-bold mb-6 tracking-tight text-white flex items-center gap-4">
+                                <span className="text-amber-500 text-lg bg-amber-500/10 px-3 py-1 rounded-lg font-mono">02</span>
+                                Attachment Security
                             </h3>
-                            <p className="text-[#999] leading-relaxed mb-8">
+                            <p className="text-[#aaa] text-lg leading-relaxed mb-8">
                                 Most AI tools blindly read attachments, introducing significant attack vectors. SortMail enforces an air-gapped processing phase using a Go daemon. It involves MIME type verification, strict size limits, and ClamAV-based virus scanning prior to any LLM ingestion.
                             </p>
-                            <div className="bg-black p-6 border border-[#222] font-mono text-xs md:text-sm text-red-500 overflow-x-auto">
+                            <div className="bg-[#110000] p-6 border border-red-900/50 rounded-xl font-mono text-sm text-red-500 overflow-x-auto">
                                 <div>[SECURITY ALERT] Dropped malicious payload</div>
-                                <div>File: Invoice_Client_Oct2024.pdf.exe</div>
-                                <div>Reason: MIME mismatch (application/x-dosexec)</div>
+                                <div className="mt-2 text-[#aaa]">File: Invoice_Client_Oct2024.pdf.exe</div>
+                                <div className="text-[#aaa]">Reason: MIME mismatch (application/x-dosexec)</div>
                             </div>
                         </article>
 
                         <article>
-                            <h3 className="text-3xl font-bold uppercase mb-6 tracking-tight flex items-center gap-4 text-white">
-                                <span className="text-red-600 text-sm bg-red-900/20 px-2 py-1 border border-red-900">03.</span>
-                                Workflow & Action Engine
+                            <h3 className="text-3xl font-bold mb-6 tracking-tight text-white flex items-center gap-4">
+                                <span className="text-amber-500 text-lg bg-amber-500/10 px-3 py-1 rounded-lg font-mono">03</span>
+                                Workflow Automation
                             </h3>
-                            <p className="text-[#999] leading-relaxed mb-8">
+                            <p className="text-[#aaa] text-lg leading-relaxed mb-8">
                                 Automatically convert emails into structured tasks (Reply, Review Document, Schedule Meeting). Priority scoring is calculated based on sender importance, urgency signals, and implicit deadlines ("end of week"). The system also features an anti-ghosting tracker for waiting-for-reply threads.
                             </p>
-                            <Link href="/sortmail/architecture" className="text-red-500 text-sm uppercase tracking-widest hover:underline flex items-center gap-2">
-                                Read Topology Spec &rarr;
+                            <Link href="/sortmail/architecture" className="inline-flex items-center gap-2 text-amber-500 font-semibold hover:text-amber-400 transition-colors">
+                                Read Architecture Details &rarr;
                             </Link>
                         </article>
                     </div>
@@ -145,17 +193,17 @@ export default function SortMailPage() {
                     {/* Right Column - Tech stack & Metrics */}
                     <div className="md:col-span-5 relative">
                         <div className="sticky top-32">
-                            <div className="border border-[#333] p-8 bg-[#080808]">
-                                <h4 className="text-white font-bold uppercase mb-8 border-b border-[#333] pb-4">
+                            <div className="border border-[#222] p-8 bg-[#0a0a0a] rounded-xl">
+                                <h4 className="text-white font-bold text-lg mb-8 pb-4 border-b border-[#222]">
                                     System Specification
                                 </h4>
                                 
                                 <div className="space-y-8">
                                     <div>
-                                        <div className="text-xs text-[#666] uppercase mb-2">Core Tech</div>
+                                        <div className="text-xs font-semibold text-[#666] uppercase mb-3 tracking-wider">Core Stack</div>
                                         <div className="flex flex-wrap gap-2">
                                             {['Go', 'Python', 'FastAPI', 'Docker', 'Claude LLM', 'OAuth2'].map(t => (
-                                                <span key={t} className="px-3 py-1 bg-[#1a1a1a] border border-[#333] text-sm text-[#ddd]">
+                                                <span key={t} className="px-3 py-1 bg-[#111] border border-[#222] text-sm text-[#ccc] rounded-md">
                                                     {t}
                                                 </span>
                                             ))}
@@ -163,26 +211,28 @@ export default function SortMailPage() {
                                     </div>
 
                                     <div>
-                                        <div className="text-xs text-[#666] uppercase mb-2">Observability Layer</div>
-                                        <div className="text-[#aaa] text-sm font-bold bg-[#111] p-3 border border-[#222]">
+                                        <div className="text-xs font-semibold text-[#666] uppercase mb-3 tracking-wider">Observability</div>
+                                        <div className="text-[#aaa] text-sm bg-[#111] p-3 border border-[#222] rounded-md">
                                             Sentry, Better Stack, AWS CloudWatch
                                         </div>
                                     </div>
 
                                     <div>
-                                        <div className="text-xs text-[#666] uppercase mb-2">Security Posture</div>
-                                        <div className="text-[#aaa] text-sm leading-relaxed border-l-2 border-[#444] pl-3">
-                                            <span className="block mb-1 text-red-400">Strict Separation of Concerns</span>
-                                            - SQL Injection Protection<br/>
-                                            - OAuth Based Architecture<br/>
-                                            - In-memory Processing<br/>
-                                            - Ephemeral Token Storage
+                                        <div className="text-xs font-semibold text-[#666] uppercase mb-3 tracking-wider">Security Posture</div>
+                                        <div className="text-[#aaa] text-sm leading-relaxed">
+                                            <span className="block mb-2 text-amber-500 font-medium">Strict Separation of Concerns</span>
+                                            <ul className="space-y-1 ml-4 list-disc marker:text-[#444]">
+                                                <li>SQL Injection Protection</li>
+                                                <li>OAuth Based Architecture</li>
+                                                <li>In-memory Processing</li>
+                                                <li>Ephemeral Token Storage</li>
+                                            </ul>
                                         </div>
                                     </div>
                                     
-                                    <div className="pt-4 border-t border-[#333]">
-                                        <Link href="/sortmail/decisions" className="text-xs text-[#888] uppercase tracking-widest hover:text-white transition-colors">
-                                            [View Engineering Benchmarks]
+                                    <div className="pt-6 border-t border-[#222]">
+                                        <Link href="/sortmail/docs" className="text-sm font-medium text-[#888] hover:text-white transition-colors">
+                                            View Engineering Documentation &rarr;
                                         </Link>
                                     </div>
                                 </div>
@@ -192,30 +242,29 @@ export default function SortMailPage() {
                 </div>
             </section>
 
-            
             {/* FAQ Section */}
-            <section className="px-6 md:px-12 py-16 bg-[#0a0a0a] border-t border-[#333]">
-                <h2 className="text-2xl font-bold uppercase tracking-tight text-white mb-8 border-l-4 border-red-600 pl-4">Frequently Asked Questions</h2>
-                <div className="space-y-6 max-w-4xl">
+            <section className="px-6 md:px-12 py-24 bg-[#080808] border-t border-[#222]">
+                <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Frequently Asked Questions</h2>
+                <div className="space-y-4 max-w-4xl">
                     {projectData.faq.map((q, i) => (
-                        <div key={i} className="bg-[#111] border border-[#222] p-6">
-                            <h3 className="text-white font-bold mb-2">{q.question}</h3>
-                            <p className="text-[#aaa] text-sm leading-relaxed">{q.answer}</p>
+                        <div key={i} className="bg-[#0a0a0a] border border-[#222] p-6 rounded-xl hover:border-[#333] transition-colors">
+                            <h3 className="text-white font-medium mb-3 text-lg">{q.question}</h3>
+                            <p className="text-[#888] leading-relaxed">{q.answer}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
-            <div className="px-6 md:px-12 pb-12">
+            <div className="px-6 md:px-12 pb-12 bg-[#080808]">
                 <RelatedProjects links={[
                     { name: "Klarity (DevContext)", url: "/devcontext" },
                     { name: "Portfolio", url: "/" }
                 ]} />
             </div>
+
             {/* Footer */}
-            <footer className="border-t border-[#333] p-6 md:p-12 text-center md:text-left text-[#555] text-xs uppercase tracking-widest flex flex-col md:flex-row justify-between items-center bg-black">
-                <div>&copy; {new Date().getFullYear()} // SORTMAIL ENGINEERING</div>
-                <div className="mt-4 md:mt-0 font-bold text-[#888]">END OF TRANSMISSION</div>
+            <footer className="border-t border-[#222] p-6 md:p-12 text-[#666] text-sm flex flex-col md:flex-row justify-between items-center bg-[#050505]">
+                <div>&copy; {new Date().getFullYear()} SortMail. All rights reserved.</div>
             </footer>
         </main>
     );

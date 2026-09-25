@@ -19,6 +19,7 @@ import type { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { EntityHeader } from '@/components/EntityHeader';
 import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
+import { NetworkTopology } from '@/components/revealr/NetworkTopology';
 
 
 export const metadata: Metadata = {
@@ -114,20 +115,8 @@ export default function RevealrHome() {
               </div>
               <div className="border-t border-white/[0.07] bg-gradient-to-b from-lime-300/[0.035] to-transparent p-5 lg:border-l lg:border-t-0 sm:p-7">
                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500"><Radar className="h-3.5 w-3.5 text-lime-300" /> Signal map</div>
-                <div className="relative mx-auto mt-7 aspect-square max-w-[270px] flex items-center justify-center border border-white/[0.05] bg-black/20 rounded-xl overflow-hidden p-6">
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M 135,40 C 135,100 135,100 135,140" stroke="#bef264" strokeWidth="2" fill="none" />
-                        <path d="M 135,140 C 60,200 60,200 60,240" stroke="#bef264" strokeWidth="2" fill="none" />
-                        <path d="M 135,140 C 210,200 210,200 210,240" stroke="#fcd34d" strokeWidth="2" strokeDasharray="4,4" fill="none" className="animate-[dash_10s_linear_infinite]" />
-                    </svg>
-                    <div className="absolute top-[20px] left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-700 rounded px-3 py-1.5 text-[9px] font-mono text-zinc-300">10.10.11.24</div>
-                    <div className="absolute top-[130px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-lime-400 shadow-[0_0_15px_rgba(190,242,100,0.6)]"></div>
-                    
-                    <div className="absolute bottom-[20px] left-[40px] bg-zinc-900 border border-lime-400/30 rounded px-3 py-1.5 text-[9px] font-mono text-lime-300 flex flex-col items-center"><span>SSH</span><span>:22</span></div>
-                    <div className="absolute bottom-[20px] right-[40px] bg-amber-400/10 border border-amber-400/40 rounded px-3 py-1.5 text-[9px] font-mono text-amber-300 flex flex-col items-center animate-pulse"><span>HTTP</span><span>:8080</span><span className="absolute -top-3 text-[8px] text-amber-400 font-bold w-[40px] whitespace-nowrap">✦ NEW</span></div>
-                    <style dangerouslySetInnerHTML={{__html: `
-                        @keyframes dash { to { stroke-dashoffset: -100; } }
-                    `}} />
+                <div className="relative mx-auto mt-7 aspect-square max-w-[270px] flex items-center justify-center border border-white/[0.05] bg-black/20 rounded-xl overflow-hidden p-3">
+                    <NetworkTopology />
                 </div>
                 <div className="mt-7 space-y-3">{[['Scan engine', 'Running', 'text-lime-300'], ['State store', 'Synced', 'text-sky-300'], ['Diff detector', '1 alert', 'text-amber-200']].map(([label, value, color]) => <div key={label} className="flex items-center justify-between text-xs"><span className="text-zinc-500">{label}</span><span className={`flex items-center gap-1.5 font-medium ${color}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{value}</span></div>)}</div>
               </div>

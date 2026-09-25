@@ -8,24 +8,26 @@ export const metadata: Metadata = {
 
 export default function DecisionsPage() {
     return (
-        <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-red-900 selection:text-white pb-24">
+        <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-sans selection:bg-amber-500/30 selection:text-white pb-24">
             {/* Header / Nav */}
-            <nav className="p-6 md:p-12 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs tracking-widest uppercase gap-4 sticky top-0 bg-[#050505] z-50">
+            <nav className="p-6 md:p-12 border-b border-[#222] flex flex-col md:flex-row justify-between items-start md:items-center text-sm font-medium gap-4 sticky top-0 bg-[#050505]/90 backdrop-blur-md z-50">
                 <div className="flex gap-6 items-center">
-                    <Link href="/sortmail" className="hover:text-red-500 transition-colors">
-                        &lt; System.SortMail
+                    <Link href="/" className="hover:text-amber-500 transition-colors text-[#888]">
+                        &larr; Back
                     </Link>
-                    <span className="text-[#444]">|</span>
+                    <span className="text-[#333]">|</span>
+                    <Link href="/sortmail" className="text-[#888] hover:text-white transition-colors">
+                        Overview
+                    </Link>
                     <Link href="/sortmail/architecture" className="text-[#888] hover:text-white transition-colors">
-                        [Architecture]
+                        Architecture
                     </Link>
-                    <span className="text-white font-bold bg-[#222] px-2 py-1">
-                        [Decisions]
+                    <span className="text-white font-semibold">
+                        Decisions
                     </span>
-                </div>
-                <div className="flex gap-6">
-                    <span className="text-[#666]">TYPE: ENGINEERING LOG</span>
-                    <span className="text-[#666]">VER: 0.9.1a</span>
+                    <Link href="/sortmail/docs" className="text-[#888] hover:text-white transition-colors">
+                        Docs
+                    </Link>
                 </div>
             </nav>
 
