@@ -1,225 +1,496 @@
 import Link from 'next/link';
 import {
-  ArrowRight,
-  ArrowUpRight,
-  ChevronRight,
-  CircleDotDashed,
-  Command,
-  Container,
-  Database,
-  Github,
-  Network,
-  Search,
-  Shield,
-  Layers,
-  Zap,
+    ArrowLeft,
+    ArrowRight,
+    ExternalLink,
+    Github,
+    Database,
+    Search,
+    Shield,
+    Zap,
+    Container,
+    BrainCircuit,
+    LockKeyhole,
+    Network,
+    Activity,
+    FileSearch,
+    Layers3,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'MetroMind — Microservices Document Intelligence',
-  description: 'AI-powered document intelligence platform with 12+ containerized microservices, OCR pipelines, vector search, and 100% audit logging.',
-  keywords: ['Microservices', 'OCR', 'Vector Search', 'Document Intelligence', 'Smart India Hackathon', 'Docker', 'RabbitMQ'],
-  alternates: { canonical: 'https://metromind.rounakneema.in' },
-  openGraph: {
-    title: 'MetroMind — Document Intelligence',
-    description: 'Transforming physical transit documents into searchable semantic vectors.',
-    url: 'https://metromind.rounakneema.in',
-    siteName: 'MetroMind',
-    type: 'website',
-  },
+    title: 'MetroMind — AI Document Intelligence Platform',
+    description:
+        'AI-powered document intelligence platform with 12+ containerized microservices, OCR pipelines, vector search, and 100% audit logging built for the Smart India Hackathon.',
+    alternates: {
+        canonical: 'https://metromind.rounakneema.in',
+    },
 };
 
 const capabilities = [
-  { icon: Layers, eyebrow: '01 / Decoupled', title: 'Microservices Scale.', description: '12+ independent Docker containers orchestrating API gateways, background workers, and AI pipelines without bottlenecking each other.', accent: 'text-fuchsia-400', iconBg: 'bg-fuchsia-400/10 border-fuchsia-400/20' },
-  { icon: Search, eyebrow: '02 / Semantic', title: 'Understand meaning.', description: 'Go beyond keywords. MetroMind extracts text via OCR and creates high-dimensional embeddings for natural language semantic querying.', accent: 'text-cyan-400', iconBg: 'bg-cyan-400/10 border-cyan-400/20' },
-  { icon: Shield, eyebrow: '03 / Secure', title: 'Zero compromise.', description: 'Multi-tenant department isolation enforced by an API Gateway. Every privileged action is explicitly recorded in an immutable audit log.', accent: 'text-indigo-400', iconBg: 'bg-indigo-400/10 border-indigo-400/20' },
+    {
+        icon: Container,
+        number: '01',
+        title: '12+ Microservices',
+        description:
+            'Decoupled services orchestrated through Docker Compose, allowing OCR, indexing, APIs and supporting workloads to evolve independently.',
+        accent: 'purple',
+    },
+    {
+        icon: Search,
+        number: '02',
+        title: 'Semantic Retrieval',
+        description:
+            'OCR extracts document content, embeddings represent meaning, and vector search enables natural-language discovery beyond keyword matching.',
+        accent: 'blue',
+    },
+    {
+        icon: Shield,
+        number: '03',
+        title: 'RBAC + Audit',
+        description:
+            'Granular role-based access control with 100% audit logging coverage for privileged operations and department-level data isolation.',
+        accent: 'red',
+    },
+    {
+        icon: Zap,
+        number: '04',
+        title: 'Async Processing',
+        description:
+            'RabbitMQ moves heavy OCR and indexing workloads into asynchronous pipelines so API requests remain responsive.',
+        accent: 'green',
+    },
 ];
 
-const explorerLinks = [
-  { href: '/architecture', title: 'Architecture', detail: 'The 12+ microservices, RabbitMQ async pipeline, and Vector DB.' },
-  { href: '/llms.txt', title: 'AI Context', detail: 'Raw markdown summary designed for LLMs.' },
+const pipeline = [
+    { icon: FileSearch, label: 'DOCUMENT', sub: 'Upload / Scan' },
+    { icon: BrainCircuit, label: 'OCR', sub: 'Extract' },
+    { icon: Layers3, label: 'EMBED', sub: 'Represent' },
+    { icon: Database, label: 'VECTOR DB', sub: 'Index' },
+    { icon: Search, label: 'SEARCH', sub: 'Retrieve' },
 ];
 
 export default function MetroMindHome() {
-  return (
-    <div className="relative isolate overflow-hidden bg-[#06040a]">
-      {/* Background Gradients */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px] overflow-hidden">
-        <div className="absolute left-[20%] top-[-10%] h-[300px] w-[600px] rounded-full bg-fuchsia-500/10 blur-[120px]" />
-        <div className="absolute right-[10%] top-[20%] h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[100px]" />
-        <div className="absolute left-1/2 top-0 h-[800px] w-full -translate-x-1/2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyb1VuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOSAxdjM4SDFWMWhMOHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
-      </div>
+    return (
+        <main className="min-h-screen overflow-hidden bg-[#050507] text-white selection:bg-purple-500/30 selection:text-purple-200">
 
-      <nav className="relative z-50 flex h-16 items-center justify-between border-b border-white/[0.07] px-6 md:px-10">
-        <div className="flex items-center gap-4">
-          <a href="https://rounakneema.in/projects" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] text-zinc-400 transition-colors hover:bg-white/10 hover:text-white">
-            <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4"><path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </a>
-          <span className="text-zinc-600">/</span>
-          <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-200">METROMIND</span>
-        </div>
-        <div className="hidden items-center gap-7 text-[10px] font-bold tracking-[0.16em] md:flex">
-          <Link href="/architecture" className="text-zinc-400 transition-colors hover:text-fuchsia-400">ARCHITECTURE</Link>
-          <a href="https://github.com/rounakneema/MetroMind" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-zinc-400 transition-colors hover:text-fuchsia-400">
-            GITHUB <ArrowUpRight className="h-3 w-3" />
-          </a>
-        </div>
-      </nav>
+            {/* Ambient background */}
+            <div className="pointer-events-none fixed inset-0 -z-10">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(124,58,237,0.16),transparent_35%)]" />
+                <div className="absolute left-[-20%] top-[30%] h-[500px] w-[500px] rounded-full bg-purple-600/10 blur-[140px]" />
+                <div className="absolute right-[-20%] top-[45%] h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[140px]" />
 
-      <section className="relative px-6 pb-20 pt-24 lg:pt-36 md:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-[1fr_420px] lg:gap-16">
-            <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-fuchsia-400/20 bg-fuchsia-400/10 px-3 py-1.5">
-                <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fuchsia-400 opacity-75" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-fuchsia-400" /></span>
-                <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-fuchsia-300">DOCUMENT INTELLIGENCE PLATFORM</span>
-              </div>
-              <h1 className="mt-8 text-5xl font-black tracking-[-0.04em] text-white sm:text-6xl md:text-7xl lg:text-8xl">
-                Unlocking <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400">Physical Data</span>.
-              </h1>
-              <p className="mt-8 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">
-                Built for the Smart India Hackathon (Kochi Metro). MetroMind orchestrates 12+ Dockerized microservices to extract text via OCR, embed it into a vector space, and allow strict RBAC-controlled semantic querying across departments.
-              </p>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link href="/architecture" className="flex h-12 items-center gap-2 rounded-lg bg-white px-6 text-sm font-bold text-black transition-colors hover:bg-zinc-200">
-                  <Network className="h-4 w-4" /> System Architecture
-                </Link>
-                <a href="https://github.com/rounakneema/MetroMind" target="_blank" rel="noopener noreferrer" className="flex h-12 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.03] px-6 text-sm font-bold text-white transition-colors hover:bg-white/[0.08]">
-                  <Github className="h-4 w-4" /> View Source
-                </a>
-              </div>
+                <div
+                    className="absolute inset-0 opacity-[0.045]"
+                    style={{
+                        backgroundImage:
+                            'linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)',
+                        backgroundSize: '48px 48px',
+                    }}
+                />
             </div>
 
-            {/* Microservices Cluster Visual */}
-            <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0c0a10] lg:mt-4 shadow-2xl shadow-fuchsia-900/20">
-              <div className="border-b border-white/[0.07] bg-white/[0.02] px-5 py-4">
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500">
-                  <Container className="h-3.5 w-3.5 text-fuchsia-400" /> Service Topology
-                </div>
-              </div>
-              <div className="p-5 sm:p-7 relative min-h-[300px]">
-                {/* SVG Connections */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 60,80 C 150,80 100,160 200,160" stroke="#c084fc" strokeWidth="2" fill="none" strokeDasharray="4,4" className="animate-[dash_20s_linear_infinite]" />
-                  <path d="M 60,200 C 120,200 120,160 200,160" stroke="#c084fc" strokeWidth="2" fill="none" strokeDasharray="4,4" className="animate-[dash_20s_linear_infinite]" />
-                  <path d="M 280,160 C 320,160 320,100 380,100" stroke="#22d3ee" strokeWidth="2" fill="none" />
-                  <path d="M 280,160 C 320,160 320,220 380,220" stroke="#22d3ee" strokeWidth="2" fill="none" />
-                </svg>
+            {/* Navigation */}
+            <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/[0.07] bg-[#050507]/70 backdrop-blur-xl">
+                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+                    <div className="flex items-center gap-4">
+                        <a
+                            href="https://rounakneema.in/projects"
+                            className="group flex items-center gap-2 text-zinc-500 transition hover:text-white"
+                        >
+                            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                            <span className="hidden text-xs font-medium md:block">PROJECTS</span>
+                        </a>
 
-                {/* Nodes */}
-                <div className="absolute left-6 top-16 flex flex-col gap-2">
-                    <div className="px-3 py-1.5 rounded bg-zinc-900 border border-zinc-700 text-[10px] font-mono text-zinc-300">Client Web</div>
-                    <div className="px-3 py-1.5 rounded bg-zinc-900 border border-zinc-700 text-[10px] font-mono text-zinc-300">Admin Panel</div>
-                </div>
+                        <div className="h-4 w-px bg-white/10" />
 
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div className="w-20 h-20 rounded-xl border-2 border-fuchsia-500/50 bg-fuchsia-500/10 flex flex-col items-center justify-center shadow-[0_0_20px_rgba(217,70,239,0.2)]">
-                        <Command className="w-6 h-6 text-fuchsia-400 mb-1" />
-                        <span className="text-[9px] font-mono font-bold text-fuchsia-300">API GW</span>
+                        <div className="flex items-center gap-2">
+                            <span className="h-2 w-2 rounded-full bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,.9)]" />
+                            <span className="font-mono text-sm font-bold tracking-[0.22em] text-zinc-200">
+                                METROMIND
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="hidden items-center gap-8 md:flex">
+                        <Link
+                            href="/architecture"
+                            className="text-xs font-medium tracking-[0.18em] text-zinc-500 transition hover:text-white"
+                        >
+                            ARCHITECTURE
+                        </Link>
+
+                        <a
+                            href="https://github.com/rounakneema/MetroMind"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-xs font-medium tracking-[0.18em] text-zinc-500 transition hover:text-white"
+                        >
+                            SOURCE
+                            <ExternalLink className="h-3 w-3" />
+                        </a>
                     </div>
                 </div>
+            </nav>
 
-                <div className="absolute right-6 top-16 flex flex-col gap-2">
-                    <div className="px-3 py-1.5 rounded border border-cyan-500/30 bg-cyan-500/10 text-[10px] font-mono text-cyan-300 flex items-center gap-2"><Database className="w-3 h-3" /> Vector DB</div>
-                    <div className="px-3 py-1.5 rounded border border-indigo-500/30 bg-indigo-500/10 text-[10px] font-mono text-indigo-300 flex items-center gap-2"><Shield className="w-3 h-3" /> Audit Log</div>
-                    <div className="px-3 py-1.5 rounded border border-orange-500/30 bg-orange-500/10 text-[10px] font-mono text-orange-300 flex items-center gap-2"><Layers className="w-3 h-3" /> OCR Engine</div>
-                </div>
-                
-                <style dangerouslySetInnerHTML={{__html: `
-                    @keyframes dash {
-                        to {
-                            stroke-dashoffset: -100;
-                        }
-                    }
-                `}} />
-              </div>
-              
-              <div className="border-t border-white/[0.07] bg-fuchsia-900/[0.03] p-5">
-                <div className="flex justify-between items-center text-xs font-mono">
-                    <span className="text-zinc-500">Service Status</span>
-                    <span className="text-fuchsia-400 flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-pulse" /> 12/12 Online</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            <div className="mx-auto max-w-7xl px-6 pb-24 pt-32">
 
-      {/* Tech Stack Banner */}
-      <section className="border-y border-white/[0.07] bg-white/[0.018]">
-        <div className="mx-auto grid max-w-7xl divide-y divide-white/[0.07] px-6 sm:grid-cols-4 sm:divide-x sm:divide-y-0 md:px-10">
-          {[
-            ['Go & Python', 'Core Microservices', 'High performance backend processing.'],
-            ['Docker', 'Orchestration', 'Seamless multi-container deployment.'],
-            ['RabbitMQ', 'Async Pipeline', 'Non-blocking heavy OCR tasks.'],
-            ['Milvus / Qdrant', 'Vector DB', 'Semantic embeddings storage.']
-          ].map(([metric, label, detail]) => (
-            <div key={label} className="py-7 text-center sm:py-9">
-              <div className="text-xl font-black tracking-tight text-white">{metric}</div>
-              <div className="mt-1 text-sm font-medium text-fuchsia-300">{label}</div>
-              <p className="mt-2 px-2 text-xs text-zinc-600">{detail}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+                {/* HERO */}
+                <section className="relative min-h-[720px]">
 
-      <section className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
-        <div className="grid items-end gap-8 md:grid-cols-[1fr_auto]">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-fuchsia-400">The MetroMind Advantage</p>
-            <h2 className="mt-4 max-w-2xl text-4xl font-black tracking-[-0.055em] text-white sm:text-5xl">Physical files are dark data. We shine a light on them.</h2>
-          </div>
-          <p className="max-w-sm text-sm leading-6 text-zinc-500">A scalable intelligence layer built to process, index, and secure inter-departmental transit documents.</p>
-        </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {capabilities.map((capability) => (
-            <article key={capability.title} className="group rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.045]">
-              <div className={`flex h-10 w-10 items-center justify-center rounded-lg border ${capability.iconBg}`}>
-                <capability.icon className={`h-5 w-5 ${capability.accent}`} />
-              </div>
-              <p className={`mt-7 text-[10px] font-bold uppercase tracking-[0.16em] ${capability.accent}`}>{capability.eyebrow}</p>
-              <h3 className="mt-2 text-xl font-bold tracking-tight text-white">{capability.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-zinc-500">{capability.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+                    {/* decorative orb */}
+                    <div className="pointer-events-none absolute right-[-120px] top-[-80px] hidden h-[520px] w-[520px] lg:block">
+                        <div className="absolute inset-0 rounded-full border border-purple-500/10" />
+                        <div className="absolute inset-[55px] rounded-full border border-purple-500/10" />
+                        <div className="absolute inset-[110px] rounded-full border border-purple-500/10" />
+                        <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-400 shadow-[0_0_50px_20px_rgba(168,85,247,.3)]" />
+                    </div>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10 md:pb-32">
-        <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c0a10]">
-          <div className="grid lg:grid-cols-[0.82fr_1.18fr]">
-            <div className="border-b border-white/[0.08] p-7 lg:border-b-0 lg:border-r md:p-10">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-fuchsia-400/20 bg-fuchsia-400/[0.08]">
-                <Command className="h-5 w-5 text-fuchsia-400" />
-              </div>
-              <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">Deploy via Compose</p>
-              <code className="mt-3 block text-sm text-fuchsia-200">docker-compose up -d --build</code>
-              <p className="mt-5 text-sm leading-6 text-zinc-500">Spin up the entire 12-container infrastructure locally with a single command.</p>
+                    <div className="relative max-w-4xl">
+
+                        <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-purple-500/20 bg-purple-500/[0.07] px-4 py-2">
+                            <span className="relative flex h-2 w-2">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-purple-400 opacity-70" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-purple-400" />
+                            </span>
+
+                            <span className="font-mono text-[10px] font-medium tracking-[0.25em] text-purple-300">
+                                AI DOCUMENT INTELLIGENCE
+                            </span>
+                        </div>
+
+                        <h1 className="text-5xl font-black leading-[0.95] tracking-[-0.055em] sm:text-6xl md:text-8xl">
+                            Documents in.
+                            <br />
+                            <span className="bg-gradient-to-r from-purple-300 via-violet-400 to-blue-400 bg-clip-text text-transparent">
+                                Intelligence out.
+                            </span>
+                        </h1>
+
+                        <p className="mt-8 max-w-2xl text-base leading-8 text-zinc-400 md:text-xl">
+                            MetroMind turns scanned and unstructured transit documents into
+                            searchable, permission-aware intelligence — powered by OCR,
+                            semantic retrieval and a distributed microservice architecture.
+                        </p>
+
+                        <div className="mt-10 flex flex-wrap gap-4">
+                            <a
+                                href="https://github.com/rounakneema/MetroMind"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group inline-flex items-center gap-3 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-black transition hover:-translate-y-0.5 hover:bg-zinc-200"
+                            >
+                                <Github className="h-4 w-4" />
+                                Explore Source
+                                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </a>
+
+                            <Link
+                                href="/architecture"
+                                className="group inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-bold text-white backdrop-blur transition hover:border-purple-500/30 hover:bg-purple-500/[0.08]"
+                            >
+                                System Architecture
+                                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Telemetry strip */}
+                    <div className="absolute bottom-0 left-0 right-0 hidden grid-cols-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] backdrop-blur md:grid">
+                        {[
+                            ['12+', 'MICROSERVICES'],
+                            ['OCR', 'EXTRACTION'],
+                            ['VECTOR', 'SEMANTIC SEARCH'],
+                            ['100%', 'AUDIT COVERAGE'],
+                        ].map(([value, label], index) => (
+                            <div
+                                key={label}
+                                className={`group px-6 py-5 ${
+                                    index !== 0 ? 'border-l border-white/[0.07]' : ''
+                                }`}
+                            >
+                                <div className="font-mono text-xl font-bold tracking-tight text-white transition group-hover:text-purple-300">
+                                    {value}
+                                </div>
+                                <div className="mt-1 text-[9px] font-medium tracking-[0.2em] text-zinc-600">
+                                    {label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* TECH STACK */}
+                <section className="border-y border-white/[0.07] py-7">
+                    <div className="flex flex-wrap items-center justify-between gap-6">
+                        <span className="font-mono text-[10px] tracking-[0.25em] text-zinc-600">
+                            SYSTEM STACK
+                        </span>
+
+                        <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+                            {[
+                                ['Go', 'bg-blue-400'],
+                                ['Python', 'bg-yellow-400'],
+                                ['Docker', 'bg-blue-500'],
+                                ['RabbitMQ', 'bg-orange-400'],
+                                ['Vector DB', 'bg-green-400'],
+                                ['OCR Engine', 'bg-red-400'],
+                            ].map(([name, color]) => (
+                                <div key={name} className="flex items-center gap-2">
+                                    <span className={`h-1.5 w-1.5 rounded-full ${color}`} />
+                                    <span className="font-mono text-xs text-zinc-500">{name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* CAPABILITIES */}
+                <section className="py-28">
+                    <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+                        <div>
+                            <div className="mb-3 font-mono text-[10px] tracking-[0.3em] text-purple-400">
+                                SYSTEM CAPABILITIES
+                            </div>
+
+                            <h2 className="text-4xl font-bold tracking-tight md:text-5xl">
+                                Built as a system,
+                                <br />
+                                not a demo.
+                            </h2>
+                        </div>
+
+                        <p className="max-w-md text-sm leading-7 text-zinc-500">
+                            Each layer solves a distinct part of the document intelligence
+                            problem — from ingestion and extraction to retrieval and access control.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-4 md:grid-cols-2">
+                        {capabilities.map((item) => {
+                            const Icon = item.icon;
+
+                            return (
+                                <div
+                                    key={item.title}
+                                    className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-8 transition duration-300 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-white/[0.045]"
+                                >
+                                    <div className="absolute right-0 top-0 h-32 w-32 translate-x-12 -translate-y-12 rounded-full bg-purple-500/10 blur-3xl transition group-hover:bg-purple-500/20" />
+
+                                    <div className="relative">
+                                        <div className="mb-8 flex items-center justify-between">
+                                            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-black/30">
+                                                <Icon className="h-5 w-5 text-purple-400" />
+                                            </div>
+
+                                            <span className="font-mono text-[10px] text-zinc-700">
+                                                / {item.number}
+                                            </span>
+                                        </div>
+
+                                        <h3 className="text-xl font-bold tracking-tight">
+                                            {item.title}
+                                        </h3>
+
+                                        <p className="mt-3 max-w-lg text-sm leading-7 text-zinc-500">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </section>
+
+                {/* PIPELINE */}
+                <section className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#08080c] px-6 py-16 md:px-12">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(124,58,237,.08),transparent_55%)]" />
+
+                    <div className="relative">
+                        <div className="mb-12 text-center">
+                            <div className="mb-3 font-mono text-[10px] tracking-[0.3em] text-blue-400">
+                                DOCUMENT FLOW
+                            </div>
+
+                            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+                                From raw document to searchable intelligence.
+                            </h2>
+                        </div>
+
+                        <div className="flex flex-col items-center justify-center gap-3 md:flex-row md:gap-0">
+                            {pipeline.map((step, index) => {
+                                const Icon = step.icon;
+
+                                return (
+                                    <div key={step.label} className="flex items-center">
+                                        <div className="group flex w-32 flex-col items-center text-center">
+                                            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035] transition group-hover:border-purple-500/40 group-hover:bg-purple-500/[0.08]">
+                                                <Icon className="h-6 w-6 text-zinc-400 transition group-hover:text-purple-300" />
+                                            </div>
+
+                                            <div className="font-mono text-[10px] font-bold tracking-[0.18em] text-zinc-300">
+                                                {step.label}
+                                            </div>
+
+                                            <div className="mt-1 text-[10px] text-zinc-600">
+                                                {step.sub}
+                                            </div>
+                                        </div>
+
+                                        {index < pipeline.length - 1 && (
+                                            <div className="hidden h-px w-12 bg-gradient-to-r from-purple-500/40 to-blue-500/10 md:block" />
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+
+                {/* PROBLEM / SOLUTION */}
+                <section className="py-28">
+                    <div className="mb-12">
+                        <div className="mb-3 font-mono text-[10px] tracking-[0.3em] text-zinc-600">
+                            WHY METROMIND
+                        </div>
+
+                        <h2 className="max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">
+                            The problem wasn't storage.
+                            <br />
+                            <span className="text-zinc-500">It was making documents useful.</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid gap-5 lg:grid-cols-2">
+                        {/* Challenge */}
+                        <div className="relative overflow-hidden rounded-3xl border border-red-500/10 bg-red-500/[0.025] p-8 md:p-10">
+                            <div className="mb-8 flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10">
+                                    <LockKeyhole className="h-4 w-4 text-red-400" />
+                                </div>
+
+                                <span className="font-mono text-[10px] tracking-[0.25em] text-red-400">
+                                    THE CHALLENGE
+                                </span>
+                            </div>
+
+                            <h3 className="text-2xl font-bold leading-tight md:text-3xl">
+                                Unstructured transit data trapped in physical and scanned documents.
+                            </h3>
+
+                            <p className="mt-6 text-sm leading-7 text-zinc-500">
+                                Managing and semantically searching large volumes of transit
+                                documents across departments is inefficient without intelligent
+                                tooling. Scanned documents also make their underlying text
+                                inaccessible to standard SQL databases.
+                            </p>
+
+                            <p className="mt-4 text-sm leading-7 text-zinc-500">
+                                Sensitive inter-departmental documents additionally require
+                                strict isolation and access tracking to prevent unauthorized retrieval.
+                            </p>
+                        </div>
+
+                        {/* Solution */}
+                        <div className="relative overflow-hidden rounded-3xl border border-purple-500/20 bg-purple-500/[0.035] p-8 md:p-10">
+                            <div className="absolute right-0 top-0 h-48 w-48 rounded-full bg-purple-500/10 blur-[80px]" />
+
+                            <div className="relative">
+                                <div className="mb-8 flex items-center gap-3">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10">
+                                        <Network className="h-4 w-4 text-purple-400" />
+                                    </div>
+
+                                    <span className="font-mono text-[10px] tracking-[0.25em] text-purple-400">
+                                        THE METROMIND SOLUTION
+                                    </span>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {[
+                                        'Automated OCR extraction pipeline',
+                                        'Text chunking and embedding generation',
+                                        'Vector database for semantic querying',
+                                        'API Gateway handling JWT & RBAC validation',
+                                        'Distributed logging and telemetry',
+                                    ].map((item, i) => (
+                                        <div
+                                            key={item}
+                                            className="group flex items-center gap-4 rounded-xl border border-white/[0.06] bg-black/20 px-4 py-3 transition hover:border-purple-500/20 hover:bg-purple-500/[0.05]"
+                                        >
+                                            <span className="font-mono text-[10px] text-purple-500">
+                                                0{i + 1}
+                                            </span>
+
+                                            <span className="text-sm text-zinc-300">
+                                                {item}
+                                            </span>
+
+                                            <Activity className="ml-auto h-3.5 w-3.5 text-zinc-700 transition group-hover:text-purple-400" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ARCHITECTURE CTA */}
+                <section className="relative overflow-hidden rounded-3xl border border-purple-500/20 bg-gradient-to-br from-purple-500/[0.09] via-transparent to-blue-500/[0.06] p-8 md:p-12">
+                    <div className="absolute right-[-80px] top-[-80px] h-64 w-64 rounded-full bg-purple-500/10 blur-[80px]" />
+
+                    <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+                        <div>
+                            <div className="mb-3 font-mono text-[10px] tracking-[0.3em] text-purple-400">
+                                GO DEEPER
+                            </div>
+
+                            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+                                See how the system fits together.
+                            </h2>
+
+                            <p className="mt-3 max-w-xl text-sm leading-7 text-zinc-500">
+                                Explore the microservice topology, asynchronous processing,
+                                data flow, security boundaries and document retrieval architecture.
+                            </p>
+                        </div>
+
+                        <Link
+                            href="/architecture"
+                            className="group flex shrink-0 items-center gap-3 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-black transition hover:-translate-y-0.5 hover:bg-zinc-200"
+                        >
+                            Explore Architecture
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                    </div>
+                </section>
+
+                {/* FOOTER */}
+                <footer className="flex flex-col justify-between gap-5 border-t border-white/[0.07] pt-10 text-xs text-zinc-600 md:flex-row md:items-center">
+                    <div className="font-mono tracking-[0.12em]">
+                        METROMIND / DOCUMENT INTELLIGENCE
+                    </div>
+
+                    <div className="flex items-center gap-6">
+                        <a
+                            href="https://rounakneema.in"
+                            className="transition hover:text-white"
+                        >
+                            ROUNAK NEEMA
+                        </a>
+
+                        <a
+                            href="https://github.com/rounakneema/MetroMind"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 transition hover:text-white"
+                        >
+                            GITHUB
+                            <ExternalLink className="h-3 w-3" />
+                        </a>
+                    </div>
+                </footer>
             </div>
-            <div className="divide-y divide-white/[0.07]">
-              {explorerLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="group flex items-center gap-5 px-7 py-5 transition-colors hover:bg-white/[0.035] md:px-10">
-                  <CircleDotDashed className="h-5 w-5 shrink-0 text-zinc-600 transition-colors group-hover:text-fuchsia-400" />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-bold text-zinc-200 transition-colors group-hover:text-white">{item.title}</h3>
-                    <p className="mt-1 truncate text-xs text-zinc-600 sm:text-sm">{item.detail}</p>
-                  </div>
-                  <ChevronRight className="h-4 w-4 shrink-0 text-zinc-600 transition-all group-hover:translate-x-1 group-hover:text-fuchsia-400" />
-                </Link>
-              ))}
-              <a href="https://github.com/rounakneema/MetroMind" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-5 px-7 py-5 transition-colors hover:bg-white/[0.035] md:px-10">
-                <Github className="h-5 w-5 shrink-0 text-zinc-600 transition-colors group-hover:text-fuchsia-400" />
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-bold text-zinc-200 transition-colors group-hover:text-white">Source code</h3>
-                  <p className="mt-1 text-xs text-zinc-600 sm:text-sm">Inspect the Go microservices and Python workers.</p>
-                </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-zinc-600 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-fuchsia-400" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+        </main>
+    );
 }
