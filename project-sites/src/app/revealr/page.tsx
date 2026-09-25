@@ -16,14 +16,18 @@ import {
   Zap,
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
+
 
 export const metadata: Metadata = {
-  title: 'Revealr — Adaptive Network Scanner & Vulnerability Mapper',
+  title: 'Revealr — High-Speed Go Network Scanner & Vulnerability Mapping Tool',
   description: 'High-performance Go-based network scanner with stateful scan history, network drift detection, and modular Python vulnerability mapping.',
   keywords: ['Go network scanner', 'port scanner', 'vulnerability mapper', 'network security', 'network drift detection', 'SQLite stateful scanner'],
   alternates: { canonical: 'https://revealr.rounakneema.in' },
   openGraph: {
-    title: 'Revealr — Adaptive Network Scanner',
+    title: 'Revealr — High-Speed Go Network Scanner & Vulnerability Mapping Tool',
     description: 'High-concurrency network visibility, with memory.',
     url: 'https://revealr.rounakneema.in',
     siteName: 'Revealr',
@@ -54,23 +58,41 @@ export default function RevealrHome() {
       </div>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-lime-300/15 bg-lime-300/[0.07] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-lime-200">
-            <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-300 opacity-75" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime-300" /></span>
-            Built for authorized assessments
-          </div>
-          <h1 className="text-balance text-2xl font-black leading-[0.92] tracking-[-0.075em] text-white sm:text-2xl">
-            Give your network
-            <span className="block bg-gradient-to-r from-lime-200 via-lime-400 to-emerald-300 bg-clip-text text-transparent">memory.</span>
-          </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-pretty text-base font-medium leading-7 text-zinc-400 sm:text-lg">High-concurrency network discovery with memory. Revealr scans fast, fingerprints services, and remembers exactly what changed between assessments.</p>
-          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href="https://github.com/rounakneema/Revealr" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-2 rounded-lg bg-lime-300 px-5 py-3 text-sm font-black text-zinc-950 transition-all hover:bg-lime-200 hover:shadow-[0_0_30px_rgba(190,242,100,0.2)]"><Github className="h-4 w-4" />Explore the source<ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
-            <Link href="/revealr/docs" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-bold text-zinc-200 transition-colors hover:border-white/25 hover:bg-white/[0.07] hover:text-white">Read the docs <ArrowRight className="h-4 w-4" /></Link>
-          </div>
-        </div>
-
-        <div className="relative mx-auto mt-16 max-w-6xl rounded-2xl border border-white/10 bg-[#0c100e]/90 p-2 shadow-2xl shadow-black/40 backdrop-blur md:mt-20">
+        
+        <ProjectJsonLd project={{
+            name: 'Revealr',
+            url: 'https://revealr.rounakneema.in',
+            description: 'High-Speed Go Network Scanner & Vulnerability Mapping Tool',
+            programmingLanguage: 'Go',
+            schemaCategory: 'SoftwareApplication',
+            faq: [
+                { question: "What is Revealr?", answer: "Revealr is a high-speed Go-based network scanner and vulnerability mapping tool designed to maintain stateful scan history across sessions." },
+                { question: "What does Revealr scan?", answer: "It scans network ports up to the maximum 65535 range, identifying open services and fingerprinting them." },
+                { question: "How does Revealr perform network scanning?", answer: "Revealr uses a highly concurrent Go engine with raw sockets for rapid discovery of network assets." },
+                { question: "How does Revealr detect network changes?", answer: "It stores previous scan states in a local SQLite database and diffs current results against the baseline to detect drift." },
+                { question: "Can Revealr be extended?", answer: "Yes, it features a Python plugin bridge that allows users to write custom vulnerability mapping and fingerprinting scripts." },
+                { question: "How fast is Revealr?", answer: "Benchmarks show Revealr can achieve scan times of ~0.8s for local networks." },
+                { question: "Who built Revealr?", answer: "Revealr was built by Rounak Neema for authorized network security assessments." }
+            ]
+        }} />
+        <EntityHeader 
+            title="Revealr" 
+            subtitle="High-Speed Go Network Scanner & Vulnerability Mapping Tool" 
+            category="Network Security" 
+            status="Stable" 
+            language="Go" 
+            github="https://github.com/rounakneema/Revealr" 
+            docs="/revealr/docs" 
+            architecture="/revealr/architecture" 
+        />
+        <ProjectFacts facts={[
+            { label: 'Built by', value: 'Rounak Neema' },
+            { label: 'Primary Language', value: 'Go' },
+            { label: 'Max Port Range', value: '65535' },
+            { label: 'State Storage', value: 'SQLite' },
+            { label: 'Scan Time', value: '~0.8s benchmark' }
+        ]} />
+<div className="relative mx-auto mt-16 max-w-6xl rounded-2xl border border-white/10 bg-[#0c100e]/90 p-2 shadow-2xl shadow-black/40 backdrop-blur md:mt-20">
           <div className="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-b from-lime-300/20 via-transparent to-transparent blur-sm" />
           <div className="overflow-hidden rounded-xl border border-white/[0.07] bg-[#090c0b]">
             <div className="flex items-center justify-between border-b border-white/[0.07] bg-white/[0.02] px-4 py-3 sm:px-5">
@@ -195,6 +217,46 @@ export default function RevealrHome() {
       </section>
 
       <section className="border-t border-white/[0.07] px-6 py-16 text-center md:px-10"><Terminal className="mx-auto h-5 w-5 text-lime-300" /><p className="mt-4 text-lg font-bold text-white">Discover thoughtfully. Verify deliberately.</p><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-600">Revealr is designed for legitimate, authorized network security work.</p><Link href="/revealr/security" className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-lime-300 hover:text-lime-200">Review the security model <ArrowRight className="h-3.5 w-3.5" /></Link></section>
-    </div>
+    
+      <section className="mx-auto max-w-4xl px-6 py-24 md:px-10">
+        <h2 className="text-2xl font-black text-white mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group border border-white/10 bg-black/20 p-4 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">01.</span> What is Revealr?<span className="transition group-open:rotate-180">▼</span></summary>
+            <p className="mt-4 text-zinc-400 pl-8">Revealr is a high-speed Go-based network scanner and vulnerability mapping tool designed to maintain stateful scan history across sessions.</p>
+          </details>
+          <details className="group border border-white/10 bg-black/20 p-4 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">02.</span> What does Revealr scan?<span className="transition group-open:rotate-180">▼</span></summary>
+            <p className="mt-4 text-zinc-400 pl-8">It scans network ports up to the maximum 65535 range, identifying open services and fingerprinting them.</p>
+          </details>
+          <details className="group border border-white/10 bg-black/20 p-4 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">03.</span> How does Revealr perform network scanning?<span className="transition group-open:rotate-180">▼</span></summary>
+            <p className="mt-4 text-zinc-400 pl-8">Revealr uses a highly concurrent Go engine with raw sockets for rapid discovery of network assets.</p>
+          </details>
+          <details className="group border border-white/10 bg-black/20 p-4 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">04.</span> How does Revealr detect network changes?<span className="transition group-open:rotate-180">▼</span></summary>
+            <p className="mt-4 text-zinc-400 pl-8">It stores previous scan states in a local SQLite database and diffs current results against the baseline to detect drift.</p>
+          </details>
+          <details className="group border border-white/10 bg-black/20 p-4 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">05.</span> Can Revealr be extended?<span className="transition group-open:rotate-180">▼</span></summary>
+            <p className="mt-4 text-zinc-400 pl-8">Yes, it features a Python plugin bridge that allows users to write custom vulnerability mapping and fingerprinting scripts.</p>
+          </details>
+          <details className="group border border-white/10 bg-black/20 p-4 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">06.</span> How fast is Revealr?<span className="transition group-open:rotate-180">▼</span></summary>
+            <p className="mt-4 text-zinc-400 pl-8">Benchmarks show Revealr can achieve scan times of ~0.8s for local networks.</p>
+          </details>
+          <details className="group border border-white/10 bg-black/20 p-4 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">07.</span> Who built Revealr?<span className="transition group-open:rotate-180">▼</span></summary>
+            <p className="mt-4 text-zinc-400 pl-8">Revealr was built by Rounak Neema for authorized network security assessments.</p>
+          </details>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
+          <RelatedProjects links={[
+              { name: 'OSA — Offline Security Auditor', url: '/osa' }
+          ]} />
+      </div>
+</div>
   );
 }

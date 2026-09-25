@@ -1,10 +1,17 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { projects } from '@/lib/projects';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 
 export const metadata: Metadata = {
-    title: 'AXIOM OS | Rounak Neema',
+    title: 'AXIOM OS — Local-First Personal AI Operating System',
     description: 'Zero-Cloud Local Personal Operating System',
+    alternates: {
+        canonical: 'https://axiom-os.rounakneema.in',
+    },
+    keywords: ['local AI', 'privacy-preserving AI', 'offline AI'],
 };
 
 export default function AxiomOsPage() {
@@ -14,8 +21,25 @@ export default function AxiomOsPage() {
         return <div>Project not found</div>;
     }
 
+    const axiomJsonLd = {
+        name: 'AXIOM OS',
+        url: 'https://axiom-os.rounakneema.in',
+        description: 'Zero-Cloud Local Personal Operating System',
+        schemaCategory: 'SoftwareApplication',
+        faq: [
+            { question: 'What is AXIOM OS?', answer: 'AXIOM OS is a local-first personal AI operating system designed to run on your own hardware without relying on the cloud.' },
+            { question: 'Is it cloud-based?', answer: 'No, AXIOM OS is completely zero-cloud. It runs locally to ensure maximum privacy and offline availability.' },
+            { question: 'How does it collect telemetry?', answer: 'It uses a custom Golang daemon called Specter to collect contextual telemetry locally.' },
+            { question: 'Why does AXIOM use deterministic policies?', answer: 'To ensure predictable behavior and prioritize your designated goals over probabilistic distractions.' },
+            { question: 'Which LLMs does AXIOM OS support?', answer: 'It primarily utilizes local LLMs running via Ollama.' },
+            { question: 'Where is the data stored?', answer: 'All memory and context data are stored locally in SQLite databases.' },
+            { question: 'Can I use AXIOM OS offline?', answer: 'Yes, because it is local-first, it is fully functional offline.' }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-red-600 selection:text-white">
+            <ProjectJsonLd project={axiomJsonLd} />
             <style dangerouslySetInnerHTML={{ __html: `
                 .brutalist-border { border: 2px solid #333; }
                 .brutalist-border-b { border-bottom: 2px solid #333; }
@@ -39,23 +63,24 @@ export default function AxiomOsPage() {
             `}} />
 
             {/* HEADER */}
-            <header className="brutalist-border-b p-6 md:p-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 bg-black relative overflow-hidden">
-                <div className="z-10 relative">
-                    <p className="text-red-500 font-bold mb-4 tracking-widest text-sm uppercase">[{project.category}] // {project.status}</p>
-                    <h1 className="text-2xl lg:text-2xl font-black uppercase tracking-tighter leading-none glitch" data-text={project.title}>
-                        {project.title}
-                    </h1>
-                    <h2 className="text-xl md:text-3xl mt-6 text-gray-400 font-light max-w-3xl">
-                        {project.subtitle}
-                    </h2>
-                </div>
-                <div className="z-10 text-right space-y-2 hidden md:block">
-                    <p className="text-gray-600 uppercase text-xs">Sys. Architecture</p>
-                    <p className="text-gray-400 uppercase text-sm">Target: Local-First</p>
-                    <p className="text-gray-400 uppercase text-sm">Engine: AXIOM Context Intelligence</p>
-                </div>
-                <div className="absolute top-0 right-0 w-64 h-64 bg-red-900 opacity-20 blur-[100px] rounded-full pointer-events-none"></div>
-            </header>
+            <div className="pt-12 px-6 md:px-12">
+                <EntityHeader 
+                    title={project.title}
+                    subtitle={project.subtitle}
+                    category={project.category}
+                    status={project.status}
+                    language={project.tech.join(', ')}
+                    docs="/axiom-os/docs"
+                    architecture="/axiom-os/architecture"
+                />
+                
+                <ProjectFacts facts={[
+                    { label: 'Built by', value: 'Rounak Neema' },
+                    { label: 'Telemetry Daemon', value: 'Go' },
+                    { label: 'Memory', value: 'SQLite' },
+                    { label: 'LLM', value: 'Ollama' }
+                ]} />
+            </div>
 
             {/* MARQUEE */}
             <div className="bg-red-600 text-black font-black uppercase text-xl py-2 marquee border-y-2 border-red-800">
@@ -185,14 +210,35 @@ export default function AxiomOsPage() {
                                 </div>
                             </section>
 
+                            {/* FAQ */}
+                            <section className="mt-16">
+                                <h3 className="text-2xl font-black uppercase mb-8 text-white">Frequently Asked Questions</h3>
+                                <div className="space-y-6">
+                                    {axiomJsonLd.faq.map((q, idx) => (
+                                        <div key={idx} className="bg-[#111] border border-[#333] p-6">
+                                            <h4 className="font-bold text-white mb-2">{q.question}</h4>
+                                            <p className="text-gray-400">{q.answer}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
                         </div>
                     </div>
                 </div>
             </div>
 
+            
             <footer className="p-6 md:p-12 text-center text-gray-600 text-sm uppercase tracking-widest brutalist-border-t bg-black">
                 <p>Status: {project.status} // EOF</p>
             </footer>
+            
+            <div className="px-6 md:px-12 pb-12 bg-black">
+                <RelatedProjects links={[
+                    { name: 'Dizzy — Voice-to-Figma', url: '/dizzy' },
+                    { name: 'Portfolio Main', url: '/' }
+                ]} />
+            </div>
         </main>
     );
 }

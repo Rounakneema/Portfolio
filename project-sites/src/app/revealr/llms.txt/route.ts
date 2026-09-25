@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 
 export async function GET() {
   const content = `# Revealr
@@ -63,5 +63,15 @@ Revealr is intended strictly for authorized security evaluations, penetration te
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
-  });
-}
+  })
+## Author & Related Projects
+- Author: Rounak Neema (https://rounakneema.in)
+- GitHub Profile: https://github.com/rounakneema
+- LinkedIn: https://linkedin.com/in/Rnks23
+
+### Also By Rounak Neema:
+- Dizzy: https://dizzy.rounakneema.in
+- MetroMind: https://metromind.rounakneema.in
+- PipelineForge: https://pipelineforge.rounakneema.in
+;}
+

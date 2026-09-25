@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 
 export async function GET() {
   const content = `# MetroMind
@@ -52,5 +52,15 @@ Managing and semantically searching large volumes of transit documents across de
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
-  });
-}
+  })
+## Author & Related Projects
+- Author: Rounak Neema (https://rounakneema.in)
+- GitHub Profile: https://github.com/rounakneema
+- LinkedIn: https://linkedin.com/in/Rnks23
+
+### Also By Rounak Neema:
+- Revealr: https://revealr.rounakneema.in
+- Dizzy: https://dizzy.rounakneema.in
+- Klarity: https://devcontext.rounakneema.in
+;}
+

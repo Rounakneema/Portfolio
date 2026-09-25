@@ -1,16 +1,21 @@
 import Link from 'next/link';
 import { ArrowRight, Database, Code2, Network, ScanText, Server, Activity, ShieldAlert, Cpu } from 'lucide-react';
 import type { Metadata } from 'next';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 
 export const metadata: Metadata = {
-    title: 'MetroMind — Enterprise Document Intelligence',
-    description: 'An event-driven microservices architecture for OCR, semantic search, and secure document retrieval.',
-    alternates: { canonical: 'https://metromind.rounakneema.in/' },
+    title: 'MetroMind — Enterprise AI Document Intelligence Platform',
+    description: 'An event-driven microservices architecture for OCR document intelligence, vector search, and secure document retrieval using RBAC microservices.',
+    keywords: ['OCR document intelligence', 'vector search', 'RBAC microservices'],
+    alternates: { canonical: 'https://metromind.rounakneema.in' },
 };
 
 export default function MetroMindHome() {
     return (
         <div className="min-h-screen bg-[#030305] text-zinc-400 selection:bg-fuchsia-500/30 font-mono text-sm">
+            <ProjectJsonLd />
             
             {/* Top Nav Rail */}
             <nav className="border-b border-fuchsia-500/20 bg-[#030305] sticky top-0 z-50">
@@ -32,36 +37,13 @@ export default function MetroMindHome() {
             <main className="max-w-7xl mx-auto border-x border-fuchsia-500/10 min-h-screen">
                 
                 {/* HERO SECTION - Brutalist & Typography Heavy */}
-                <header className="border-b border-fuchsia-500/10 p-8 md:p-16 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                        <ScanText className="w-96 h-96 text-fuchsia-500" />
-                    </div>
-                    
-                    <div className="relative z-10 max-w-4xl">
-                        <div className="inline-flex items-center gap-3 px-3 py-1 border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-[10px] uppercase tracking-widest mb-8">
-                            <div className="w-2 h-2 bg-cyan-400 animate-pulse" />
-                            System Status: Operational
-                        </div>
-                        
-                        <h1 className="text-2xl font-black text-white tracking-tighter leading-[0.9] font-sans mb-8">
-                            Stop searching for files. <br/>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">Start querying intelligence.</span>
-                        </h1>
-                        
-                        <p className="text-lg md:text-xl text-zinc-500 max-w-2xl leading-relaxed font-sans mb-12">
-                            MetroMind is a distributed microservices pipeline that transforms dead PDFs and scanned documents into a secure, RBAC-gated semantic vector search engine.
-                        </p>
-
-                        <div className="flex flex-wrap gap-4 font-mono text-xs uppercase tracking-widest">
-                            <Link href="/metromind/architecture" className="px-6 py-4 bg-white text-black hover:bg-fuchsia-400 transition-colors flex items-center gap-2 font-bold">
-                                View Architecture <ArrowRight className="w-4 h-4" />
-                            </Link>
-                            <a href="https://github.com/rounakneema/MetroMind" className="px-6 py-4 border border-zinc-700 hover:border-fuchsia-500 hover:text-fuchsia-400 transition-colors flex items-center gap-2">
-                                <Code2 className="w-4 h-4" /> GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-                </header>
+                <EntityHeader title="MetroMind" subtitle="Enterprise AI Document Intelligence Platform" />
+                <ProjectFacts facts={[
+                    { label: 'Built by', value: 'Rounak Neema' },
+                    { label: 'Languages', value: 'Go & Python' },
+                    { label: 'Architecture', value: '12+ Microservices' },
+                    { label: 'Features', value: 'OCR & Vector Search' }
+                ]} />
 
                 {/* THE PIPELINE VISUAL - Raw Terminal Style */}
                 <section className="border-b border-fuchsia-500/10 p-4 md:p-8 bg-[#050508]">
@@ -120,6 +102,30 @@ export default function MetroMindHome() {
                     </div>
                 </section>
 
+                
+                {/* SEO/AEO FAQ Section */}
+                <section className="border-b border-fuchsia-500/10 p-8 md:p-16">
+                    <h2 className="text-2xl font-black text-white mb-8">Frequently Asked Questions</h2>
+                    <div className="space-y-6" itemScope itemType="https://schema.org/FAQPage">
+                        {[
+                            { q: "What is MetroMind?", a: "MetroMind is an Enterprise AI Document Intelligence Platform that transforms scanned documents into a secure semantic search engine." },
+                            { q: "How does it process documents?", a: "It uses an automated OCR pipeline to extract text asynchronously and chunk it for semantic vectors using embedding models." },
+                            { q: "What languages is MetroMind built in?", a: "MetroMind is built using Go for microservices and Python for OCR workers." },
+                            { q: "Does MetroMind support vector search?", a: "Yes, it uses Milvus Vector DB for high-performance semantic vector search capabilities." },
+                            { q: "How is access control managed?", a: "Access is managed via JWT and strict RBAC microservices ensuring secure document retrieval." },
+                            { q: "How does MetroMind handle large volumes of documents?", a: "It employs an event-driven architecture with RabbitMQ and 12+ microservices to process large workloads." },
+                            { q: "Who built MetroMind?", a: "MetroMind was architected and built by Rounak Neema." }
+                        ].map((faq, idx) => (
+                            <div key={idx} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                                <h3 className="text-lg font-bold text-fuchsia-400" itemProp="name">{faq.q}</h3>
+                                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                                    <p className="text-zinc-400 mt-2" itemProp="text">{faq.a}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+                <RelatedProjects />
                 <footer className="p-8 text-center text-xs text-zinc-600 flex justify-between items-center">
                     <span>© {new Date().getFullYear()} Rounak Neema</span>
                     <span className="uppercase tracking-widest">MetroMind_System</span>

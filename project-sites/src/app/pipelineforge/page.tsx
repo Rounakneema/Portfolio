@@ -1,14 +1,19 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge | DevSecOps Engineering Case Study',
+  title: 'PipelineForge — GitOps DevSecOps CI/CD Pipeline Automation',
   description: 'Zero-touch GitOps CI/CD pipeline and cloud-native Go microservice built to demonstrate production-grade DevOps automation.',
+  alternates: { canonical: 'https://pipelineforge.rounakneema.in' },
 };
 
 export default function PipelineForgePage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
+      <ProjectJsonLd />
       {/* Navigation / Header */}
       <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
         <div className="text-xl">
@@ -22,37 +27,15 @@ export default function PipelineForgePage() {
 
       <main className="p-6 md:p-12 lg:p-24 overflow-hidden">
         {/* Hero Section */}
-        <section className="mb-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-8">
-            <h1 className="text-2xl lg:text-2xl font-black uppercase tracking-tighter leading-[0.85] mb-8">
-              PIPELINE<br />FORGE
-            </h1>
-            <p className="text-xl md:text-3xl font-medium max-w-4xl leading-tight border-l-4 border-white pl-6">
-              Zero-touch GitOps CI/CD pipeline and cloud-native Go microservice demonstrating production-grade DevOps automation.
-            </p>
-          </div>
-          <div className="lg:col-span-4 border-4 border-white p-6 bg-[#0a0a0a] shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
-            <h3 className="font-black uppercase text-2xl border-b-4 border-white pb-2 mb-4 tracking-tight">Core Metrics</h3>
-            <ul className="space-y-4 text-lg font-bold">
-              <li className="flex justify-between border-b border-gray-600 pb-1">
-                <span>SIZE REDUCTION</span>
-                <span className="text-green-400">99.3%</span>
-              </li>
-              <li className="flex justify-between border-b border-gray-600 pb-1">
-                <span>LATENCY</span>
-                <span className="text-green-400">&lt;5ms</span>
-              </li>
-              <li className="flex justify-between border-b border-gray-600 pb-1">
-                <span>LOAD TEST</span>
-                <span className="text-green-400">500 VUs</span>
-              </li>
-              <li className="flex justify-between pb-1">
-                <span>ORCHESTRATION</span>
-                <span className="text-green-400">K8s</span>
-              </li>
-            </ul>
-          </div>
-        </section>
+        <EntityHeader title="PipelineForge" subtitle="GitOps DevSecOps CI/CD Pipeline Automation" />
+        <div className="mb-24">
+          <ProjectFacts facts={[
+            { label: 'Built by', value: 'Rounak Neema' },
+            { label: 'Architecture', value: 'Kubernetes & GitHub Actions' },
+            { label: 'Image Reduction', value: '~1.1GB to 8MB (99.3%)' },
+            { label: 'Security', value: 'Trivy' }
+          ]} />
+        </div>
 
         {/* Navigation to Sub-pages */}
         <section className="mb-32 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -100,6 +83,31 @@ export default function PipelineForgePage() {
             <span>[ GO ]</span>
           </div>
         </section>
+
+      
+        {/* SEO/AEO FAQ Section */}
+        <section className="mb-32 border-4 border-white p-8 md:p-16 shadow-[16px_16px_0px_0px_rgba(255,255,255,1)]">
+          <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2">Frequently Asked Questions</h2>
+          <div className="space-y-6" itemScope itemType="https://schema.org/FAQPage">
+            {[
+              { q: "What is PipelineForge?", a: "PipelineForge is a GitOps DevSecOps CI/CD Pipeline Automation framework demonstrating production-grade DevOps." },
+              { q: "How does PipelineForge secure CI/CD pipelines?", a: "It utilizes Trivy security gates for automated vulnerability scanning during the deployment process." },
+              { q: "How was the Docker image size reduced?", a: "Container images were optimized from 1.1GB down to 8MB (99.3% reduction) via multi-stage distroless builds." },
+              { q: "What orchestration platform is used?", a: "The deployment environment and GitOps pipeline are orchestrated using Kubernetes and Helm." },
+              { q: "What role does GitHub Actions play?", a: "GitHub Actions serves as the CI runner to build, test, and push the application before GitOps syncs." },
+              { q: "How is performance tested?", a: "Load testing is conducted using K6 to simulate 500 VUs and ensure latency remains under 5ms." },
+              { q: "Who built PipelineForge?", a: "PipelineForge was architected and engineered by Rounak Neema." }
+            ].map((faq, idx) => (
+              <div key={idx} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <h3 className="text-xl font-bold uppercase" itemProp="name">{faq.q}</h3>
+                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                  <p className="text-lg mt-2" itemProp="text">{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        <RelatedProjects />
 
       </main>
     </div>

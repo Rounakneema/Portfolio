@@ -1,14 +1,38 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 
 export const metadata: Metadata = {
-    title: 'SortMail // AI Operating Layer',
+    title: 'SortMail — AI Operating Layer for Professional Email',
     description: 'An AI operating layer for professional email, featuring BLUF summarization and secure attachment analysis.',
+    alternates: {
+        canonical: 'https://sortmail.rounakneema.in'
+    }
 };
 
 export default function SortMailPage() {
+    const projectData = {
+        name: 'SortMail',
+        url: 'https://sortmail.rounakneema.in',
+        description: 'An AI operating layer for professional email, featuring BLUF summarization and secure attachment analysis.',
+        schemaCategory: 'SoftwareApplication',
+        programmingLanguage: 'Go, Python',
+        faq: [
+            { question: "What is SortMail?", answer: "SortMail is an AI operating layer for professional email that securely ingests data to perform BLUF summarization, extract critical deadlines, and conduct strict security filtering before human interaction." },
+            { question: "How does it detect deadlines?", answer: "It uses Claude family LLMs to parse conversational graphs and implicitly extract deadlines and actionable tasks from thread context." },
+            { question: "How does SortMail protect email data?", answer: "It enforces an air-gapped processing phase using a Go daemon, including MIME type verification and ClamAV-based virus scanning, prior to any LLM ingestion." },
+            { question: "What is the core architecture based on?", answer: "The system is an OAuth-based application utilizing an in-memory processing architecture to ensure data security and fast execution without persistent storage vulnerabilities." },
+            { question: "Which email platforms does SortMail integrate with?", answer: "SortMail is designed to integrate natively with major providers including Gmail and Outlook." },
+            { question: "What is BLUF summarization?", answer: "BLUF stands for Bottom Line Up Front. The engine outputs strictly actionable synopses by bypassing standard thread bloat and redundant context." },
+            { question: "Who developed SortMail?", answer: "SortMail was built and engineered by Rounak Neema." }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-red-900 selection:text-white">
+            <ProjectJsonLd project={projectData} />
             {/* Header / Nav */}
             <nav className="p-6 md:p-12 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs tracking-widest uppercase gap-4 sticky top-0 bg-[#050505] z-50">
                 <div className="flex gap-6 items-center">
@@ -35,56 +59,23 @@ export default function SortMailPage() {
                 </div>
             </nav>
 
-            {/* Hero Section */}
-            <section className="relative px-6 md:px-12 py-20 md:py-32 overflow-hidden border-b border-[#333]">
-                {/* Background Noise / Accents */}
-                <div className="absolute top-0 right-0 p-8 text-[#111] text-[12rem] font-bold leading-none select-none z-0">
-                    S/M
-                </div>
-                
-                <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8">
-                    <div className="md:col-span-8">
-                        <h1 className="text-2xl font-black uppercase tracking-tighter leading-[0.9] mb-6 text-white">
-                            Sort<span className="text-red-600">Mail</span>
-                        </h1>
-                        <h2 className="text-xl md:text-3xl font-medium tracking-tight text-[#888] mb-12 max-w-3xl border-l-4 border-red-600 pl-6 py-2">
-                            AI Operating Layer for Professional Email.
-                        </h2>
-                        <div className="flex gap-4">
-                            <Link href="/sortmail/architecture" className="inline-block border border-red-600 text-red-500 px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-red-600 hover:text-black transition-colors">
-                                View Architecture
-                            </Link>
-                            <Link href="/sortmail/decisions" className="inline-block border border-[#444] text-[#aaa] px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-[#222] transition-colors">
-                                Engineering Logs
-                            </Link>
-                        </div>
-                    </div>
-                    
-                    <div className="md:col-span-4 flex flex-col justify-end">
-                        <div className="bg-[#111] p-6 border border-[#222]">
-                            <div className="text-xs text-[#555] mb-4 uppercase tracking-widest border-b border-[#333] pb-2">System Telemetry</div>
-                            <ul className="space-y-3 text-sm">
-                                <li className="flex justify-between">
-                                    <span className="text-[#888]">Engines</span>
-                                    <span className="text-white">4 AI Models</span>
-                                </li>
-                                <li className="flex justify-between">
-                                    <span className="text-[#888]">Integration</span>
-                                    <span className="text-white">Gmail/Outlook</span>
-                                </li>
-                                <li className="flex justify-between">
-                                    <span className="text-[#888]">Security</span>
-                                    <span className="text-white">Air-gapped Attachments</span>
-                                </li>
-                                <li className="flex justify-between">
-                                    <span className="text-[#888]">Tech</span>
-                                    <span className="text-white">Go / Python / Claude</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                        <div className="px-6 md:px-12 pt-12 border-b border-[#333]">
+                <EntityHeader 
+                    title="SortMail"
+                    subtitle="AI Operating Layer for Professional Email"
+                    category="Productivity Tool"
+                    status="WIP (v0.9.1a)"
+                    language="Go / Python"
+                    architecture="/sortmail/architecture"
+                    docs="/sortmail/decisions"
+                />
+                <ProjectFacts facts={[
+                    { label: "Built by", value: "Rounak Neema" },
+                    { label: "Targets", value: "Gmail & Outlook" },
+                    { label: "Capabilities", value: "Summarization & Deadline Extraction" },
+                    { label: "Architecture", value: "OAuth based, In-memory processing" }
+                ]} />
+            </div>
 
             {/* Terminal Trace / Abstract */}
             <section className="px-6 md:px-12 py-16 bg-[#0a0a0a] border-b border-[#333]">
@@ -183,7 +174,8 @@ export default function SortMailPage() {
                                         <div className="text-[#aaa] text-sm leading-relaxed border-l-2 border-[#444] pl-3">
                                             <span className="block mb-1 text-red-400">Strict Separation of Concerns</span>
                                             - SQL Injection Protection<br/>
-                                            - GDPR / PCI Compliant<br/>
+                                            - OAuth Based Architecture<br/>
+                                            - In-memory Processing<br/>
                                             - Ephemeral Token Storage
                                         </div>
                                     </div>
@@ -200,6 +192,26 @@ export default function SortMailPage() {
                 </div>
             </section>
 
+            
+            {/* FAQ Section */}
+            <section className="px-6 md:px-12 py-16 bg-[#0a0a0a] border-t border-[#333]">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-white mb-8 border-l-4 border-red-600 pl-4">Frequently Asked Questions</h2>
+                <div className="space-y-6 max-w-4xl">
+                    {projectData.faq.map((q, i) => (
+                        <div key={i} className="bg-[#111] border border-[#222] p-6">
+                            <h3 className="text-white font-bold mb-2">{q.question}</h3>
+                            <p className="text-[#aaa] text-sm leading-relaxed">{q.answer}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <div className="px-6 md:px-12 pb-12">
+                <RelatedProjects links={[
+                    { name: "Klarity (DevContext)", url: "/devcontext" },
+                    { name: "Portfolio", url: "/" }
+                ]} />
+            </div>
             {/* Footer */}
             <footer className="border-t border-[#333] p-6 md:p-12 text-center md:text-left text-[#555] text-xs uppercase tracking-widest flex flex-col md:flex-row justify-between items-center bg-black">
                 <div>&copy; {new Date().getFullYear()} // SORTMAIL ENGINEERING</div>

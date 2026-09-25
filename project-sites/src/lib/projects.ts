@@ -1,4 +1,4 @@
-export type Tag = {
+﻿export type Tag = {
     text: string;
     type: 'blue' | 'green' | 'purple' | 'red' | 'yellow' | 'default';
 };
@@ -76,9 +76,9 @@ export const projects: Project[] = [
             command: './revealr -target 10.10.11.0/24 --rate 50000',
             output: [
                 { text: '[+] Target: 10.10.11.15 (Linux/Ubuntu)', color: 'text-green-400' },
-                { text: '    ├── 22/tcp  OPEN  (ssh)', color: 'text-gray-300' },
-                { text: '    ├── 80/tcp  OPEN  (http) → nginx/1.18.0', color: 'text-gray-300' },
-                { text: '    └── 8080/tcp OPEN (http) → Node.js Express', color: 'text-yellow-400' },
+                { text: '    â”œâ”€â”€ 22/tcp  OPEN  (ssh)', color: 'text-gray-300' },
+                { text: '    â”œâ”€â”€ 80/tcp  OPEN  (http) â†’ nginx/1.18.0', color: 'text-gray-300' },
+                { text: '    â””â”€â”€ 8080/tcp OPEN (http) â†’ Node.js Express', color: 'text-yellow-400' },
                 { text: '[DIFF] New service detected since last scan: 8080/tcp', color: 'text-red-400' },
                 { text: '[*] Scan complete in 0.8s (50k pps)', color: 'text-blue-400' },
             ],
@@ -136,11 +136,11 @@ export const projects: Project[] = [
         challenge:
             'Security analytics in air-gapped environments is extremely difficult without heavy runtime dependencies like ELK or Splunk.',
         solution:
-            'Single-binary offline security auditor with built-in statistical detection engines (Z-Score & Markov Chains) — no runtime dependencies required.',
+            'Single-binary offline security auditor with built-in statistical detection engines (Z-Score & Markov Chains) â€” no runtime dependencies required.',
         fullDescription:
             'OSA (Offline Security Auditor) is an air-gapped security analytics engine compiled as a single Go binary. It performs log ingestion and statistical anomaly detection without any runtime dependencies, making it ideal for isolated secure zones. It supports real-time streaming and historical batch analysis. Detection engines include Z-Score analysis for statistical outliers and Markov Chain models for behavioral sequential deviations. It reduced false positives by 38% in tests compared to baseline methods.',
         bullets: [
-            { label: 'Core Innovation', text: 'Zero-dependency single binary architecture — runs anywhere Go compiles to (<200ms latency).' },
+            { label: 'Core Innovation', text: 'Zero-dependency single binary architecture â€” runs anywhere Go compiles to (<200ms latency).' },
             { label: 'Detection Engines', text: 'Statistical anomaly detection using Z-Score, Probability Matrices, and Markov Chains.' },
             { label: 'Log Pipeline', text: 'Dual-mode log ingestion pipeline supporting historical backfill and real-time monitoring across 5 sources.' },
             { label: 'Target Use Case', text: 'High-security isolated air-gapped environments where cloud SIEMs are inaccessible.' },
@@ -158,9 +158,9 @@ export const projects: Project[] = [
                 { text: '[*] Loading log patterns...', color: 'text-blue-400' },
                 { text: '[*] Initializing Markov chain transition matrix...', color: 'text-blue-400' },
                 { text: '[!] ANOMALY Detected (Z-Score: 4.2): Auth Spike', color: 'text-red-500' },
-                { text: '    └── Source: 192.168.1.105 (User: admin)', color: 'text-gray-400' },
+                { text: '    â””â”€â”€ Source: 192.168.1.105 (User: admin)', color: 'text-gray-400' },
                 { text: '[+] Markov Chain: Deviation from standard transition matrix', color: 'text-yellow-400' },
-                { text: '[*] Report generated → analysis_report.json', color: 'text-green-400' },
+                { text: '[*] Report generated â†’ analysis_report.json', color: 'text-green-400' },
             ],
         },
     },
@@ -298,7 +298,7 @@ export const projects: Project[] = [
     },
     {
         slug: 'dizzy',
-        title: 'Dizzy',
+        title: 'Dizzy — Voice-to-Figma AI Interface Builder',
         subtitle: 'Voice-to-Native-Figma UI Creation Concept',
         status: 'concept',
         category: 'Design Engineering',
@@ -318,7 +318,7 @@ export const projects: Project[] = [
         bullets: [
             { label: 'Native Output', text: 'Manipulates native Figma objects via Figma MCP instead of generating images.' },
             { label: 'Semantic Buffer', text: 'Maintains structured design state to allow progressive and contextual modifications.' },
-            { label: 'Workflow', text: 'JEV/Streaming Voice → Agent Intent → Design Operations → Figma MCP.' },
+            { label: 'Workflow', text: 'JEV/Streaming Voice â†’ Agent Intent â†’ Design Operations â†’ Figma MCP.' },
             { label: 'Vision', text: 'Expanding into an agentic product design loop integrating visual comparison and code generation.' },
         ],
         links: [],
@@ -334,3 +334,4 @@ export const projects: Project[] = [
 export function getProjectBySlug(slug: string): Project | undefined {
     return projects.find((p) => p.slug === slug);
 }
+

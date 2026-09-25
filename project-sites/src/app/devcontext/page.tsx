@@ -1,18 +1,42 @@
 import { projects } from '@/lib/projects';
 import Link from 'next/link';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 
 export const metadata = {
-    title: 'DevContext.AI | Engineering Case Study',
-    description: 'AI Repository Intelligence for Recruiters',
+    title: 'Klarity — AI Repository Intelligence for Technical Recruiting',
+    description: 'AI Repository Intelligence for Technical Recruiting featuring repository grounding.',
+    alternates: {
+        canonical: 'https://devcontext.rounakneema.in'
+    }
 };
 
 export default function DevContextPage() {
     const project = projects.find(p => p.slug === 'devcontext');
 
+    const projectData = {
+        name: 'Klarity',
+        url: 'https://devcontext.rounakneema.in',
+        description: 'AI Repository Intelligence for Technical Recruiting.',
+        schemaCategory: 'SoftwareApplication',
+        programmingLanguage: 'React, AWS Serverless',
+        faq: [
+            { question: "What is Klarity?", answer: "Klarity is an AI Repository Intelligence tool designed for technical recruiting to provide accurate insights." },
+            { question: "How does it prevent hallucinated assessments?", answer: "It utilizes repository grounding to anchor AI responses in actual codebase reality, significantly reducing hallucinated assessments." },
+            { question: "How does repository grounding work?", answer: "Repository grounding works by analyzing the candidate's actual code repository, understanding its context, and feeding this precise context to the AI (Amazon Bedrock / Claude)." },
+            { question: "What is the primary tech stack?", answer: "The primary stack includes React for the frontend and AWS Serverless for scalable backend processing." },
+            { question: "Who built Klarity?", answer: "Klarity was built by Rounak Neema." },
+            { question: "What AI models does Klarity use?", answer: "Klarity leverages Amazon Bedrock and Claude for its AI capabilities." },
+            { question: "What is the key differentiator of Klarity?", answer: "The key differentiator is its robust repository grounding mechanism." }
+        ]
+    };
+
     if (!project) return null;
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#fff] selection:text-[#000] overflow-x-hidden">
+            <ProjectJsonLd project={projectData} />
             {/* Header */}
             <header className="p-4 md:p-8 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
                 <div className="flex gap-4">
@@ -27,24 +51,23 @@ export default function DevContextPage() {
                 </nav>
             </header>
 
-            {/* Hero */}
-            <section className="p-4 md:p-8 lg:p-16 relative">
-                <div className="absolute top-0 right-0 p-16 text-2xl font-bold text-[#1a1a1a] select-none pointer-events-none leading-none -z-10 tracking-tighter mix-blend-difference">
-                    DCX:01
-                </div>
-                <div className="max-w-5xl">
-                    <h1 className="text-2xl font-bold uppercase tracking-tighter leading-[0.9] mb-8 text-white">
-                        {project.title.split(' / ').map((t, i) => (
-                            <span key={i} className="block hover:italic transition-all duration-300">
-                                {t}
-                            </span>
-                        ))}
-                    </h1>
-                    <p className="text-xl md:text-3xl font-light max-w-2xl text-[#888] mb-16 border-l-4 border-white pl-6">
-                        {project.subtitle}
-                    </p>
-                </div>
-            </section>
+                        <div className="p-4 md:p-8 lg:p-16 pt-12">
+                <EntityHeader 
+                    title="Klarity"
+                    subtitle="AI Repository Intelligence for Technical Recruiting"
+                    category="Recruiting Tech"
+                    status={project.status}
+                    language="React / AWS Serverless"
+                    architecture="/devcontext/architecture"
+                    docs="/devcontext/docs"
+                />
+                <ProjectFacts facts={[
+                    { label: "Built by", value: "Rounak Neema" },
+                    { label: "Primary Stack", value: "React & AWS Serverless" },
+                    { label: "AI Engine", value: "Amazon Bedrock / Claude" },
+                    { label: "Key Differentiator", value: "Repository Grounding" }
+                ]} />
+            </div>
 
             {/* Data Grid */}
             <section className="grid grid-cols-1 md:grid-cols-4 border-y border-[#333]">
@@ -130,6 +153,26 @@ export default function DevContextPage() {
                 </div>
             </section>
             
+            
+            {/* FAQ Section */}
+            <section className="p-4 md:p-8 lg:p-16 bg-[#000] border-t border-[#333]">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-white mb-8 border-l-4 border-white pl-4">Frequently Asked Questions</h2>
+                <div className="space-y-6 max-w-4xl">
+                    {projectData.faq.map((q, i) => (
+                        <div key={i} className="bg-[#111] border border-[#222] p-6">
+                            <h3 className="text-white font-bold mb-2">{q.question}</h3>
+                            <p className="text-[#aaa] text-sm leading-relaxed">{q.answer}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <div className="px-4 md:px-8 lg:px-16 pb-16 bg-[#0a0a0a]">
+                <RelatedProjects links={[
+                    { name: "SortMail", url: "/sortmail" },
+                    { name: "Portfolio", url: "/" }
+                ]} />
+            </div>
             {/* Footer */}
             <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
                 <div>DevContext.AI // {new Date().getFullYear()}</div>

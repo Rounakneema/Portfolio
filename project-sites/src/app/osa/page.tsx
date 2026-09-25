@@ -1,10 +1,16 @@
 import { Metadata } from 'next';
 import { getProjectBySlug } from '@/lib/projects';
 import Link from 'next/link';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
+
 
 export const metadata: Metadata = {
-    title: 'OSA - Offline Security Auditor',
-    description: 'Single-binary offline security auditor with built-in statistical detection engines (Z-Score & Markov Chains) — no runtime dependencies required.',
+  title: 'OSA — Offline Security Auditor for Air-Gapped Environments',
+  description: 'Single-binary offline security auditor for air-gapped security auditing. Features built-in statistical detection engines (Z-Score & Markov Chains).',
+  keywords: ['air-gapped security auditing', 'offline security auditor', 'Go security tool', 'Z-Score analytics'],
+  alternates: { canonical: 'https://osa.rounakneema.in' },
 };
 
 export default function OSAPage() {
@@ -74,42 +80,42 @@ export default function OSAPage() {
             `}} />
 
             {/* HEADER */}
-            <header className="px-6 py-12 md:py-16 border-b-4 border-[#333] grid-bg">
-                <div className="max-w-7xl mx-auto">
-                    {/* Navigation */}
-                    <nav className="mb-12 flex flex-wrap gap-4 border-b border-[#333] pb-6">
-                        <Link href="/" className="nav-link">← Index</Link>
-                        <Link href="/osa" className="nav-link active">Overview</Link>
-                        <Link href="/osa/architecture" className="nav-link">Architecture</Link>
-                        <Link href="/osa/decisions" className="nav-link">Decisions</Link>
-                        <Link href="/osa/docs" className="nav-link">Docs</Link>
-                    </nav>
+            
+            <ProjectJsonLd project={{
+                name: 'OSA',
+                url: 'https://osa.rounakneema.in',
+                description: 'Offline Security Auditor for Air-Gapped Environments',
+                programmingLanguage: 'Go',
+                schemaCategory: 'SoftwareApplication',
+                faq: [
+                    { question: "What is OSA?", answer: "OSA — Offline Security Auditor designed for air-gapped environments." },
+                    { question: "What is an offline security auditor?", answer: "It's a tool that analyzes security logs without requiring an active internet connection or external APIs." },
+                    { question: "How does OSA analyze security logs?", answer: "OSA uses statistical detection engines including Z-Score and Markov Chains." },
+                    { question: "Can OSA run without internet?", answer: "Yes, OSA is a single-binary application that requires zero runtime dependencies and no internet access." },
+                    { question: "What makes OSA suitable for air-gapped environments?", answer: "Its standalone nature, built-in analytics, and complete lack of external telemetry or API calls." },
+                    { question: "Who created OSA?", answer: "OSA was developed by Rounak Neema for specialized security environments." },
+                    { question: "What languages is OSA written in?", answer: "The primary language for OSA is Go." }
+                ]
+            }} />
+            <div className="max-w-7xl mx-auto px-6 pt-12 md:pt-16">
+                <EntityHeader 
+                    title="OSA" 
+                    subtitle="Offline Security Auditor for Air-Gapped Environments" 
+                    category="Security Auditing" 
+                    status="Stable" 
+                    language="Go" 
+                    docs="/osa/docs" 
+                    architecture="/osa/architecture" 
+                />
+                <ProjectFacts facts={[
+                    { label: 'Built by', value: 'Rounak Neema' },
+                    { label: 'Language', value: 'Go' },
+                    { label: 'Target', value: 'Linux/Windows/Docker logs' },
+                    { label: 'Analytics', value: 'Z-score & Markov Chains' },
+                    { label: 'Key Focus', value: 'air-gapped security auditing' }
+                ]} />
+            </div>
 
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-                        <h1 className="text-2xl font-black uppercase tracking-tighter text-glitch text-[#fff]" data-text={project.title}>
-                            {project.title}
-                        </h1>
-                        <div className="text-right mt-8 md:mt-0">
-                            <div className="text-sm uppercase tracking-widest text-gray-500 mb-2">Status</div>
-                            <div className="text-xl md:text-2xl font-bold bg-[#fff] text-[#000] px-3 py-1 inline-block">
-                                {project.status}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <p className="text-2xl font-bold text-gray-400 max-w-4xl leading-tight">
-                        {project.subtitle}
-                    </p>
-                    
-                    <div className="mt-12 flex flex-wrap gap-4">
-                        {project.tags.map((tag, i) => (
-                            <span key={i} className="px-4 py-2 text-sm md:text-base border border-gray-600 uppercase tracking-widest text-[#fff]">
-                                {tag.text}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </header>
 
             {/* ASYMMETRIC LAYOUT BODY */}
             <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -194,8 +200,48 @@ export default function OSAPage() {
                         </ul>
                     </section>
 
-                </div>
+                
+                    <section className="brutalist-border p-8 bg-[#0a0a0a]">
+                        <h2 className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-8 border-b border-[#333] pb-2">Frequently Asked Questions</h2>
+                        <div className="space-y-4">
+                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4">
+                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#00fff9] mr-4">01.</span> What is OSA?<span className="transition group-open:rotate-180">▼</span></summary>
+                                <p className="mt-4 text-gray-400 pl-8 font-mono">OSA — Offline Security Auditor designed for air-gapped environments.</p>
+                            </details>
+                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4">
+                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#00fff9] mr-4">02.</span> What is an offline security auditor?<span className="transition group-open:rotate-180">▼</span></summary>
+                                <p className="mt-4 text-gray-400 pl-8 font-mono">It's a tool that analyzes security logs without requiring an active internet connection or external APIs.</p>
+                            </details>
+                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4">
+                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#00fff9] mr-4">03.</span> How does OSA analyze security logs?<span className="transition group-open:rotate-180">▼</span></summary>
+                                <p className="mt-4 text-gray-400 pl-8 font-mono">OSA uses statistical detection engines including Z-Score and Markov Chains.</p>
+                            </details>
+                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4">
+                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#00fff9] mr-4">04.</span> Can OSA run without internet?<span className="transition group-open:rotate-180">▼</span></summary>
+                                <p className="mt-4 text-gray-400 pl-8 font-mono">Yes, OSA is a single-binary application that requires zero runtime dependencies and no internet access.</p>
+                            </details>
+                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4">
+                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#00fff9] mr-4">05.</span> What makes OSA suitable for air-gapped environments?<span className="transition group-open:rotate-180">▼</span></summary>
+                                <p className="mt-4 text-gray-400 pl-8 font-mono">Its standalone nature, built-in analytics, and complete lack of external telemetry or API calls.</p>
+                            </details>
+                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4">
+                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#00fff9] mr-4">06.</span> Who created OSA?<span className="transition group-open:rotate-180">▼</span></summary>
+                                <p className="mt-4 text-gray-400 pl-8 font-mono">OSA was developed by Rounak Neema for specialized security environments.</p>
+                            </details>
+                            <details className="group [&_summary::-webkit-details-marker]:hidden">
+                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#00fff9] mr-4">07.</span> What languages is OSA written in?<span className="transition group-open:rotate-180">▼</span></summary>
+                                <p className="mt-4 text-gray-400 pl-8 font-mono">The primary language for OSA is Go.</p>
+                            </details>
+                        </div>
+                    </section>
+</div>
             </div>
-        </main>
+        
+            <div className="max-w-7xl mx-auto px-6 pb-24">
+                <RelatedProjects links={[
+                    { name: 'Revealr — Adaptive Network Scanner', url: '/revealr' }
+                ]} />
+            </div>
+</main>
     );
 }

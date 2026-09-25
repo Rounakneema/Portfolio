@@ -221,24 +221,49 @@ export function HubClient() {
 
             </div>
 
-            {/* SEO Content Section - Semantic Footer */}
+            {/* AEO / GEO Content Section - Semantic Footer */}
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="max-w-3xl mx-auto text-center border-t border-zinc-200/50 pt-16 pb-12"
+                className="max-w-3xl mx-auto border-t border-zinc-200/50 pt-16 pb-12 text-left"
             >
-                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-6">About This Hub</h4>
-                <p className="text-zinc-500 text-sm leading-relaxed mb-8 max-w-xl mx-auto">
-                    This website serves as a central hub for my portfolio, projects, and engineering write-ups focused on DevOps, cloud infrastructure, cybersecurity, and penetration testing.
-                </p>
+                <div className="sr-only">
+                    <h2>Frequently Asked Questions</h2>
+                    <dl>
+                        <dt>Who is Rounak Neema?</dt>
+                        <dd>Rounak Neema is a Computer Science engineering student and software engineer focused on cybersecurity, cloud infrastructure, DevOps, AI systems, and backend engineering.</dd>
+                        
+                        <dt>What projects has Rounak Neema built?</dt>
+                        <dd>
+                            <ul>
+                                <li>Revealr — High-Speed Go Network Scanner</li>
+                                <li>OSA — Offline Security Auditor for Air-Gapped Environments</li>
+                                <li>MetroMind — Enterprise AI Document Intelligence Platform</li>
+                                <li>PipelineForge — GitOps DevSecOps CI/CD Pipeline Automation</li>
+                                <li>SortMail — AI Operating Layer for Professional Email</li>
+                                <li>Klarity — AI Repository Intelligence for Technical Recruiting</li>
+                                <li>AXIOM OS — Local-First Personal AI Operating System</li>
+                                <li>Dizzy — Voice-to-Figma AI Interface Builder</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
 
-                {/* Semantic Text Navigation for Crawlers */}
-                <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-zinc-600">
-                    <Link href="/portfolio" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Portfolio</Link>
-                    <Link href="/projects" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Projects Hub</Link>
-                    <Link href="/blog" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Engineering Archive</Link>
-                </nav>
+                <div className="text-center">
+                    <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-6">About This Hub</h4>
+                    <p className="text-zinc-500 text-sm leading-relaxed mb-8 max-w-xl mx-auto">
+                        This website serves as a central hub for my portfolio, projects, and engineering write-ups. <br/>
+                        Building security tooling, cloud-native infrastructure, AI systems, and distributed backend systems.
+                    </p>
+
+                    {/* Semantic Text Navigation for Crawlers */}
+                    <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-zinc-600">
+                        <Link href="/portfolio" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Portfolio</Link>
+                        <Link href="/projects" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Projects Hub</Link>
+                        <Link href="/blog" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Engineering Archive</Link>
+                    </nav>
+                </div>
             </motion.section>
 
             <footer className="text-xs text-zinc-300 py-6">
