@@ -35,7 +35,7 @@ export default function SortMailDocsPage() {
                 
                 {/* Intro */}
                 <div>
-                    <h1 className="text-2xl font-black uppercase tracking-tighter mb-6 text-white border-b-4 border-red-600 pb-4 inline-block">
+                    <h1 className="text-2xl font-black uppercase tracking-tighter mb-6 text-white border-b-4 border-amber-500 pb-4 inline-block">
                         Engineering Docs
                     </h1>
                     <p className="text-[#888] text-sm md:text-base leading-relaxed max-w-3xl border-l-2 border-[#333] pl-4">
@@ -46,7 +46,7 @@ export default function SortMailDocsPage() {
                 {/* Env Vars */}
                 <div>
                     <h2 className="text-2xl font-bold uppercase mb-4 text-white flex items-center gap-3">
-                        <span className="bg-red-900 text-white px-2 py-0.5 text-xs">01</span>
+                        <span className="bg-amber-900 text-white px-2 py-0.5 text-xs">01</span>
                         Environment Configuration
                     </h2>
                     <div className="bg-[#0a0a0a] border border-[#222] p-6 text-xs md:text-sm text-[#ccc] overflow-x-auto space-y-4">
@@ -76,7 +76,7 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxxxxx`}
                 {/* Deployment */}
                 <div>
                     <h2 className="text-2xl font-bold uppercase mb-4 text-white flex items-center gap-3">
-                        <span className="bg-red-900 text-white px-2 py-0.5 text-xs">02</span>
+                        <span className="bg-amber-900 text-white px-2 py-0.5 text-xs">02</span>
                         Deployment Pipeline
                     </h2>
                     <div className="bg-black border border-[#333] p-6 font-mono text-xs md:text-sm text-[#4af626] overflow-x-auto space-y-2">
@@ -97,7 +97,7 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxxxxx`}
                 {/* Webhooks */}
                 <div>
                     <h2 className="text-2xl font-bold uppercase mb-4 text-white flex items-center gap-3">
-                        <span className="bg-red-900 text-white px-2 py-0.5 text-xs">03</span>
+                        <span className="bg-amber-900 text-white px-2 py-0.5 text-xs">03</span>
                         Webhook Payloads
                     </h2>
                     <p className="text-[#888] text-sm mb-4">

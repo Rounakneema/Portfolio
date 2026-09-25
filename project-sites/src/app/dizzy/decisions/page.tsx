@@ -20,9 +20,7 @@ export default function DizzyDecisionsPage() {
       <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
 
       <header className="mb-16 relative z-10">
-        <Link href="/dizzy" className="text-[#ff3366] hover:text-white uppercase tracking-widest text-sm mb-8 inline-block border-b border-[#ff3366] hover:border-white transition-colors">
-          &lt; Back to Dizzy
-        </Link>
+        
         <h1 className="text-2xl lg:text-[6rem] font-black uppercase tracking-tighter leading-none mb-6 text-white mix-blend-difference">
           TRADE-OFFS & DECISIONS
         </h1>

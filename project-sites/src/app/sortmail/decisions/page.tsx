@@ -35,7 +35,7 @@ export default function DecisionsPage() {
                 <h1 className="text-2xl font-black uppercase tracking-tighter mb-4">
                     Decisions & Trade-offs
                 </h1>
-                <p className="text-[#888] max-w-2xl text-sm md:text-base leading-relaxed border-l-2 border-red-600 pl-4 py-1">
+                <p className="text-[#888] max-w-2xl text-sm md:text-base leading-relaxed border-l-2 border-amber-500 pl-4 py-1">
                     An unfiltered log of our engineering compromises, performance benchmarks, and the explicit rejection of generic SaaS paradigms.
                 </p>
             </header>

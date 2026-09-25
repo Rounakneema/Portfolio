@@ -27,9 +27,7 @@ export default function DizzyDocsPage() {
       {/* Header */}
       <header className="mb-16 border-b-4 border-[#333] pb-8 relative z-10">
         <div className="flex items-center gap-4 mb-4">
-          <Link href="/dizzy" className="text-gray-500 hover:text-[#ff3366] uppercase font-bold text-sm transition-colors">
-            ← BACK TO SYSTEM
-          </Link>
+          
         </div>
         <h1 className="text-2xl font-black uppercase tracking-tighter leading-none mb-6 text-white">
           ENGINEERING <span className="neon-accent">DOCS</span>

@@ -33,7 +33,7 @@ export default function ArchitecturePage() {
                 <h1 className="text-2xl font-black uppercase tracking-tighter mb-4">
                     System Topology
                 </h1>
-                <p className="text-[#888] max-w-2xl text-sm md:text-base leading-relaxed border-l-2 border-red-600 pl-4 py-1">
+                <p className="text-[#888] max-w-2xl text-sm md:text-base leading-relaxed border-l-2 border-amber-500 pl-4 py-1">
                     An in-depth look at the internal routing, ingestion pipelines, and the Go-based concurrency models that power real-time email intelligence.
                 </p>
             </header>

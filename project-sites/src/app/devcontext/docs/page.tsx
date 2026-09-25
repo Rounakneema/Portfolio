@@ -7,39 +7,39 @@ export const metadata = {
 
 export default function DevContextDocsPage() {
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#fff] selection:text-[#000] overflow-x-hidden">
+        <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#1f6feb] selection:text-[#fff] overflow-x-hidden">
             {/* Header */}
-            <header className="p-4 md:p-8 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
+            <header className="p-4 md:p-8 border-b border-[#1f6feb]/30 flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
                 <div className="flex gap-4">
-                    <span className="text-white bg-[#222] px-2 py-1">Project Ref: devcontext</span>
-                    <span className="text-white bg-[#222] px-2 py-1">Document: API_SPECS</span>
+                    <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Project Ref: devcontext</span>
+                    <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Document: API_SPECS</span>
                 </div>
-                <nav className="flex gap-6 border-l border-[#333] pl-6">
-                    <Link href="/devcontext" className="text-[#666] hover:text-white transition-colors">Overview</Link>
-                    <Link href="/devcontext/architecture" className="text-[#666] hover:text-white transition-colors">Architecture</Link>
-                    <Link href="/devcontext/decisions" className="text-[#666] hover:text-white transition-colors">Decisions</Link>
-                    <Link href="/devcontext/docs" className="text-white border-b border-white hover:text-white transition-colors">Docs</Link>
+                <nav className="flex gap-6 border-l border-[#1f6feb]/30 pl-6 text-sm">
+                    <Link href="/devcontext" className="text-[#666] hover:text-[#58a6ff] transition-colors">Analysis Pipeline</Link>
+                    <Link href="/devcontext/architecture" className="text-[#666] hover:text-[#58a6ff] transition-colors">Architecture</Link>
+                    <Link href="/devcontext/decisions" className="text-[#666] hover:text-[#58a6ff] transition-colors">Interview Engine</Link>
+                    <Link href="/devcontext/docs" className="text-[#666] hover:text-[#58a6ff] transition-colors">Docs</Link>
                 </nav>
             </header>
 
-            <section className="p-4 md:p-8 lg:p-16 border-b border-[#333]">
-                <h1 className="text-2xl font-bold uppercase tracking-tighter mb-4 text-white">
+            <section className="p-4 md:p-8 lg:p-16 border-b border-[#1f6feb]/30">
+                <h1 className="text-2xl font-bold uppercase tracking-tighter mb-4 text-[#58a6ff]">
                     API & Schema Documentation
                 </h1>
-                <p className="text-[#888] max-w-2xl border-l-4 border-white pl-4">
+                <p className="text-[#888] max-w-2xl border-l-4 border-[#1f6feb] pl-4">
                     Internal technical references, payload schemas, and SAM template configurations for DevContext.AI.
                 </p>
             </section>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 border-b border-[#333]">
+            <div className="grid grid-cols-1 lg:grid-cols-4 border-b border-[#1f6feb]/30">
                 {/* Sidebar Navigation */}
                 <aside className="lg:col-span-1 border-b lg:border-b-0 lg:border-r border-[#333] p-4 md:p-8 bg-[#050505]">
                     <div className="text-xs text-[#555] uppercase tracking-widest mb-6">Table of Contents</div>
                     <ul className="space-y-4 text-sm text-[#888]">
-                        <li><a href="#rest-api" className="hover:text-white transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> REST API</a></li>
-                        <li><a href="#websocket" className="hover:text-white transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> WebSocket Events</a></li>
-                        <li><a href="#aws-sam" className="hover:text-white transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> AWS SAM Config</a></li>
-                        <li><a href="#terminal" className="hover:text-white transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> Deployment Trace</a></li>
+                        <li><a href="#rest-api" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> REST API</a></li>
+                        <li><a href="#websocket" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> WebSocket Events</a></li>
+                        <li><a href="#aws-sam" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> AWS SAM Config</a></li>
+                        <li><a href="#terminal" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> Deployment Trace</a></li>
                     </ul>
                 </aside>
 
@@ -48,7 +48,7 @@ export default function DevContextDocsPage() {
                     
                     {/* REST API Section */}
                     <section id="rest-api" className="scroll-mt-16">
-                        <h2 className="text-2xl font-bold uppercase text-white mb-8 border-b border-[#333] pb-4 flex items-center gap-4">
+                        <h2 className="text-2xl font-bold uppercase text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
                             <span className="text-[#555]">01.</span> API Gateway REST Integration
                         </h2>
                         
@@ -91,7 +91,7 @@ export default function DevContextDocsPage() {
 
                     {/* WebSocket Section */}
                     <section id="websocket" className="scroll-mt-16">
-                        <h2 className="text-2xl font-bold uppercase text-white mb-8 border-b border-[#333] pb-4 flex items-center gap-4">
+                        <h2 className="text-2xl font-bold uppercase text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
                             <span className="text-[#555]">02.</span> WebSocket Streaming Protocol
                         </h2>
                         
@@ -101,7 +101,7 @@ export default function DevContextDocsPage() {
 
                         <div className="space-y-6">
                             <div className="border-l border-[#333] pl-6">
-                                <h4 className="text-white font-bold text-sm uppercase mb-2">Event: ANALYSIS_PROGRESS</h4>
+                                <h4 className="text-[#58a6ff] font-bold text-sm uppercase mb-2">Event: ANALYSIS_PROGRESS</h4>
                                 <div className="bg-[#050505] border border-[#222] p-4 text-xs text-[#d3d0c8] overflow-x-auto">
 {`{
   "type": "ANALYSIS_PROGRESS",
@@ -116,7 +116,7 @@ export default function DevContextDocsPage() {
                             </div>
                             
                             <div className="border-l border-[#333] pl-6">
-                                <h4 className="text-white font-bold text-sm uppercase mb-2">Event: INTERVIEW_CHUNK</h4>
+                                <h4 className="text-[#58a6ff] font-bold text-sm uppercase mb-2">Event: INTERVIEW_CHUNK</h4>
                                 <div className="bg-[#050505] border border-[#222] p-4 text-xs text-[#d3d0c8] overflow-x-auto">
 {`{
   "type": "INTERVIEW_CHUNK",
@@ -137,7 +137,7 @@ export default function DevContextDocsPage() {
 
                     {/* AWS SAM Section */}
                     <section id="aws-sam" className="scroll-mt-16">
-                        <h2 className="text-2xl font-bold uppercase text-white mb-8 border-b border-[#333] pb-4 flex items-center gap-4">
+                        <h2 className="text-2xl font-bold uppercase text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
                             <span className="text-[#555]">03.</span> Infrastructure as Code (SAM)
                         </h2>
                         
@@ -179,12 +179,12 @@ export default function DevContextDocsPage() {
 
                     {/* Terminal Trace */}
                     <section id="terminal" className="scroll-mt-16">
-                        <h2 className="text-2xl font-bold uppercase text-white mb-8 border-b border-[#333] pb-4 flex items-center gap-4">
+                        <h2 className="text-2xl font-bold uppercase text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
                             <span className="text-[#555]">04.</span> Pipeline Deployment Trace
                         </h2>
 
                         <div className="bg-[#000] border border-[#333] rounded-sm overflow-hidden">
-                            <div className="flex items-center gap-2 px-4 py-2 bg-[#111] border-b border-[#333]">
+                            <div className="flex items-center gap-2 px-4 py-2 bg-[#111] border-b border-[#1f6feb]/30">
                                 <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
                                 <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
                                 <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
@@ -208,7 +208,7 @@ export default function DevContextDocsPage() {
                                 <div>===============================</div>
                                 <div className="text-[#ffffb6] mb-2">Waiting for changeset to be created..</div>
                                 
-                                <div className="grid grid-cols-4 gap-4 text-[#888] border-b border-[#333] pb-1 mb-2">
+                                <div className="grid grid-cols-4 gap-4 text-[#888] border-b border-[#1f6feb]/30 pb-1 mb-2">
                                     <div className="col-span-1">Operation</div>
                                     <div className="col-span-2">LogicalResourceId</div>
                                     <div className="col-span-1">ResourceType</div>
@@ -230,8 +230,8 @@ export default function DevContextDocsPage() {
                                 <div>UPDATE_IN_PROGRESS   AWS::CloudFormation::Stack  devcontext-prod</div>
                                 <div className="text-[#a8ff60] mb-4">UPDATE_COMPLETE      AWS::CloudFormation::Stack  devcontext-prod</div>
                                 
-                                <div className="text-white font-bold">Successfully created/updated stack - devcontext-prod in us-east-1</div>
-                                <div className="text-white animate-pulse mt-2">_</div>
+                                <div className="text-[#58a6ff] font-bold">Successfully created/updated stack - devcontext-prod in us-east-1</div>
+                                <div className="text-[#58a6ff] animate-pulse mt-2">_</div>
                             </div>
                         </div>
                     </section>
@@ -241,7 +241,7 @@ export default function DevContextDocsPage() {
             {/* Footer */}
             <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
                 <div>DevContext.AI // Documentation</div>
-                <Link href="/devcontext" className="hover:text-white transition-colors flex items-center gap-2">
+                <Link href="/devcontext" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2">
                     <span className="w-4 h-[1px] bg-current"></span>
                     Back to Project
                 </Link>
