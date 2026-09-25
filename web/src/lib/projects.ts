@@ -198,41 +198,6 @@ export const projects: Project[] = [
         ],
     },
     {
-        slug: 'spqr',
-        title: 'SPQR (Contribution)',
-        subtitle: 'Smart Packet Query & Routing Engine / Postgres Sharding',
-        status: 'active',
-        category: 'Distributed Systems',
-        subdomain: 'spqr.rounakneema.in',
-        tags: [
-            { text: 'GO', type: 'blue' },
-            { text: 'NETWORKING', type: 'green' },
-            { text: 'OPEN SOURCE', type: 'red' },
-        ],
-        tech: ['Go', 'PostgreSQL', 'Distributed Routing', 'Observability'],
-        challenge:
-            'Needed real-time Request Per Second (RPS) tracking across a distributed PostgreSQL sharding router to diagnose performance bottlenecks.',
-        solution:
-            'Implemented native RPS observability instrumentation into the SPQR routing layer for production-grade throughput visibility.',
-        fullDescription:
-            'SPQR is a PostgreSQL distributed sharding router. My open-source contribution involved implementing native Request Per Second (RPS) tracking across the distributed routing layer. This added critical observability and performance instrumentation to a production-grade Go codebase, allowing administrators to properly diagnose routing bottlenecks and throughput issues.',
-        bullets: [
-            { label: 'Contribution', text: 'Implemented RPS observability for distributed PostgreSQL routing.' },
-            { label: 'Impact', text: 'Provided crucial visibility into query throughput to diagnose bottlenecks.' },
-            { label: 'Skills', text: 'Demonstrated ability to work within an external, serious production-grade Go codebase.' },
-            { label: 'Environment', text: 'Navigated pull requests, code reviews, and distributed systems architecture.' },
-        ],
-        links: [
-            { label: 'VIEW SOURCE', icon: 'Github', primary: true, url: 'https://github.com/pg-sharding/spqr' },
-        ],
-        metrics: [
-            { label: 'Language', value: 'Go' },
-            { label: 'Database', value: 'PostgreSQL' },
-            { label: 'Role', value: 'Contributor' },
-            { label: 'Focus', value: 'Observability' },
-        ],
-    },
-    {
         slug: 'pipelineforge',
         title: 'PipelineForge',
         subtitle: 'DevSecOps GitOps Pipeline Automation',

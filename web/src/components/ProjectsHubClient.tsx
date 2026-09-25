@@ -52,8 +52,21 @@ function HeroCard({ project }: { project: Project }) {
                                 <span key={t.text} className="text-[10px] font-bold font-mono px-2.5 py-1 rounded border border-zinc-600 text-zinc-400 tracking-wider">{t.text}</span>
                             ))}
                         </div>
-                        <div className="flex items-center gap-2 text-sm font-bold text-blue-400 group-hover:gap-4 transition-all">
-                            VIEW PROJECT <ArrowUpRight className="w-4 h-4" />
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2 text-sm font-bold text-blue-400 group-hover:gap-3 transition-all">
+                                READ SPEC <ArrowUpRight className="w-4 h-4" />
+                            </div>
+                            {project.subdomain && (
+                                <a 
+                                    href={`https://${project.subdomain}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 flex items-center gap-1.5 transition-all shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] active:translate-y-[2px] active:shadow-none"
+                                    onClick={e => e.stopPropagation()}
+                                >
+                                    LAUNCH SITE <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
+                            )}
                         </div>
                     </div>
                     {project.terminal && (
@@ -117,6 +130,21 @@ function ProjectCard({ project, index, size = 'md' }: { project: Project; index:
                         {project.challenge}
                     </p>
 
+                    {/* Launch Site Button */}
+                    {project.subdomain && (
+                        <div className="mb-6">
+                            <a
+                                href={`https://${project.subdomain}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 bg-black hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-xs tracking-widest uppercase transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,0.2)] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)] active:translate-y-[1px] active:shadow-none"
+                                onClick={e => e.stopPropagation()}
+                            >
+                                LAUNCH SITE <ExternalLink className="w-3.5 h-3.5" />
+                            </a>
+                        </div>
+                    )}
+
                     {/* Metrics row */}
                     {project.metrics && (
                         <div className={`grid gap-3 pt-4 border-t border-gray-100 mb-4 ${project.metrics.length >= 4 ? 'grid-cols-4' : 'grid-cols-2'}`}>
@@ -179,9 +207,21 @@ function ConceptCard({ project, index }: { project: Project; index: number }) {
                         ))}
                     </div>
                     <p className="text-gray-600 text-base leading-relaxed line-clamp-3 flex-grow mb-6">{project.challenge}</p>
-                    <div className="flex items-center gap-2 text-xs font-mono text-purple-400 group-hover:text-purple-600 transition-colors mt-auto pt-4 border-t border-purple-100">
-                        <ExternalLink className="w-3.5 h-3.5" />{project.subdomain}
-                    </div>
+                    
+                    {/* Launch Site Button */}
+                    {project.subdomain && (
+                        <div className="mb-2">
+                            <a
+                                href={`https://${project.subdomain}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg text-xs tracking-widest uppercase transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.15)] active:translate-y-[1px] active:shadow-none"
+                                onClick={e => e.stopPropagation()}
+                            >
+                                LAUNCH SITE <ExternalLink className="w-3.5 h-3.5" />
+                            </a>
+                        </div>
+                    )}
                 </div>
             </Link>
         </motion.div>

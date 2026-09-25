@@ -54,25 +54,32 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                             <span className="text-[10px] font-mono text-gray-500 border border-gray-200 px-3 py-1 rounded-full">
                                 {project.category}
                             </span>
-                            <a
-                                href={`https://${project.subdomain}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-[10px] font-mono text-blue-500 hover:text-blue-700 transition-colors"
-                                onClick={e => e.stopPropagation()}
-                            >
-                                <ExternalLink className="w-3.5 h-3.5" />{project.subdomain}
-                            </a>
                         </div>
 
                         {/* Giant title + subtitle inline */}
-                        <div className="flex flex-wrap items-baseline gap-5">
-                            <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-black leading-none">
-                                {project.title}
-                            </h1>
-                            <span className="text-lg md:text-xl text-gray-500 font-medium leading-tight max-w-sm">
-                                {project.subtitle}
-                            </span>
+                        <div className="flex flex-col gap-6">
+                            <div className="flex flex-wrap items-baseline gap-5">
+                                <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-black leading-none hover:text-blue-600 transition-colors">
+                                    <a href={`https://${project.subdomain}`} target="_blank" rel="noopener noreferrer">
+                                        {project.title}
+                                    </a>
+                                </h1>
+                                <span className="text-lg md:text-xl text-gray-500 font-medium leading-tight max-w-sm">
+                                    {project.subtitle}
+                                </span>
+                            </div>
+                            {project.subdomain && (
+                                <a
+                                    href={`https://${project.subdomain}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 text-sm md:text-base transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black w-fit uppercase tracking-widest hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-[6px] active:shadow-none"
+                                    onClick={e => e.stopPropagation()}
+                                >
+                                    Launch Project Site
+                                    <ExternalLink className="w-5 h-5" />
+                                </a>
+                            )}
                         </div>
                     </div>
 
