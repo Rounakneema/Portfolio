@@ -1,172 +1,115 @@
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ExternalLink, Github, Terminal, Zap, Database, Puzzle, ChevronRight } from 'lucide-react';
+import {
+  Activity,
+  ArrowRight,
+  ArrowUpRight,
+  ChevronRight,
+  CircleDotDashed,
+  Command,
+  Database,
+  Github,
+  Layers3,
+  Network,
+  Radar,
+  ShieldCheck,
+  Terminal,
+  Zap,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Revealr — Adaptive Network Scanner & Vulnerability Mapper',
-    description: 'High-performance Go-based network scanner achieving 50,000 ports/min with stateful SQLite-backed scanning, network drift detection, and modular Python vulnerability mapping.',
-    keywords: [
-        'Go network scanner', 'port scanner', 'vulnerability mapper', 'network security',
-        'high performance port scanning', 'network drift detection', 'SQLite stateful scanner',
-        'Python plugin scanner', 'nmap alternative', 'Go security tools'
-    ],
-    alternates: { canonical: 'https://revealr.rounakneema.in' },
-    openGraph: {
-        title: 'Revealr — Adaptive Network Scanner',
-        description: 'High-concurrency Go network scanner. 50k ports/min. Stateful. Extensible.',
-        url: 'https://revealr.rounakneema.in',
-        siteName: 'Revealr',
-        type: 'website',
-    },
+  title: 'Revealr — Adaptive Network Scanner & Vulnerability Mapper',
+  description: 'High-performance Go-based network scanner with stateful scan history, network drift detection, and modular Python vulnerability mapping.',
+  keywords: ['Go network scanner', 'port scanner', 'vulnerability mapper', 'network security', 'network drift detection', 'SQLite stateful scanner'],
+  alternates: { canonical: 'https://revealr.rounakneema.in' },
+  openGraph: {
+    title: 'Revealr — Adaptive Network Scanner',
+    description: 'High-concurrency network visibility, with memory.',
+    url: 'https://revealr.rounakneema.in',
+    siteName: 'Revealr',
+    type: 'website',
+  },
 };
 
+const capabilities = [
+  { icon: Zap, eyebrow: '01 / Speed', title: 'Move at network speed.', description: 'A bounded goroutine engine and raw socket workflow keep discovery rapid without turning every scan into a waiting game.', accent: 'text-lime-300', iconBg: 'bg-lime-400/10 border-lime-400/20' },
+  { icon: Database, eyebrow: '02 / Memory', title: 'Know what changed.', description: 'SQLite-backed scan history turns each run into a baseline, so new services and disappearing assets are immediately visible.', accent: 'text-sky-300', iconBg: 'bg-sky-400/10 border-sky-400/20' },
+  { icon: Layers3, eyebrow: '03 / Extensibility', title: 'Make it your own.', description: 'Use the Python plugin bridge to add bespoke fingerprints and offline checks without changing the scanning core.', accent: 'text-violet-300', iconBg: 'bg-violet-400/10 border-violet-400/20' },
+];
+
+const explorerLinks = [
+  { href: '/revealr/architecture', title: 'Architecture', detail: 'The engine, state layer, plugin bridge, and output pipeline.' },
+  { href: '/revealr/benchmarks', title: 'Benchmarks', detail: 'Throughput methodology and performance results.' },
+  { href: '/revealr/security', title: 'Security model', detail: 'Profiles, controls, and responsible-use guardrails.' },
+  { href: '/revealr/docs', title: 'Documentation', detail: 'CLI flags, output formats, and plugin workflows.' },
+];
+
 export default function RevealrHome() {
-    return (
-        <div>
-            {/* Hero */}
-            <section className="max-w-6xl mx-auto px-6 pt-24 pb-20">
-                <div className="mb-6 flex items-center gap-3">
-                    <span className="flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-green-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                    </span>
-                    <span className="text-green-400 text-xs tracking-widest uppercase">Active · Production Ready</span>
-                </div>
+  return (
+    <div className="relative isolate overflow-hidden bg-[#080b0a]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px] overflow-hidden">
+        <div className="absolute left-1/2 top-[-330px] h-[730px] w-[730px] -translate-x-1/2 rounded-full border border-lime-300/10 bg-lime-400/[0.035] shadow-[0_0_150px_45px_rgba(132,204,22,0.08)]" />
+        <div className="absolute left-1/2 top-[-125px] h-[410px] w-[410px] -translate-x-1/2 rounded-full border border-lime-300/10" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(163,230,53,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(163,230,53,0.025)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
+      </div>
 
-                <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white leading-none mb-6">
-                    Revealr
-                </h1>
-                <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl leading-relaxed mb-4">
-                    Adaptive high-concurrency network scanner and vulnerability mapping platform.
-                </p>
-                <p className="text-zinc-500 text-base max-w-xl leading-relaxed mb-12">
-                    Built in Go. 50,000 ports/minute. Stateful scanning with SQLite-backed network drift detection and a modular Python plugin system for offline vulnerability mapping.
-                </p>
-
-                <div className="flex flex-wrap gap-4 mb-20">
-                    <a href="https://github.com/rounakneema/Revealr" target="_blank" rel="noopener noreferrer"
-                        className="flex items-center gap-2.5 px-6 py-3 bg-green-500 text-black font-black rounded-lg hover:bg-green-400 transition-colors">
-                        <Github className="w-4 h-4" /> View Source
-                    </a>
-                    <Link href="/revealr/docs"
-                        className="flex items-center gap-2.5 px-6 py-3 border border-zinc-700 text-zinc-300 font-bold rounded-lg hover:border-white hover:text-white transition-all">
-                        Documentation <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    <Link href="/revealr/benchmarks"
-                        className="flex items-center gap-2.5 px-6 py-3 border border-zinc-700 text-zinc-300 font-bold rounded-lg hover:border-white hover:text-white transition-all">
-                        Benchmarks <ArrowRight className="w-4 h-4" />
-                    </Link>
-                </div>
-
-                {/* Stats Row */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-20 border-b border-zinc-800">
-                    {[
-                        { value: '50K', unit: 'ports/min', label: 'Throughput' },
-                        { value: 'Go', unit: '+ Python', label: 'Stack' },
-                        { value: 'SQLite', unit: 'Stateful', label: 'Persistence' },
-                        { value: '3', unit: 'Scan Profiles', label: 'IDS Evasion' },
-                    ].map(s => (
-                        <div key={s.label}>
-                            <div className="text-green-400 text-3xl font-black">{s.value}</div>
-                            <div className="text-zinc-500 text-xs">{s.unit}</div>
-                            <div className="text-zinc-400 text-sm mt-1">{s.label}</div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Terminal Demo */}
-            <section className="max-w-6xl mx-auto px-6 py-20">
-                <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Quick Start</div>
-                <div className="bg-zinc-950 rounded-xl border border-zinc-800 overflow-hidden shadow-2xl">
-                    <div className="flex items-center gap-2 px-6 py-4 border-b border-zinc-800 bg-zinc-900">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span className="ml-4 text-zinc-500 text-xs">revealr — bash</span>
-                    </div>
-                    <div className="p-8 text-sm space-y-3">
-                        <div className="flex gap-2">
-                            <span className="text-blue-400">➜</span>
-                            <span className="text-zinc-500">~</span>
-                            <span className="text-white">./revealr -target 10.10.11.0/24 --rate 50000</span>
-                        </div>
-                        <div className="pl-4 space-y-2 border-l-2 border-zinc-800 mt-4">
-                            <div className="text-green-400">[+] Target: 10.10.11.15 (Linux/Ubuntu)</div>
-                            <div className="text-zinc-300 pl-4">├── 22/tcp  OPEN  (ssh)</div>
-                            <div className="text-zinc-300 pl-4">├── 80/tcp  OPEN  (http) → nginx/1.18.0</div>
-                            <div className="text-yellow-400 pl-4">└── 8080/tcp OPEN (http) → Node.js Express</div>
-                            <div className="text-red-400">[DIFF] New service detected since last scan: 8080/tcp</div>
-                            <div className="text-blue-400">[*] Scan complete in 0.8s (50k pps)</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Feature Pillars */}
-            <section className="max-w-6xl mx-auto px-6 py-20 border-t border-zinc-800">
-                <div className="text-xs text-zinc-500 uppercase tracking-widest mb-12">// Core Capabilities</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {[
-                        {
-                            icon: Zap,
-                            title: 'High-Concurrency Engine',
-                            desc: 'Raw socket packet generation using Go goroutines achieves 50k ports/minute throughput on local networks.',
-                            color: 'text-green-400',
-                        },
-                        {
-                            icon: Database,
-                            title: 'Stateful Persistence',
-                            desc: 'SQLite-backed scan state enables scan resumption after interruption and network drift detection between runs.',
-                            color: 'text-blue-400',
-                        },
-                        {
-                            icon: Puzzle,
-                            title: 'Python Plugin System',
-                            desc: 'Extend fingerprinting and vulnerability checks without recompiling the core binary using the Python plugin IPC bridge.',
-                            color: 'text-purple-400',
-                        },
-                        {
-                            icon: Terminal,
-                            title: 'Scan Profiles',
-                            desc: 'Paranoid, Stealthy, and Polite profiles control timing behavior to adapt to IDS/IPS environments.',
-                            color: 'text-yellow-400',
-                        },
-                    ].map(f => (
-                        <div key={f.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-zinc-600 transition-colors">
-                            <f.icon className={`w-7 h-7 ${f.color} mb-4`} />
-                            <h3 className="text-white font-bold text-base mb-3">{f.title}</h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed">{f.desc}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Technical Deep-Dive Links */}
-            <section className="max-w-6xl mx-auto px-6 py-20 border-t border-zinc-800">
-                <div className="text-xs text-zinc-500 uppercase tracking-widest mb-12">// Explore the Engineering</div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {[
-                        { href: '/revealr/architecture', title: 'System Architecture', desc: 'Scanner engine, SQLite state layer, Python IPC bridge, and output pipeline.' },
-                        { href: '/revealr/benchmarks', title: 'Performance Benchmarks', desc: 'Measured throughput, test methodology, and comparison vs. nmap and masscan.' },
-                        { href: '/revealr/security', title: 'Security Model', desc: 'Scan profiles, IDS-awareness, network timing controls, and responsible use.' },
-                        { href: '/revealr/docs', title: 'Documentation', desc: 'CLI flags, plugin API reference, output formats, and example workflows.' },
-                        { href: '/revealr/changelog', title: 'Changelog', desc: 'Development history, version milestones, and feature additions.' },
-                        { href: 'https://github.com/rounakneema/Revealr', title: 'Source Code', desc: 'Full Go and Python source on GitHub.', external: true },
-                    ].map(l => (
-                        <Link key={l.href} href={l.href}
-                            {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } as Record<string, string> : {})}
-                            className="group flex items-start justify-between gap-4 p-6 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-green-500/50 hover:bg-zinc-800 transition-all">
-                            <div>
-                                <h3 className="text-white font-bold text-sm mb-2 group-hover:text-green-400 transition-colors">{l.title}</h3>
-                                <p className="text-zinc-500 text-sm leading-relaxed">{l.desc}</p>
-                            </div>
-                            <ChevronRight className="w-4 h-4 text-zinc-600 shrink-0 group-hover:text-green-400 group-hover:translate-x-1 transition-all mt-0.5" />
-                        </Link>
-                    ))}
-                </div>
-            </section>
-
+      <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-lime-300/15 bg-lime-300/[0.07] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-lime-200">
+            <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-300 opacity-75" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime-300" /></span>
+            Built for authorized assessments
+          </div>
+          <h1 className="text-balance text-5xl font-black leading-[0.92] tracking-[-0.075em] text-white sm:text-7xl md:text-8xl">
+            See the network
+            <span className="block bg-gradient-to-r from-lime-200 via-lime-400 to-emerald-300 bg-clip-text text-transparent">before it surprises you.</span>
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl text-pretty text-base leading-7 text-zinc-400 sm:text-lg">Revealr is a high-concurrency network scanner that pairs rapid discovery with persistent context—so every authorized scan tells you what is new, gone, and worth investigating.</p>
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href="https://github.com/rounakneema/Revealr" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-2 rounded-lg bg-lime-300 px-5 py-3 text-sm font-black text-zinc-950 transition-all hover:bg-lime-200 hover:shadow-[0_0_30px_rgba(190,242,100,0.2)]"><Github className="h-4 w-4" />Explore the source<ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
+            <Link href="/revealr/docs" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-bold text-zinc-200 transition-colors hover:border-white/25 hover:bg-white/[0.07] hover:text-white">Read the docs <ArrowRight className="h-4 w-4" /></Link>
+          </div>
         </div>
-    );
+
+        <div className="relative mx-auto mt-16 max-w-6xl rounded-2xl border border-white/10 bg-[#0c100e]/90 p-2 shadow-2xl shadow-black/40 backdrop-blur md:mt-20">
+          <div className="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-b from-lime-300/20 via-transparent to-transparent blur-sm" />
+          <div className="overflow-hidden rounded-xl border border-white/[0.07] bg-[#090c0b]">
+            <div className="flex items-center justify-between border-b border-white/[0.07] bg-white/[0.02] px-4 py-3 sm:px-5">
+              <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-red-400/80" /><span className="h-2 w-2 rounded-full bg-amber-300/80" /><span className="h-2 w-2 rounded-full bg-lime-300/80" /><span className="ml-2 hidden text-[10px] text-zinc-600 sm:inline">revealr / scan session</span></div>
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-lime-300"><Activity className="h-3 w-3" /> Live analysis</div>
+            </div>
+            <div className="grid lg:grid-cols-[1.26fr_0.74fr]">
+              <div className="p-5 sm:p-7">
+                <div className="flex flex-wrap items-center justify-between gap-4"><div><p className="text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">Current target</p><div className="mt-1 flex items-center gap-2 text-lg font-bold text-white"><Network className="h-4 w-4 text-lime-300" /> 10.10.11.0/24</div></div><span className="rounded-md border border-lime-300/15 bg-lime-300/[0.08] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-lime-300">Stealth profile</span></div>
+                <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
+                  {[['63,981', 'probes sent'], ['41', 'services found'], ['02', 'new since baseline']].map(([value, label]) => <div key={label} className="rounded-lg border border-white/[0.06] bg-white/[0.025] p-3 sm:p-4"><p className="text-lg font-black tracking-tight text-white sm:text-xl">{value}</p><p className="mt-1 text-[9px] uppercase tracking-[0.12em] text-zinc-500 sm:text-[10px]">{label}</p></div>)}
+                </div>
+                <div className="mt-5 overflow-hidden rounded-lg border border-white/[0.07] bg-black/25">
+                  <div className="flex items-center justify-between border-b border-white/[0.07] px-4 py-3"><span className="text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500">Open services</span><span className="text-[10px] text-zinc-600">last response 12ms</span></div>
+                  <div className="divide-y divide-white/[0.06]">
+                    {[['22', 'ssh', 'OpenSSH 8.9', 'Baseline'], ['80', 'http', 'nginx 1.22.1', 'Baseline'], ['8080', 'http-alt', 'Node.js Express', 'New']].map(([port, service, detail, state]) => <div key={port} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 px-4 py-3 text-xs"><span className="font-bold text-lime-300">{port}</span><span><b className="font-medium text-zinc-200">{service}</b><span className="hidden text-zinc-600 sm:inline"> · {detail}</span></span><span className={state === 'New' ? 'rounded bg-amber-300/10 px-1.5 py-1 text-[9px] font-bold uppercase text-amber-200' : 'text-[10px] text-zinc-600'}>{state}</span></div>)}
+                  </div>
+                </div>
+              </div>
+              <div className="border-t border-white/[0.07] bg-gradient-to-b from-lime-300/[0.035] to-transparent p-5 lg:border-l lg:border-t-0 sm:p-7">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500"><Radar className="h-3.5 w-3.5 text-lime-300" /> Signal map</div>
+                <div className="relative mx-auto mt-7 aspect-square max-w-[270px] overflow-hidden rounded-full border border-lime-300/20 bg-[radial-gradient(circle,rgba(190,242,100,0.10)_1px,transparent_1px)] bg-[size:22px_22px]"><div className="absolute inset-[15%] rounded-full border border-lime-300/15" /><div className="absolute inset-[32%] rounded-full border border-lime-300/20" /><div className="absolute inset-[47%] rounded-full border border-lime-300/30" /><div className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime-200 shadow-[0_0_18px_5px_rgba(190,242,100,0.4)]" /><span className="absolute left-[24%] top-[30%] h-2 w-2 rounded-full bg-sky-300 shadow-[0_0_12px_2px_rgba(125,211,252,0.7)]" /><span className="absolute right-[17%] top-[46%] h-2 w-2 rounded-full bg-lime-300 shadow-[0_0_12px_2px_rgba(190,242,100,0.7)]" /><span className="absolute bottom-[20%] left-[42%] h-2 w-2 animate-pulse rounded-full bg-amber-300 shadow-[0_0_12px_2px_rgba(252,211,77,0.7)]" /><div className="absolute left-1/2 top-1/2 h-[52%] w-px origin-bottom -translate-x-1/2 -translate-y-full rotate-[52deg] bg-gradient-to-t from-lime-300/70 to-transparent" /></div>
+                <div className="mt-7 space-y-3">{[['Scan engine', 'Running', 'text-lime-300'], ['State store', 'Synced', 'text-sky-300'], ['Diff detector', '1 alert', 'text-amber-200']].map(([label, value, color]) => <div key={label} className="flex items-center justify-between text-xs"><span className="text-zinc-500">{label}</span><span className={`flex items-center gap-1.5 font-medium ${color}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{value}</span></div>)}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/[0.07] bg-white/[0.018]"><div className="mx-auto grid max-w-7xl divide-y divide-white/[0.07] px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:px-10">{[['50K', 'ports / minute', 'High-concurrency discovery'], ['SQLite', 'stateful history', 'A baseline for every asset'], ['Python', 'plugin bridge', 'Offline mapping, your rules']].map(([metric, label, detail]) => <div key={label} className="py-7 text-center sm:py-9"><div className="text-2xl font-black tracking-tight text-white">{metric} <span className="text-sm font-medium text-zinc-400">{label}</span></div><p className="mt-1.5 text-xs text-zinc-600">{detail}</p></div>)}</div></section>
+
+      <section className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+        <div className="grid items-end gap-8 md:grid-cols-[1fr_auto]"><div><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-lime-300">The Revealr advantage</p><h2 className="mt-4 max-w-2xl text-4xl font-black tracking-[-0.055em] text-white sm:text-5xl">Fast is useful. Context is what makes it actionable.</h2></div><p className="max-w-sm text-sm leading-6 text-zinc-500">A focused toolkit for security teams and practitioners who need a clean view of authorized network change.</p></div>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">{capabilities.map((capability) => <article key={capability.title} className="group rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.045]"><div className={`flex h-10 w-10 items-center justify-center rounded-lg border ${capability.iconBg}`}><capability.icon className={`h-5 w-5 ${capability.accent}`} /></div><p className={`mt-7 text-[10px] font-bold uppercase tracking-[0.16em] ${capability.accent}`}>{capability.eyebrow}</p><h3 className="mt-2 text-xl font-bold tracking-tight text-white">{capability.title}</h3><p className="mt-3 text-sm leading-6 text-zinc-500">{capability.description}</p></article>)}</div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10 md:pb-32"><div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0d1210]"><div className="grid lg:grid-cols-[0.82fr_1.18fr]"><div className="border-b border-white/[0.08] p-7 lg:border-b-0 lg:border-r md:p-10"><div className="flex h-11 w-11 items-center justify-center rounded-lg border border-lime-300/20 bg-lime-300/[0.08]"><Command className="h-5 w-5 text-lime-300" /></div><p className="mt-7 text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">One command. More clarity.</p><code className="mt-3 block text-sm text-lime-200">./revealr -target 10.10.11.0/24</code><p className="mt-5 text-sm leading-6 text-zinc-500">Start with discovery, preserve the signal, and follow the change.</p><div className="mt-8 flex items-center gap-2 text-xs text-zinc-400"><ShieldCheck className="h-4 w-4 text-lime-300" /> For systems you own or are authorized to test.</div></div><div className="divide-y divide-white/[0.07]">{explorerLinks.map((item) => <Link key={item.href} href={item.href} className="group flex items-center gap-5 px-7 py-5 transition-colors hover:bg-white/[0.035] md:px-10"><CircleDotDashed className="h-5 w-5 shrink-0 text-zinc-600 transition-colors group-hover:text-lime-300" /><div className="min-w-0 flex-1"><h3 className="font-bold text-zinc-200 transition-colors group-hover:text-white">{item.title}</h3><p className="mt-1 truncate text-xs text-zinc-600 sm:text-sm">{item.detail}</p></div><ChevronRight className="h-4 w-4 shrink-0 text-zinc-600 transition-all group-hover:translate-x-1 group-hover:text-lime-300" /></Link>)}<a href="https://github.com/rounakneema/Revealr" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-5 px-7 py-5 transition-colors hover:bg-white/[0.035] md:px-10"><Github className="h-5 w-5 shrink-0 text-zinc-600 transition-colors group-hover:text-lime-300" /><div className="min-w-0 flex-1"><h3 className="font-bold text-zinc-200 transition-colors group-hover:text-white">Source code</h3><p className="mt-1 text-xs text-zinc-600 sm:text-sm">Inspect the Go core and Python extensions on GitHub.</p></div><ArrowUpRight className="h-4 w-4 shrink-0 text-zinc-600 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-lime-300" /></a></div></div></div></section>
+
+      <section className="border-t border-white/[0.07] px-6 py-16 text-center md:px-10"><Terminal className="mx-auto h-5 w-5 text-lime-300" /><p className="mt-4 text-lg font-bold text-white">Discover thoughtfully. Verify deliberately.</p><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-600">Revealr is designed for legitimate, authorized network security work.</p><Link href="/revealr/security" className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-lime-300 hover:text-lime-200">Review the security model <ArrowRight className="h-3.5 w-3.5" /></Link></section>
+    </div>
+  );
 }
