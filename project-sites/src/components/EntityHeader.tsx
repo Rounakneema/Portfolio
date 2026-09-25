@@ -6,62 +6,56 @@ export function EntityHeader({
     category, 
     status, 
     language, 
-    github, 
-    docs, 
-    architecture 
+    github
 }: { 
     title: string; 
     subtitle: string; 
-    category: string; 
-    status: string; 
-    language: string; 
+    category?: string; 
+    status?: string; 
+    language?: string; 
     github?: string; 
     docs?: string; 
     architecture?: string;
 }) {
+    // Only return the metadata table, stripped of the massive brutalist borders and duplicate nav buttons
     return (
-        <article className="border-4 border-white bg-[#0a0a0a] p-6 md:p-12 mb-12 shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-2">{title}</h1>
-            <p className="text-xl md:text-2xl text-gray-400 mb-8 font-mono border-l-4 border-white pl-4 py-2">{subtitle}</p>
+        <article className="py-12 mt-12 border-t border-white/10 opacity-60 hover:opacity-100 transition-opacity">
+            <h2 className="sr-only">{title} Metadata</h2>
             
-            <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm font-mono border-t-2 border-white pt-8 mb-8">
-                <div className="flex justify-between border-b border-gray-800 pb-2">
+            <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono">
+                <div className="flex flex-col gap-1">
                     <dt className="text-gray-500 uppercase">Author</dt>
                     <dd className="font-bold text-white">
-                        <a rel="author" href="https://rounakneema.in" className="hover:underline decoration-white underline-offset-4">Rounak Neema</a>
+                        <a rel="author" href="https://rounakneema.in" className="hover:underline underline-offset-2">Rounak Neema</a>
                     </dd>
                 </div>
-                <div className="flex justify-between border-b border-gray-800 pb-2">
-                    <dt className="text-gray-500 uppercase">Category</dt>
-                    <dd className="font-bold text-white">{category}</dd>
-                </div>
-                <div className="flex justify-between border-b border-gray-800 pb-2">
-                    <dt className="text-gray-500 uppercase">Language</dt>
-                    <dd className="font-bold text-white">{language}</dd>
-                </div>
-                <div className="flex justify-between border-b border-gray-800 pb-2">
-                    <dt className="text-gray-500 uppercase">Status</dt>
-                    <dd className="font-bold text-white">{status}</dd>
-                </div>
+                {category && (
+                    <div className="flex flex-col gap-1">
+                        <dt className="text-gray-500 uppercase">Category</dt>
+                        <dd className="font-bold text-white">{category}</dd>
+                    </div>
+                )}
+                {language && (
+                    <div className="flex flex-col gap-1">
+                        <dt className="text-gray-500 uppercase">Stack</dt>
+                        <dd className="font-bold text-white">{language}</dd>
+                    </div>
+                )}
+                {status && (
+                    <div className="flex flex-col gap-1">
+                        <dt className="text-gray-500 uppercase">Status</dt>
+                        <dd className="font-bold text-white">{status}</dd>
+                    </div>
+                )}
             </dl>
 
-            <div className="flex flex-wrap gap-4 font-mono text-xs font-bold uppercase tracking-widest">
-                {github && (
-                    <a href={github} target="_blank" rel="noopener noreferrer" className="bg-white text-black px-6 py-3 hover:bg-gray-200 transition-colors">
-                        [ GitHub ]
+            {github && (
+                <div className="mt-6 font-mono text-xs">
+                    <a href={github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors underline underline-offset-4">
+                        View Source on GitHub +?
                     </a>
-                )}
-                {architecture && (
-                    <a href={architecture} className="border-2 border-white px-6 py-3 hover:bg-white hover:text-black transition-colors">
-                        [ Architecture ]
-                    </a>
-                )}
-                {docs && (
-                    <a href={docs} className="border-2 border-white px-6 py-3 hover:bg-white hover:text-black transition-colors">
-                        [ Docs ]
-                    </a>
-                )}
-            </div>
+                </div>
+            )}
         </article>
     );
 }
