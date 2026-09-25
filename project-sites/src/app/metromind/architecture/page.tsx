@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Database, Workflow, ShieldCheck, FileSearch, ArrowLeft, TerminalSquare } from 'lucide-react';
+import { Database, Workflow, ShieldCheck, FileSearch, ArrowLeft, ArrowRight, TerminalSquare } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
