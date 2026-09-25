@@ -1,5 +1,6 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import Link from 'next/link';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
     title: 'OSA - Documentation & Manifests',
@@ -59,9 +60,9 @@ export default function OSADocsPage() {
                     border-color: #fff;
                 }
                 .code-block {
-                    background: #050505;
-                    border: 1px solid #333;
-                    padding: 1.5rem;
+                    background: transparent;
+                    border: none;
+                    padding: 0;
                     overflow-x: auto;
                     color: #a3a3a3;
                     font-size: 0.875rem;
@@ -71,31 +72,33 @@ export default function OSADocsPage() {
                 .comment { color: #666; }
             `}} />
 
-            <header className="px-6 py-12 border-b-4 border-[#333] grid-bg">
-                <div className="max-w-7xl mx-auto">
+            <ScrollReveal direction="up" delay={0.1}>
+                <header className="px-6 py-12 border-b-4 border-[#333] grid-bg">
+                    <div className="max-w-7xl mx-auto">
+                        <h1 className="text-2xl font-black uppercase tracking-tighter text-glitch text-[#fff] mb-6" data-text="ENGINEERING_DOCS">
+                            ENGINEERING_DOCS
+                        </h1>
+                        <p className="text-xl text-gray-500 max-w-2xl leading-relaxed">
+                            Raw technical specifications, Kubernetes manifests, and operational playbooks for the Offline Security Auditor (OSA).
+                        </p>
+                    </div>
+                </header>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.1}>
+                <div className="max-w-7xl mx-auto px-6 py-16 space-y-24">
                     
-
-                    <h1 className="text-2xl font-black uppercase tracking-tighter text-glitch text-[#fff] mb-6" data-text="ENGINEERING_DOCS">
-                        ENGINEERING_DOCS
-                    </h1>
-                    <p className="text-xl text-gray-500 max-w-2xl">
-                        Raw technical specifications, Kubernetes manifests, and operational playbooks for the Offline Security Auditor (OSA).
-                    </p>
-                </div>
-            </header>
-
-            <div className="max-w-7xl mx-auto px-6 py-16 space-y-24">
-                
-                {/* SECTION 1: CRD */}
-                <section>
-                    <h2 className="text-2xl font-bold uppercase tracking-widest text-[#00fff9] mb-8 border-b border-[#333] pb-4">
-                        01. Custom Resource Definition (CRD)
-                    </h2>
-                    <p className="mb-6 text-gray-400">
-                        The <code className="bg-[#111] px-2 py-1 text-[#fff]">OSAPolicy</code> CRD defines how logs are ingested and which anomaly detection engines (Z-Score, Markov) are applied to the workload.
-                    </p>
-                    <div className="code-block crt-flicker">
-                        <pre><code>
+                    {/* SECTION 1: CRD */}
+                    <ScrollReveal direction="up" delay={0.1}>
+                        <section>
+                            <h2 className="text-2xl font-bold uppercase tracking-tight text-[#00fff9] mb-8 border-b border-[#333] pb-4">
+                                01. Custom Resource Definition (CRD)
+                            </h2>
+                            <p className="mb-6 text-gray-400 leading-relaxed">
+                                The <code className="bg-[#111] px-2 py-1 text-[#fff]">OSAPolicy</code> CRD defines how logs are ingested and which anomaly detection engines (Z-Score, Markov) are applied to the workload.
+                            </p>
+                            <div className="code-block crt-flicker bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#ffb800] transition-all duration-300">
+                                <pre><code>
 <span className="comment"># osa-policy-crd.yaml</span>{'\n'}
 <span className="keyword">apiVersion</span>: apiextensions.k8s.io/v1{'\n'}
 <span className="keyword">kind</span>: CustomResourceDefinition{'\n'}
@@ -130,20 +133,22 @@ export default function OSADocsPage() {
     <span className="keyword">kind</span>: OSAPolicy{'\n'}
     <span className="keyword">shortNames</span>:{'\n'}
       - osap{'\n'}
-                        </code></pre>
-                    </div>
-                </section>
+                                </code></pre>
+                            </div>
+                        </section>
+                    </ScrollReveal>
 
-                {/* SECTION 2: Mutating Webhook / Sidecar Injection */}
-                <section>
-                    <h2 className="text-2xl font-bold uppercase tracking-widest text-[#ff00c1] mb-8 border-b border-[#333] pb-4">
-                        02. Sidecar Injection Webhook
-                    </h2>
-                    <p className="mb-6 text-gray-400">
-                        OSA operates as a zero-dependency Go binary injected as a sidecar. The mutating admission webhook automatically intercepts pod creation if the <code className="bg-[#111] px-2 py-1 text-[#fff]">osa-injection=enabled</code> label is present.
-                    </p>
-                    <div className="code-block crt-flicker">
-                        <pre><code>
+                    {/* SECTION 2: Mutating Webhook / Sidecar Injection */}
+                    <ScrollReveal direction="up" delay={0.1}>
+                        <section>
+                            <h2 className="text-2xl font-bold uppercase tracking-tight text-[#ff00c1] mb-8 border-b border-[#333] pb-4">
+                                02. Sidecar Injection Webhook
+                            </h2>
+                            <p className="mb-6 text-gray-400 leading-relaxed">
+                                OSA operates as a zero-dependency Go binary injected as a sidecar. The mutating admission webhook automatically intercepts pod creation if the <code className="bg-[#111] px-2 py-1 text-[#fff]">osa-injection=enabled</code> label is present.
+                            </p>
+                            <div className="code-block crt-flicker bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#ffb800] transition-all duration-300">
+                                <pre><code>
 <span className="comment"># mutating-webhook-config.yaml</span>{'\n'}
 <span className="keyword">apiVersion</span>: admissionregistration.k8s.io/v1{'\n'}
 <span className="keyword">kind</span>: MutatingWebhookConfiguration{'\n'}
@@ -167,39 +172,62 @@ export default function OSADocsPage() {
         <span className="keyword">osa-injection</span>: enabled{'\n'}
     <span className="keyword">admissionReviewVersions</span>: [<span className="string">"v1"</span>]{'\n'}
     <span className="keyword">sideEffects</span>: None{'\n'}
-                        </code></pre>
-                    </div>
-                </section>
+                                </code></pre>
+                            </div>
+                        </section>
+                    </ScrollReveal>
 
-                {/* SECTION 3: Terminal Trace */}
-                <section>
-                    <h2 className="text-2xl font-bold uppercase tracking-widest text-gray-300 mb-8 border-b border-[#333] pb-4">
-                        03. Daemon Boot Trace
-                    </h2>
-                    <p className="mb-6 text-gray-400">
-                        Raw terminal output from the OSA sidecar initializing within an air-gapped pod environment.
-                    </p>
-                    <div className="brutalist-border bg-black p-1">
-                        <div className="bg-[#111] p-2 flex gap-2 border-b border-[#333]">
-                            <div className="w-3 h-3 bg-[#ff00c1] rounded-full"></div>
-                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                            <div className="w-3 h-3 bg-[#00fff9] rounded-full"></div>
-                        </div>
-                        <div className="p-6 font-mono text-sm overflow-x-auto crt-flicker">
-                            <div className="text-gray-500 mb-2">$ osa-daemon --config /etc/osa/policy.yaml</div>
-                            <div className="text-gray-300">[15:23:01.002] INFO: Booting OSA (Offline Security Auditor) v1.4.2</div>
-                            <div className="text-gray-300">[15:23:01.005] INFO: Detected air-gapped environment. Network outbound disabled.</div>
-                            <div className="text-blue-400">[15:23:01.015] INIT: Loading Z-Score anomaly engine...</div>
-                            <div className="text-blue-400">[15:23:01.028] INIT: Compiling Markov Chain probability matrices...</div>
-                            <div className="text-green-400">[15:23:01.045] SUCCESS: Log ingestion pipeline attached to /var/log/app/*.log</div>
-                            <div className="text-yellow-400 mt-4">[15:24:12.881] WARN: [Z-Score 3.8] Suspicious frequency of 401 Unauthorized from internal IP.</div>
-                            <div className="text-red-500 font-bold">[15:24:15.002] CRIT: [Markov] Sequence deviation threshold exceeded (0.92). Possible lateral movement.</div>
-                            <div className="text-gray-500">[15:24:15.005] ACTN: Writing local audit event to /var/log/osa/audit.json</div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+                    {/* SECTION 3: Terminal Trace */}
+                    <ScrollReveal direction="up" delay={0.1}>
+                        <section>
+                            <h2 className="text-2xl font-bold uppercase tracking-tight text-gray-300 mb-8 border-b border-[#333] pb-4">
+                                03. Daemon Boot Trace
+                            </h2>
+                            <p className="mb-6 text-gray-400 leading-relaxed">
+                                Raw terminal output from the OSA sidecar initializing within an air-gapped pod environment.
+                            </p>
+                            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#ffb800] transition-all duration-300">
+                                <div className="bg-[#111] p-2 flex gap-2 border-b border-[#333] mb-4">
+                                    <div className="w-3 h-3 bg-[#ff00c1] rounded-full"></div>
+                                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-[#00fff9] rounded-full"></div>
+                                </div>
+                                <div className="font-mono text-sm overflow-x-auto crt-flicker">
+                                    <StaggerContainer>
+                                        <StaggerItem>
+                                            <div className="text-gray-500 mb-2">$ osa-daemon --config /etc/osa/policy.yaml</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-gray-300">[15:23:01.002] INFO: Booting OSA (Offline Security Auditor) v1.4.2</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-gray-300">[15:23:01.005] INFO: Detected air-gapped environment. Network outbound disabled.</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-blue-400">[15:23:01.015] INIT: Loading Z-Score anomaly engine...</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-blue-400">[15:23:01.028] INIT: Compiling Markov Chain probability matrices...</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-green-400">[15:23:01.045] SUCCESS: Log ingestion pipeline attached to /var/log/app/*.log</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-yellow-400 mt-4">[15:24:12.881] WARN: [Z-Score 3.8] Suspicious frequency of 401 Unauthorized from internal IP.</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-red-500 font-bold">[15:24:15.002] CRIT: [Markov] Sequence deviation threshold exceeded (0.92). Possible lateral movement.</div>
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            <div className="text-gray-500">[15:24:15.005] ACTN: Writing local audit event to /var/log/osa/audit.json</div>
+                                        </StaggerItem>
+                                    </StaggerContainer>
+                                </div>
+                            </div>
+                        </section>
+                    </ScrollReveal>
+                </div>
+            </ScrollReveal>
         </main>
     );
 }
-

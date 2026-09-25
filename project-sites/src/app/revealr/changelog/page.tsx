@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import type { Metadata } from 'next';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
     title: 'Changelog — Revealr Network Scanner',
@@ -40,45 +41,59 @@ export default function RevealrChangelog() {
             </div>
 
             <div className="max-w-4xl mx-auto px-6 py-20 md:px-10">
-                <div className="mb-16">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400 mb-4">// Version History</p>
-                    <h1 className="text-2xl font-black tracking-tighter text-white mb-6">Changelog</h1>
-                </div>
+                <ScrollReveal direction="up" delay={0.1}>
+                    <div className="mb-16">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400 mb-4 leading-relaxed">// Version History</p>
+                        <h1 className="text-2xl font-black tracking-tight text-white mb-6">Changelog</h1>
+                    </div>
+                </ScrollReveal>
 
-                <div className="relative border-l border-white/[0.07] ml-4 md:ml-6 pl-8 md:pl-12 space-y-16">
-                    {changelog.map((release) => (
-                        <div key={release.version} className="relative">
-                            <div className="absolute -left-[37px] md:-left-[53px] top-1.5 flex items-center justify-center">
-                                <div className={`h-4 w-4 rounded-full border border-[#080b0a] bg-lime-400 shadow-[0_0_12px_2px_rgba(190,242,100,0.5)]`} />
-                            </div>
-                            
-                            <div className="flex items-center gap-4 mb-6">
-                                <h2 className="text-2xl font-black text-white">{release.version}</h2>
-                                <span className="text-xs font-mono text-zinc-500">{release.date}</span>
-                                {release.status === 'current' && <span className="rounded-full bg-lime-400/10 border border-lime-400/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-lime-300">Latest</span>}
-                            </div>
+                <ScrollReveal direction="up" delay={0.2}>
+                    <div className="relative border-l border-white/[0.07] ml-4 md:ml-6 pl-8 md:pl-12 space-y-16">
+                        <StaggerContainer>
+                            {changelog.map((release) => (
+                                <StaggerItem key={release.version}>
+                                    <div className="relative">
+                                        <div className="absolute -left-[37px] md:-left-[53px] top-1.5 flex items-center justify-center">
+                                            <div className={`h-4 w-4 rounded-full border border-[#080b0a] bg-lime-400 shadow-[0_0_12px_2px_rgba(190,242,100,0.5)]`} />
+                                        </div>
+                                        
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <h2 className="text-2xl font-black text-white tracking-tight">{release.version}</h2>
+                                            <span className="text-xs font-mono text-zinc-500">{release.date}</span>
+                                            {release.status === 'current' && <span className="rounded-full bg-lime-400/10 border border-lime-400/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-lime-300">Latest</span>}
+                                        </div>
 
-                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 md:p-8">
-                                <ul className="space-y-4">
-                                    {release.changes.map((change, i) => (
-                                        <li key={i} className="flex gap-4">
-                                            <span className={`shrink-0 mt-0.5 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest border ${typeColors[change.type]}`}>
-                                                {change.type}
-                                            </span>
-                                            <span className="text-sm leading-6 text-zinc-400">{change.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                                        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg shadow-xl p-6 md:p-8 hover:-translate-y-1 transition-all duration-300">
+                                            <StaggerContainer>
+                                                <ul className="space-y-4">
+                                                    {release.changes.map((change, i) => (
+                                                        <StaggerItem key={i}>
+                                                            <li className="flex gap-4">
+                                                                <span className={`shrink-0 mt-0.5 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest border ${typeColors[change.type]}`}>
+                                                                    {change.type}
+                                                                </span>
+                                                                <span className="text-sm leading-relaxed text-zinc-400">{change.text}</span>
+                                                            </li>
+                                                        </StaggerItem>
+                                                    ))}
+                                                </ul>
+                                            </StaggerContainer>
+                                        </div>
+                                    </div>
+                                </StaggerItem>
+                            ))}
+                        </StaggerContainer>
+                    </div>
+                </ScrollReveal>
 
-                <div className="mt-16 flex justify-end">
-                    <a href="https://github.com/rounakneema/Revealr/commits" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-zinc-400 hover:text-white">
-                        Full Git History <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </a>
-                </div>
+                <ScrollReveal direction="up" delay={0.3}>
+                    <div className="mt-16 flex justify-end">
+                        <a href="https://github.com/rounakneema/Revealr/commits" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-zinc-400 hover:text-white hover:-translate-y-1 transition-all duration-300">
+                            Full Git History <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        </a>
+                    </div>
+                </ScrollReveal>
             </div>
         </div>
     );

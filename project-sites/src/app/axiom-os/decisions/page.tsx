@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
     title: 'AXIOM OS | Decisions',
@@ -22,22 +23,33 @@ export default function DecisionsPage() {
             <div className="max-w-[1200px] mx-auto p-6 md:p-12 xl:p-16 grid-bg min-h-screen">
                 <div className="space-y-16">
                     
-                    <section>
-                        <h2 className="text-white text-3xl font-black uppercase mb-8 border-l-4 border-red-600 pl-4">Zero-Cloud Privacy</h2>
+                    <ScrollReveal direction="up" delay={0.1}>
+<section>
+                        <h2 className="text-white text-3xl font-black uppercase mb-8 border-l-4 border-red-600 pl-4 tracking-tight">Zero-Cloud Privacy</h2>
                         <div className="bg-[#050505] brutalist-border p-8">
                             <p className="text-gray-300 leading-relaxed mb-6">
                                 Modern productivity agents rely heavily on cloud APIs (OpenAI, Anthropic) to process context. This fundamentally compromises privacy when dealing with screen content, private messages, and personal work habits. AXIOM OS enforces a strict <strong>zero-cloud constraint</strong>.
                             </p>
-                            <ul className="list-disc list-inside text-gray-400 space-y-3">
-                                <li>No external API keys required.</li>
-                                <li>All inference runs locally via Ollama.</li>
-                                <li>Telemetry never leaves the device loopback interface.</li>
+                            <StaggerContainer>
+<ul className="list-disc list-inside text-gray-400 space-y-3">
+                                <StaggerItem>
+<li>No external API keys required.</li>
+</StaggerItem>
+                                <StaggerItem>
+<li>All inference runs locally via Ollama.</li>
+</StaggerItem>
+                                <StaggerItem>
+<li>Telemetry never leaves the device loopback interface.</li>
+</StaggerItem>
                             </ul>
+</StaggerContainer>
                         </div>
                     </section>
+</ScrollReveal>
 
-                    <section>
-                        <h2 className="text-white text-3xl font-black uppercase mb-8 border-l-4 border-red-600 pl-4">Local Model Selection</h2>
+                    <ScrollReveal direction="up" delay={0.1}>
+<section>
+                        <h2 className="text-white text-3xl font-black uppercase mb-8 border-l-4 border-red-600 pl-4 tracking-tight">Local Model Selection</h2>
                         <div className="bg-[#050505] brutalist-border p-8">
                             <p className="text-gray-300 leading-relaxed mb-6">
                                 Running an LLM constantly in the background can monopolize system resources. We evaluated several models before settling on the 3-billion to 8-billion parameter class.
@@ -77,15 +89,18 @@ export default function DecisionsPage() {
                             </div>
                         </div>
                     </section>
+</ScrollReveal>
 
-                    <section>
-                        <h2 className="text-white text-3xl font-black uppercase mb-8 border-l-4 border-red-600 pl-4">Determinism vs Hallucination</h2>
+                    <ScrollReveal direction="up" delay={0.1}>
+<section>
+                        <h2 className="text-white text-3xl font-black uppercase mb-8 border-l-4 border-red-600 pl-4 tracking-tight">Determinism vs Hallucination</h2>
                         <div className="bg-[#050505] brutalist-border p-8">
                             <p className="text-gray-300 leading-relaxed">
                                 A critical design decision was separating the factual measurement of behavior from the AI's interpretation. The Go daemon writes strict facts to SQLite (e.g., "Chrome was open on youtube.com for 5 minutes"). The LLM is only given read-access to this data to form opinions. This guarantees the AI cannot hallucinate past user actions—it can only judge them.
                             </p>
                         </div>
                     </section>
+</ScrollReveal>
 
                 </div>
             </div>

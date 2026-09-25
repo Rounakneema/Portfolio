@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata = {
     title: 'Engineering Decisions | DevContext.AI',
@@ -9,26 +10,29 @@ export default function DecisionsPage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#1f6feb] selection:text-[#fff] overflow-x-hidden">
             {/* Header */}
-            <header className="p-4 md:p-8 border-b border-[#1f6feb]/30 flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
+            <ScrollReveal direction="up" delay={0.1}>
+<header className="p-4 md:p-8 border-b border-[#1f6feb]/30 flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
                 <div className="flex gap-4">
                     <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Ref: devcontext/decisions</span>
                 </div>
                 <nav className="flex gap-6 border-l border-[#1f6feb]/30 pl-6 text-sm">
-                    <Link href="/" className="text-[#666] hover:text-[#58a6ff] transition-colors">Analysis Pipeline</Link>
-                    <Link href="/architecture" className="text-[#666] hover:text-[#58a6ff] transition-colors">Architecture</Link>
-                    <Link href="/decisions" className="text-[#666] hover:text-[#58a6ff] transition-colors">Interview Engine</Link>
-                    <Link href="/docs" className="text-[#666] hover:text-[#58a6ff] transition-colors">Docs</Link>
+                    <Link href="/" className="text-[#666] hover:text-[#58a6ff] transition-colors hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Analysis Pipeline</Link>
+                    <Link href="/architecture" className="text-[#666] hover:text-[#58a6ff] transition-colors hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Architecture</Link>
+                    <Link href="/decisions" className="text-[#666] hover:text-[#58a6ff] transition-colors hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Interview Engine</Link>
+                    <Link href="/docs" className="text-[#666] hover:text-[#58a6ff] transition-colors hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Docs</Link>
                 </nav>
             </header>
+</ScrollReveal>
 
-            <section className="p-4 md:p-8 lg:p-16 max-w-7xl mx-auto">
+            <ScrollReveal direction="up" delay={0.1}>
+<section className="p-4 md:p-8 lg:p-16 max-w-7xl mx-auto">
                 <h1 className="text-2xl font-bold uppercase tracking-tighter leading-[0.9] mb-12 text-[#58a6ff] border-l-4 border-[#1f6feb] pl-6">
                     Engineering Trade-offs & Decisions
                 </h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                     <div className="lg:col-span-8 prose prose-invert prose-p:text-[#aaa] prose-headings:text-[#58a6ff] prose-a:text-[#58a6ff] max-w-none">
-                        <p className="text-xl mb-12">
+                        <p className="text-xl mb-12 leading-relaxed">
                             Building an AI-driven code intelligence platform at scale requires strict trade-offs between latency, cost, and analytical depth. We opted for a "Progressive Delivery" model powered by a multi-model routing strategy on Amazon Bedrock.
                         </p>
 
@@ -44,16 +48,22 @@ export default function DecisionsPage() {
                         <p>
                             Cost optimization is critical when processing 50K+ tokens per repository. We use a dynamic routing strategy via Amazon Bedrock:
                         </p>
-                        <ul className="space-y-4 my-8 list-none pl-0">
-                            <li className="bg-[#111] p-4 border-l-2 border-[#555]">
+                        <StaggerContainer>
+<ul className="space-y-4 my-8 list-none pl-0">
+                            <StaggerItem>
+<li className="bg-[#111] p-4 border-l-2 border-[#555]">
                                 <strong className="text-[#58a6ff] block mb-2">Stage 1 (Code Review) & Stage 2 (Intelligence)</strong>
                                 <span className="text-sm">We route to Claude 3.5 Sonnet / Mistral Large 3 for high-reasoning tasks. These models excel at synthesizing architectural trade-offs from raw code but are expensive. We offset costs by parallelizing narrow queries rather than asking one massive question.</span>
                             </li>
-                            <li className="bg-[#111] p-4 border-l-2 border-[#555]">
+</StaggerItem>
+                            <StaggerItem>
+<li className="bg-[#111] p-4 border-l-2 border-[#555]">
                                 <strong className="text-[#58a6ff] block mb-2">Stage 3 (Interview Real-Time Evaluation)</strong>
                                 <span className="text-sm">We step down to faster inference models for the interactive websocket loop. The context window is small (just the current question and answer), requiring low latency rather than deep code synthesis.</span>
                             </li>
+</StaggerItem>
                         </ul>
+</StaggerContainer>
 
                         <h2 className="text-2xl uppercase tracking-widest border-b border-[#1f6feb]/30 pb-4 mb-8 mt-16">Trade-off: Serverless Cold Starts vs Idle Costs</h2>
                         <p>
@@ -82,7 +92,7 @@ export default function DecisionsPage() {
 
                         <div className="bg-[#050505] border border-[#222] p-6 font-mono text-[10px] text-[#888]">
                             <div className="text-[#58a6ff] mb-2">// Grounding Assertion Snippet</div>
-                            <pre className="overflow-x-auto">
+                            <pre className="overflow-x-auto leading-relaxed bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl">
 {`function validateClaim(claim) {
   if (!claim.filePath || !claim.lineRefs) {
     return { valid: false, reason: 'unverifiable' }
@@ -100,11 +110,12 @@ export default function DecisionsPage() {
                     </div>
                 </div>
             </section>
+</ScrollReveal>
 
             {/* Footer */}
             <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
                 <div>DevContext.AI // {new Date().getFullYear()}</div>
-                <Link href="/" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2">
+                <Link href="/" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2 hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
                     <span className="w-4 h-[1px] bg-current"></span>
                     Back
                 </Link>

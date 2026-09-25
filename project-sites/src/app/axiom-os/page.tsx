@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { projects } from '@/lib/projects';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { AxiomHud } from '@/components/axiom/AxiomHud';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
     title: 'AXIOM OS — Local-First Personal AI Operating System',
@@ -63,11 +64,13 @@ export default function AxiomOsPage() {
                             { step: 'INTERVENE', desc: 'Policy action' }
                         ].map((item, i) => (
                             <div key={i} className="bg-[#0a0a0a] os-border p-4 w-40 transform transition-transform hover:-translate-y-1 hover:border-[#00d4aa]">
-                                <p className="text-[#00d4aa] font-bold text-sm tracking-widest mb-2">{item.step}</p>
-                                <p className="text-gray-500 text-xs uppercase">{item.desc}</p>
+                                <p className="text-[#00d4aa] font-bold text-sm tracking-widest mb-2 leading-relaxed">{item.step}</p>
+                                <p className="text-gray-500 text-xs uppercase leading-relaxed">{item.desc}</StaggerItem>
+</p>
                             </div>
                         ))}
                     </div>
+</StaggerContainer>
                 </div>
             </div>
 
@@ -82,27 +85,31 @@ export default function AxiomOsPage() {
                     <div className="lg:col-span-3 border-r border-[#333] p-6 bg-[#050505] flex flex-col gap-8">
                         <div>
                             <h3 className="text-gray-500 uppercase text-xs tracking-widest mb-4">Core Specifications</h3>
-                            <ul className="space-y-4">
+                            <StaggerContainer>
+<ul className="space-y-4">
                                 {project.metrics?.map((metric, i) => (
-                                    <li key={i} className="os-border p-4 bg-black relative group">
+                                    <StaggerItem>
+<li key={i} className="os-border p-4 bg-black relative bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 group">
                                         <div className="absolute top-0 left-0 w-full h-1 bg-[#00d4aa] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                                        <p className="text-gray-500 text-sm uppercase">{metric.label}</p>
-                                        <p className="text-xl font-bold mt-1 text-white">{metric.value}</p>
+                                        <p className="text-gray-500 text-sm uppercase leading-relaxed">{metric.label}</p>
+                                        <p className="text-xl font-bold mt-1 text-white leading-relaxed">{metric.value}</p>
                                     </li>
+</StaggerItem>
                                 ))}
                             </ul>
+</StaggerContainer>
                         </div>
 
                         <div className="mt-auto pt-8">
                             <h3 className="text-gray-500 uppercase text-xs tracking-widest mb-4">System Trace</h3>
-                            <div className="bg-black os-border p-4 text-xs text-[#00d4aa] font-mono overflow-hidden h-48 flex flex-col justify-end">
-                                <p className="opacity-50">kernel: initializing telemetry daemon (Specter)...</p>
-                                <p className="opacity-60">Specter: hooked into process monitor.</p>
-                                <p className="opacity-70">SQLite: memory layer online.</p>
-                                <p className="opacity-80">Ollama: warming up qwen2.5:3b...</p>
-                                <p className="opacity-90 text-yellow-500">WARN: UNKNOWN state detected.</p>
-                                <p className="opacity-100 text-red-500">POLICY: productivity &lt; 0.40 AND intent DISTRACT.</p>
-                                <p className="opacity-100 font-bold mt-2 text-white">&gt; executing contextual roast...</p>
+                            <div className="bg-black os-border p-4 text-xs text-[#00d4aa] font-mono bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-hidden h-48 flex flex-col justify-end">
+                                <p className="opacity-50 leading-relaxed">kernel: initializing telemetry daemon (Specter)...</p>
+                                <p className="opacity-60 leading-relaxed">Specter: hooked into process monitor.</p>
+                                <p className="opacity-70 leading-relaxed">SQLite: memory layer online.</p>
+                                <p className="opacity-80 leading-relaxed">Ollama: warming up qwen2.5:3b...</p>
+                                <p className="opacity-90 text-yellow-500 leading-relaxed">WARN: UNKNOWN state detected.</p>
+                                <p className="opacity-100 text-red-500 leading-relaxed">POLICY: productivity &lt; 0.40 AND intent DISTRACT.</p>
+                                <p className="opacity-100 font-bold mt-2 text-white leading-relaxed">&gt; executing contextual roast...</p>
                             </div>
                         </div>
                     </div>
@@ -112,85 +119,99 @@ export default function AxiomOsPage() {
                         <div className="max-w-4xl space-y-16 relative z-10">
                             
                             {/* CHALLENGE / SOLUTION EDITORIAL */}
-                            <section className="grid md:grid-cols-2 gap-12">
+                            <ScrollReveal direction="up" delay={0.1}>
+<section className="grid md:grid-cols-2 gap-12">
                                 <div>
-                                    <h3 className="text-red-500 uppercase text-xl font-black mb-4">01 // The Problem</h3>
+                                    <h3 className="text-red-500 uppercase text-xl font-black mb-4 tracking-tight">01 // The Problem</h3>
                                     <p className="text-lg text-gray-300 leading-relaxed">
                                         {project.challenge}
                                     </p>
                                 </div>
                                 <div className="border-l border-[#333] pl-6 md:pl-12">
-                                    <h3 className="text-[#00d4aa] uppercase text-xl font-black mb-4">02 // The Synthesis</h3>
+                                    <h3 className="text-[#00d4aa] uppercase text-xl font-black mb-4 tracking-tight">02 // The Synthesis</h3>
                                     <p className="text-lg text-gray-300 leading-relaxed font-semibold">
                                         {project.solution}
                                     </p>
                                 </div>
                             </section>
+</ScrollReveal>
 
                             <hr className="border-[#333]" />
 
                             {/* DEEP DIVE */}
-                            <section>
-                                <h3 className="text-2xl font-black uppercase mb-8 text-white">System Architecture</h3>
+                            <ScrollReveal direction="up" delay={0.1}>
+<section>
+                                <h3 className="text-2xl font-black uppercase mb-8 text-white tracking-tight">System Architecture</h3>
                                 <p className="text-lg text-gray-400 leading-relaxed mb-8">
                                     {project.fullDescription}
                                 </p>
                                 
                                 <div className="bg-black os-border border-l-4 border-[#00d4aa] p-8 my-12 transition-transform duration-300">
                                     <h4 className="text-white font-bold uppercase mb-6 tracking-widest">Tri-Axis Evaluation Model</h4>
-                                    <p className="text-gray-400 mb-6 text-sm">
+                                    <p className="text-gray-400 mb-6 text-sm leading-relaxed">
                                         AXIOM evaluates whether an activity is productive in context, not merely whether it advances a declared career goal. 
                                         Three independent axes define the behavioral state:
                                     </p>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                                         <div className="os-border p-4 bg-[#0a0a0a]">
-                                            <p className="text-xs text-[#00d4aa] uppercase mb-2">Axis I</p>
-                                            <p className="font-bold text-gray-200 uppercase text-sm">Current Role Duties</p>
+                                            <p className="text-xs text-[#00d4aa] uppercase mb-2 leading-relaxed">Axis I</p>
+                                            <p className="font-bold text-gray-200 uppercase text-sm leading-relaxed">Current Role Duties</p>
                                         </div>
                                         <div className="os-border p-4 bg-[#0a0a0a]">
-                                            <p className="text-xs text-[#00d4aa] uppercase mb-2">Axis II</p>
-                                            <p className="font-bold text-gray-200 uppercase text-sm">Personal Goal Alignment</p>
+                                            <p className="text-xs text-[#00d4aa] uppercase mb-2 leading-relaxed">Axis II</p>
+                                            <p className="font-bold text-gray-200 uppercase text-sm leading-relaxed">Personal Goal Alignment</p>
                                         </div>
                                         <div className="os-border p-4 bg-[#0a0a0a]">
-                                            <p className="text-xs text-[#00d4aa] uppercase mb-2">Axis III</p>
-                                            <p className="font-bold text-gray-200 uppercase text-sm">General / Wellbeing</p>
+                                            <p className="text-xs text-[#00d4aa] uppercase mb-2 leading-relaxed">Axis III</p>
+                                            <p className="font-bold text-gray-200 uppercase text-sm leading-relaxed">General / Wellbeing</p>
                                         </div>
                                     </div>
-                                    <p className="text-xs text-gray-500 mt-6 text-center uppercase tracking-widest">
+                                    <p className="text-xs text-gray-500 mt-6 text-center uppercase tracking-widest leading-relaxed">
                                         Rules before models. Evidence &gt; Labels.
                                     </p>
                                 </div>
                             </section>
+</ScrollReveal>
 
                             {/* CAPABILITIES */}
-                            <section>
-                                <h3 className="text-2xl font-black uppercase mb-8 text-white">Key Subsystems</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#333] os-border">
-                                    {project.bullets.map((bullet, idx) => (
-                                        <div key={idx} className="bg-[#050505] p-8 hover:bg-[#0a0a0a] transition-colors group">
+                            <ScrollReveal direction="up" delay={0.1}>
+<section>
+                                <h3 className="text-2xl font-black uppercase mb-8 text-white tracking-tight">Key Subsystems</h3>
+                                <StaggerContainer>
+<StaggerContainer>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#333] os-border">
+{project.bullets.map((bullet, idx) => (
+                                        <StaggerItem><div key={idx} className="bg-[#050505] p-8 bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 transition-colors group">
                                             <h4 className="text-white font-bold uppercase text-sm mb-4 group-hover:text-[#00d4aa] transition-colors tracking-wide">
                                                 {idx + 1}. {bullet.label}
                                             </h4>
                                             <p className="text-gray-400 text-sm leading-relaxed">
                                                 {bullet.text}
-                                            </p>
+                                            </StaggerItem>
+</p>
                                         </div>
                                     ))}
                                 </div>
+</StaggerContainer>
                             </section>
+</ScrollReveal>
 
                             {/* FAQ */}
-                            <section className="mt-16">
-                                <h3 className="text-2xl font-black uppercase mb-8 text-white">Frequently Asked Questions</h3>
+                            <ScrollReveal direction="up" delay={0.1}>
+<section className="mt-16">
+                                <h3 className="text-2xl font-black uppercase mb-8 text-white tracking-tight">Frequently Asked Questions</h3>
                                 <div className="space-y-6">
                                     {axiomJsonLd.faq.map((q, idx) => (
-                                        <div key={idx} className="bg-[#0a0a0a] os-border p-6">
-                                            <h4 className="font-bold text-white mb-2 text-sm">{q.question}</h4>
-                                            <p className="text-gray-400 text-sm">{q.answer}</p>
+                                        <div key={idx} className="bg-[#0a0a0a] os-border p-6 bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl">
+                                            <h4 className="font-bold text-white mb-2 text-sm tracking-tight">{q.question}</h4>
+                                            <p className="text-gray-400 text-sm leading-relaxed">{q.answer}</StaggerItem>
+</p>
                                         </div>
                                     ))}
                                 </div>
+</StaggerContainer>
                             </section>
+</ScrollReveal>
 
                         </div>
                     </div>
