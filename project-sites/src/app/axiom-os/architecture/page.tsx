@@ -19,38 +19,30 @@ export default function ArchitecturePage() {
                 .grid-bg { background-size: 40px 40px; background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px); }
             `}} />
 
-
-
             <div className="grid grid-cols-1 lg:grid-cols-12 max-w-[1600px] mx-auto min-h-screen">
                 {/* LEFT SIDEBAR */}
                 <div className="lg:col-span-3 brutalist-border-r bg-[#050505] p-6 hidden lg:block">
-                    <h3 className="text-gray-600 uppercase text-xs font-bold mb-4 tracking-widest">Index</h3>
+                    <h3 className="text-gray-600 uppercase text-xs font-bold mb-4 tracking-widest tracking-tight">Index</h3>
                     <StaggerContainer>
-<ul className="space-y-2 text-sm text-gray-400">
-                        <StaggerItem>
-<li className="hover:text-red-500 cursor-pointer">1. Top-Level Topology</li>
-</StaggerItem>
-                        <StaggerItem>
-<li className="hover:text-red-500 cursor-pointer">2. Specter Daemon</li>
-</StaggerItem>
-                        <StaggerItem>
-<li className="hover:text-red-500 cursor-pointer">3. Local Memory Layer</li>
-</StaggerItem>
-                        <StaggerItem>
-<li className="hover:text-red-500 cursor-pointer">4. AI Interpretation</li>
-</StaggerItem>
-                    </ul>
-</StaggerContainer>
+                        <ul className="space-y-2 text-sm text-gray-400">
+                            <StaggerItem><li className="hover:text-[#00d4aa] cursor-pointer hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 inline-block">1. Top-Level Topology</li></StaggerItem>
+                            <StaggerItem><li className="hover:text-[#00d4aa] cursor-pointer hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 inline-block">2. Specter Daemon</li></StaggerItem>
+                            <StaggerItem><li className="hover:text-[#00d4aa] cursor-pointer hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 inline-block">3. Local Memory Layer</li></StaggerItem>
+                            <StaggerItem><li className="hover:text-[#00d4aa] cursor-pointer hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 inline-block">4. AI Interpretation</li></StaggerItem>
+                        </ul>
+                    </StaggerContainer>
 
-                    <div className="mt-12">
-                        <h3 className="text-gray-600 uppercase text-xs font-bold mb-4 tracking-widest">Status</h3>
-                        <div className="bg-black border border-gray-800 p-4 font-mono text-xs text-green-500">
-                            [OK] DAEMON_ALIVE<br/>
-                            [OK] DB_LOCKED<br/>
-                            [OK] OLLAMA_READY<br/>
-                            V: 0.1.0-alpha
+                    <ScrollReveal direction="up" delay={0.1}>
+                        <div className="mt-12">
+                            <h3 className="text-gray-600 uppercase text-xs font-bold mb-4 tracking-widest tracking-tight">Status</h3>
+                            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl font-mono text-xs text-green-500 hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                                [OK] DAEMON_ALIVE<br/>
+                                [OK] DB_LOCKED<br/>
+                                [OK] OLLAMA_READY<br/>
+                                V: 0.1.0-alpha
+                            </div>
                         </div>
-                    </div>
+                    </ScrollReveal>
                 </div>
 
                 {/* MAIN CONTENT */}
@@ -58,48 +50,48 @@ export default function ArchitecturePage() {
                     <div className="max-w-4xl mx-auto space-y-16">
                         
                         <ScrollReveal direction="up" delay={0.1}>
-<section>
-                            <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tight">1. Top-Level Topology</h2>
-                            <p className="text-gray-300 leading-relaxed mb-8">
-                                AXIOM OS operates entirely on the local machine. There is no cloud telemetry, no remote inference, and no external API dependencies. 
-                                The architecture is strictly separated into three layers: Collection (Specter), Storage (SQLite), and Intelligence (Ollama + Qwen).
-                            </p>
-                            <div className="bg-black brutalist-border p-6 overflow-x-auto">
-                                <MermaidDiagram chart={`flowchart TD
-    subgraph USER_MACHINE [USER MACHINE]
-        Specter["Specter Daemon<br/>(Go)"]
-        Ollama["Ollama Engine<br/>(qwen2.5:3b)"]
-        SQLite["SQLite Memory Layer"]
-        
-        Specter -- "(Write)" --> SQLite
-        Ollama -- "(Read/Infer)" --> SQLite
-    end`} />
-                            </div>
-                        </section>
-</ScrollReveal>
+                            <section>
+                                <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tighter">1. Top-Level Topology</h2>
+                                <p className="text-gray-300 leading-relaxed mb-8">
+                                    AXIOM OS operates entirely on the local machine. There is no cloud telemetry, no remote inference, and no external API dependencies. 
+                                    The architecture is strictly separated into three layers: Collection (Specter), Storage (SQLite), and Intelligence (Ollama + Qwen).
+                                </p>
+                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                                    <MermaidDiagram chart={`flowchart TD
+        subgraph USER_MACHINE [USER MACHINE]
+            Specter["Specter Daemon<br/>(Go)"]
+            Ollama["Ollama Engine<br/>(qwen2.5:3b)"]
+            SQLite["SQLite Memory Layer"]
+            
+            Specter -- "(Write)" --> SQLite
+            Ollama -- "(Read/Infer)" --> SQLite
+        end`} />
+                                </div>
+                            </section>
+                        </ScrollReveal>
 
                         <ScrollReveal direction="up" delay={0.1}>
-<section>
-                            <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tight">2. Specter Daemon</h2>
-                            <p className="text-gray-300 leading-relaxed mb-6">
-                                Written in Go for minimal overhead, the Specter daemon is the sensory organ of AXIOM. It continuously monitors window focus, active processes, and system state. It does not analyze text—it merely records deterministic facts.
-                            </p>
-                            <div className="bg-black border border-gray-800 p-6 text-sm text-gray-400">
-                                <p className="mb-2 leading-relaxed"><span className="text-blue-500 font-bold">Process:</span> specter.exe</p>
-                                <p className="mb-2 leading-relaxed"><span className="text-blue-500 font-bold">Memory Footprint:</span> &lt; 15MB</p>
-                                <p><span className="text-blue-500 font-bold">Interval:</span> 1Hz (1 poll per second)</p>
-                            </div>
-                        </section>
-</ScrollReveal>
+                            <section>
+                                <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tighter">2. Specter Daemon</h2>
+                                <p className="text-gray-300 leading-relaxed mb-6">
+                                    Written in Go for minimal overhead, the Specter daemon is the sensory organ of AXIOM. It continuously monitors window focus, active processes, and system state. It does not analyze text—it merely records deterministic facts.
+                                </p>
+                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl text-sm text-gray-400 hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                                    <p className="mb-2 leading-relaxed"><span className="text-[#00d4aa] font-bold">Process:</span> specter.exe</p>
+                                    <p className="mb-2 leading-relaxed"><span className="text-[#00d4aa] font-bold">Memory Footprint:</span> &lt; 15MB</p>
+                                    <p className="leading-relaxed"><span className="text-[#00d4aa] font-bold">Interval:</span> 1Hz (1 poll per second)</p>
+                                </div>
+                            </section>
+                        </ScrollReveal>
 
                         <ScrollReveal direction="up" delay={0.1}>
-<section>
-                            <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tight">3. Local Memory Layer</h2>
-                            <p className="text-gray-300 leading-relaxed mb-6">
-                                All telemetry is funneled into a local SQLite database. This acts as the single source of truth. The AI layer cannot modify the raw telemetry, ensuring an immutable ledger of behavior that prevents the LLM from hallucinating past user actions.
-                            </p>
-                            <div className="bg-black border-l-4 border-red-600 p-6">
-                                <pre className="text-gray-300 text-xs leading-relaxed bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl">
+                            <section>
+                                <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tighter">3. Local Memory Layer</h2>
+                                <p className="text-gray-300 leading-relaxed mb-6">
+                                    All telemetry is funneled into a local SQLite database. This acts as the single source of truth. The AI layer cannot modify the raw telemetry, ensuring an immutable ledger of behavior that prevents the LLM from hallucinating past user actions.
+                                </p>
+                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl border-l-4 border-l-red-600 hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                                    <pre className="text-gray-300 text-xs overflow-x-auto">
 {`CREATE TABLE telemetry (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -107,19 +99,19 @@ export default function ArchitecturePage() {
     process_name TEXT NOT NULL,
     category TEXT DEFAULT 'UNKNOWN'
 );`}
-                                </pre>
-                            </div>
-                        </section>
-</ScrollReveal>
+                                    </pre>
+                                </div>
+                            </section>
+                        </ScrollReveal>
 
                         <ScrollReveal direction="up" delay={0.1}>
-<section>
-                            <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tight">4. AI Interpretation</h2>
-                            <p className="text-gray-300 leading-relaxed">
-                                The intelligence layer runs on demand, querying the SQLite database for recent behavior contexts. Using small, efficient local models via Ollama (like Qwen 2.5), it cross-references recorded actions against predefined user policies to generate "Focus Scores" or issue contextual reprimands.
-                            </p>
-                        </section>
-</ScrollReveal>
+                            <section>
+                                <h2 className="text-3xl font-black uppercase text-white mb-6 tracking-tighter">4. AI Interpretation</h2>
+                                <p className="text-gray-300 leading-relaxed">
+                                    The intelligence layer runs on demand, querying the SQLite database for recent behavior contexts. Using small, efficient local models via Ollama (like Qwen 2.5), it cross-references recorded actions against predefined user policies to generate "Focus Scores" or issue contextual reprimands.
+                                </p>
+                            </section>
+                        </ScrollReveal>
 
                     </div>
                 </div>

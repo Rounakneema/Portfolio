@@ -9,37 +9,36 @@ export const metadata: Metadata = {
 
 export default function AxiomOsDocsPage() {
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-red-600 selection:text-white p-6 md:p-12 lg:p-24 max-w-[1200px] mx-auto border-x-2 border-x-[#333] border-b-2 border-b-[#333]">
+        <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#00d4aa] selection:text-black p-6 md:p-12 lg:p-24 max-w-[1200px] mx-auto border-x-2 border-x-[#333] border-b-2 border-b-[#333]">
             <style dangerouslySetInnerHTML={{ __html: `
                 .brutalist-border { border: 2px solid #333; }
                 .brutalist-border-b { border-bottom: 2px solid #333; }
                 .brutalist-border-t { border-top: 2px solid #333; }
-                .code-block { background: #050505; color: #a3a3a3; padding: 1rem; overflow-x: auto; font-size: 0.85rem; }
             `}} />
 
             <ScrollReveal direction="up" delay={0.1}>
-<header className="mb-16 brutalist-border-b pb-8">
-                <p className="text-red-500 font-bold mb-4 tracking-widest text-sm uppercase leading-relaxed">AXIOM-OS // DOCS</p>
-                <h1 className="text-2xl font-black uppercase tracking-tighter">System Manual</h1>
-                <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
-                    Raw engineering documentation for AXIOM OS. Specter daemon flags, memory schema definitions, and local Ollama setup.
-                </p>
-                <div className="mt-8">
-                    <a href="/" className="text-red-500 hover:text-white transition-colors underline decoration-2 underline-offset-4 font-bold uppercase">
-                        &lt; Return to Overview
-                    </a>
-                </div>
-            </header>
-</ScrollReveal>
+                <header className="mb-16 brutalist-border-b pb-8">
+                    <p className="text-red-500 font-bold mb-4 tracking-widest text-sm uppercase">AXIOM-OS // DOCS</p>
+                    <h1 className="text-2xl font-black uppercase tracking-tighter">System Manual</h1>
+                    <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
+                        Raw engineering documentation for AXIOM OS. Specter daemon flags, memory schema definitions, and local Ollama setup.
+                    </p>
+                    <div className="mt-8">
+                        <a href="/" className="text-red-500 hover:text-white hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 underline decoration-2 underline-offset-4 font-bold uppercase inline-block">
+                            &lt; Return to Overview
+                        </a>
+                    </div>
+                </header>
+            </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.1}>
-<section className="mb-16">
-                <h2 className="text-2xl font-bold uppercase mb-6 text-white border-l-4 border-red-500 pl-4 tracking-tight">1. Specter Daemon Configuration</h2>
-                <p className="text-gray-400 mb-4 leading-relaxed">
-                    The Specter daemon (written in Go) collects local telemetry. It is strictly configured via CLI flags or a <code>config.yaml</code>.
-                </p>
-                <div className="brutalist-border code-block mb-4">
-<pre>{`$ specterd --help
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold uppercase mb-6 text-white border-l-4 border-[#00d4aa] pl-4 tracking-tighter">1. Specter Daemon Configuration</h2>
+                    <p className="text-gray-400 mb-4 leading-relaxed">
+                        The Specter daemon (written in Go) collects local telemetry. It is strictly configured via CLI flags or a <code>config.yaml</code>.
+                    </p>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl mb-4 hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                        <pre className="text-gray-300 text-sm overflow-x-auto">{`$ specterd --help
 Usage of specterd:
   -config string
         Path to config.yaml (default "/etc/axiom/specter.yaml")
@@ -55,21 +54,21 @@ Usage of specterd:
         Enable periodic screen OCR [HEAVY] (default false)
   -log-level string
         Log level: debug, info, warn, error (default "info")`}</pre>
-                </div>
-                <div className="bg-[#111] p-4 brutalist-border text-sm text-gray-300">
-                    <strong className="text-red-500 uppercase">Warning:</strong> Enabling <code>-module-screen</code> will invoke the local Tesseract binary and spike CPU usage. Use with caution on battery power.
-                </div>
-            </section>
-</ScrollReveal>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-4 shadow-xl text-sm text-gray-300 hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                        <strong className="text-red-500 uppercase tracking-tight">Warning:</strong> Enabling <code>-module-screen</code> will invoke the local Tesseract binary and spike CPU usage. Use with caution on battery power.
+                    </div>
+                </section>
+            </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.1}>
-<section className="mb-16">
-                <h2 className="text-2xl font-bold uppercase mb-6 text-white border-l-4 border-red-500 pl-4 tracking-tight">2. Memory Layer (SQLite Schema)</h2>
-                <p className="text-gray-400 mb-4 leading-relaxed">
-                    AXIOM relies on a determinisitic memory layer to store context before AI evaluation. The schema ensures strict typing for telemetry events.
-                </p>
-                <div className="brutalist-border code-block">
-<pre>{`-- memory.sql
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold uppercase mb-6 text-white border-l-4 border-[#00d4aa] pl-4 tracking-tighter">2. Memory Layer (SQLite Schema)</h2>
+                    <p className="text-gray-400 mb-4 leading-relaxed">
+                        AXIOM relies on a determinisitic memory layer to store context before AI evaluation. The schema ensures strict typing for telemetry events.
+                    </p>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                        <pre className="text-gray-300 text-sm overflow-x-auto">{`-- memory.sql
 CREATE TABLE telemetry_events (
     id TEXT PRIMARY KEY,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -90,20 +89,20 @@ CREATE TABLE behavior_evaluations (
 );
 
 CREATE INDEX idx_unprocessed_events ON telemetry_events(timestamp) WHERE processed = 0;`}</pre>
-                </div>
-            </section>
-</ScrollReveal>
+                    </div>
+                </section>
+            </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.1}>
-<section className="mb-16">
-                <h2 className="text-2xl font-bold uppercase mb-6 text-white border-l-4 border-red-500 pl-4 tracking-tight">3. Local Ollama Initialization</h2>
-                <p className="text-gray-400 mb-4 leading-relaxed">
-                    AXIOM's brain is powered by local LLMs via Ollama. We use a quantized version of Qwen 2.5 for the evaluation pipeline.
-                </p>
-                
-                <h3 className="text-lg font-bold mb-2 mt-6 tracking-tight">Pulling the Model</h3>
-                <div className="brutalist-border code-block mb-4 text-green-500">
-<pre>{`$ ollama pull qwen2.5:3b
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold uppercase mb-6 text-white border-l-4 border-[#00d4aa] pl-4 tracking-tighter">3. Local Ollama Initialization</h2>
+                    <p className="text-gray-400 mb-4 leading-relaxed">
+                        AXIOM's brain is powered by local LLMs via Ollama. We use a quantized version of Qwen 2.5 for the evaluation pipeline.
+                    </p>
+                    
+                    <h3 className="text-lg font-bold mb-2 mt-6 tracking-tight">Pulling the Model</h3>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl mb-4 text-[#00d4aa] hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                        <pre className="text-sm overflow-x-auto">{`$ ollama pull qwen2.5:3b
 pulling manifest
 pulling 8a3423... 100% ▕████████████████████████████████████████▏ 1.7 GB
 pulling 4a1323... 100% ▕████████████████████████████████████████▏ 12 KB
@@ -111,11 +110,11 @@ verifying sha256 digest
 writing manifest
 removing any unused layers
 success`}</pre>
-                </div>
+                    </div>
 
-                <h3 className="text-lg font-bold mb-2 mt-6 tracking-tight">Starting the Inference Server</h3>
-                <div className="brutalist-border code-block">
-<pre>{`#!/bin/bash
+                    <h3 className="text-lg font-bold mb-2 mt-6 tracking-tight">Starting the Inference Server</h3>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
+                        <pre className="text-gray-300 text-sm overflow-x-auto">{`#!/bin/bash
 # start-inference.sh
 
 export OLLAMA_HOST="127.0.0.1:11434"
@@ -132,13 +131,15 @@ curl -X POST http://$OLLAMA_HOST/api/generate -d '{
 }'
 
 echo "[+] Inference layer online."`}</pre>
-                </div>
-            </section>
-</ScrollReveal>
+                    </div>
+                </section>
+            </ScrollReveal>
 
-            <footer className="brutalist-border-t pt-8 mt-16 text-center text-gray-600 text-xs uppercase tracking-widest">
-                End of Documentation // AXIOM-OS
-            </footer>
+            <ScrollReveal direction="up" delay={0.1}>
+                <footer className="brutalist-border-t pt-8 mt-16 text-center text-gray-600 text-xs uppercase tracking-widest">
+                    End of Documentation // AXIOM-OS
+                </footer>
+            </ScrollReveal>
         </main>
     );
 }
