@@ -9,7 +9,7 @@ export function ProjectJsonLd({ slug }: { slug: string }) {
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
         'name': project.title,
-        'url': `https://${project.subdomain}.rounakneema.in`,
+        'url': `https://${project.subdomain}`,
         'description': project.subtitle,
         'applicationCategory': 'SoftwareApplication',
         'author': {
@@ -27,3 +27,4 @@ export function ProjectJsonLd({ slug }: { slug: string }) {
         />
     );
 }
+

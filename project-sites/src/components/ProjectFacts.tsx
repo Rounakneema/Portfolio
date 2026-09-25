@@ -26,7 +26,7 @@ export function RelatedProjects({ links }: { links?: { name: string; url: string
     if (!finalLinks) {
         finalLinks = projects.slice(0, 3).map(p => ({
             name: p.title,
-            url: `https://${p.subdomain}.rounakneema.in`
+            url: `https://${p.subdomain}`
         }));
     }
 
@@ -46,3 +46,4 @@ export function RelatedProjects({ links }: { links?: { name: string; url: string
         </section>
     );
 }
+
