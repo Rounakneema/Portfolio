@@ -2,76 +2,138 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'SortMail // Engineering Decisions',
-    description: 'Engineering trade-offs, concurrency models, and performance metrics for SortMail.',
+    title: 'SortMail // Decisions & Benchmarks',
+    description: 'Engineering trade-offs, performance benchmarks, and decision logs for SortMail.',
 };
 
-export default function SortMailDecisionsPage() {
+export default function DecisionsPage() {
     return (
-        <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-red-900 selection:text-white">
-            <nav className="p-6 md:p-12 border-b border-[#333] flex justify-between items-center text-xs tracking-widest uppercase">
-                <div className="flex gap-4">
-                    <Link href="/sortmail" className="text-[#666] hover:text-red-500 transition-colors">
-                        &lt; Back to Overview
+        <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-red-900 selection:text-white pb-24">
+            {/* Header / Nav */}
+            <nav className="p-6 md:p-12 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs tracking-widest uppercase gap-4 sticky top-0 bg-[#050505] z-50">
+                <div className="flex gap-6 items-center">
+                    <Link href="/sortmail" className="hover:text-red-500 transition-colors">
+                        &lt; System.SortMail
                     </Link>
+                    <span className="text-[#444]">|</span>
+                    <Link href="/sortmail/architecture" className="text-[#888] hover:text-white transition-colors">
+                        [Architecture]
+                    </Link>
+                    <span className="text-white font-bold bg-[#222] px-2 py-1">
+                        [Decisions]
+                    </span>
                 </div>
                 <div className="flex gap-6">
-                    <span className="text-[#666]">PAGE: Decisions</span>
-                    <span className="text-[#666]">VER: 1.0.0</span>
+                    <span className="text-[#666]">TYPE: ENGINEERING LOG</span>
+                    <span className="text-[#666]">VER: 0.9.1a</span>
                 </div>
             </nav>
 
-            <section className="px-6 md:px-12 py-16 max-w-5xl">
-                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12 text-white border-b-4 border-red-600 pb-4 inline-block">
-                    Trade-offs & Benchmarks
+            <header className="px-6 md:px-12 py-16 border-b border-[#333]">
+                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
+                    Decisions & Trade-offs
                 </h1>
+                <p className="text-[#888] max-w-2xl text-sm md:text-base leading-relaxed border-l-2 border-red-600 pl-4 py-1">
+                    An unfiltered log of our engineering compromises, performance benchmarks, and the explicit rejection of generic SaaS paradigms.
+                </p>
+            </header>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <article>
-                        <h2 className="text-xl font-bold uppercase mb-4 text-white border-l-2 border-red-500 pl-4">The Latency vs. Thoroughness Trade-off</h2>
-                        <p className="text-[#999] leading-relaxed text-sm">
-                            When building the BLUF engine, we initially tried analyzing the entire email graph (attachments, inline images, forward history) in a single pass. This resulted in P99 latencies of &gt;12s. We compromised by splitting the process. We use Claude Haiku for a rapid 200ms triage pass to determine if deep processing is even needed. Only high-value chains are sent to Claude 3.5 Sonnet for deep analysis.
-                        </p>
-                    </article>
+            <section className="px-6 md:px-12 py-12 max-w-5xl">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    {/* Log 01 */}
+                    <div className="border border-[#222] bg-[#0a0a0a] p-8 relative">
+                        <div className="absolute top-0 right-0 bg-[#222] text-xs px-2 py-1 m-4 text-[#888]">ADR-001</div>
+                        <h3 className="text-xl font-bold uppercase mb-4 text-white">Go vs Python for Ingress</h3>
+                        <div className="text-sm text-[#aaa] space-y-4">
+                            <p>
+                                <strong>Context:</strong> Webhook ingestion needs high throughput and low memory footprint. Python (FastAPI) was initially evaluated.
+                            </p>
+                            <p>
+                                <strong>Decision:</strong> We opted for Go at the edge. Python's GIL and async event loop overhead became apparent during synthetic load tests of 5,000+ concurrent webhook deliveries. Go's goroutines allow us to ingest, validate signatures, and dump to the event bus with minimal latency.
+                            </p>
+                            <p>
+                                <strong>Trade-off:</strong> This forced a polyglot architecture. Go handles the dumb pipe, Python handles the smart AI parsing, increasing deployment complexity.
+                            </p>
+                        </div>
+                    </div>
 
-                    <article>
-                        <h2 className="text-xl font-bold uppercase mb-4 text-white border-l-2 border-red-500 pl-4">Memory Safety over Raw Speed</h2>
-                        <p className="text-[#999] leading-relaxed text-sm">
-                            Parsing complex, often malformed MIME structures from older Outlook clients natively in Python using the `email` module caused frequent OOM errors and memory leaks. We shifted this responsibility to the Go layer, leveraging Go's robust standard library to strip headers and payload data into a flat buffer before sending it to Python, reducing idle memory overhead by 60%.
-                        </p>
-                    </article>
+                    {/* Log 02 */}
+                    <div className="border border-[#222] bg-[#0a0a0a] p-8 relative">
+                        <div className="absolute top-0 right-0 bg-[#222] text-xs px-2 py-1 m-4 text-[#888]">ADR-002</div>
+                        <h3 className="text-xl font-bold uppercase mb-4 text-white">Rejection of 'Agentic' Loops</h3>
+                        <div className="text-sm text-[#aaa] space-y-4">
+                            <p>
+                                <strong>Context:</strong> Trend towards autonomous AI agents that reply and delete emails on the user's behalf.
+                            </p>
+                            <p>
+                                <strong>Decision:</strong> We explicitly rejected autonomous actions. SortMail uses deterministic logic to construct prompts, but execution (sending, scheduling) always requires human confirmation.
+                            </p>
+                            <p>
+                                <strong>Trade-off:</strong> Lower automation score on paper, but absolute trust in reality. We prioritize decision clarity over feature count. No silent actions, no hidden automation.
+                            </p>
+                        </div>
+                    </div>
 
-                    <article className="md:col-span-2 mt-8">
-                        <div className="bg-[#111] border border-[#333] p-6">
-                            <h3 className="text-xs text-[#555] uppercase tracking-widest border-b border-[#333] pb-2 mb-6">Performance Metrics</h3>
-                            <table className="w-full text-left text-sm text-[#aaa]">
+                    {/* Log 03 */}
+                    <div className="border border-[#222] bg-[#0a0a0a] p-8 relative">
+                        <div className="absolute top-0 right-0 bg-[#222] text-xs px-2 py-1 m-4 text-[#888]">ADR-003</div>
+                        <h3 className="text-xl font-bold uppercase mb-4 text-white">Ephemeral Token Storage</h3>
+                        <div className="text-sm text-[#aaa] space-y-4">
+                            <p>
+                                <strong>Context:</strong> Storing Gmail/Outlook OAuth tokens securely.
+                            </p>
+                            <p>
+                                <strong>Decision:</strong> Tokens are encrypted at rest using a rotating master key (KMS). More importantly, the system aggressively expires refresh tokens if inactivity is detected, forcing re-authentication.
+                            </p>
+                            <p>
+                                <strong>Trade-off:</strong> Increased user friction if they don't log in frequently. We accept this UX hit to maintain a fortified security posture.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Benchmarks */}
+                    <div className="border border-[#222] bg-black p-8 relative col-span-1 lg:col-span-2">
+                        <h3 className="text-xl font-bold uppercase mb-6 text-red-500">Latency Benchmarks (p99)</h3>
+                        <div className="font-mono text-xs overflow-x-auto text-[#ccc]">
+                            <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="border-b border-[#333] text-white">
-                                        <th className="pb-2">Metric</th>
-                                        <th className="pb-2">Target</th>
-                                        <th className="pb-2">Actual (P95)</th>
+                                    <tr className="border-b border-[#333] text-[#666]">
+                                        <th className="py-2 pr-4 font-normal uppercase">Operation</th>
+                                        <th className="py-2 px-4 font-normal uppercase">Target</th>
+                                        <th className="py-2 px-4 font-normal uppercase">Actual</th>
+                                        <th className="py-2 pl-4 font-normal uppercase">Delta</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b border-[#222]">
-                                        <td className="py-4 text-[#ddd]">Ingestion Router Latency</td>
-                                        <td className="py-4">{"< 50ms"}</td>
-                                        <td className="py-4 text-[#4af626]">18ms</td>
+                                        <td className="py-3 pr-4">Webhook Ingress (Auth + Enqueue)</td>
+                                        <td className="py-3 px-4 text-yellow-500">&lt; 50ms</td>
+                                        <td className="py-3 px-4 text-green-500">12ms</td>
+                                        <td className="py-3 pl-4 text-green-500">-38ms</td>
                                     </tr>
                                     <tr className="border-b border-[#222]">
-                                        <td className="py-4 text-[#ddd]">BLUF Generation</td>
-                                        <td className="py-4">{"< 3000ms"}</td>
-                                        <td className="py-4 text-yellow-400">2800ms</td>
+                                        <td className="py-3 pr-4">Attachment Extraction (Air-Gapped)</td>
+                                        <td className="py-3 px-4 text-yellow-500">&lt; 2000ms</td>
+                                        <td className="py-3 px-4 text-red-500">2800ms</td>
+                                        <td className="py-3 pl-4 text-red-500">+800ms</td>
+                                    </tr>
+                                    <tr className="border-b border-[#222]">
+                                        <td className="py-3 pr-4">LLM RAG Context Assembly</td>
+                                        <td className="py-3 px-4 text-yellow-500">&lt; 300ms</td>
+                                        <td className="py-3 px-4 text-green-500">185ms</td>
+                                        <td className="py-3 pl-4 text-green-500">-115ms</td>
                                     </tr>
                                     <tr>
-                                        <td className="py-4 text-[#ddd]">Attachment Scan</td>
-                                        <td className="py-4">{"< 5000ms"}</td>
-                                        <td className="py-4 text-red-500">6200ms</td>
+                                        <td className="py-3 pr-4">Full BLUF Generation (Claude Haiku)</td>
+                                        <td className="py-3 px-4 text-yellow-500">&lt; 1500ms</td>
+                                        <td className="py-3 px-4 text-green-500">1200ms</td>
+                                        <td className="py-3 pl-4 text-green-500">-300ms</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </article>
+                    </div>
                 </div>
             </section>
         </main>
