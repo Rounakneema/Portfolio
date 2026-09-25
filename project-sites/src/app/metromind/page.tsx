@@ -42,14 +42,14 @@ export default function MetroMindHome() {
             <nav className="border-b border-fuchsia-500/20 bg-[#030305] sticky top-0 z-50">
                 <div className="flex h-12 items-center justify-between px-4 md:px-8">
                     <div className="flex items-center gap-4">
-                        <Link href="/projects" className="text-zinc-500 hover:text-fuchsia-400 transition-colors hover:-translate-y-1 hover:border-current transition-all duration-300">
+                        <Link href="/projects" className="text-zinc-500 hover:text-fuchsia-400 transition-colors hover:-translate-y-1 hover:border-current transition-all duration-300 hover:-translate-y-1 hover:border-current transition-all duration-300">
                             ← BACK
                         </Link>
                         <span className="text-zinc-700">/</span>
                         <span className="text-fuchsia-400 font-bold tracking-widest uppercase text-xs">MetroMind_</span>
                     </div>
                     <div className="flex items-center gap-6 text-xs tracking-widest uppercase">
-                        <Link href="/architecture" className="hover:text-white transition-colors hover:-translate-y-1 hover:border-current transition-all duration-300">Architecture</Link>
+                        <Link href="/architecture" className="hover:text-white transition-colors hover:-translate-y-1 hover:border-current transition-all duration-300 hover:-translate-y-1 hover:border-current transition-all duration-300">Architecture</Link>
                         <a href="https://github.com/rounakneema/MetroMind" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Source</a>
                     </div>
                 </div>
@@ -59,22 +59,25 @@ export default function MetroMindHome() {
 
                 {/* ─── HERO: Headline ─────────────────────────────────── */}
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="border-b border-fuchsia-500/10 px-6 pt-16 pb-10 md:px-16 md:pt-20 md:pb-12 text-center">
-                    <p className="text-xs tracking-[0.3em] uppercase text-fuchsia-500/70 mb-6 font-bold leading-relaxed">
+                    <p className="text-xs tracking-[0.3em] uppercase text-fuchsia-500/70 mb-6 font-bold leading-relaxed leading-relaxed">
                         Enterprise AI · Document Intelligence
                     </p>
-                    <h1 className="font-sans font-black leading-[1.05] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent max-w-4xl mx-auto tracking-tighter">
+                    <h1 className="font-sans font-black leading-[1.05] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent max-w-4xl mx-auto tracking-tighter tracking-tighter">
                         STOP SEARCHING FOR FILES.<br />
                         START QUERYING INTELLIGENCE.
                     </h1>
-                    <p className="mt-6 text-zinc-500 font-sans text-base max-w-xl mx-auto leading-relaxed leading-relaxed">
+                    <p className="mt-6 text-zinc-500 font-sans text-base max-w-xl mx-auto leading-relaxed leading-relaxed leading-relaxed">
                         Event-driven OCR&nbsp;→&nbsp;embedding&nbsp;→&nbsp;vector search, secured by RBAC and audited end-to-end.
                     </p>
                 </section>
 </ScrollReveal>
+</ScrollReveal>
 
                 {/* ─── HERO: Live Pipeline ────────────────────────────── */}
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="border-b border-fuchsia-500/10 bg-[#050508]">
 
                     {/* Section label */}
@@ -142,29 +145,33 @@ export default function MetroMindHome() {
                     </div>
                 </section>
 </ScrollReveal>
+</ScrollReveal>
 
                 {/* ─── EntityHeader + ProjectFacts (moved below hero) ─── */}
                 {/* ─── Tech Stack Marquee ──────────────────────────────── */}
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="border-b border-fuchsia-500/10 flex overflow-hidden bg-fuchsia-500/5 py-4">
                     <div className="flex gap-8 whitespace-nowrap animate-[marquee_20s_linear_infinite] text-xs tracking-[0.2em] uppercase font-bold text-fuchsia-400/60">
                         <span>Go Microservices</span> • <span>Python OCR Workers</span> • <span>RabbitMQ</span> • <span>Milvus Vector DB</span> • <span>PostgreSQL</span> • <span>JWT + RBAC</span> • <span>Redis Caching</span> • <span>Go Microservices</span> • <span>Python OCR Workers</span> • <span>RabbitMQ</span> • <span>Milvus Vector DB</span> • <span>PostgreSQL</span> • <span>JWT + RBAC</span> • <span>Redis Caching</span>
                     </div>
                 </section>
 </ScrollReveal>
+</ScrollReveal>
 
                 {/* ─── Problem / Solution ──────────────────────────────── */}
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="border-b border-fuchsia-500/10 grid lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-fuchsia-500/10">
                     <div className="p-8 md:p-16">
                         <div className="text-fuchsia-500 mb-6 border-b border-fuchsia-500/20 pb-4 inline-flex items-center gap-3 w-full">
                             <ShieldAlert className="w-5 h-5" />
                             <span className="uppercase tracking-widest text-xs font-bold">The Problem</span>
                         </div>
-                        <h2 className="text-3xl font-sans font-black text-white leading-tight mb-6 tracking-tight">
+                        <h2 className="text-3xl font-sans font-black text-white leading-tight mb-6 tracking-tight tracking-tight">
                             Data is trapped in scanned PDFs. Security policies are ignored.
                         </h2>
-                        <p className="text-zinc-400 leading-relaxed font-sans text-base leading-relaxed">
+                        <p className="text-zinc-400 leading-relaxed font-sans text-base leading-relaxed leading-relaxed">
                             Managing and searching large volumes of transit documents across departments is inefficient. Standard SQL databases can't read scanned text, and basic full-text search doesn't understand context. Furthermore, sensitive inter-departmental documents require strict isolation and access tracking.
                         </p>
                     </div>
@@ -173,33 +180,45 @@ export default function MetroMindHome() {
                             <Cpu className="w-5 h-5" />
                             <span className="uppercase tracking-widest text-xs font-bold">The Solution</span>
                         </div>
-                        <h2 className="text-3xl font-sans font-black text-white leading-tight mb-6 tracking-tight">
+                        <h2 className="text-3xl font-sans font-black text-white leading-tight mb-6 tracking-tight tracking-tight">
                             Event-driven intelligence with cryptographic access controls.
                         </h2>
                         <StaggerContainer>
+<StaggerContainer>
 <ul className="space-y-4 text-zinc-400 font-sans text-base">
                             <StaggerItem>
+<StaggerItem>
 <li className="flex gap-4"><span className="text-cyan-500 font-mono mt-1">01/</span> An automated OCR pipeline extracts text asynchronously.</li>
 </StaggerItem>
+</StaggerItem>
                             <StaggerItem>
+<StaggerItem>
 <li className="flex gap-4"><span className="text-cyan-500 font-mono mt-1">02/</span> Text is chunked and embedded into semantic vectors.</li>
 </StaggerItem>
+</StaggerItem>
                             <StaggerItem>
+<StaggerItem>
 <li className="flex gap-4"><span className="text-cyan-500 font-mono mt-1">03/</span> A high-performance API Gateway validates JWT and RBAC.</li>
 </StaggerItem>
+</StaggerItem>
                             <StaggerItem>
+<StaggerItem>
 <li className="flex gap-4"><span className="text-cyan-500 font-mono mt-1">04/</span> Every retrieval is logged for compliance and telemetry.</li>
 </StaggerItem>
+</StaggerItem>
                         </ul>
+</StaggerContainer>
 </StaggerContainer>
                     </div>
                 </section>
 </ScrollReveal>
+</ScrollReveal>
 
                 {/* ─── FAQ ─────────────────────────────────────────────── */}
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="border-b border-fuchsia-500/10 p-8 md:p-16">
-                    <h2 className="text-2xl font-black text-white mb-8 tracking-tight">Frequently Asked Questions</h2>
+                    <h2 className="text-2xl font-black text-white mb-8 tracking-tight tracking-tight">Frequently Asked Questions</h2>
                     <div className="space-y-6" itemScope itemType="https://schema.org/FAQPage">
                         {[
                             { q: "What is MetroMind?", a: "MetroMind is an Enterprise AI Document Intelligence Platform that transforms scanned documents into a secure semantic search engine." },
@@ -211,14 +230,15 @@ export default function MetroMindHome() {
                             { q: "Who built MetroMind?", a: "MetroMind was architected and built by Rounak Neema." },
                         ].map((faq, idx) => (
                             <div key={idx} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
-                                <h3 className="text-lg font-bold text-fuchsia-400 tracking-tight" itemProp="name">{faq.q}</h3>
+                                <h3 className="text-lg font-bold text-fuchsia-400 tracking-tight tracking-tight" itemProp="name">{faq.q}</h3>
                                 <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                                    <p className="text-zinc-400 mt-2 leading-relaxed" itemProp="text">{faq.a}</p>
+                                    <p className="text-zinc-400 mt-2 leading-relaxed leading-relaxed" itemProp="text">{faq.a}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </section>
+</ScrollReveal>
 </ScrollReveal>
 
                 <footer className="p-8 text-center text-xs text-zinc-600 flex justify-between items-center">

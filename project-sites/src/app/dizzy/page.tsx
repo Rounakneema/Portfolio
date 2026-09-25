@@ -73,7 +73,7 @@ export default function DizzyPage() {
 
       {/* HERO SEQUENCE */}
       <div className="mb-32 relative z-10 flex flex-col items-center justify-center pt-8" id="voice-to-design">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#ff3366] mb-12 text-center uppercase tracking-tighter tracking-tighter">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#ff3366] mb-12 text-center uppercase tracking-tighter tracking-tighter tracking-tighter">
           Speak Your Interface<br/>Into Existence.
         </h1>
         
@@ -138,29 +138,34 @@ export default function DizzyPage() {
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-16">
           <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="p-8 bg-black brutalist-border brutalist-shadow">
-            <h2 className="text-2xl font-bold mb-8 uppercase text-white border-b border-[#333] pb-4 tracking-tight">The Challenge</h2>
-            <p className="text-lg leading-relaxed text-gray-300 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-8 uppercase text-white border-b border-[#333] pb-4 tracking-tight tracking-tight">The Challenge</h2>
+            <p className="text-lg leading-relaxed text-gray-300 leading-relaxed leading-relaxed">
               {project.challenge}
             </p>
           </section>
 </ScrollReveal>
+</ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="p-8 bg-[#111] brutalist-border relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
               <span className="text-2xl font-black">?</span>
             </div>
-            <h2 className="text-2xl font-bold mb-8 uppercase text-white tracking-tight">The Solution</h2>
-            <p className="text-xl leading-relaxed leading-relaxed">
+            <h2 className="text-2xl font-bold mb-8 uppercase text-white tracking-tight tracking-tight">The Solution</h2>
+            <p className="text-xl leading-relaxed leading-relaxed leading-relaxed">
               {project.solution}
             </p>
           </section>
 </ScrollReveal>
+</ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section>
-            <h2 className="text-3xl font-bold mb-8 uppercase text-white tracking-tight">System Architecture Overview</h2>
+            <h2 className="text-3xl font-bold mb-8 uppercase text-white tracking-tight tracking-tight">System Architecture Overview</h2>
             <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl font-mono text-sm overflow-x-auto text-green-500">
               <pre>
 {`[ USER VOICE ] 
@@ -188,39 +193,49 @@ export default function DizzyPage() {
             </div>
           </section>
 </ScrollReveal>
+</ScrollReveal>
         </div>
 
         {/* Right Column */}
         <div className="lg:col-span-5 space-y-12 mt-12 lg:mt-32">
           
           <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="bg-black text-white p-8 border-l-8 border-[#ff3366]">
-            <h3 className="text-sm uppercase tracking-[0.3em] mb-4 text-gray-500 tracking-tight">Concept Manifesto</h3>
-            <p className="text-lg font-light leading-relaxed leading-relaxed">
+            <h3 className="text-sm uppercase tracking-[0.3em] mb-4 text-gray-500 tracking-tight tracking-tight">Concept Manifesto</h3>
+            <p className="text-lg font-light leading-relaxed leading-relaxed leading-relaxed">
               {project.fullDescription}
             </p>
           </section>
 </ScrollReveal>
+</ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="brutalist-border p-6 bg-black">
-            <h3 className="text-2xl font-bold uppercase mb-6 border-b border-[#333] pb-2 tracking-tight">Technical Specs</h3>
+            <h3 className="text-2xl font-bold uppercase mb-6 border-b border-[#333] pb-2 tracking-tight tracking-tight">Technical Specs</h3>
             <StaggerContainer>
+<StaggerContainer>
 <ul className="space-y-4">
               {project.bullets.map((bullet, idx) => (
                 <StaggerItem>
+<StaggerItem>
 <li key={idx} className="flex flex-col">
                   <span className="text-[#ff3366] font-bold text-sm uppercase">{bullet.label}</span>
                   <span className="text-gray-300">{bullet.text}</span>
                 </li>
 </StaggerItem>
+</StaggerItem>
               ))}
             </ul>
 </StaggerContainer>
+</StaggerContainer>
           </section>
+</ScrollReveal>
 </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="grid grid-cols-2 gap-4">
             {project.metrics?.map((m, idx) => (
               <div key={idx} className="bg-[#111] brutalist-border p-4 flex flex-col items-center justify-center text-center">
@@ -230,8 +245,10 @@ export default function DizzyPage() {
             ))}
           </section>
 </ScrollReveal>
+</ScrollReveal>
           
           <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="pt-8">
             <div className="flex flex-wrap gap-3">
               {project.tech.map((t, idx) => (
@@ -242,23 +259,26 @@ export default function DizzyPage() {
             </div>
           </section>
 </ScrollReveal>
+</ScrollReveal>
         </div>
 
       </main>
 
       {/* FAQ */}
       <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="relative z-10 mt-24">
-          <h2 className="text-3xl font-bold mb-8 uppercase text-white tracking-tight">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold mb-8 uppercase text-white tracking-tight tracking-tight">Frequently Asked Questions</h2>
           <div className="space-y-6">
               {dizzyJsonLd.faq.map((q, idx) => (
                   <div key={idx} className="bg-[#111] border border-[#333] p-6">
                       <h4 className="font-bold text-[#ff3366] mb-2">{q.question}</h4>
-                      <p className="text-gray-300 leading-relaxed">{q.answer}</p>
+                      <p className="text-gray-300 leading-relaxed leading-relaxed">{q.answer}</p>
                   </div>
               ))}
           </div>
       </section>
+</ScrollReveal>
 </ScrollReveal>
 
       <div className="mt-32 border-t-2 border-[#333] py-8 marquee bg-[#ff3366] text-white font-black text-2xl uppercase relative z-10">

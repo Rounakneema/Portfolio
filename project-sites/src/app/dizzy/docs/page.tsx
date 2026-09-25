@@ -27,32 +27,35 @@ export default function DizzyDocsPage() {
 
       {/* Header */}
       <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <header className="mb-16 border-b-4 border-[#333] pb-8 relative z-10">
         <div className="flex items-center gap-4 mb-4">
           
         </div>
-        <h1 className="text-2xl font-black uppercase tracking-tighter leading-none mb-6 text-white tracking-tighter">
+        <h1 className="text-2xl font-black uppercase tracking-tighter leading-none mb-6 text-white tracking-tighter tracking-tighter">
           ENGINEERING <span className="neon-accent">DOCS</span>
         </h1>
-        <p className="text-xl max-w-2xl font-light uppercase tracking-widest text-gray-400 leading-relaxed">
+        <p className="text-xl max-w-2xl font-light uppercase tracking-widest text-gray-400 leading-relaxed leading-relaxed">
           v1.0.4-alpha / Protocol Specifications
         </p>
       </header>
+</ScrollReveal>
 </ScrollReveal>
 
       <main className="space-y-24 relative z-10">
         
         {/* Section 1: Semantic Buffer AST */}
         <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase border-l-8 border-[#ff3366] pl-4 text-white tracking-tight">1. Semantic Buffer AST</h2>
-          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed">
+          <h2 className="text-3xl font-bold uppercase border-l-8 border-[#ff3366] pl-4 text-white tracking-tight tracking-tight">1. Semantic Buffer AST</h2>
+          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
             The Semantic Buffer is a stateful tree that receives intention-based nodes from the Voice-to-JSON stream.
             Unlike raw LLM outputs (which frequently hallucinate unstructured JSON), this component guarantees structural type safety before execution via the Figma MCP.
           </p>
           
           <div className="bg-black brutalist-border brutalist-shadow p-6 overflow-x-auto">
-            <h3 className="text-sm text-gray-500 uppercase mb-4 border-b border-[#333] pb-2 tracking-tight">Schema definition: BufferNode (TypeScript)</h3>
+            <h3 className="text-sm text-gray-500 uppercase mb-4 border-b border-[#333] pb-2 tracking-tight tracking-tight">Schema definition: BufferNode (TypeScript)</h3>
             <pre className="text-green-500 text-sm">
 {`interface BufferNode {
   id: string;               // UUID-v4
@@ -74,18 +77,20 @@ export default function DizzyDocsPage() {
           </div>
         </section>
 </ScrollReveal>
+</ScrollReveal>
 
         {/* Section 2: Voice-to-JSON Protocol */}
         <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase border-l-8 border-yellow-400 pl-4 text-white tracking-tight">2. Voice Streaming Protocol</h2>
-          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed">
+          <h2 className="text-3xl font-bold uppercase border-l-8 border-yellow-400 pl-4 text-white tracking-tight tracking-tight">2. Voice Streaming Protocol</h2>
+          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
             Voice streams are chunked via WebRTC and piped to the JEV endpoint. 
             Partial transcripts are eagerly resolved into diffs against the Semantic Buffer to provide real-time UI feedback while the user is still speaking.
           </p>
 
           <div className="bg-black brutalist-border p-6 font-mono text-sm brutalist-shadow">
-            <h3 className="text-sm text-gray-500 uppercase mb-4 border-b border-[#333] pb-2 tracking-tight">Terminal trace: WebSocket Engine (Port 8080)</h3>
+            <h3 className="text-sm text-gray-500 uppercase mb-4 border-b border-[#333] pb-2 tracking-tight tracking-tight">Terminal trace: WebSocket Engine (Port 8080)</h3>
             <div className="space-y-2">
               <div className="text-blue-400">[15:42:01.102] INFO: ws_connect client=v_designer_99</div>
               <div className="text-gray-400">{"<"} AUDIO_CHUNK [4096 bytes]</div>
@@ -98,12 +103,14 @@ export default function DizzyDocsPage() {
           </div>
         </section>
 </ScrollReveal>
+</ScrollReveal>
 
         {/* Section 3: Figma MCP Execution */}
         <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase border-l-8 border-blue-500 pl-4 text-white tracking-tight">3. Figma MCP Operations</h2>
-          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed">
+          <h2 className="text-3xl font-bold uppercase border-l-8 border-blue-500 pl-4 text-white tracking-tight tracking-tight">3. Figma MCP Operations</h2>
+          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
             The MCP server polls the Semantic Buffer and executes atomic design operations via Figma's native Plugin API.
             By maintaining the <code>_mcp_ref</code>, future edits target existing nodes rather than re-generating elements from scratch.
           </p>
@@ -138,6 +145,7 @@ export default function DizzyDocsPage() {
             </pre>
           </div>
         </section>
+</ScrollReveal>
 </ScrollReveal>
       </main>
     </div>

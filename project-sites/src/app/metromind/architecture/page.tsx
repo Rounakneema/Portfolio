@@ -18,7 +18,7 @@ export default function MetroMindArchitecture() {
             <nav className="border-b border-fuchsia-500/20 bg-[#030305] sticky top-0 z-50">
                 <div className="flex h-12 items-center justify-between px-4 md:px-8">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="text-zinc-500 hover:text-cyan-400 transition-colors flex items-center gap-2 hover:-translate-y-1 hover:border-current transition-all duration-300">
+                        <Link href="/" className="text-zinc-500 hover:text-cyan-400 transition-colors flex items-center gap-2 hover:-translate-y-1 hover:border-current transition-all duration-300 hover:-translate-y-1 hover:border-current transition-all duration-300">
                             <ArrowLeft className="w-4 h-4" /> HOME
                         </Link>
                         <span className="text-zinc-700">/</span>
@@ -30,19 +30,22 @@ export default function MetroMindArchitecture() {
             <main className="max-w-5xl mx-auto border-x border-fuchsia-500/10 min-h-screen bg-[#040406]">
                 
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <header className="p-8 md:p-16 border-b border-fuchsia-500/10">
-                    <h1 className="text-2xl font-black text-white tracking-tighter uppercase mb-6 flex items-center gap-4 tracking-tighter">
+                    <h1 className="text-2xl font-black text-white tracking-tighter uppercase mb-6 flex items-center gap-4 tracking-tighter tracking-tighter">
                         <TerminalSquare className="w-10 h-10 text-fuchsia-500" />
                         System Topology
                     </h1>
-                    <p className="text-zinc-500 font-sans text-lg max-w-2xl leading-relaxed leading-relaxed">
+                    <p className="text-zinc-500 font-sans text-lg max-w-2xl leading-relaxed leading-relaxed leading-relaxed">
                         MetroMind separates concerns aggressively. HTTP requests, background processing, semantic embedding, and vector storage exist in isolated domains to prevent long-running tasks from degrading the user experience.
                     </p>
                 </header>
 </ScrollReveal>
+</ScrollReveal>
 
                 {/* RAW ASCII DIAGRAM */}
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="border-b border-fuchsia-500/10 p-4 md:p-8 overflow-x-auto bg-[#020203]">
                     <MermaidDiagram chart={`flowchart TD
     Client[CLIENT REQUEST]
@@ -63,15 +66,17 @@ export default function MetroMindArchitecture() {
     Embed --> Milvus`} />
                 </section>
 </ScrollReveal>
+</ScrollReveal>
 
                 {/* SERVICE SPECS */}
                 <ScrollReveal direction="up" delay={0.1}>
+<ScrollReveal direction="up" delay={0.1}>
 <section className="divide-y divide-fuchsia-500/10">
                     
                     <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
                         <div>
                             <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_01</div>
-                            <h3 className="text-white text-lg font-bold tracking-tight">API Gateway</h3>
+                            <h3 className="text-white text-lg font-bold tracking-tight tracking-tight">API Gateway</h3>
                             <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
                                 <Workflow className="w-3 h-3" /> Lang: Go
                             </div>
@@ -84,7 +89,7 @@ export default function MetroMindArchitecture() {
                     <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
                         <div>
                             <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_02</div>
-                            <h3 className="text-white text-lg font-bold tracking-tight">Event Bus</h3>
+                            <h3 className="text-white text-lg font-bold tracking-tight tracking-tight">Event Bus</h3>
                             <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
                                 <Workflow className="w-3 h-3" /> RabbitMQ
                             </div>
@@ -97,7 +102,7 @@ export default function MetroMindArchitecture() {
                     <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
                         <div>
                             <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_03</div>
-                            <h3 className="text-white text-lg font-bold tracking-tight">Intel Core</h3>
+                            <h3 className="text-white text-lg font-bold tracking-tight tracking-tight">Intel Core</h3>
                             <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
                                 <Database className="w-3 h-3" /> Python / Milvus
                             </div>
@@ -110,7 +115,7 @@ export default function MetroMindArchitecture() {
                     <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
                         <div>
                             <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_04</div>
-                            <h3 className="text-white text-lg font-bold tracking-tight">Audit & RBAC</h3>
+                            <h3 className="text-white text-lg font-bold tracking-tight tracking-tight">Audit & RBAC</h3>
                             <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
                                 <ShieldCheck className="w-3 h-3" /> Postgres
                             </div>
@@ -122,9 +127,10 @@ export default function MetroMindArchitecture() {
 
                 </section>
 </ScrollReveal>
+</ScrollReveal>
 
                 <footer className="p-8 border-t border-fuchsia-500/10 flex justify-end">
-                    <Link href="/" className="text-cyan-400 hover:text-white transition-colors flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:-translate-y-1 hover:border-current transition-all duration-300">
+                    <Link href="/" className="text-cyan-400 hover:text-white transition-colors flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:-translate-y-1 hover:border-current transition-all duration-300 hover:-translate-y-1 hover:border-current transition-all duration-300">
                         Return to overview <ArrowRight className="w-4 h-4" />
                     </Link>
                 </footer>
