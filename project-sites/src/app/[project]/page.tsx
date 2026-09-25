@@ -47,7 +47,7 @@ export default async function ProjectSitePage({ params }: { params: { project: s
                     </span>
                 </div>
                 
-                <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 text-black">
+                <h1 className="text-2xl font-black tracking-tighter mb-6 text-black">
                     {project.title}
                 </h1>
                 

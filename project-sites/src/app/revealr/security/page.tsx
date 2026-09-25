@@ -26,7 +26,7 @@ export default function RevealrSecurity() {
             <div className="max-w-6xl mx-auto px-6 py-20 md:px-10">
                 <div className="mb-16">
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-400 mb-4">// Operational Security</p>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">Timing & Ethics</h1>
+                    <h1 className="text-2xl font-black tracking-tighter text-white mb-6">Timing & Ethics</h1>
                     <p className="text-sm leading-6 text-zinc-500 max-w-2xl">
                         Revealr is designed for authorized network assessments. It includes built-in features for minimizing network disruption and IDS/IPS triggering during legitimate engagements.
                     </p>

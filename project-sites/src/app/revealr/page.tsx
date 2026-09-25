@@ -59,7 +59,7 @@ export default function RevealrHome() {
             <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-300 opacity-75" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime-300" /></span>
             Built for authorized assessments
           </div>
-          <h1 className="text-balance text-5xl font-black leading-[0.92] tracking-[-0.075em] text-white sm:text-7xl md:text-8xl">
+          <h1 className="text-balance text-2xl font-black leading-[0.92] tracking-[-0.075em] text-white sm:text-2xl">
             Give your network
             <span className="block bg-gradient-to-r from-lime-200 via-lime-400 to-emerald-300 bg-clip-text text-transparent">memory.</span>
           </h1>
@@ -122,7 +122,7 @@ export default function RevealrHome() {
                 <div className="inline-flex items-center gap-3 px-3 py-1 border border-lime-500/20 bg-lime-500/10 text-lime-400 text-[9px] uppercase tracking-widest mb-6">
                     <Database className="w-3 h-3" /> Zero Amnesia
                 </div>
-                <h2 className="text-4xl font-black tracking-tight text-white mb-6">
+                <h2 className="text-2xl font-black tracking-tight text-white mb-6">
                     Fast is useful. <br />Context is actionable.
                 </h2>
                 <p className="text-zinc-400 leading-relaxed font-sans text-base mb-8">

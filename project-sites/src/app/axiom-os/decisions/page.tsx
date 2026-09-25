@@ -19,7 +19,7 @@ export default function DecisionsPage() {
 
             <header className="brutalist-border-b p-6 bg-black flex justify-between items-center">
                 <div>
-                    <h1 className="text-2xl md:text-4xl font-black uppercase text-white tracking-tighter">
+                    <h1 className="text-2xl font-black uppercase text-white tracking-tighter">
                         Engineering Decisions
                     </h1>
                     <p className="text-red-500 text-sm uppercase mt-1">AXIOM OS // Trade-offs & Constraints</p>

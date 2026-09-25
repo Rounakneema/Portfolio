@@ -28,7 +28,7 @@ export default function MetroMindArchitecture() {
             <main className="max-w-5xl mx-auto border-x border-fuchsia-500/10 min-h-screen bg-[#040406]">
                 
                 <header className="p-8 md:p-16 border-b border-fuchsia-500/10">
-                    <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mb-6 flex items-center gap-4">
+                    <h1 className="text-2xl font-black text-white tracking-tighter uppercase mb-6 flex items-center gap-4">
                         <TerminalSquare className="w-10 h-10 text-fuchsia-500" />
                         System Topology
                     </h1>

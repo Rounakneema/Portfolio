@@ -18,7 +18,7 @@ export default function AxiomOsDocsPage() {
 
             <header className="mb-16 brutalist-border-b pb-8">
                 <p className="text-red-500 font-bold mb-4 tracking-widest text-sm uppercase">AXIOM-OS // DOCS</p>
-                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">System Manual</h1>
+                <h1 className="text-2xl font-black uppercase tracking-tighter">System Manual</h1>
                 <p className="text-gray-400 mt-4 max-w-2xl">
                     Raw engineering documentation for AXIOM OS. Specter daemon flags, memory schema definitions, and local Ollama setup.
                 </p>

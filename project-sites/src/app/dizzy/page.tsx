@@ -43,7 +43,7 @@ export default function DizzyPage() {
 
       {/* Header */}
       <header className="mb-16 relative z-10">
-        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black uppercase tracking-tighter leading-none mb-6 text-white mix-blend-difference">
+        <h1 className="text-2xl lg:text-[10rem] font-black uppercase tracking-tighter leading-none mb-6 text-white mix-blend-difference">
           DIZZY
         </h1>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-[#333] pb-8">
@@ -82,7 +82,7 @@ export default function DizzyPage() {
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-16">
           <section className="p-8 bg-black brutalist-border brutalist-shadow">
-            <h2 className="text-4xl font-bold mb-8 uppercase text-white border-b border-[#333] pb-4">The Challenge</h2>
+            <h2 className="text-2xl font-bold mb-8 uppercase text-white border-b border-[#333] pb-4">The Challenge</h2>
             <p className="text-lg leading-relaxed text-gray-300">
               {project.challenge}
             </p>
@@ -90,9 +90,9 @@ export default function DizzyPage() {
 
           <section className="p-8 bg-[#111] brutalist-border relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-              <span className="text-9xl font-black">?</span>
+              <span className="text-2xl font-black">?</span>
             </div>
-            <h2 className="text-4xl font-bold mb-8 uppercase text-white">The Solution</h2>
+            <h2 className="text-2xl font-bold mb-8 uppercase text-white">The Solution</h2>
             <p className="text-xl leading-relaxed">
               {project.solution}
             </p>
@@ -172,7 +172,7 @@ export default function DizzyPage() {
 
       </main>
 
-      <div className="mt-32 border-t-2 border-[#333] py-8 marquee bg-[#ff3366] text-white font-black text-4xl uppercase relative z-10">
+      <div className="mt-32 border-t-2 border-[#333] py-8 marquee bg-[#ff3366] text-white font-black text-2xl uppercase relative z-10">
         <span>VOICE TO NATIVE FIGMA • SEMANTIC BUFFER • AGENTIC WORKFLOW • GENERATIVE UI • NO FLATTENED PNGS • JEV LATEST • </span>
       </div>
 

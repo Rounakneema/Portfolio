@@ -42,7 +42,7 @@ export default function RevealrChangelog() {
             <div className="max-w-4xl mx-auto px-6 py-20 md:px-10">
                 <div className="mb-16">
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400 mb-4">// Version History</p>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">Changelog</h1>
+                    <h1 className="text-2xl font-black tracking-tighter text-white mb-6">Changelog</h1>
                 </div>
 
                 <div className="relative border-l border-white/[0.07] ml-4 md:ml-6 pl-8 md:pl-12 space-y-16">

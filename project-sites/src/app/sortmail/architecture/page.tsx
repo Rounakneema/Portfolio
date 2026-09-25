@@ -30,7 +30,7 @@ export default function ArchitecturePage() {
             </nav>
 
             <header className="px-6 md:px-12 py-16 border-b border-[#333]">
-                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
+                <h1 className="text-2xl font-black uppercase tracking-tighter mb-4">
                     System Topology
                 </h1>
                 <p className="text-[#888] max-w-2xl text-sm md:text-base leading-relaxed border-l-2 border-red-600 pl-4 py-1">

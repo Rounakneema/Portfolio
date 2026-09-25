@@ -16,7 +16,7 @@ export default function NotFound() {
                     <FileWarning className="w-8 h-8 text-red-500" />
                 </div>
 
-                <h1 className="text-6xl font-black mb-4 tracking-tighter">404</h1>
+                <h1 className="text-2xl font-black mb-4 tracking-tighter">404</h1>
                 <h2 className="text-xl font-bold text-gray-800 mb-6 uppercase tracking-widest">Signal Lost</h2>
 
                 <p className="text-gray-500 max-w-md mx-auto mb-10 leading-relaxed">

@@ -19,7 +19,7 @@ export default function DecisionsPage() {
       </header>
 
       <main className="p-6 md:p-12 lg:p-24 overflow-hidden">
-        <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-tight mb-12 border-b-8 border-white pb-6">
+        <h1 className="text-2xl font-black uppercase tracking-tighter leading-tight mb-12 border-b-8 border-white pb-6">
           ENGINEERING TRADE-OFFS
         </h1>
 

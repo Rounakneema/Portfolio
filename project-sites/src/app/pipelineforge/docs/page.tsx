@@ -21,14 +21,14 @@ export default function PipelineForgeDocsPage() {
       </header>
 
       <main className="p-6 md:p-12 lg:p-24 overflow-hidden max-w-7xl mx-auto">
-        <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-16 border-b-8 border-white pb-8">
+        <h1 className="text-2xl font-black uppercase tracking-tighter leading-none mb-16 border-b-8 border-white pb-8">
           ENGINEERING <br />DOCS
         </h1>
 
         {/* Section 1: Docker Optimization */}
         <section className="mb-24 relative">
           <div className="absolute -left-12 top-0 bottom-0 w-4 bg-white hidden lg:block"></div>
-          <h2 className="text-4xl font-black uppercase mb-8 tracking-tight">01. Image Optimization</h2>
+          <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">01. Image Optimization</h2>
           <p className="text-xl mb-6">Multi-stage distroless builds to achieve 99.3% reduction (1.1GB → 8MB).</p>
           
           <div className="border-4 border-white bg-black p-4 overflow-x-auto shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
@@ -60,7 +60,7 @@ ENTRYPOINT ["/pipelineforge"]`}
         {/* Section 2: GitHub Actions & Trivy */}
         <section className="mb-24 relative">
           <div className="absolute -left-12 top-0 bottom-0 w-4 bg-red-500 hidden lg:block"></div>
-          <h2 className="text-4xl font-black uppercase mb-8 tracking-tight">02. Security Gates (CI)</h2>
+          <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">02. Security Gates (CI)</h2>
           <p className="text-xl mb-6">GitHub Actions pipeline integrating Trivy for severe vulnerability scanning before push.</p>
           
           <div className="border-4 border-white bg-black p-4 overflow-x-auto shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] mb-8">
@@ -114,7 +114,7 @@ Total: 0 (HIGH: 0, CRITICAL: 0)
         {/* Section 3: Kubernetes Manifests */}
         <section className="mb-24 relative">
           <div className="absolute -left-12 top-0 bottom-0 w-4 bg-blue-500 hidden lg:block"></div>
-          <h2 className="text-4xl font-black uppercase mb-8 tracking-tight">03. GitOps & K8s Definitions</h2>
+          <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">03. GitOps & K8s Definitions</h2>
           <p className="text-xl mb-6">Zero-downtime rolling updates and Horizontal Pod Autoscaling.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -193,7 +193,7 @@ spec:
         {/* Section 4: Load Testing Trace */}
         <section className="mb-12 relative">
           <div className="absolute -left-12 top-0 bottom-0 w-4 bg-green-500 hidden lg:block"></div>
-          <h2 className="text-4xl font-black uppercase mb-8 tracking-tight">04. Load Validation</h2>
+          <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">04. Load Validation</h2>
           <p className="text-xl mb-6">k6 load testing trace confirming SLA under 500 VUs.</p>
           
           <div className="border-4 border-gray-600 bg-black p-6 text-gray-300 font-mono text-sm overflow-x-auto border-l-8 border-l-green-500">

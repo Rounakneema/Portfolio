@@ -42,7 +42,7 @@ export default function AxiomOsPage() {
             <header className="brutalist-border-b p-6 md:p-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 bg-black relative overflow-hidden">
                 <div className="z-10 relative">
                     <p className="text-red-500 font-bold mb-4 tracking-widest text-sm uppercase">[{project.category}] // {project.status}</p>
-                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none glitch" data-text={project.title}>
+                    <h1 className="text-2xl lg:text-2xl font-black uppercase tracking-tighter leading-none glitch" data-text={project.title}>
                         {project.title}
                     </h1>
                     <h2 className="text-xl md:text-3xl mt-6 text-gray-400 font-light max-w-3xl">

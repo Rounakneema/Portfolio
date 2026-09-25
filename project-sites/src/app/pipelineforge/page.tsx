@@ -24,7 +24,7 @@ export default function PipelineForgePage() {
         {/* Hero Section */}
         <section className="mb-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-8">
-            <h1 className="text-[10vw] lg:text-9xl font-black uppercase tracking-tighter leading-[0.85] mb-8">
+            <h1 className="text-2xl lg:text-2xl font-black uppercase tracking-tighter leading-[0.85] mb-8">
               PIPELINE<br />FORGE
             </h1>
             <p className="text-xl md:text-3xl font-medium max-w-4xl leading-tight border-l-4 border-white pl-6">
@@ -57,15 +57,15 @@ export default function PipelineForgePage() {
         {/* Navigation to Sub-pages */}
         <section className="mb-32 grid grid-cols-1 md:grid-cols-3 gap-8">
           <Link href="/pipelineforge/architecture" className="group border-4 border-white p-8 hover:bg-white hover:text-black transition-all duration-300 block">
-            <h2 className="text-4xl xl:text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Architecture →</h2>
+            <h2 className="text-2xl xl:text-2xl font-black uppercase mb-4 tracking-tight group-hover:underline">Architecture →</h2>
             <p className="text-xl font-medium">Deep dive into the DevSecOps GitOps pipeline topology, cluster design, and data flows.</p>
           </Link>
           <Link href="/pipelineforge/decisions" className="group border-4 border-white p-8 hover:bg-white hover:text-black transition-all duration-300 block">
-            <h2 className="text-4xl xl:text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Decisions & Metrics →</h2>
+            <h2 className="text-2xl xl:text-2xl font-black uppercase mb-4 tracking-tight group-hover:underline">Decisions & Metrics →</h2>
             <p className="text-xl font-medium">Technical trade-offs, security gates (Trivy), and performance optimization breakdowns.</p>
           </Link>
           <Link href="/pipelineforge/docs" className="group border-4 border-white p-8 hover:bg-white hover:text-black transition-all duration-300 block">
-            <h2 className="text-4xl xl:text-5xl font-black uppercase mb-4 tracking-tight group-hover:underline">Docs & Code →</h2>
+            <h2 className="text-2xl xl:text-2xl font-black uppercase mb-4 tracking-tight group-hover:underline">Docs & Code →</h2>
             <p className="text-xl font-medium">Raw engineering documentation, YAML manifests, CI/CD scripts, and terminal traces.</p>
           </Link>
         </section>
@@ -74,13 +74,13 @@ export default function PipelineForgePage() {
         <section className="mb-32 border-4 border-white p-8 md:p-16 relative shadow-[16px_16px_0px_0px_rgba(255,255,255,1)]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-4xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2">The Challenge</h2>
+              <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2">The Challenge</h2>
               <p className="text-xl leading-relaxed">
                 Manual deployments suffer from poor auditability, lack automated vulnerability scanning, missing rollbacks, and unrestricted network access.
               </p>
             </div>
             <div>
-              <h2 className="text-4xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2">The Solution</h2>
+              <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2">The Solution</h2>
               <p className="text-xl leading-relaxed">
                 A comprehensive DevSecOps pipeline orchestrating Docker builds, Trivy security gates, and Kubernetes GitOps deployments. Optimized container images from 1.1GB down to 8MB via multi-stage distroless builds.
               </p>

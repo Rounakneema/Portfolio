@@ -31,7 +31,7 @@ export default function DizzyDocsPage() {
             ← BACK TO SYSTEM
           </Link>
         </div>
-        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6 text-white">
+        <h1 className="text-2xl font-black uppercase tracking-tighter leading-none mb-6 text-white">
           ENGINEERING <span className="neon-accent">DOCS</span>
         </h1>
         <p className="text-xl max-w-2xl font-light uppercase tracking-widest text-gray-400">

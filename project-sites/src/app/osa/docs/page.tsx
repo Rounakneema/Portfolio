@@ -81,7 +81,7 @@ export default function OSADocsPage() {
                         <Link href="/osa/docs" className="nav-link active">Docs</Link>
                     </nav>
 
-                    <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-glitch text-[#fff] mb-6" data-text="ENGINEERING_DOCS">
+                    <h1 className="text-2xl font-black uppercase tracking-tighter text-glitch text-[#fff] mb-6" data-text="ENGINEERING_DOCS">
                         ENGINEERING_DOCS
                     </h1>
                     <p className="text-xl text-gray-500 max-w-2xl">

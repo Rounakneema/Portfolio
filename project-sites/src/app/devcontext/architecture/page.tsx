@@ -21,7 +21,7 @@ export default function ArchitecturePage() {
             </header>
 
             <section className="p-4 md:p-8 lg:p-16 max-w-7xl mx-auto">
-                <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-[0.9] mb-12 text-white border-l-4 border-white pl-6">
+                <h1 className="text-2xl font-bold uppercase tracking-tighter leading-[0.9] mb-12 text-white border-l-4 border-white pl-6">
                     System Architecture
                 </h1>
 

@@ -30,7 +30,7 @@ export default function RevealrDocs() {
             <div className="max-w-6xl mx-auto px-6 py-20 md:px-10">
                 <div className="mb-16">
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-400 mb-4">// Documentation</p>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">CLI Reference</h1>
+                    <h1 className="text-2xl font-black tracking-tighter text-white mb-6">CLI Reference</h1>
                 </div>
 
                 <div className="mb-16 grid lg:grid-cols-2 gap-6">

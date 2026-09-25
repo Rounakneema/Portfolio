@@ -43,7 +43,7 @@ export default function MetroMindHome() {
                             System Status: Operational
                         </div>
                         
-                        <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9] font-sans mb-8">
+                        <h1 className="text-2xl font-black text-white tracking-tighter leading-[0.9] font-sans mb-8">
                             Stop searching for files. <br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">Start querying intelligence.</span>
                         </h1>

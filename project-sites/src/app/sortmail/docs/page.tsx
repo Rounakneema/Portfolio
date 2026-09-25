@@ -30,7 +30,7 @@ export default function SortMailDocsPage() {
                 
                 {/* Intro */}
                 <div>
-                    <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white border-b-4 border-red-600 pb-4 inline-block">
+                    <h1 className="text-2xl font-black uppercase tracking-tighter mb-6 text-white border-b-4 border-red-600 pb-4 inline-block">
                         Engineering Docs
                     </h1>
                     <p className="text-[#888] text-sm md:text-base leading-relaxed max-w-3xl border-l-2 border-[#333] pl-4">

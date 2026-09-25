@@ -52,7 +52,7 @@ export default function OSAArchitecturePage() {
                         <Link href="/osa/decisions" className="nav-link">Decisions</Link>
                     </nav>
 
-                    <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-4 text-[#fff]">
+                    <h1 className="text-2xl font-black uppercase tracking-tighter mb-4 text-[#fff]">
                         System Topology
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-400 max-w-3xl">

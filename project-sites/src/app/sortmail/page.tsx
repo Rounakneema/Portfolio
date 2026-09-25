@@ -44,7 +44,7 @@ export default function SortMailPage() {
                 
                 <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8">
                     <div className="md:col-span-8">
-                        <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-6 text-white">
+                        <h1 className="text-2xl font-black uppercase tracking-tighter leading-[0.9] mb-6 text-white">
                             Sort<span className="text-red-600">Mail</span>
                         </h1>
                         <h2 className="text-xl md:text-3xl font-medium tracking-tight text-[#888] mb-12 max-w-3xl border-l-4 border-red-600 pl-6 py-2">

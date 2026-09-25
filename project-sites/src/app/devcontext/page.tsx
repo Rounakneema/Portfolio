@@ -29,11 +29,11 @@ export default function DevContextPage() {
 
             {/* Hero */}
             <section className="p-4 md:p-8 lg:p-16 relative">
-                <div className="absolute top-0 right-0 p-16 text-[10vw] font-bold text-[#1a1a1a] select-none pointer-events-none leading-none -z-10 tracking-tighter mix-blend-difference">
+                <div className="absolute top-0 right-0 p-16 text-2xl font-bold text-[#1a1a1a] select-none pointer-events-none leading-none -z-10 tracking-tighter mix-blend-difference">
                     DCX:01
                 </div>
                 <div className="max-w-5xl">
-                    <h1 className="text-5xl md:text-8xl font-bold uppercase tracking-tighter leading-[0.9] mb-8 text-white">
+                    <h1 className="text-2xl font-bold uppercase tracking-tighter leading-[0.9] mb-8 text-white">
                         {project.title.split(' / ').map((t, i) => (
                             <span key={i} className="block hover:italic transition-all duration-300">
                                 {t}

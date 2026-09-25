@@ -23,7 +23,7 @@ export default function DevContextDocsPage() {
             </header>
 
             <section className="p-4 md:p-8 lg:p-16 border-b border-[#333]">
-                <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-4 text-white">
+                <h1 className="text-2xl font-bold uppercase tracking-tighter mb-4 text-white">
                     API & Schema Documentation
                 </h1>
                 <p className="text-[#888] max-w-2xl border-l-4 border-white pl-4">

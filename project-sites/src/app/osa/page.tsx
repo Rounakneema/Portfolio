@@ -86,7 +86,7 @@ export default function OSAPage() {
                     </nav>
 
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-                        <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter text-glitch text-[#fff]" data-text={project.title}>
+                        <h1 className="text-2xl font-black uppercase tracking-tighter text-glitch text-[#fff]" data-text={project.title}>
                             {project.title}
                         </h1>
                         <div className="text-right mt-8 md:mt-0">
@@ -97,7 +97,7 @@ export default function OSAPage() {
                         </div>
                     </div>
                     
-                    <p className="text-2xl md:text-4xl font-bold text-gray-400 max-w-4xl leading-tight">
+                    <p className="text-2xl font-bold text-gray-400 max-w-4xl leading-tight">
                         {project.subtitle}
                     </p>
                     
