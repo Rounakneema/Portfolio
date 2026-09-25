@@ -1,0 +1,163 @@
+import { Metadata } from 'next';
+import { getProjectBySlug } from '@/lib/projects';
+
+export const metadata: Metadata = {
+  title: 'Dizzy - Voice-to-Figma UI Creation',
+  description: 'Voice-to-Native-Figma UI Creation Concept',
+};
+
+export default function DizzyPage() {
+  const project = getProjectBySlug('dizzy');
+  
+  if (!project) {
+    return <div>Project not found</div>;
+  }
+
+  return (
+    <div className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-[#ff3366] selection:text-white p-4 md:p-12 lg:p-24 overflow-x-hidden">
+      <style dangerouslySetInnerHTML={{__html: `
+        .brutalist-border { border: 2px solid #333; }
+        .brutalist-shadow { box-shadow: 8px 8px 0px #333; }
+        .neon-accent { color: #ff3366; }
+        .grid-bg {
+          background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
+          background-size: 40px 40px;
+        }
+        .marquee {
+          white-space: nowrap;
+          overflow: hidden;
+          box-sizing: border-box;
+        }
+        .marquee span {
+          display: inline-block;
+          padding-left: 100%;
+          animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(-100%, 0); }
+        }
+      `}} />
+
+      {/* Header */}
+      <header className="mb-24 relative z-10">
+        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black uppercase tracking-tighter leading-none mb-6 text-white mix-blend-difference">
+          DIZZY
+        </h1>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-[#333] pb-8">
+          <p className="text-xl md:text-2xl max-w-2xl font-light uppercase tracking-widest neon-accent">
+            {project.subtitle}
+          </p>
+          <div className="mt-8 md:mt-0 text-right">
+            <span className="block text-sm text-gray-500 uppercase">Status</span>
+            <span className="block text-xl font-bold">{project.status}</span>
+          </div>
+        </div>
+      </header>
+
+      {/* Grid background container */}
+      <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
+
+      {/* Main Content Asymmetric Layout */}
+      <main className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        {/* Left Column */}
+        <div className="lg:col-span-7 space-y-16">
+          <section className="p-8 bg-black brutalist-border brutalist-shadow">
+            <h2 className="text-4xl font-bold mb-8 uppercase text-white border-b border-[#333] pb-4">The Challenge</h2>
+            <p className="text-lg leading-relaxed text-gray-300">
+              {project.challenge}
+            </p>
+          </section>
+
+          <section className="p-8 bg-[#111] brutalist-border relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+              <span className="text-9xl font-black">?</span>
+            </div>
+            <h2 className="text-4xl font-bold mb-8 uppercase text-white">The Solution</h2>
+            <p className="text-xl leading-relaxed">
+              {project.solution}
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-3xl font-bold mb-8 uppercase text-white">System Architecture</h2>
+            <div className="bg-black p-6 brutalist-border font-mono text-sm overflow-x-auto text-green-500">
+              <pre>
+{`[ USER VOICE ] 
+      │ 
+      ▼ 
+[ JEV / STREAMING VOICE TRANSLATOR ]
+      │ (transcript: "create a dark dashboard")
+      ▼ 
+[ AGENT INTENT PARSER ] 
+  ├── Pass 1: High-Level Decomposition (TypeSafe)
+  │     → Operation: GENERATE_DASHBOARD
+  │     → Theme: DARK
+  └── Pass 2: Color Resolution
+        → "dark navy" -> hex palettes
+      │ 
+      ▼ 
+[ SEMANTIC COMMAND BUFFER ]
+      │ (blueprint generated)
+      ▼ 
+[ FIGMA MCP PLUGIN ]
+      │ 
+      ▼ 
+[ NATIVE FIGMA OBJECTS ]`}
+              </pre>
+            </div>
+          </section>
+        </div>
+
+        {/* Right Column */}
+        <div className="lg:col-span-5 space-y-12 mt-12 lg:mt-32">
+          
+          <section className="bg-black text-white p-8 border-l-8 border-[#ff3366]">
+            <h3 className="text-sm uppercase tracking-[0.3em] mb-4 text-gray-500">Concept Manifesto</h3>
+            <p className="text-lg font-light leading-relaxed">
+              {project.fullDescription}
+            </p>
+          </section>
+
+          <section className="brutalist-border p-6 bg-black">
+            <h3 className="text-2xl font-bold uppercase mb-6 border-b border-[#333] pb-2">Technical Specs</h3>
+            <ul className="space-y-4">
+              {project.bullets.map((bullet, idx) => (
+                <li key={idx} className="flex flex-col">
+                  <span className="text-[#ff3366] font-bold text-sm uppercase">{bullet.label}</span>
+                  <span className="text-gray-300">{bullet.text}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="grid grid-cols-2 gap-4">
+            {project.metrics?.map((m, idx) => (
+              <div key={idx} className="bg-[#111] brutalist-border p-4 flex flex-col items-center justify-center text-center">
+                <span className="text-3xl font-black text-white mb-2">{m.value}</span>
+                <span className="text-xs uppercase text-gray-500 tracking-wider">{m.label}</span>
+              </div>
+            ))}
+          </section>
+          
+          <section className="pt-8">
+            <div className="flex flex-wrap gap-3">
+              {project.tech.map((t, idx) => (
+                <span key={idx} className="px-4 py-2 bg-white text-black font-bold uppercase text-xs brutalist-shadow border-2 border-black">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </section>
+        </div>
+
+      </main>
+
+      <div className="mt-32 border-t-2 border-[#333] py-8 marquee bg-[#ff3366] text-white font-black text-4xl uppercase relative z-10">
+        <span>VOICE TO NATIVE FIGMA • SEMANTIC BUFFER • AGENTIC WORKFLOW • GENERATIVE UI • NO FLATTENED PNGS • JEV LATEST • </span>
+      </div>
+
+    </div>
+  );
+}
