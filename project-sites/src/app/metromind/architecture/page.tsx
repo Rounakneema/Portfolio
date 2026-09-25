@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Database, Workflow, ShieldCheck, FileSearch, ArrowLeft, ArrowRight, TerminalSquare } from 'lucide-react';
 import type { Metadata } from 'next';
+import MermaidDiagram from '@/components/Mermaid';
 
 export const metadata: Metadata = {
     title: 'Architecture Spec — MetroMind',
@@ -39,36 +40,23 @@ export default function MetroMindArchitecture() {
 
                 {/* RAW ASCII DIAGRAM */}
                 <section className="border-b border-fuchsia-500/10 p-4 md:p-8 overflow-x-auto bg-[#020203]">
-                    <pre className="text-[10px] sm:text-xs leading-snug text-cyan-500/80 p-4">
-{`
-    [ CLIENT REQUEST ]
-           │
-           ▼ (HTTPS / JWT)
-  ┌──────────────────┐               ┌──────────────────┐
-  │   API GATEWAY    │ ──(Verify)──▶ │   AUTH SERVICE   │
-  │      (Go)        │ ◀──(Allow)─── │ (Postgres/Redis) │
-  └──────────────────┘               └──────────────────┘
-           │
-           │ (Publish Event)
-           ▼
-  ┌──────────────────┐
-  │     RABBITMQ     │ ◀─── [ MESSAGE BROKER ]
-  └──────────────────┘
-           │
-           │ (Consume Event)
-           ▼
-  ┌──────────────────┐               ┌──────────────────┐
-  │   OCR WORKERS    │ ──(Chunks)──▶ │  EMBED SERVICE   │
-  │     (Python)     │               │ (all-MiniLM-L6)  │
-  └──────────────────┘               └──────────────────┘
-                                              │
-                                              ▼
-                                     ┌──────────────────┐
-                                     │  MILVUS VECTOR   │
-                                     │     DATABASE     │
-                                     └──────────────────┘
-`}
-                    </pre>
+                    <MermaidDiagram chart={`flowchart TD
+    Client[CLIENT REQUEST]
+    
+    Gateway[API GATEWAY<br/>Go]
+    Auth[AUTH SERVICE<br/>Postgres/Redis]
+    Rabbit[RABBITMQ<br/>MESSAGE BROKER]
+    OCR[OCR WORKERS<br/>Python]
+    Embed[EMBED SERVICE<br/>all-MiniLM-L6]
+    Milvus[MILVUS VECTOR<br/>DATABASE]
+
+    Client -- "HTTPS / JWT" --> Gateway
+    Gateway -- "Verify" --> Auth
+    Auth -- "Allow" --> Gateway
+    Gateway -- "Publish Event" --> Rabbit
+    Rabbit -- "Consume Event" --> OCR
+    OCR -- "Chunks" --> Embed
+    Embed --> Milvus`} />
                 </section>
 
                 {/* SERVICE SPECS */}

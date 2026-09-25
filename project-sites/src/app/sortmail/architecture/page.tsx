@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import MermaidDiagram from '@/components/Mermaid';
 
 export const metadata: Metadata = {
     title: 'SortMail // Architecture',
@@ -43,47 +44,36 @@ export default function ArchitecturePage() {
                     // Diagram: Core Ingestion Pipeline
                 </div>
                 <div className="bg-[#0a0a0a] border border-[#222] p-4 md:p-8 overflow-x-auto">
-                    <pre className="text-[10px] md:text-xs leading-tight text-[#4af626] font-mono whitespace-pre">
-{`
-                               [ EXTERNAL WEBHOOKS ] (Gmail/Outlook push)
-                                         |
-                                         v
-+-----------------------------------------------------------------------------------+
-|                           API GATEWAY (Load Balancer)                             |
-+-----------------------------------------------------------------------------------+
-                                         |
-                                         v
-+-----------------------------------------------------------------------------------+
-|                            INGRESS BUFFER (Go/Redis)                              |
-|                                                                                   |
-|  [ Routine 1 ] ---> ( channel_a: Auth Validation )                                |
-|  [ Routine 2 ] ---> ( channel_b: Rate Limit Check)                                |
-|  [ Routine 3 ] ---> ( channel_c: Payload Sanity  )                                |
-+-----------------------------------------------------------------------------------+
-                                         | (fan-out)
-            +----------------------------+-----------------------------+
-            |                            |                             |
-            v                            v                             v
-+-----------------------+    +-----------------------+    +-----------------------+
-|  ENGINE: EMAIL PARSE  |    |  ENGINE: ATTACHMENT   |    |  ENGINE: TASK GEN     |
-|  (Python/FastAPI)     |    |  (Go / ClamAV)        |    |  (Go / LLM Routing)   |
-|-----------------------|    |-----------------------|    |-----------------------|
-| - Thread Unrolling    |    | - MIME Validation     |    | - Priority Scoring    |
-| - Context Extraction  |    | - Virus Scanning      |    | - Deadline Extraction |
-| - Intent Classification|   | - Summary Generation  |    | - Actionable Sync     |
-+-----------------------+    +-----------------------+    +-----------------------+
-            |                            |                             |
-            +----------------------------+-----------------------------+
-                                         | (fan-in / aggregation)
-                                         v
-+-----------------------------------------------------------------------------------+
-|                         EVENT BUS (RabbitMQ / Kafka)                              |
-+-----------------------------------------------------------------------------------+
-                                         |
-                                         v
-                        [ POSTGRESQL / VECTOR DB (RAG) ]
-`}
-                    </pre>
+                    <MermaidDiagram chart={`
+flowchart TD
+    Webhooks["EXTERNAL WEBHOOKS (Gmail/Outlook push)"] --> APIGW["API GATEWAY (Load Balancer)"]
+    
+    subgraph Ingress["INGRESS BUFFER (Go/Redis)"]
+        direction TB
+        R1["Routine 1"] --> CA["channel_a: Auth Validation"]
+        R2["Routine 2"] --> CB["channel_b: Rate Limit Check"]
+        R3["Routine 3"] --> CC["channel_c: Payload Sanity"]
+    end
+    
+    APIGW --> Ingress
+    
+    Parse["ENGINE: EMAIL PARSE (Python/FastAPI)<br><br>- Thread Unrolling<br>- Context Extraction<br>- Intent Classification"]
+    Attachment["ENGINE: ATTACHMENT (Go / ClamAV)<br><br>- MIME Validation<br>- Virus Scanning<br>- Summary Generation"]
+    TaskGen["ENGINE: TASK GEN (Go / LLM Routing)<br><br>- Priority Scoring<br>- Deadline Extraction<br>- Actionable Sync"]
+
+    Ingress -- "(fan-out)" --> Parse
+    Ingress --> Attachment
+    Ingress --> TaskGen
+    
+    EventBus["EVENT BUS (RabbitMQ / Kafka)"]
+    
+    Parse --> EventBus
+    Attachment --> EventBus
+    TaskGen --> EventBus
+    
+    DB["POSTGRESQL / VECTOR DB (RAG)"]
+    EventBus -- "(fan-in / aggregation)" --> DB
+`} />
                 </div>
             </section>
 

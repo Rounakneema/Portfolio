@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import MermaidDiagram from '@/components/Mermaid';
 
 export const metadata: Metadata = {
     title: 'OSA - Architecture Spec',
@@ -81,33 +82,21 @@ export default function OSAArchitecturePage() {
                             </p>
                         </div>
                         <div className="brutalist-border p-6 bg-[#050505] overflow-hidden">
-<pre className="ascii-art text-[#ff00c1]">
-{`                  KUBERNETES CLUSTER (CONTROL PLANE)
-                         │
-                ┌────────▼────────┐
-                │ LogShield       │ MUTATING
-                │ Controller      │ ADMISSION
-                │ (Webhook)       │ WEBHOOK
-                └────────┬────────┘
-                         │ (injects sidecar)
-                         ▼
-          ┌──────────────▼──────────────┐
-          │           POD               │
-          │  ┌────────────┐             │
-          │  │ Application│             │
-          │  └─────┬──────┘             │
-          │        │ writes logs        │
-          │        ▼ /shared/app.log    │
-          │  ┌────────────┐             │
-          │  │ LogShield  │ (Data Plane)│
-          │  │ Sidecar    │             │
-          │  │ (LogMask)  │             │
-          │  └─────┬──────┘             │
-          └────────┼────────────────────┘
-                   │ emits sanitized logs
-                   ▼
-              Fluent Bit / Loki`}
-</pre>
+<MermaidDiagram chart={`
+flowchart TD
+    KC["KUBERNETES CLUSTER (CONTROL PLANE)"]
+    LSC["LogShield Controller<br>(Webhook)<br>MUTATING ADMISSION WEBHOOK"]
+    KC --> LSC
+    LSC -- "injects sidecar" --> POD
+
+    subgraph POD["POD"]
+        APP["Application"]
+        SIDE["LogShield Sidecar<br>(LogMask)<br>(Data Plane)"]
+        APP -- "writes logs<br>▼ /shared/app.log" --> SIDE
+    end
+
+    SIDE -- "emits sanitized logs" --> FBL["Fluent Bit / Loki"]
+`} />
                         </div>
                     </div>
                 </section>
@@ -119,26 +108,16 @@ export default function OSAArchitecturePage() {
                     </h2>
                     
                     <div className="brutalist-border p-6 bg-[#050505] overflow-x-auto mb-12">
-<pre className="ascii-art">
-{`[ RAW LOG STREAM ] ──> [ PREPROCESSOR ] (Decodes JSON/Base64/URLs)
-                              │
-                              ▼
-                     [ CANDIDATE FINDER ] (Aho-Corasick Automaton)
-                              │
-                              ▼
-                       [ CONTEXT ENGINE ] (Proximity Analysis)
-                              │
-                              ▼
-                    [ SECRET CLASSIFIER ] (600+ Regex Patterns)
-                              │
-                              ▼
-                         [ ML SCORER ] ──> (Confidence 0-100)
-                              │
-                      ┌───────┴───────┐
-                    ≥80             <50
-                   MASK            ALLOW
-               (Redacted)        (Passed through)`}
-</pre>
+<MermaidDiagram chart={`
+flowchart TD
+    RLS["RAW LOG STREAM"] --> PRE["PREPROCESSOR<br>(Decodes JSON/Base64/URLs)"]
+    PRE --> CF["CANDIDATE FINDER<br>(Aho-Corasick Automaton)"]
+    CF --> CE["CONTEXT ENGINE<br>(Proximity Analysis)"]
+    CE --> SC["SECRET CLASSIFIER<br>(600+ Regex Patterns)"]
+    SC --> ML["ML SCORER<br>(Confidence 0-100)"]
+    ML -- "≥80" --> MASK["MASK<br>(Redacted)"]
+    ML -- "<50" --> ALLOW["ALLOW<br>(Passed through)"]
+`} />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-300 text-lg leading-relaxed">

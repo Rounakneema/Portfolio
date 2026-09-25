@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import MermaidDiagram from '@/components/Mermaid';
 
 export const metadata = {
     title: 'Architecture Spec | DevContext.AI',
@@ -33,68 +34,52 @@ export default function ArchitecturePage() {
                     <h2 className="text-2xl uppercase tracking-widest border-b border-[#333] pb-4 mb-8">Topology Overview</h2>
 
                     <div className="bg-[#050505] border border-[#222] p-4 md:p-8 overflow-x-auto mb-16">
-                        <pre className="text-[10px] md:text-xs text-[#888] leading-tight">
-{`┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                              API GATEWAY LAYER                                      │
-├─────────────────────────────────────────────────────────────────────────────────────┤
-│  ┌──────────────────────────────────────────────────────────────────────────────┐   │
-│  │                     Amazon API Gateway (REST + WebSocket)                    │   │
-│  │  • CORS enabled                                                              │   │
-│  │  • Cognito authorizer                                                        │   │
-│  │  • Request throttling (10K req/sec)                                          │   │
-│  │  • WebSocket for real-time interview                                         │   │
-│  └──────────────────────────────────────────────────────────────────────────────┘   │
-└──────────────────────────────────┬──────────────────────────────────────────────────┘
-                                   │
-            ┌──────────────────────┼──────────────────────┐
-            │                      │                      │
-            ↓                      ↓                      ↓
-┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐
-│  Authentication     │ │  Repository         │ │  Interview          │
-│  Service (Cognito)  │ │  Process Orchestrator│ │  Service (WSS)      │
-└─────────────────────┘ └─────────────────────┘ └─────────────────────┘
-                                   │
-                                   ↓
-┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                            PROCESSING LAYER (AWS Lambda)                            │
-├─────────────────────────────────────────────────────────────────────────────────────┤
-│  ┌────────────────────────────────────────────────────────────────────────────┐     │
-│  │                         STAGE 0: Repository Ingestion                      │     │
-│  ├────────────────────────────────────────────────────────────────────────────┤     │
-│  │  [GitHub Clone] → [File Parser] → [Context Map Gen] → [S3 Cache]           │     │
-│  └────────────────────────────────────────────────────────────────────────────┘     │
-│                                                                                     │
-│  ┌────────────────────────────────────────────────────────────────────────────┐     │
-│  │                    STAGE 1: Project Review (Parallel Agents)               │     │
-│  ├────────────────────────────────────────────────────────────────────────────┤     │
-│  │  [Tech Found]   [Architecture]   [Risk & Sec]                              │     │
-│  │         \\            |             /                                        │     │
-│  │          ───> [Synthesis Agent] <───                                       │     │
-│  └────────────────────────────────────────────────────────────────────────────┘     │
-│                                                                                     │
-│  ┌────────────────────────────────────────────────────────────────────────────┐     │
-│  │                 STAGE 2: Intelligence Report (Parallel Agents)             │     │
-│  ├────────────────────────────────────────────────────────────────────────────┤     │
-│  │  [Architecture] [Design Decisions] [Tradeoffs] [Scalability]               │     │
-│  │         \\            |                |            /                        │     │
-│  │          ─────> [Resume Builder] <──────────────────                         │     │
-│  └────────────────────────────────────────────────────────────────────────────┘     │
-└─────────────────────────────────────────────────────────────────────────────────────┘
-                                   │
-                                   ↓
-┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                              AI/ML LAYER (AWS Bedrock)                              │
-├─────────────────────────────────────────────────────────────────────────────────────┤
-│  ┌────────────────────────────────────────────────────────────────────────────┐     │
-│  │                         Amazon Bedrock Runtime                             │     │
-│  ├────────────────────────────────────────────────────────────────────────────┤     │
-│  │  Stage 1 (Code Review):    Mistral Large 3 / Claude 3.5 Sonnet             │     │
-│  │  Stage 2 (Intelligence):   Mistral Large 3 / Claude 3.5 Sonnet             │     │
-│  │  Stage 3 (Questions):      Mistral Large 3 / Claude 3.5 Sonnet             │     │
-│  │  Interview Evaluation:     Mistral Large 3 (fast inference)                │     │
-│  └────────────────────────────────────────────────────────────────────────────┘     │
-└─────────────────────────────────────────────────────────────────────────────────────┘`}
-                        </pre>
+                        <MermaidDiagram chart={`
+flowchart TD
+    subgraph API [API GATEWAY LAYER]
+        AGW["Amazon API Gateway (REST + WebSocket)\n• CORS enabled\n• Cognito authorizer\n• Request throttling (10K req/sec)\n• WebSocket for real-time interview"]
+    end
+
+    Auth["Authentication\nService (Cognito)"]
+    Orch["Repository\nProcess Orchestrator"]
+    WSS["Interview\nService (WSS)"]
+
+    AGW --> Auth
+    AGW --> Orch
+    AGW --> WSS
+
+    subgraph ProcLayer [PROCESSING LAYER (AWS Lambda)]
+        subgraph S0 [STAGE 0: Repository Ingestion]
+            direction LR
+            Clone[GitHub Clone] --> Parse[File Parser] --> Map[Context Map Gen] --> Cache[S3 Cache]
+        end
+
+        subgraph S1 [STAGE 1: Project Review]
+            direction TB
+            T1[Tech Found] --> Syn1[Synthesis Agent]
+            A1[Architecture] --> Syn1
+            R1[Risk & Sec] --> Syn1
+        end
+
+        subgraph S2 [STAGE 2: Intelligence Report]
+            direction TB
+            A2[Architecture] --> RB[Resume Builder]
+            D2[Design Decisions] --> RB
+            Tr2[Tradeoffs] --> RB
+            Sc2[Scalability] --> RB
+        end
+    end
+
+    Orch --> S0
+    S0 --> S1
+    S1 --> S2
+
+    subgraph Bedrock [AI/ML LAYER (AWS Bedrock)]
+        BR["Amazon Bedrock Runtime\n\nStage 1: Mistral Large 3 / Claude 3.5 Sonnet\nStage 2: Mistral Large 3 / Claude 3.5 Sonnet\nStage 3: Mistral Large 3 / Claude 3.5 Sonnet\nEvaluation: Mistral Large 3"]
+    end
+
+    ProcLayer --> Bedrock
+                        `} />
                     </div>
 
                     <h2 className="text-2xl uppercase tracking-widest border-b border-[#333] pb-4 mb-8">Component Breakdown</h2>

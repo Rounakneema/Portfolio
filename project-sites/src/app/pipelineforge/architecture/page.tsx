@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import MermaidDiagram from '@/components/Mermaid';
 
 export const metadata: Metadata = {
   title: 'PipelineForge Architecture | Topology & Flows',
@@ -30,38 +31,21 @@ export default function ArchitecturePage() {
           </p>
           
           <div className="border-4 border-white p-6 overflow-x-auto bg-[#111] text-green-400">
-            <pre className="text-sm md:text-base leading-tight">
-{`[DEVELOPER]
-    │
-    ▼ (git push)
-[GITHUB REPOSITORY] ────────────────────────┐
-    │                                       │
-    ▼ triggers                              ▼ configuration
-[GITHUB ACTIONS CI/CD]                      [HELM CHARTS]
-    │                                       │
-    ├─► 1. Lint & Test (Go)                 │
-    │                                       │
-    ├─► 2. Build Multi-stage Docker         │
-    │   (golang:1.21-alpine -> distroless)  │
-    │                                       │
-    ├─► 3. Security Scan (Trivy)            │
-    │   [FAIL IF HIGH/CRITICAL CVEs]        │
-    │                                       │
-    ├─► 4. Push Image                       │
-    ▼                                       │
-[CONTAINER REGISTRY] ◄──────────────────────┘
-    │
-    ▼ pull
-[KUBERNETES CLUSTER]
-    │
-    ├─► [INGRESS / SVC] ───────► (Traffic Routing)
-    │
-    ├─► [HPA] ─────────────────► (Scales 1..8 on CPU > 70%)
-    │
-    └─► [DEPLOYMENT] ──────────► [POD 1] [POD 2] ... [POD N]
-                                  (Distroless Go Binary)
-`}
-            </pre>
+            <MermaidDiagram chart={`flowchart TD
+    DEV[DEVELOPER] -->|git push| REPO[GITHUB REPOSITORY]
+    REPO -->|triggers| CI[GITHUB ACTIONS CI/CD]
+    REPO -->|configuration| HELM[HELM CHARTS]
+    CI --> LINT[1. Lint & Test Go]
+    LINT --> BUILD[2. Build Multi-stage Docker<br/>golang:1.21-alpine -> distroless]
+    BUILD --> SCAN[3. Security Scan Trivy<br/>FAIL IF HIGH/CRITICAL CVEs]
+    SCAN --> PUSH[4. Push Image]
+    PUSH --> REGISTRY[CONTAINER REGISTRY]
+    HELM --> REGISTRY
+    REGISTRY -->|pull| K8S[KUBERNETES CLUSTER]
+    K8S --> SVC[INGRESS / SVC<br/>Traffic Routing]
+    K8S --> HPA[HPA<br/>Scales 1..8 on CPU > 70%]
+    K8S --> DEPLOY[DEPLOYMENT]
+    DEPLOY --> PODS[POD 1 ... POD N<br/>Distroless Go Binary]`} />
           </div>
         </section>
 
@@ -72,36 +56,25 @@ export default function ArchitecturePage() {
           </p>
           
           <div className="border-4 border-white p-6 overflow-x-auto bg-[#111] text-cyan-400">
-            <pre className="text-sm md:text-base leading-tight">
-{`+-------------------------------------------------------------+
-| KUBERNETES NAMESPACE (pipelineforge)                        |
-|                                                             |
-|  +------------------------+                                 |
-|  | NETWORK POLICY         |  <-- Default Deny All           |
-|  | Allow Ingress on 8080  |                                 |
-|  +------------------------+                                 |
-|                                                             |
-|  +------------------------+      +-----------------------+  |
-|  | SERVICE (ClusterIP)    | ---> | HORIZONTAL POD        |  |
-|  | Port: 80 -> 8080       |      | AUTOSCALER (HPA)      |  |
-|  +-----------+------------+      | Target CPU: 70%       |  |
-|              |                   +-----------+-----------+  |
-|              v                               |              |
-|  +------------------------+                  |              |
-|  | DEPLOYMENT             | <----------------+              |
-|  | Replicas: 1 to 8       |                                 |
-|  +-----------+------------+                                 |
-|              |                                              |
-|              v                                              |
-|  +------------------------+      +-----------------------+  |
-|  | POD (App)              |      | POD (App)             |  |
-|  | - Liveness Probe       |      | - Liveness Probe      |  |
-|  | - Readiness Probe      |      | - Readiness Probe     |  |
-|  | - Resource Limits      |      | - Resource Limits     |  |
-|  +------------------------+      +-----------------------+  |
-+-------------------------------------------------------------+
-`}
-            </pre>
+            <MermaidDiagram chart={`flowchart TD
+    subgraph K8S_NS [KUBERNETES NAMESPACE pipelineforge]
+        NP[NETWORK POLICY<br/>Default Deny All<br/>Allow Ingress on 8080]
+        
+        SVC[SERVICE ClusterIP<br/>Port: 80 --> 8080]
+        HPA[HORIZONTAL POD AUTOSCALER<br/>Target CPU: 70%]
+        
+        SVC --> HPA
+        
+        DEPLOY[DEPLOYMENT<br/>Replicas: 1 to 8]
+        SVC --> DEPLOY
+        HPA --> DEPLOY
+        
+        POD1[POD App<br/>- Liveness Probe<br/>- Readiness Probe<br/>- Resource Limits]
+        POD2[POD App<br/>- Liveness Probe<br/>- Readiness Probe<br/>- Resource Limits]
+        
+        DEPLOY --> POD1
+        DEPLOY --> POD2
+    end`} />
           </div>
         </section>
 

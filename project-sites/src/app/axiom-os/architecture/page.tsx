@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import MermaidDiagram from '@/components/Mermaid';
 
 export const metadata: Metadata = {
     title: 'AXIOM OS | Architecture',
@@ -62,29 +63,15 @@ export default function ArchitecturePage() {
                                 The architecture is strictly separated into three layers: Collection (Specter), Storage (SQLite), and Intelligence (Ollama + Qwen).
                             </p>
                             <div className="bg-black brutalist-border p-6 overflow-x-auto">
-                                <pre className="text-green-500 text-xs leading-tight">
-{`
-+-------------------------------------------------------------+
-|                        USER MACHINE                         |
-|                                                             |
-|  +-----------------+    +-----------------+                 |
-|  |                 |    |                 |                 |
-|  |  Specter Daemon |    |  Ollama Engine  |                 |
-|  |  (Go)           |    |  (qwen2.5:3b)   |                 |
-|  |                 |    |                 |                 |
-|  +--------+--------+    +--------+--------+                 |
-|           |                      |                          |
-|           | (Write)              | (Read/Infer)             |
-|           v                      v                          |
-|  +----------------------------------------+                 |
-|  |                                        |                 |
-|  |           SQLite Memory Layer          |                 |
-|  |                                        |                 |
-|  +----------------------------------------+                 |
-|                                                             |
-+-------------------------------------------------------------+
-`}
-                                </pre>
+                                <MermaidDiagram chart={`flowchart TD
+    subgraph USER_MACHINE [USER MACHINE]
+        Specter["Specter Daemon<br/>(Go)"]
+        Ollama["Ollama Engine<br/>(qwen2.5:3b)"]
+        SQLite["SQLite Memory Layer"]
+        
+        Specter -- "(Write)" --> SQLite
+        Ollama -- "(Read/Infer)" --> SQLite
+    end`} />
                             </div>
                         </section>
 

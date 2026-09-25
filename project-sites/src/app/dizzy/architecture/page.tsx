@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import MermaidDiagram from '@/components/Mermaid';
 
 export const metadata: Metadata = {
   title: 'Dizzy Architecture Spec',
@@ -38,39 +39,23 @@ export default function DizzyArchitecturePage() {
         <section>
           <h2 className="text-3xl font-bold mb-8 uppercase text-white border-l-4 border-[#ff3366] pl-4">Topology Overview</h2>
           <div className="bg-black p-8 brutalist-border font-mono text-xs md:text-sm overflow-x-auto text-green-400 leading-relaxed shadow-lg">
-            <pre>
-{`[ USER CONTEXT ]
-      │ (Streaming Audio)
-      ▼
-┌────────────────────────────────────────────────────────┐
-│ VOICE GATEWAY (JEV)                                    │
-│ ├─ VAD (Voice Activity Detection)                      │
-│ ├─ Streaming STT (Speech-to-Text)                      │
-│ └─ Context Injection (Current Figma Canvas State)      │
-└───────────────────────┬────────────────────────────────┘
-                        │ (Transcribed Intents + Canvas State)
-                        ▼
-┌────────────────────────────────────────────────────────┐
-│ AGENTIC ORCHESTRATOR                                   │
-│ ├─ Router: Maps intent to specific sub-agents          │
-│ │    ├─> Layout Agent (Flexbox/Grids)                  │
-│ │    ├─> Typography Agent (Fonts, Weights)             │
-│ │    └─> Styling Agent (Colors, Shadows, Borders)      │
-│ ├─ State Manager: Tracks semantic changes              │
-│ └─ TypeSafe Output Validator                           │
-└───────────────────────┬────────────────────────────────┘
-                        │ (Structured Semantic Buffer)
-                        ▼
-┌────────────────────────────────────────────────────────┐
-│ SEMANTIC BUFFER TO FIGMA MCP                           │
-│ ├─ Diff Engine: Calculates minimal updates             │
-│ ├─ Figma Plugin Bridge (WebSocket/REST)                │
-│ └─ Native Object Generator (Frames, Text, Vectors)     │
-└───────────────────────┬────────────────────────────────┘
-                        │ (RPC / IPC Commands)
-                        ▼
-[ FIGMA NATIVE APPLICATION ]`}
-            </pre>
+            <MermaidDiagram chart={`
+flowchart TD
+    User["[ USER CONTEXT ]"]
+    
+    Gateway["<b>VOICE GATEWAY (JEV)</b><br/>├─ VAD (Voice Activity Detection)<br/>├─ Streaming STT (Speech-to-Text)<br/>└─ Context Injection (Current Figma Canvas State)"]
+    
+    Orchestrator["<b>AGENTIC ORCHESTRATOR</b><br/>├─ Router: Maps intent to specific sub-agents<br/>│    ├─> Layout Agent (Flexbox/Grids)<br/>│    ├─> Typography Agent (Fonts, Weights)<br/>│    └─> Styling Agent (Colors, Shadows, Borders)<br/>├─ State Manager: Tracks semantic changes<br/>└─ TypeSafe Output Validator"]
+    
+    Buffer["<b>SEMANTIC BUFFER TO FIGMA MCP</b><br/>├─ Diff Engine: Calculates minimal updates<br/>├─ Figma Plugin Bridge (WebSocket/REST)<br/>└─ Native Object Generator (Frames, Text, Vectors)"]
+    
+    Figma["[ FIGMA NATIVE APPLICATION ]"]
+
+    User -- "(Streaming Audio)" --> Gateway
+    Gateway -- "(Transcribed Intents + Canvas State)" --> Orchestrator
+    Orchestrator -- "(Structured Semantic Buffer)" --> Buffer
+    Buffer -- "(RPC / IPC Commands)" --> Figma
+`} />
           </div>
         </section>
 
