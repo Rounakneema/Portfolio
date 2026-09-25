@@ -1,42 +1,139 @@
 import Link from 'next/link';
-import { ArrowRight, Box, BrainCircuit, Database, FileSearch, LockKeyhole, Network, Search, ShieldCheck, Workflow } from 'lucide-react';
+import { Database, Workflow, ShieldCheck, FileSearch, ArrowLeft, TerminalSquare } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Architecture — MetroMind',
-  description: 'A visual walk-through of MetroMind’s document intelligence pipeline, service boundaries, and audit-first access controls.',
-  alternates: { canonical: 'https://metromind.rounakneema.in/architecture' },
+    title: 'Architecture Spec — MetroMind',
+    description: 'Engineering specification for the MetroMind distributed document intelligence system.',
+    alternates: { canonical: 'https://metromind.rounakneema.in/architecture' },
 };
 
-const layers = [
-  { icon: FileSearch, step: '01', title: 'Ingest & classify', text: 'Documents enter through the API gateway, where identity, department permissions, and document metadata are established before processing begins.', color: 'text-violet-300' },
-  { icon: Workflow, step: '02', title: 'Queue & extract', text: 'RabbitMQ hands off long-running OCR tasks so uploads feel immediate while workers independently process, retry, and report progress.', color: 'text-sky-300' },
-  { icon: BrainCircuit, step: '03', title: 'Embed & enrich', text: 'Extracted text is normalized and represented as semantic vectors, preserving the meaning needed for natural-language retrieval.', color: 'text-fuchsia-300' },
-  { icon: Search, step: '04', title: 'Retrieve with context', text: 'Vector search, role-aware filtering, and audit events work together to surface the right answer to the right person.', color: 'text-emerald-300' },
-];
-
 export default function MetroMindArchitecture() {
-  return (
-    <div className="relative isolate overflow-hidden bg-[#050507]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px] overflow-hidden"><div className="absolute left-1/2 top-[-420px] h-[780px] w-[780px] -translate-x-1/2 rounded-full border border-purple-400/10 bg-purple-500/[0.035] shadow-[0_0_180px_50px_rgba(124,58,237,0.10)]" /><div className="absolute inset-0 bg-[linear-gradient(rgba(196,181,253,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(196,181,253,0.025)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" /></div>
+    return (
+        <div className="min-h-screen bg-[#030305] text-zinc-400 font-mono text-sm selection:bg-cyan-500/30">
+            
+            {/* Top Nav Rail */}
+            <nav className="border-b border-fuchsia-500/20 bg-[#030305] sticky top-0 z-50">
+                <div className="flex h-12 items-center justify-between px-4 md:px-8">
+                    <div className="flex items-center gap-4">
+                        <Link href="/metromind" className="text-zinc-500 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                            <ArrowLeft className="w-4 h-4" /> HOME
+                        </Link>
+                        <span className="text-zinc-700">/</span>
+                        <span className="text-cyan-400 font-bold tracking-widest uppercase text-xs">Architecture_Spec</span>
+                    </div>
+                </div>
+            </nav>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
-        <div className="max-w-3xl"><p className="text-[10px] font-bold uppercase tracking-[0.22em] text-purple-300">System architecture</p><h1 className="mt-5 text-balance text-5xl font-black leading-[0.93] tracking-[-0.06em] text-white sm:text-6xl md:text-7xl">Intelligence is a pipeline, not a single model.</h1><p className="mt-7 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">MetroMind uses clear service boundaries to turn hard-to-search documents into dependable, permission-aware answers—without making the user wait for the work to happen.</p></div>
+            <main className="max-w-5xl mx-auto border-x border-fuchsia-500/10 min-h-screen bg-[#040406]">
+                
+                <header className="p-8 md:p-16 border-b border-fuchsia-500/10">
+                    <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mb-6 flex items-center gap-4">
+                        <TerminalSquare className="w-10 h-10 text-fuchsia-500" />
+                        System Topology
+                    </h1>
+                    <p className="text-zinc-500 font-sans text-lg max-w-2xl leading-relaxed">
+                        MetroMind separates concerns aggressively. HTTP requests, background processing, semantic embedding, and vector storage exist in isolated domains to prevent long-running tasks from degrading the user experience.
+                    </p>
+                </header>
 
-        <div className="relative mt-14 overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0b0910]/90 p-5 shadow-2xl shadow-black/30 sm:p-8 md:mt-20 md:p-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(139,92,246,0.10),transparent_40%)]" />
-          <div className="relative"><div className="mb-8 flex items-center justify-between"><div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.17em] text-zinc-500"><Network className="h-3.5 w-3.5 text-purple-300" /> Document intelligence flow</div><span className="rounded-full border border-purple-300/15 bg-purple-300/[0.07] px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-purple-200">Async by design</span></div>
-            <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center">
-              {[{ icon: Box, label: 'API Gateway', sub: 'Auth · metadata', color: 'text-violet-300' }, { icon: Workflow, label: 'RabbitMQ', sub: 'Event handoff', color: 'text-sky-300' }, { icon: BrainCircuit, label: 'OCR + Embed', sub: 'Extract · represent', color: 'text-fuchsia-300' }, { icon: Database, label: 'Vector Store', sub: 'Index · retrieve', color: 'text-emerald-300' }].flatMap((node, index) => [<div key={node.label} className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-5"><node.icon className={`h-5 w-5 ${node.color}`} /><p className="mt-6 text-sm font-bold text-white">{node.label}</p><p className="mt-1 text-xs text-zinc-600">{node.sub}</p></div>, index < 3 ? <ArrowRight key={`arrow-${index}`} className="mx-auto h-4 w-4 rotate-90 text-purple-300/45 lg:rotate-0" /> : null])}
-            </div>
-            <div className="mt-7 grid gap-3 border-t border-white/[0.07] pt-6 md:grid-cols-3"><div className="flex gap-3"><LockKeyhole className="mt-0.5 h-4 w-4 shrink-0 text-rose-300" /><p className="text-xs leading-5 text-zinc-500"><b className="font-medium text-zinc-300">RBAC gate:</b> department policy is checked before retrieval.</p></div><div className="flex gap-3"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" /><p className="text-xs leading-5 text-zinc-500"><b className="font-medium text-zinc-300">Audit trail:</b> privileged actions are captured as events.</p></div><div className="flex gap-3"><Workflow className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" /><p className="text-xs leading-5 text-zinc-500"><b className="font-medium text-zinc-300">Resilient workers:</b> processing stays off the request path.</p></div></div>
-          </div>
+                {/* RAW ASCII DIAGRAM */}
+                <section className="border-b border-fuchsia-500/10 p-4 md:p-8 overflow-x-auto bg-[#020203]">
+                    <pre className="text-[10px] sm:text-xs leading-snug text-cyan-500/80 p-4">
+{`
+    [ CLIENT REQUEST ]
+           │
+           ▼ (HTTPS / JWT)
+  ┌──────────────────┐               ┌──────────────────┐
+  │   API GATEWAY    │ ──(Verify)──▶ │   AUTH SERVICE   │
+  │      (Go)        │ ◀──(Allow)─── │ (Postgres/Redis) │
+  └──────────────────┘               └──────────────────┘
+           │
+           │ (Publish Event)
+           ▼
+  ┌──────────────────┐
+  │     RABBITMQ     │ ◀─── [ MESSAGE BROKER ]
+  └──────────────────┘
+           │
+           │ (Consume Event)
+           ▼
+  ┌──────────────────┐               ┌──────────────────┐
+  │   OCR WORKERS    │ ──(Chunks)──▶ │  EMBED SERVICE   │
+  │     (Python)     │               │ (all-MiniLM-L6)  │
+  └──────────────────┘               └──────────────────┘
+                                              │
+                                              ▼
+                                     ┌──────────────────┐
+                                     │  MILVUS VECTOR   │
+                                     │     DATABASE     │
+                                     └──────────────────┘
+`}
+                    </pre>
+                </section>
+
+                {/* SERVICE SPECS */}
+                <section className="divide-y divide-fuchsia-500/10">
+                    
+                    <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
+                        <div>
+                            <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_01</div>
+                            <h3 className="text-white text-lg font-bold">API Gateway</h3>
+                            <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
+                                <Workflow className="w-3 h-3" /> Lang: Go
+                            </div>
+                        </div>
+                        <div className="font-sans text-base text-zinc-400 leading-relaxed">
+                            Acts as the single entry point for the frontend. It strictly handles HTTP routing, payload validation, and interacts directly with the Auth Service to validate JWTs before accepting any documents for upload or queries for search. It immediately acknowledges uploads, publishing an event to RabbitMQ, ensuring a non-blocking UX.
+                        </div>
+                    </div>
+
+                    <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
+                        <div>
+                            <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_02</div>
+                            <h3 className="text-white text-lg font-bold">Event Bus</h3>
+                            <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
+                                <Workflow className="w-3 h-3" /> RabbitMQ
+                            </div>
+                        </div>
+                        <div className="font-sans text-base text-zinc-400 leading-relaxed">
+                            Provides asynchronous decoupling. If 500 documents are uploaded simultaneously, the Gateway does not wait for OCR. RabbitMQ queues the tasks. Worker nodes consume these tasks at their own processing capacity. This ensures the system absorbs traffic spikes without memory exhaustion.
+                        </div>
+                    </div>
+
+                    <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
+                        <div>
+                            <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_03</div>
+                            <h3 className="text-white text-lg font-bold">Intel Core</h3>
+                            <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
+                                <Database className="w-3 h-3" /> Python / Milvus
+                            </div>
+                        </div>
+                        <div className="font-sans text-base text-zinc-400 leading-relaxed">
+                            Python worker nodes execute OCR on binary blobs. Extracted text is normalized, chunked into overlapping windows, and passed to a local embedding model. The resulting dense vectors are indexed into a Milvus Vector Database, appended with metadata (Department ID, Access Level) for hybrid search capabilities.
+                        </div>
+                    </div>
+
+                    <div className="p-8 md:p-12 grid md:grid-cols-[200px_1fr] gap-8 hover:bg-white/[0.01] transition-colors">
+                        <div>
+                            <div className="text-fuchsia-400 font-bold tracking-widest text-xs mb-2">SVC_04</div>
+                            <h3 className="text-white text-lg font-bold">Audit & RBAC</h3>
+                            <div className="mt-4 inline-flex items-center gap-2 px-2 py-1 border border-zinc-700 text-[10px] text-zinc-400">
+                                <ShieldCheck className="w-3 h-3" /> Postgres
+                            </div>
+                        </div>
+                        <div className="font-sans text-base text-zinc-400 leading-relaxed">
+                            Search queries are intercepted here. A user's query is vectorized and sent to Milvus, but a mandatory pre-filter is applied using the user's Department ID from their validated JWT. Every query, and the resulting documents accessed, are logged to a PostgreSQL audit table for compliance.
+                        </div>
+                    </div>
+
+                </section>
+
+                <footer className="p-8 border-t border-fuchsia-500/10 flex justify-end">
+                    <Link href="/metromind" className="text-cyan-400 hover:text-white transition-colors flex items-center gap-2 uppercase tracking-widest text-xs font-bold">
+                        Return to overview <ArrowRight className="w-4 h-4" />
+                    </Link>
+                </footer>
+            </main>
         </div>
-      </section>
-
-      <section className="border-y border-white/[0.07] bg-white/[0.018]"><div className="mx-auto grid max-w-7xl divide-y divide-white/[0.07] px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:px-10">{[['12+', 'isolated services'], ['RabbitMQ', 'asynchronous work'], ['RBAC', 'permission-aware search']].map(([value, label]) => <div key={label} className="py-7 text-center"><p className="text-xl font-black text-white">{value}</p><p className="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-600">{label}</p></div>)}</div></section>
-
-      <section className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32"><div className="max-w-2xl"><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-purple-300">Four deliberate stages</p><h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-white sm:text-5xl">Each service owns a clean part of the journey.</h2></div><div className="mt-12 grid gap-4 md:grid-cols-2">{layers.map((layer) => <article key={layer.step} className="group rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 transition hover:-translate-y-1 hover:border-purple-300/30 hover:bg-white/[0.045]"><div className="flex items-start justify-between"><div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] bg-black/20"><layer.icon className={`h-5 w-5 ${layer.color}`} /></div><span className="font-mono text-[10px] text-zinc-700">{layer.step}</span></div><h3 className="mt-8 text-xl font-bold text-white">{layer.title}</h3><p className="mt-3 max-w-lg text-sm leading-6 text-zinc-500">{layer.text}</p></article>)}</div><div className="mt-16 border-t border-white/[0.07] pt-8"><Link href="/" className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-purple-300 transition hover:text-purple-200">Explore MetroMind <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link></div></section>
-    </div>
-  );
+    );
 }
