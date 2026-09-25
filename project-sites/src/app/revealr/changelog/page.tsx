@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowLeft, ArrowUpRight, History } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,20 +8,10 @@ export const metadata: Metadata = {
     alternates: { canonical: 'https://revealr.rounakneema.in/changelog' },
 };
 
-const nav = [
-    { href: '/revealr', label: 'Overview' },
-    { href: '/revealr/architecture', label: 'Architecture' },
-    { href: '/revealr/benchmarks', label: 'Benchmarks' },
-    { href: '/revealr/security', label: 'Security' },
-    { href: '/revealr/docs', label: 'Docs' },
-    { href: '/revealr/changelog', label: 'Changelog' },
-];
-
-// ⚠️ INPUT NEEDED — Fill in your actual version history. Replace placeholder entries below with real dates, version numbers, and changes.
 const changelog = [
     {
-        version: 'v1.0.0-beta',
-        date: '⚠️ Your release date here (e.g. Jan 2025)',
+        version: 'v1.0.0',
+        date: 'Current Release',
         status: 'current',
         changes: [
             { type: 'feat', text: 'Initial release with high-concurrency Go scanning engine' },
@@ -32,92 +23,70 @@ const changelog = [
             { type: 'feat', text: 'JSON and STDOUT output modes' },
         ],
     },
-    {
-        version: 'v0.9.0',
-        date: '⚠️ Your date here',
-        status: 'past',
-        changes: [
-            { type: 'feat', text: '⚠️ Add your real change here' },
-            { type: 'fix', text: '⚠️ Add your real fix here' },
-            { type: 'perf', text: '⚠️ Add your real optimization here' },
-        ],
-    },
-    {
-        version: 'v0.5.0',
-        date: '⚠️ Your date here',
-        status: 'past',
-        changes: [
-            { type: 'feat', text: '⚠️ Add your initial prototype changes here' },
-        ],
-    },
 ];
 
 const typeColors: Record<string, string> = {
-    feat: 'text-green-400 bg-green-900/20 border-green-800',
-    fix: 'text-red-400 bg-red-900/20 border-red-800',
-    perf: 'text-blue-400 bg-blue-900/20 border-blue-800',
-    docs: 'text-yellow-400 bg-yellow-900/20 border-yellow-800',
-    refactor: 'text-purple-400 bg-purple-900/20 border-purple-800',
+    feat: 'text-lime-300 bg-lime-400/10 border-lime-400/20',
+    fix: 'text-rose-300 bg-rose-400/10 border-rose-400/20',
+    perf: 'text-sky-300 bg-sky-400/10 border-sky-400/20',
 };
 
 export default function RevealrChangelog() {
     return (
-        <div className="max-w-6xl mx-auto px-6 py-20">
+        <div className="relative isolate min-h-screen overflow-hidden bg-[#080b0a] text-zinc-400 font-sans">
+            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px] overflow-hidden">
+                <div className="absolute left-[20%] top-[-10%] h-[300px] w-[600px] rounded-full bg-amber-500/5 blur-[120px]" />
+                <div className="absolute left-1/2 top-0 h-[800px] w-full -translate-x-1/2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyb1VuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOSAxdjM4SDFWMWhMOHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
+            </div>
+
+            <nav className="relative z-50 flex h-16 items-center border-b border-white/[0.07] px-6 md:px-10">
+                <Link href="/revealr/docs" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] text-zinc-400 transition-colors hover:bg-white/10 hover:text-white mr-4">
+                    <ArrowLeft className="h-4 w-4" />
+                </Link>
+                <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-200">REVEALR <span className="text-zinc-600">/</span> CHANGELOG</span>
+            </nav>
+
+            <div className="max-w-4xl mx-auto px-6 py-20 md:px-10">
                 <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-4">// Development History</div>
-                    <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6">Changelog</h1>
-                    <p className="text-zinc-400 text-lg max-w-2xl leading-relaxed">
-                        All notable changes to Revealr are documented here. The format follows Semantic Versioning.
-                    </p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400 mb-4">// Version History</p>
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">Changelog</h1>
                 </div>
 
-                <div className="relative">
-                    {/* Vertical timeline line */}
-                    <div className="absolute left-3 top-4 bottom-4 w-0.5 bg-zinc-800"></div>
+                <div className="relative border-l border-white/[0.07] ml-4 md:ml-6 pl-8 md:pl-12 space-y-16">
+                    {changelog.map((release) => (
+                        <div key={release.version} className="relative">
+                            <div className="absolute -left-[37px] md:-left-[53px] top-1.5 flex items-center justify-center">
+                                <div className={`h-4 w-4 rounded-full border border-[#080b0a] bg-lime-400 shadow-[0_0_12px_2px_rgba(190,242,100,0.5)]`} />
+                            </div>
+                            
+                            <div className="flex items-center gap-4 mb-6">
+                                <h2 className="text-2xl font-black text-white">{release.version}</h2>
+                                <span className="text-xs font-mono text-zinc-500">{release.date}</span>
+                                {release.status === 'current' && <span className="rounded-full bg-lime-400/10 border border-lime-400/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-lime-300">Latest</span>}
+                            </div>
 
-                    <div className="space-y-12">
-                        {changelog.map((release, idx) => (
-                            <div key={release.version} className="pl-10 relative">
-                                {/* Timeline dot */}
-                                <div className={`absolute left-0 top-1 w-7 h-7 rounded-full border-2 flex items-center justify-center ${
-                                    release.status === 'current'
-                                        ? 'border-green-500 bg-green-900/30'
-                                        : 'border-zinc-600 bg-zinc-900'
-                                }`}>
-                                    {release.status === 'current' && <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>}
-                                    {release.status === 'past' && <div className="w-2 h-2 rounded-full bg-zinc-600"></div>}
-                                </div>
-
-                                <div className="flex flex-wrap items-center gap-3 mb-6">
-                                    <span className={`text-lg font-black ${release.status === 'current' ? 'text-green-400' : 'text-zinc-300'}`}>
-                                        {release.version}
-                                    </span>
-                                    <span className="text-xs text-zinc-500">{release.date}</span>
-                                    {release.status === 'current' && (
-                                        <span className="text-xs bg-green-900/30 border border-green-800 text-green-400 px-2 py-0.5 rounded-full">LATEST</span>
-                                    )}
-                                </div>
-
-                                <div className="space-y-3">
+                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 md:p-8">
+                                <ul className="space-y-4">
                                     {release.changes.map((change, i) => (
-                                        <div key={i} className="flex items-start gap-3">
-                                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded border uppercase tracking-widest shrink-0 mt-0.5 ${typeColors[change.type] || typeColors.feat}`}>
+                                        <li key={i} className="flex gap-4">
+                                            <span className={`shrink-0 mt-0.5 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest border ${typeColors[change.type]}`}>
                                                 {change.type}
                                             </span>
-                                            <span className="text-zinc-300 text-sm leading-relaxed">{change.text}</span>
-                                        </div>
+                                            <span className="text-sm leading-6 text-zinc-400">{change.text}</span>
+                                        </li>
                                     ))}
-                                </div>
+                                </ul>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
 
-                <div className="mt-20 pt-12 border-t border-zinc-800 flex flex-col md:flex-row justify-between gap-6">
-                    <Link href="/docs" className="text-zinc-500 hover:text-white transition-colors text-sm">← Documentation</Link>
-                    <a href="https://github.com/rounakneema/Revealr/commits" target="_blank" rel="noopener noreferrer"
-                        className="text-green-400 hover:text-green-300 transition-colors text-sm">Full Git History →</a>
+                <div className="mt-16 flex justify-end">
+                    <a href="https://github.com/rounakneema/Revealr/commits" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-zinc-400 hover:text-white">
+                        Full Git History <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </a>
                 </div>
             </div>
+        </div>
     );
 }

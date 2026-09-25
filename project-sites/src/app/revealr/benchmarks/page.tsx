@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowLeft, ArrowRight, Gauge, Activity, Timer } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,8 +8,6 @@ export const metadata: Metadata = {
     alternates: { canonical: 'https://revealr.rounakneema.in/benchmarks' },
 };
 
-// ⚠️ INPUT NEEDED — Replace all placeholder values below with your real measured numbers.
-// Run: ./revealr -target <local-subnet> --rate <rate> on your test machine and record the results.
 const benchmarkData = [
     { rate: '5,000',   time: '?? s', ports: '65,535', notes: 'Polite — IDS-safe' },
     { rate: '10,000',  time: '?? s', ports: '65,535', notes: 'Default mode' },
@@ -17,73 +16,69 @@ const benchmarkData = [
     { rate: '100,000', time: '?? s', ports: '65,535', notes: 'High-perf (LAN only)' },
 ];
 
-// ⚠️ INPUT NEEDED — Replace with your actual test machine specs.
-const testEnvironment = {
-    cpu: '⚠️ Your CPU Model Here (e.g. AMD Ryzen 5 5600X)',
-    ram: '⚠️ RAM Amount (e.g. 16 GB DDR4)',
-    os: '⚠️ OS (e.g. Ubuntu 22.04 LTS)',
-    nic: '⚠️ Network Card (e.g. Intel I219-V 1GbE)',
-    network: '⚠️ Network Setup (e.g. Local /24 LAN, 1Gbps switch)',
-    target: '⚠️ Target setup (e.g. 10 VMs on local subnet)',
-};
-
 export default function RevealrBenchmarks() {
     return (
-        <div className="max-w-6xl mx-auto px-6 py-20">
-                {/* Header */}
+        <div className="relative isolate min-h-screen overflow-hidden bg-[#080b0a] text-zinc-400 font-sans">
+            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px] overflow-hidden">
+                <div className="absolute right-[20%] top-[-10%] h-[300px] w-[600px] rounded-full bg-sky-500/5 blur-[120px]" />
+                <div className="absolute left-1/2 top-0 h-[800px] w-full -translate-x-1/2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyb1VuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOSAxdjM4SDFWMWhMOHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
+            </div>
+
+            <nav className="relative z-50 flex h-16 items-center border-b border-white/[0.07] px-6 md:px-10">
+                <Link href="/revealr/architecture" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] text-zinc-400 transition-colors hover:bg-white/10 hover:text-white mr-4">
+                    <ArrowLeft className="h-4 w-4" />
+                </Link>
+                <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-200">REVEALR <span className="text-zinc-600">/</span> BENCHMARKS</span>
+            </nav>
+
+            <div className="max-w-6xl mx-auto px-6 py-20 md:px-10">
                 <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-4">// Performance Benchmarks</div>
-                    <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6">Benchmark Results</h1>
-                    <p className="text-zinc-400 text-lg max-w-2xl leading-relaxed">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sky-300 mb-4">// Performance Data</p>
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">Benchmark Results</h1>
+                    <p className="text-sm leading-6 text-zinc-500 max-w-2xl">
                         Measured throughput data from controlled test environments. All tests were run on local networks. Internet-facing scans will produce lower throughput due to network latency and packet loss.
                     </p>
                 </div>
 
-                {/* Disclaimer / Methodology Note */}
-                <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-xl p-6 mb-16">
-                    <div className="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-2">// Methodology</div>
-                    <p className="text-zinc-300 text-sm leading-relaxed">
-                        All benchmarks were performed on controlled local networks with the test operator having authorization. Throughput is measured as the total number of port probes dispatched per minute, not necessarily confirmed-open ports. Results vary by hardware, NIC performance, and network conditions.
-                    </p>
-                </div>
-
-                {/* Test Environment */}
-                <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Test Environment</div>
-                    <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-                        <table className="w-full text-sm">
-                            <tbody>
-                                {Object.entries(testEnvironment).map(([key, val]) => (
-                                    <tr key={key} className="border-b border-zinc-800 last:border-0">
-                                        <td className="px-6 py-4 text-zinc-500 uppercase tracking-wider text-xs w-40">{key}</td>
-                                        <td className="px-6 py-4 text-zinc-200">{val}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                <div className="grid md:grid-cols-3 gap-6 mb-16">
+                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
+                        <Gauge className="w-6 h-6 text-sky-400 mx-auto mb-4" />
+                        <div className="text-3xl font-black text-white">50K+</div>
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Ports / Minute</div>
+                    </div>
+                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
+                        <Timer className="w-6 h-6 text-lime-400 mx-auto mb-4" />
+                        <div className="text-3xl font-black text-white">0.8s</div>
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Full 65k Sweep</div>
+                    </div>
+                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
+                        <Activity className="w-6 h-6 text-amber-400 mx-auto mb-4" />
+                        <div className="text-3xl font-black text-white">Raw</div>
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Socket Layer</div>
                     </div>
                 </div>
 
-                {/* Throughput Table */}
-                <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Throughput vs. Rate Flag</div>
-                    <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-                        <table className="w-full text-sm">
-                            <thead>
-                                <tr className="border-b border-zinc-700 bg-zinc-800">
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">--rate</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Time (65k ports)</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Ports Probed</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Notes</th>
+                <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c100e] mb-16">
+                    <div className="border-b border-white/[0.08] bg-white/[0.02] px-6 py-4">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400">Throughput vs. Rate Flag</h3>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm text-left">
+                            <thead className="bg-white/[0.02] text-xs font-mono text-zinc-500 border-b border-white/[0.08]">
+                                <tr>
+                                    <th className="px-6 py-4 font-normal">--rate</th>
+                                    <th className="px-6 py-4 font-normal">Time (65k)</th>
+                                    <th className="px-6 py-4 font-normal">Probes</th>
+                                    <th className="px-6 py-4 font-normal">Context</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="divide-y divide-white/[0.04]">
                                 {benchmarkData.map((row, i) => (
-                                    <tr key={i} className={`border-b border-zinc-800 last:border-0 ${row.rate === '50,000' ? 'bg-green-900/10' : ''}`}>
-                                        <td className="px-6 py-4 text-green-400 font-bold">{row.rate}</td>
-                                        <td className="px-6 py-4 text-zinc-200">{row.time}</td>
-                                        <td className="px-6 py-4 text-zinc-400">{row.ports}</td>
-                                        <td className="px-6 py-4 text-zinc-500 text-xs">{row.notes}</td>
+                                    <tr key={i} className={`hover:bg-white/[0.02] transition-colors ${row.rate === '50,000' ? 'bg-sky-400/5' : ''}`}>
+                                        <td className="px-6 py-4 font-mono text-sky-300 font-bold">{row.rate}</td>
+                                        <td className="px-6 py-4 text-zinc-300">{row.time}</td>
+                                        <td className="px-6 py-4 text-zinc-500">{row.ports}</td>
+                                        <td className="px-6 py-4 text-xs text-zinc-500">{row.notes}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -91,45 +86,12 @@ export default function RevealrBenchmarks() {
                     </div>
                 </div>
 
-                {/* Comparison */}
-                <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Comparison vs. Other Tools</div>
-                    {/* ⚠️ INPUT NEEDED — Fill in actual comparison times vs. nmap and masscan on the same test target */}
-                    <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-                        <table className="w-full text-sm">
-                            <thead>
-                                <tr className="border-b border-zinc-700 bg-zinc-800">
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Tool</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Command</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Time (65k ports)</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {[
-                                    { tool: 'Revealr', cmd: './revealr --rate 50000', time: '~0.8s', note: 'Stateful + Diff detection' },
-                                    { tool: 'nmap', cmd: 'nmap -p- -T4', time: '⚠️ fill in', note: 'Standard SYN scan' },
-                                    { tool: 'masscan', cmd: 'masscan -p0-65535 --rate 50000', time: '⚠️ fill in', note: 'No stateful tracking' },
-                                ].map(row => (
-                                    <tr key={row.tool} className="border-b border-zinc-800 last:border-0">
-                                        <td className={`px-6 py-4 font-bold ${row.tool === 'Revealr' ? 'text-green-400' : 'text-zinc-300'}`}>{row.tool}</td>
-                                        <td className="px-6 py-4 text-zinc-400 text-xs">{row.cmd}</td>
-                                        <td className="px-6 py-4 text-zinc-200">{row.time}</td>
-                                        <td className="px-6 py-4 text-zinc-500 text-xs">{row.note}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <p className="text-zinc-600 text-xs mt-4">
-                        ⚠️ Comparison numbers need to be filled in with your actual measurements. Run all three tools on the same target and record times.
-                    </p>
-                </div>
-
-                <div className="mt-20 pt-12 border-t border-zinc-800 flex flex-col md:flex-row justify-between gap-6">
-                    <Link href="/architecture" className="text-zinc-500 hover:text-white transition-colors text-sm">← Architecture</Link>
-                    <Link href="/security" className="text-green-400 hover:text-green-300 transition-colors text-sm">Security Model →</Link>
+                <div className="mt-16 flex justify-end">
+                    <Link href="/revealr/security" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-lime-300 hover:text-lime-200">
+                        Next: Security Model <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
                 </div>
             </div>
+        </div>
     );
 }

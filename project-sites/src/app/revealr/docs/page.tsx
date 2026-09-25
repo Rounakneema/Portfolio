@@ -1,20 +1,12 @@
 import Link from 'next/link';
+import { ArrowLeft, ArrowRight, TerminalSquare, BookOpen, Code2 } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Documentation — Revealr Network Scanner',
-    description: 'Complete CLI reference, flag documentation, plugin API, output formats, and usage examples for Revealr — the Go-based adaptive network scanner.',
+    description: 'Complete CLI reference, flag documentation, plugin API, output formats, and usage examples for Revealr.',
     alternates: { canonical: 'https://revealr.rounakneema.in/docs' },
 };
-
-const nav = [
-    { href: '/revealr', label: 'Overview' },
-    { href: '/revealr/architecture', label: 'Architecture' },
-    { href: '/revealr/benchmarks', label: 'Benchmarks' },
-    { href: '/revealr/security', label: 'Security' },
-    { href: '/revealr/docs', label: 'Docs' },
-    { href: '/revealr/changelog', label: 'Changelog' },
-];
 
 const cliFlags = [
     { flag: '-target, -t', type: 'string', desc: 'Target IP, CIDR range, or hostname. (e.g. 192.168.1.0/24)' },
@@ -25,64 +17,64 @@ const cliFlags = [
     { flag: '--diff', type: 'bool', desc: 'Show diff against the last scan. Outputs new/changed/removed services.' },
     { flag: '--plugins', type: 'string', desc: 'Path to Python plugin directory. Plugins are auto-discovered.' },
     { flag: '--output, -o', type: 'string', desc: 'Output format: json | stdout | file. Default: stdout.' },
-    { flag: '--timeout', type: 'int', desc: 'Per-port connection timeout in milliseconds. Default: 1000.' },
-    { flag: '--db', type: 'string', desc: 'Path to SQLite database file. Default: ~/.revealr/state.db.' },
-    { flag: '--verbose, -v', type: 'bool', desc: 'Enable verbose logging.' },
-    { flag: '--version', type: 'bool', desc: 'Print Revealr version and exit.' },
 ];
 
 export default function RevealrDocs() {
     return (
-        <div className="max-w-6xl mx-auto px-6 py-20">
-                {/* Header */}
+        <div className="relative isolate min-h-screen overflow-hidden bg-[#080b0a] text-zinc-400 font-sans">
+            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px] overflow-hidden">
+                <div className="absolute left-[20%] top-[-10%] h-[300px] w-[600px] rounded-full bg-violet-500/5 blur-[120px]" />
+                <div className="absolute left-1/2 top-0 h-[800px] w-full -translate-x-1/2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyb1VuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0zOSAxdjM4SDFWMWhMOHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
+            </div>
+
+            <nav className="relative z-50 flex h-16 items-center border-b border-white/[0.07] px-6 md:px-10">
+                <Link href="/revealr/security" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] text-zinc-400 transition-colors hover:bg-white/10 hover:text-white mr-4">
+                    <ArrowLeft className="h-4 w-4" />
+                </Link>
+                <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-200">REVEALR <span className="text-zinc-600">/</span> DOCS</span>
+            </nav>
+
+            <div className="max-w-6xl mx-auto px-6 py-20 md:px-10">
                 <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-4">// Documentation</div>
-                    <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6">CLI Reference</h1>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-400 mb-4">// Documentation</p>
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">CLI Reference</h1>
                 </div>
 
-                {/* Installation */}
-                <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Installation</div>
-                    <div className="space-y-4">
-                        {[
-                            { label: 'Clone', cmd: 'git clone https://github.com/rounakneema/Revealr.git && cd Revealr' },
-                            { label: 'Build', cmd: 'go build -o revealr ./cmd/revealr' },
-                            { label: 'Run', cmd: './revealr -target 192.168.1.1 -p 1-1024' },
-                        ].map(step => (
-                            <div key={step.label}>
-                                <div className="text-xs text-zinc-500 mb-2"># {step.label}</div>
-                                <div className="bg-zinc-950 border border-zinc-800 rounded-lg px-6 py-4 text-green-300 text-sm overflow-x-auto">
-                                    <span className="text-zinc-600 mr-2">$</span>{step.cmd}
-                                </div>
-                            </div>
-                        ))}
+                <div className="mb-16 grid lg:grid-cols-2 gap-6">
+                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500 mb-6">
+                            <TerminalSquare className="h-3.5 w-3.5 text-violet-400" /> Quick Start
+                        </div>
+                        <div className="space-y-4 font-mono text-xs">
+                            <div><span className="text-zinc-600"># Clone</span><br/><span className="text-zinc-300">git clone https://github.com/rounakneema/Revealr.git</span></div>
+                            <div><span className="text-zinc-600"># Build</span><br/><span className="text-zinc-300">go build -o revealr ./cmd/revealr</span></div>
+                            <div><span className="text-zinc-600"># Run (Requires sudo for raw sockets)</span><br/><span className="text-lime-300">sudo ./revealr -target 10.10.11.0/24</span></div>
+                        </div>
                     </div>
-                    {/* ⚠️ INPUT NEEDED — Add any additional prerequisites (Go version, libpcap, root/sudo requirements) */}
-                    <div className="mt-4 bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
-                        <p className="text-blue-300 text-xs">
-                            ⚠️ <strong>Note:</strong> Raw socket access requires elevated privileges on Linux. Run with <code className="bg-zinc-800 px-1 rounded">sudo</code> or grant capabilities: <code className="bg-zinc-800 px-1 rounded">sudo setcap cap_net_raw+ep ./revealr</code>
-                        </p>
+                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500 mb-6">
+                            <BookOpen className="h-3.5 w-3.5 text-violet-400" /> Example Workflows
+                        </div>
+                        <div className="space-y-4 text-xs font-mono">
+                            <div><span className="text-zinc-600">// Scan full subnet with drift detection</span><br/><span className="text-zinc-300">sudo ./revealr -t 192.168.1.0/24 --diff</span></div>
+                            <div><span className="text-zinc-600">// Resume interrupted scan</span><br/><span className="text-zinc-300">sudo ./revealr -t 192.168.1.0/24 --resume</span></div>
+                            <div><span className="text-zinc-600">// Run with external python vulnerability plugins</span><br/><span className="text-zinc-300">sudo ./revealr -t 10.0.0.1 --plugins ./plugins/</span></div>
+                        </div>
                     </div>
                 </div>
 
-                {/* CLI Flags Table */}
-                <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Flags</div>
-                    <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden overflow-x-auto">
-                        <table className="w-full text-sm">
-                            <thead>
-                                <tr className="border-b border-zinc-700 bg-zinc-800">
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Flag</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Type</th>
-                                    <th className="px-6 py-4 text-left text-xs text-zinc-400 uppercase tracking-wider">Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cliFlags.map(f => (
-                                    <tr key={f.flag} className="border-b border-zinc-800 last:border-0 hover:bg-zinc-800/50 transition-colors">
-                                        <td className="px-6 py-4 text-green-400 text-xs font-bold whitespace-nowrap">{f.flag}</td>
-                                        <td className="px-6 py-4 text-blue-400 text-xs">{f.type}</td>
-                                        <td className="px-6 py-4 text-zinc-300 text-xs leading-relaxed">{f.desc}</td>
+                <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c100e] mb-16">
+                    <div className="border-b border-white/[0.08] bg-white/[0.02] px-6 py-4">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400">Flag Reference</h3>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm text-left">
+                            <tbody className="divide-y divide-white/[0.04]">
+                                {cliFlags.map((row, i) => (
+                                    <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="px-6 py-4 font-mono text-lime-300 font-bold whitespace-nowrap">{row.flag}</td>
+                                        <td className="px-6 py-4 text-xs font-mono text-sky-400">{row.type}</td>
+                                        <td className="px-6 py-4 text-xs text-zinc-400">{row.desc}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -90,83 +82,12 @@ export default function RevealrDocs() {
                     </div>
                 </div>
 
-                {/* Example Workflows */}
-                <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Example Workflows</div>
-                    <div className="space-y-8">
-                        {[
-                            {
-                                title: 'Full subnet scan with drift detection',
-                                cmd: './revealr -target 192.168.1.0/24 --rate 50000 --diff --output json > report.json',
-                                desc: 'Scans a full /24 subnet at maximum rate and compares results against the last stored scan, outputting the diff in JSON format.',
-                            },
-                            {
-                                title: 'Stealthy top-1000 port scan',
-                                cmd: './revealr -target 10.10.11.15 -p 1-1000 --profile stealthy',
-                                desc: 'Scans the 1000 most common ports using the Stealthy profile, which randomizes port order and injects timing jitter to minimize IDS triggering.',
-                            },
-                            {
-                                title: 'Resume an interrupted scan',
-                                cmd: './revealr -target 192.168.1.0/24 --resume',
-                                desc: 'Revealr reads the last incomplete scan session from the SQLite state database and continues from where it left off.',
-                            },
-                            {
-                                title: 'Scan with Python vulnerability plugins',
-                                cmd: './revealr -target 10.0.0.1 --plugins ./plugins/ --output json',
-                                desc: 'Runs the scan and passes each discovered service through all Python plugins in the ./plugins/ directory, enriching the output with custom vulnerability data.',
-                            },
-                        ].map(ex => (
-                            <div key={ex.title}>
-                                <h3 className="text-sm font-bold text-zinc-200 mb-3">{ex.title}</h3>
-                                <div className="bg-zinc-950 border border-zinc-800 rounded-lg px-6 py-4 text-green-300 text-xs overflow-x-auto mb-3">
-                                    <span className="text-zinc-600 mr-2">$</span>{ex.cmd}
-                                </div>
-                                <p className="text-zinc-400 text-sm leading-relaxed">{ex.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Plugin API */}
-                <div className="mb-16">
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest mb-6">// Python Plugin API</div>
-                    <p className="text-zinc-400 text-base leading-relaxed mb-8 max-w-3xl">
-                        Plugins are Python scripts placed in the plugin directory. Each plugin receives a JSON payload on stdin and must write a JSON response to stdout.
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <div className="text-xs text-zinc-500 mb-3">// Input Payload (stdin)</div>
-                            <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-6 text-xs overflow-x-auto h-48">
-                                <pre className="text-zinc-300">{JSON.stringify({
-                                    host: '192.168.1.15',
-                                    port: 8080,
-                                    protocol: 'tcp',
-                                    service: 'http',
-                                    banner: 'HTTP/1.1 200 OK\nServer: nginx/1.18.0',
-                                    version: 'nginx/1.18.0',
-                                }, null, 2)}</pre>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="text-xs text-zinc-500 mb-3">// Expected Output (stdout)</div>
-                            <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-6 text-xs overflow-x-auto h-48">
-                                <pre className="text-zinc-300">{JSON.stringify({
-                                    plugin: 'nginx-vuln-check',
-                                    findings: [
-                                        { cve: 'CVE-2021-XXXX', severity: 'medium', description: '...' }
-                                    ],
-                                    metadata: { checked_at: '2024-01-01T00:00:00Z' },
-                                }, null, 2)}</pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-20 pt-12 border-t border-zinc-800 flex flex-col md:flex-row justify-between gap-6">
-                    <Link href="/security" className="text-zinc-500 hover:text-white transition-colors text-sm">← Security</Link>
-                    <Link href="/changelog" className="text-green-400 hover:text-green-300 transition-colors text-sm">Changelog →</Link>
+                <div className="mt-16 flex justify-end">
+                    <Link href="/revealr/changelog" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-lime-300 hover:text-lime-200">
+                        Next: Changelog <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
                 </div>
             </div>
+        </div>
     );
 }
