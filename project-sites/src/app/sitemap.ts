@@ -14,7 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const project = projects.find(p => p.slug === subdomain);
   const baseUrl = `https://${host}`;
 
-  // If we can't find a project, return a basic sitemap
   if (!project) {
     return [
       {
@@ -26,49 +25,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
   }
 
-  // Dynamic sitemap based on the project!
-  return [
+  // Define exact valid paths for each project to prevent GSC from indexing 404s
+  const projectPaths: Record<string, string[]> = {
+    'revealr': ['architecture', 'benchmarks', 'changelog', 'docs', 'security'],
+    'metromind': ['architecture'],
+    'axiom-os': ['architecture', 'decisions', 'docs'],
+    'devcontext': ['architecture', 'decisions', 'docs'],
+    'dizzy': ['architecture', 'decisions', 'docs'],
+    'osa': ['architecture', 'decisions', 'docs'],
+    'pipelineforge': ['architecture', 'decisions', 'docs'],
+    'sortmail': ['architecture', 'decisions', 'docs']
+  };
+
+  const validPaths = projectPaths[subdomain] || [];
+
+  const map: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
-    },
-    {
-      url: `${baseUrl}/architecture`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/benchmarks`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/security`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/docs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/changelog`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/llms.txt`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.5,
     }
   ];
+
+  validPaths.forEach(path => {
+    map.push({
+      url: `${baseUrl}/${path}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    });
+  });
+
+  // llms.txt exists for all projects
+  map.push({
+    url: `${baseUrl}/llms.txt`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.5,
+  });
+
+  return map;
 }
