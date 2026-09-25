@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { Github } from 'lucide-react';
 
@@ -17,7 +18,7 @@ export function RevealrNav() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#080b0a]/85 backdrop-blur-xl">
+    <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#080b0a]/85 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
         <Link href="/" className="flex items-center gap-3 group">
           <span className="text-green-400 text-xl font-black tracking-tight group-hover:text-green-300 transition-colors">
@@ -54,7 +55,7 @@ export function RevealrNav() {
           <Github className="w-3.5 h-3.5" /> Source
         </a>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 

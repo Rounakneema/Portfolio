@@ -17,7 +17,7 @@ export default function ArchitecturePage() {
                         &larr; Back
                     </Link>
                     <span className="text-[#333]">|</span>
-                    <Link href="" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/" className="text-[#888] hover:text-white transition-colors">
                         Overview
                     </Link>
                     <span className="text-white font-semibold">

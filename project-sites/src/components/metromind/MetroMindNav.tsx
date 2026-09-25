@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Github, Grid2X2, Layers3 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
@@ -13,7 +14,7 @@ export function MetroMindNav() {
   const pathname = usePathname() || '/';
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#050507]/80 backdrop-blur-xl">
+    <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#050507]/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
         <div className="flex items-center gap-3">
           <Link href="/" className="group flex items-center gap-2.5">
@@ -30,7 +31,7 @@ export function MetroMindNav() {
         </div>
         <a href="https://github.com/rounakneema/MetroMind" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-md border border-white/[0.09] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-300 transition hover:border-purple-300/40 hover:text-white"><Github className="h-3.5 w-3.5" /><span className="hidden sm:inline">Source</span></a>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 

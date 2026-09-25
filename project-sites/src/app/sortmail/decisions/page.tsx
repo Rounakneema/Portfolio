@@ -16,7 +16,7 @@ export default function DecisionsPage() {
                         &larr; Back
                     </Link>
                     <span className="text-[#333]">|</span>
-                    <Link href="" className="text-[#888] hover:text-white transition-colors">
+                    <Link href="/" className="text-[#888] hover:text-white transition-colors">
                         Overview
                     </Link>
                     <Link href="/architecture" className="text-[#888] hover:text-white transition-colors">

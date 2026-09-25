@@ -14,7 +14,7 @@ export default function DecisionsPage() {
                     <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Ref: devcontext/decisions</span>
                 </div>
                 <nav className="flex gap-6 border-l border-[#1f6feb]/30 pl-6 text-sm">
-                    <Link href="" className="text-[#666] hover:text-[#58a6ff] transition-colors">Analysis Pipeline</Link>
+                    <Link href="/" className="text-[#666] hover:text-[#58a6ff] transition-colors">Analysis Pipeline</Link>
                     <Link href="/architecture" className="text-[#666] hover:text-[#58a6ff] transition-colors">Architecture</Link>
                     <Link href="/decisions" className="text-[#666] hover:text-[#58a6ff] transition-colors">Interview Engine</Link>
                     <Link href="/docs" className="text-[#666] hover:text-[#58a6ff] transition-colors">Docs</Link>
@@ -104,7 +104,7 @@ export default function DecisionsPage() {
             {/* Footer */}
             <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
                 <div>DevContext.AI // {new Date().getFullYear()}</div>
-                <Link href="" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2">
+                <Link href="/" className="hover:text-[#58a6ff] transition-colors flex items-center gap-2">
                     <span className="w-4 h-[1px] bg-current"></span>
                     Back
                 </Link>

@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
 export function OsaNav() {
@@ -15,7 +16,7 @@ export function OsaNav() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur border-b border-[#333]">
+    <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur border-b border-[#333]">
       <div className="max-w-7xl mx-auto px-6 overflow-x-auto">
         <div className="flex items-center gap-6 whitespace-nowrap h-14">
           {links.map(l => (
@@ -29,6 +30,6 @@ export function OsaNav() {
           ))}
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

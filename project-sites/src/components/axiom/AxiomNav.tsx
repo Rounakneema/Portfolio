@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
 export function AxiomNav() {
@@ -17,7 +18,7 @@ export function AxiomNav() {
     ];
 
     return (
-        <nav className="sticky top-0 z-50 bg-[#0a0a0a] border-b-2 border-[#333] font-mono text-sm">
+        <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="sticky top-0 z-50 bg-[#0a0a0a] border-b-2 border-[#333] font-mono text-sm">
             <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between">
                 <div className="flex items-center space-x-4 py-4">
                     <span className="font-black text-white uppercase tracking-widest">
@@ -55,6 +56,6 @@ export function AxiomNav() {
                     scrollbar-width: none;
                 }
             `}</style>
-        </nav>
+        </motion.nav>
     );
 }
