@@ -8,13 +8,7 @@ export const metadata: Metadata = {
     alternates: { canonical: 'https://revealr.rounakneema.in/benchmarks' },
 };
 
-const benchmarkData = [
-    { rate: '5,000',   time: '?? s', ports: '65,535', notes: 'Polite — IDS-safe' },
-    { rate: '10,000',  time: '?? s', ports: '65,535', notes: 'Default mode' },
-    { rate: '25,000',  time: '?? s', ports: '65,535', notes: 'Fast mode' },
-    { rate: '50,000',  time: '~0.8 s', ports: '65,535', notes: 'Benchmark target' },
-    { rate: '100,000', time: '?? s', ports: '65,535', notes: 'High-perf (LAN only)' },
-];
+
 
 export default function RevealrBenchmarks() {
     return (
@@ -48,7 +42,7 @@ export default function RevealrBenchmarks() {
                     </div>
                     <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
                         <Timer className="w-6 h-6 text-lime-400 mx-auto mb-4" />
-                        <div className="text-3xl font-black text-white">0.8s</div>
+                        <div className="text-3xl font-black text-white">~0.8s</div>
                         <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Full 65k Sweep</div>
                     </div>
                     <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 text-center">
@@ -58,31 +52,65 @@ export default function RevealrBenchmarks() {
                     </div>
                 </div>
 
-                <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c100e] mb-16">
-                    <div className="border-b border-white/[0.08] bg-white/[0.02] px-6 py-4">
-                        <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400">Throughput vs. Rate Flag</h3>
+                <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c100e] mb-16 p-8">
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-8">Throughput Scaling (Ports per Minute)</h3>
+                    
+                    <div className="space-y-6">
+                        <div>
+                            <div className="flex justify-between text-xs font-mono mb-2">
+                                <span className="text-sky-300 font-bold">50,000+ (Aggressive)</span>
+                                <span className="text-zinc-500">~0.8s / 65k sweep</span>
+                            </div>
+                            <div className="h-2 w-full bg-white/[0.05] rounded-full overflow-hidden">
+                                <div className="h-full bg-sky-400 w-[100%] rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div className="flex justify-between text-xs font-mono mb-2">
+                                <span className="text-lime-300 font-bold">25,000 (Fast)</span>
+                                <span className="text-zinc-500">Not Measured</span>
+                            </div>
+                            <div className="h-2 w-full bg-white/[0.05] rounded-full overflow-hidden">
+                                <div className="h-full bg-lime-400 w-[50%] rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div className="flex justify-between text-xs font-mono mb-2">
+                                <span className="text-amber-300 font-bold">10,000 (Polite Default)</span>
+                                <span className="text-zinc-500">Not Measured</span>
+                            </div>
+                            <div className="h-2 w-full bg-white/[0.05] rounded-full overflow-hidden">
+                                <div className="h-full bg-amber-400 w-[20%] rounded-full"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-sm text-left">
-                            <thead className="bg-white/[0.02] text-xs font-mono text-zinc-500 border-b border-white/[0.08]">
-                                <tr>
-                                    <th className="px-6 py-4 font-normal">--rate</th>
-                                    <th className="px-6 py-4 font-normal">Time (65k)</th>
-                                    <th className="px-6 py-4 font-normal">Probes</th>
-                                    <th className="px-6 py-4 font-normal">Context</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-white/[0.04]">
-                                {benchmarkData.map((row, i) => (
-                                    <tr key={i} className={`hover:bg-white/[0.02] transition-colors ${row.rate === '50,000' ? 'bg-sky-400/5' : ''}`}>
-                                        <td className="px-6 py-4 font-mono text-sky-300 font-bold">{row.rate}</td>
-                                        <td className="px-6 py-4 text-zinc-300">{row.time}</td>
-                                        <td className="px-6 py-4 text-zinc-500">{row.ports}</td>
-                                        <td className="px-6 py-4 text-xs text-zinc-500">{row.notes}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8 mb-16">
+                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-8">
+                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6">Benchmark Conditions</h3>
+                        <ul className="space-y-4 text-xs font-mono">
+                            <li className="flex justify-between border-b border-white/[0.05] pb-2"><span className="text-zinc-500">Environment</span><span className="text-zinc-300">Local Network</span></li>
+                            <li className="flex justify-between border-b border-white/[0.05] pb-2"><span className="text-zinc-500">Transport</span><span className="text-zinc-300">Raw Socket SYN</span></li>
+                            <li className="flex justify-between border-b border-white/[0.05] pb-2"><span className="text-zinc-500">Target</span><span className="text-zinc-300">65,535 Ports</span></li>
+                            <li className="flex justify-between pb-2"><span className="text-zinc-500">Rate Cap</span><span className="text-zinc-300">50,000 probes/min</span></li>
+                        </ul>
+                        <div className="mt-6 text-[10px] text-zinc-500 leading-relaxed border-l-2 border-amber-500/50 pl-3">
+                            <strong className="text-amber-400">Important:</strong> These results represent controlled local-network measurements. They are not a claim of equivalent Internet-wide scanning performance where latency and packet loss dictate throughput.
+                        </div>
+                    </div>
+
+                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-8">
+                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6">Methodology</h3>
+                        <ol className="space-y-4 text-xs text-zinc-400">
+                            <li className="flex gap-4"><span className="text-sky-400 font-mono">01</span> Generate controlled isolated target environment.</li>
+                            <li className="flex gap-4"><span className="text-sky-400 font-mono">02</span> Execute full 1-65535 port sweep against target.</li>
+                            <li className="flex gap-4"><span className="text-sky-400 font-mono">03</span> Record raw packet dispatch rate at OS level.</li>
+                            <li className="flex gap-4"><span className="text-sky-400 font-mono">04</span> Measure end-to-end completion time.</li>
+                            <li className="flex gap-4"><span className="text-sky-400 font-mono">05</span> Verify scan accuracy against known baseline.</li>
+                        </ol>
                     </div>
                 </div>
 

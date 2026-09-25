@@ -60,10 +60,10 @@ export default function RevealrHome() {
             Built for authorized assessments
           </div>
           <h1 className="text-balance text-5xl font-black leading-[0.92] tracking-[-0.075em] text-white sm:text-7xl md:text-8xl">
-            See the network
-            <span className="block bg-gradient-to-r from-lime-200 via-lime-400 to-emerald-300 bg-clip-text text-transparent">before it surprises you.</span>
+            Give your network
+            <span className="block bg-gradient-to-r from-lime-200 via-lime-400 to-emerald-300 bg-clip-text text-transparent">memory.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-pretty text-base leading-7 text-zinc-400 sm:text-lg">Revealr is a high-concurrency network scanner that pairs rapid discovery with persistent context—so every authorized scan tells you what is new, gone, and worth investigating.</p>
+          <p className="mx-auto mt-8 max-w-2xl text-pretty text-base font-medium leading-7 text-zinc-400 sm:text-lg">High-concurrency network discovery with memory. Revealr scans fast, fingerprints services, and remembers exactly what changed between assessments.</p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <a href="https://github.com/rounakneema/Revealr" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-2 rounded-lg bg-lime-300 px-5 py-3 text-sm font-black text-zinc-950 transition-all hover:bg-lime-200 hover:shadow-[0_0_30px_rgba(190,242,100,0.2)]"><Github className="h-4 w-4" />Explore the source<ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
             <Link href="/revealr/docs" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-bold text-zinc-200 transition-colors hover:border-white/25 hover:bg-white/[0.07] hover:text-white">Read the docs <ArrowRight className="h-4 w-4" /></Link>
@@ -92,7 +92,21 @@ export default function RevealrHome() {
               </div>
               <div className="border-t border-white/[0.07] bg-gradient-to-b from-lime-300/[0.035] to-transparent p-5 lg:border-l lg:border-t-0 sm:p-7">
                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500"><Radar className="h-3.5 w-3.5 text-lime-300" /> Signal map</div>
-                <div className="relative mx-auto mt-7 aspect-square max-w-[270px] overflow-hidden rounded-full border border-lime-300/20 bg-[radial-gradient(circle,rgba(190,242,100,0.10)_1px,transparent_1px)] bg-[size:22px_22px]"><div className="absolute inset-[15%] rounded-full border border-lime-300/15" /><div className="absolute inset-[32%] rounded-full border border-lime-300/20" /><div className="absolute inset-[47%] rounded-full border border-lime-300/30" /><div className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime-200 shadow-[0_0_18px_5px_rgba(190,242,100,0.4)]" /><span className="absolute left-[24%] top-[30%] h-2 w-2 rounded-full bg-sky-300 shadow-[0_0_12px_2px_rgba(125,211,252,0.7)]" /><span className="absolute right-[17%] top-[46%] h-2 w-2 rounded-full bg-lime-300 shadow-[0_0_12px_2px_rgba(190,242,100,0.7)]" /><span className="absolute bottom-[20%] left-[42%] h-2 w-2 animate-pulse rounded-full bg-amber-300 shadow-[0_0_12px_2px_rgba(252,211,77,0.7)]" /><div className="absolute left-1/2 top-1/2 h-[52%] w-px origin-bottom -translate-x-1/2 -translate-y-full rotate-[52deg] bg-gradient-to-t from-lime-300/70 to-transparent" /></div>
+                <div className="relative mx-auto mt-7 aspect-square max-w-[270px] flex items-center justify-center border border-white/[0.05] bg-black/20 rounded-xl overflow-hidden p-6">
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 135,40 C 135,100 135,100 135,140" stroke="#bef264" strokeWidth="2" fill="none" />
+                        <path d="M 135,140 C 60,200 60,200 60,240" stroke="#bef264" strokeWidth="2" fill="none" />
+                        <path d="M 135,140 C 210,200 210,200 210,240" stroke="#fcd34d" strokeWidth="2" strokeDasharray="4,4" fill="none" className="animate-[dash_10s_linear_infinite]" />
+                    </svg>
+                    <div className="absolute top-[20px] left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-700 rounded px-3 py-1.5 text-[9px] font-mono text-zinc-300">10.10.11.24</div>
+                    <div className="absolute top-[130px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-lime-400 shadow-[0_0_15px_rgba(190,242,100,0.6)]"></div>
+                    
+                    <div className="absolute bottom-[20px] left-[40px] bg-zinc-900 border border-lime-400/30 rounded px-3 py-1.5 text-[9px] font-mono text-lime-300 flex flex-col items-center"><span>SSH</span><span>:22</span></div>
+                    <div className="absolute bottom-[20px] right-[40px] bg-amber-400/10 border border-amber-400/40 rounded px-3 py-1.5 text-[9px] font-mono text-amber-300 flex flex-col items-center animate-pulse"><span>HTTP</span><span>:8080</span><span className="absolute -top-3 text-[8px] text-amber-400 font-bold w-[40px] whitespace-nowrap">✦ NEW</span></div>
+                    <style dangerouslySetInnerHTML={{__html: `
+                        @keyframes dash { to { stroke-dashoffset: -100; } }
+                    `}} />
+                </div>
                 <div className="mt-7 space-y-3">{[['Scan engine', 'Running', 'text-lime-300'], ['State store', 'Synced', 'text-sky-300'], ['Diff detector', '1 alert', 'text-amber-200']].map(([label, value, color]) => <div key={label} className="flex items-center justify-between text-xs"><span className="text-zinc-500">{label}</span><span className={`flex items-center gap-1.5 font-medium ${color}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{value}</span></div>)}</div>
               </div>
             </div>
@@ -108,6 +122,19 @@ export default function RevealrHome() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10 md:pb-32"><div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0d1210]"><div className="grid lg:grid-cols-[0.82fr_1.18fr]"><div className="border-b border-white/[0.08] p-7 lg:border-b-0 lg:border-r md:p-10"><div className="flex h-11 w-11 items-center justify-center rounded-lg border border-lime-300/20 bg-lime-300/[0.08]"><Command className="h-5 w-5 text-lime-300" /></div><p className="mt-7 text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">One command. More clarity.</p><code className="mt-3 block text-sm text-lime-200">./revealr -target 10.10.11.0/24</code><p className="mt-5 text-sm leading-6 text-zinc-500">Start with discovery, preserve the signal, and follow the change.</p><div className="mt-8 flex items-center gap-2 text-xs text-zinc-400"><ShieldCheck className="h-4 w-4 text-lime-300" /> For systems you own or are authorized to test.</div></div><div className="divide-y divide-white/[0.07]">{explorerLinks.map((item) => <Link key={item.href} href={item.href} className="group flex items-center gap-5 px-7 py-5 transition-colors hover:bg-white/[0.035] md:px-10"><CircleDotDashed className="h-5 w-5 shrink-0 text-zinc-600 transition-colors group-hover:text-lime-300" /><div className="min-w-0 flex-1"><h3 className="font-bold text-zinc-200 transition-colors group-hover:text-white">{item.title}</h3><p className="mt-1 truncate text-xs text-zinc-600 sm:text-sm">{item.detail}</p></div><ChevronRight className="h-4 w-4 shrink-0 text-zinc-600 transition-all group-hover:translate-x-1 group-hover:text-lime-300" /></Link>)}<a href="https://github.com/rounakneema/Revealr" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-5 px-7 py-5 transition-colors hover:bg-white/[0.035] md:px-10"><Github className="h-5 w-5 shrink-0 text-zinc-600 transition-colors group-hover:text-lime-300" /><div className="min-w-0 flex-1"><h3 className="font-bold text-zinc-200 transition-colors group-hover:text-white">Source code</h3><p className="mt-1 text-xs text-zinc-600 sm:text-sm">Inspect the Go core and Python extensions on GitHub.</p></div><ArrowUpRight className="h-4 w-4 shrink-0 text-zinc-600 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-lime-300" /></a></div></div></div></section>
+
+      <section className="border-t border-white/[0.07] px-6 py-8 md:px-10 bg-white/[0.01]">
+        <div className="mx-auto max-w-7xl">
+            <div className="flex flex-wrap items-center justify-between gap-6 text-[10px] font-bold uppercase tracking-[0.16em]">
+                <div className="flex items-center gap-3"><span className="text-zinc-600">Language</span><span className="text-lime-300 border border-lime-300/20 bg-lime-400/10 px-2 py-0.5 rounded">Go</span></div>
+                <div className="flex items-center gap-3"><span className="text-zinc-600">State</span><span className="text-sky-300 border border-sky-300/20 bg-sky-400/10 px-2 py-0.5 rounded">SQLite</span></div>
+                <div className="flex items-center gap-3"><span className="text-zinc-600">Extension</span><span className="text-violet-300 border border-violet-300/20 bg-violet-400/10 px-2 py-0.5 rounded">Python</span></div>
+                <div className="flex items-center gap-3"><span className="text-zinc-600">Network</span><span className="text-zinc-300 border border-white/10 bg-white/[0.03] px-2 py-0.5 rounded">Raw TCP</span></div>
+                <div className="flex items-center gap-3"><span className="text-zinc-600">Range</span><span className="text-zinc-300 border border-white/10 bg-white/[0.03] px-2 py-0.5 rounded">65,535 Ports</span></div>
+                <div className="flex items-center gap-3"><span className="text-zinc-600">Status</span><span className="text-amber-300 border border-amber-300/20 bg-amber-400/10 px-2 py-0.5 rounded">v1.0-beta</span></div>
+            </div>
+        </div>
+      </section>
 
       <section className="border-t border-white/[0.07] px-6 py-16 text-center md:px-10"><Terminal className="mx-auto h-5 w-5 text-lime-300" /><p className="mt-4 text-lg font-bold text-white">Discover thoughtfully. Verify deliberately.</p><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-600">Revealr is designed for legitimate, authorized network security work.</p><Link href="/revealr/security" className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-lime-300 hover:text-lime-200">Review the security model <ArrowRight className="h-3.5 w-3.5" /></Link></section>
     </div>
