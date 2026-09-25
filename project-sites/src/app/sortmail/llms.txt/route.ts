@@ -1,7 +1,7 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const content = # SortMail
+  const content = `# SortMail
 
 > AI Operating Layer for Professional Email. Executive email briefings, summarization, deadline extraction, smart replies, no third-party data persistence.
 
@@ -17,9 +17,10 @@ SortMail is a technical project developed by Rounak Neema.
 - LinkedIn: https://linkedin.com/in/Rnks23
 
 ### Also By Rounak Neema:
-- Revealr: https://revealr.rounakneema.in
+- PipelineForge: https://pipelineforge.rounakneema.in
 - MetroMind: https://metromind.rounakneema.in
-\;
+- Dizzy: https://dizzy.rounakneema.in
+`;
 
   return new NextResponse(content, {
     status: 200,

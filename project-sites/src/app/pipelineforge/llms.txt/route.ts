@@ -1,7 +1,7 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const content = # PipelineForge
+  const content = `# PipelineForge
 
 > GitOps DevSecOps CI/CD Pipeline Automation. Multi-stage Docker builds, Kubernetes HPA, Trivy scanning, 99.3% container size reduction.
 
@@ -17,9 +17,10 @@ PipelineForge is a technical project developed by Rounak Neema.
 - LinkedIn: https://linkedin.com/in/Rnks23
 
 ### Also By Rounak Neema:
-- Revealr: https://revealr.rounakneema.in
-- MetroMind: https://metromind.rounakneema.in
-\;
+- Dizzy: https://dizzy.rounakneema.in
+- AXIOM OS: https://axiom-os.rounakneema.in
+- Klarity: https://devcontext.rounakneema.in
+`;
 
   return new NextResponse(content, {
     status: 200,

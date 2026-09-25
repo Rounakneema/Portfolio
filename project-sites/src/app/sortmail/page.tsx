@@ -32,7 +32,7 @@ export default function SortMailPage() {
 
     return (
         <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-red-900 selection:text-white">
-            <ProjectJsonLd project={projectData} />
+            <ProjectJsonLd slug="sortmail" />
             {/* Header / Nav */}
             <nav className="p-6 md:p-12 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs tracking-widest uppercase gap-4 sticky top-0 bg-[#050505] z-50">
                 <div className="flex gap-6 items-center">

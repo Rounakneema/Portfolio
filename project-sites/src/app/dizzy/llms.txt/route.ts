@@ -1,7 +1,7 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const content = # Dizzy
+  const content = `# Dizzy
 
 > Voice-to-Figma AI Interface Builder. Semantic design state, voice-driven UI generation, Figma MCP agent integration.
 
@@ -17,9 +17,10 @@ Dizzy is a technical project developed by Rounak Neema.
 - LinkedIn: https://linkedin.com/in/Rnks23
 
 ### Also By Rounak Neema:
-- Revealr: https://revealr.rounakneema.in
-- MetroMind: https://metromind.rounakneema.in
-\;
+- AXIOM OS: https://axiom-os.rounakneema.in
+- OSA: https://osa.rounakneema.in
+- PipelineForge: https://pipelineforge.rounakneema.in
+`;
 
   return new NextResponse(content, {
     status: 200,

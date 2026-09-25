@@ -38,7 +38,7 @@ export default function DizzyPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#ff3366] selection:text-white p-4 md:p-12 lg:p-24 overflow-x-hidden">
-      <ProjectJsonLd project={dizzyJsonLd} />
+      <ProjectJsonLd slug="dizzy" />
       <style dangerouslySetInnerHTML={{__html: `
         .brutalist-border { border: 2px solid #333; }
         .brutalist-shadow { box-shadow: 8px 8px 0px #333; }

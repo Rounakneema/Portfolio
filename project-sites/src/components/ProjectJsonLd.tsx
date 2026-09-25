@@ -1,49 +1,29 @@
 ﻿import React from 'react';
+import { projects } from '@/lib/projects';
 
-export function ProjectJsonLd({ project }: { project: any }) {
+export function ProjectJsonLd({ slug }: { slug: string }) {
+    const project = projects.find(p => p.slug === slug);
+    if (!project) return null;
+
     const jsonLd = {
         '@context': 'https://schema.org',
-        '@type': project.schemaCategory || 'SoftwareApplication',
-        'name': project.name,
-        'url': project.url,
-        'description': project.description,
-        'applicationCategory': project.schemaCategory || 'SoftwareApplication',
+        '@type': 'SoftwareApplication',
+        'name': project.title,
+        'url': `https://${project.subdomain}.rounakneema.in`,
+        'description': project.subtitle,
+        'applicationCategory': 'SoftwareApplication',
         'author': {
             '@type': 'Person',
             'name': 'Rounak Neema',
             '@id': 'https://rounakneema.in/#person',
             'url': 'https://rounakneema.in'
-        },
-        ...(project.github && { 'codeRepository': project.github }),
-        ...(project.operatingSystem && { 'operatingSystem': project.operatingSystem }),
-        ...(project.programmingLanguage && { 'programmingLanguage': project.programmingLanguage })
+        }
     };
-
-    // If there's an FAQ, append it
-    let finalJsonLd: any = jsonLd;
-    
-    if (project.faq && project.faq.length > 0) {
-        finalJsonLd = [
-            jsonLd,
-            {
-                '@context': 'https://schema.org',
-                '@type': 'FAQPage',
-                'mainEntity': project.faq.map((q: any) => ({
-                    '@type': 'Question',
-                    'name': q.question,
-                    'acceptedAnswer': {
-                        '@type': 'Answer',
-                        'text': q.answer
-                    }
-                }))
-            }
-        ];
-    }
 
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(finalJsonLd) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
     );
 }

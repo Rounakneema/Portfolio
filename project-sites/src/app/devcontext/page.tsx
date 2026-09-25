@@ -36,7 +36,7 @@ export default function DevContextPage() {
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#fff] selection:text-[#000] overflow-x-hidden">
-            <ProjectJsonLd project={projectData} />
+            <ProjectJsonLd slug="devcontext" />
             {/* Header */}
             <header className="p-4 md:p-8 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
                 <div className="flex gap-4">

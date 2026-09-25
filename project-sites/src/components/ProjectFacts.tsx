@@ -1,6 +1,8 @@
 ﻿import React from 'react';
+import { projects } from '@/lib/projects';
 
 export function ProjectFacts({ facts }: { facts: { label: string; value: string }[] }) {
+    if (!facts) return null;
     return (
         <div className="bg-[#111] border-2 border-[#333] p-8 mb-12">
             <h2 className="text-xl font-bold uppercase tracking-widest text-white mb-6 border-b border-[#333] pb-4">
@@ -18,12 +20,21 @@ export function ProjectFacts({ facts }: { facts: { label: string; value: string 
     );
 }
 
-export function RelatedProjects({ links }: { links: { name: string; url: string }[] }) {
+export function RelatedProjects({ links }: { links?: { name: string; url: string }[] }) {
+    // If links not provided, just pick 3 random ones
+    let finalLinks = links;
+    if (!finalLinks) {
+        finalLinks = projects.slice(0, 3).map(p => ({
+            name: p.title,
+            url: `https://${p.subdomain}.rounakneema.in`
+        }));
+    }
+
     return (
         <section className="mt-24 pt-12 border-t-4 border-[#222]">
             <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Also by Rounak Neema</h3>
             <div className="flex flex-col gap-4 font-mono text-sm">
-                {links.map((link, index) => (
+                {finalLinks.map((link, index) => (
                     <a key={index} href={link.url} className="text-white hover:text-red-500 hover:underline decoration-red-500 underline-offset-4 transition-colors">
                         ↗ {link.name}
                     </a>

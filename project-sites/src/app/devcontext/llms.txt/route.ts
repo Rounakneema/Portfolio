@@ -1,7 +1,7 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const content = # Klarity
+  const content = `# Klarity
 
 > AI Repository Intelligence for Technical Recruiting. Evaluates candidates using evidence-grounded AI analysis, Amazon Bedrock, Claude, and repository tokenization.
 
@@ -17,9 +17,10 @@ Klarity is a technical project developed by Rounak Neema.
 - LinkedIn: https://linkedin.com/in/Rnks23
 
 ### Also By Rounak Neema:
-- Revealr: https://revealr.rounakneema.in
+- PipelineForge: https://pipelineforge.rounakneema.in
+- Dizzy: https://dizzy.rounakneema.in
 - MetroMind: https://metromind.rounakneema.in
-\;
+`;
 
   return new NextResponse(content, {
     status: 200,

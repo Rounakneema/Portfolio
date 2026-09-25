@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function PipelineForgePage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
-      <ProjectJsonLd />
+      <ProjectJsonLd slug="pipelineforge" />
       {/* Navigation / Header */}
       <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
         <div className="text-xl">

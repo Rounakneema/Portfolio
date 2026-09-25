@@ -1,7 +1,7 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const content = # AXIOM OS
+  const content = `# AXIOM OS
 
 > Local-First Personal AI Operating System. Local memory, Ollama inference, goal alignment, policy-driven interventions, zero-cloud architecture.
 
@@ -18,8 +18,9 @@ AXIOM OS is a technical project developed by Rounak Neema.
 
 ### Also By Rounak Neema:
 - Revealr: https://revealr.rounakneema.in
+- OSA: https://osa.rounakneema.in
 - MetroMind: https://metromind.rounakneema.in
-\;
+`;
 
   return new NextResponse(content, {
     status: 200,

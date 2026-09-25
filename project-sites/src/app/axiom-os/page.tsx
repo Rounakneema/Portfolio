@@ -39,7 +39,7 @@ export default function AxiomOsPage() {
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-red-600 selection:text-white">
-            <ProjectJsonLd project={axiomJsonLd} />
+            <ProjectJsonLd slug="axiom-os" />
             <style dangerouslySetInnerHTML={{ __html: `
                 .brutalist-border { border: 2px solid #333; }
                 .brutalist-border-b { border-bottom: 2px solid #333; }

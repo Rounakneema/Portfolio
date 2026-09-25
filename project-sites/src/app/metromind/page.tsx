@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function MetroMindHome() {
     return (
         <div className="min-h-screen bg-[#030305] text-zinc-400 selection:bg-fuchsia-500/30 font-mono text-sm">
-            <ProjectJsonLd />
+            <ProjectJsonLd slug="metromind" />
             
             {/* Top Nav Rail */}
             <nav className="border-b border-fuchsia-500/20 bg-[#030305] sticky top-0 z-50">

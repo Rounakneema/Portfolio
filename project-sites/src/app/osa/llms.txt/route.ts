@@ -1,7 +1,7 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const content = # OSA
+  const content = `# OSA
 
 > Offline Security Auditor for Air-Gapped Environments. Zero-dependency Go binary. Real-time log ingestion, historical forensic analysis, Z-score anomaly detection, Markov-chain behavioral analysis.
 
@@ -17,9 +17,10 @@ OSA is a technical project developed by Rounak Neema.
 - LinkedIn: https://linkedin.com/in/Rnks23
 
 ### Also By Rounak Neema:
-- Revealr: https://revealr.rounakneema.in
+- Dizzy: https://dizzy.rounakneema.in
+- SortMail: https://sortmail.rounakneema.in
 - MetroMind: https://metromind.rounakneema.in
-\;
+`;
 
   return new NextResponse(content, {
     status: 200,
