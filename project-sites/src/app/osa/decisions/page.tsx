@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -41,12 +41,7 @@ export default function OSADecisionsPage() {
 
             <header className="px-6 py-12 md:py-16 border-b-4 border-[#333] grid-bg">
                 <div className="max-w-7xl mx-auto">
-                    <nav className="mb-12 flex flex-wrap gap-4 border-b border-[#333] pb-6">
-                        <Link href="/" className="nav-link">← Index</Link>
-                        <Link href="/osa" className="nav-link">Overview</Link>
-                        <Link href="/osa/architecture" className="nav-link">Architecture</Link>
-                        <Link href="/osa/decisions" className="nav-link active">Decisions</Link>
-                    </nav>
+                    
 
                     <h1 className="text-2xl font-black uppercase tracking-tighter mb-4 text-[#fff]">
                         Engineering Decisions
@@ -151,3 +146,4 @@ func GenerateSelfSignedCerts() error {
         </main>
     );
 }
+

@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -73,13 +73,7 @@ export default function OSADocsPage() {
 
             <header className="px-6 py-12 border-b-4 border-[#333] grid-bg">
                 <div className="max-w-7xl mx-auto">
-                    <nav className="mb-12 flex flex-wrap gap-4 border-b border-[#333] pb-6">
-                        <Link href="/" className="nav-link">← Index</Link>
-                        <Link href="/osa" className="nav-link">Overview</Link>
-                        <Link href="/osa/architecture" className="nav-link">Architecture</Link>
-                        <Link href="/osa/decisions" className="nav-link">Decisions</Link>
-                        <Link href="/osa/docs" className="nav-link active">Docs</Link>
-                    </nav>
+                    
 
                     <h1 className="text-2xl font-black uppercase tracking-tighter text-glitch text-[#fff] mb-6" data-text="ENGINEERING_DOCS">
                         ENGINEERING_DOCS
@@ -208,3 +202,4 @@ export default function OSADocsPage() {
         </main>
     );
 }
+

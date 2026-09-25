@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import Link from 'next/link';
 import MermaidDiagram from '@/components/Mermaid';
 
@@ -46,12 +46,7 @@ export default function OSAArchitecturePage() {
 
             <header className="px-6 py-12 md:py-16 border-b-4 border-[#333] grid-bg">
                 <div className="max-w-7xl mx-auto">
-                    <nav className="mb-12 flex flex-wrap gap-4 border-b border-[#333] pb-6">
-                        <Link href="/" className="nav-link">← Index</Link>
-                        <Link href="/osa" className="nav-link">Overview</Link>
-                        <Link href="/osa/architecture" className="nav-link active">Architecture</Link>
-                        <Link href="/osa/decisions" className="nav-link">Decisions</Link>
-                    </nav>
+                    
 
                     <h1 className="text-2xl font-black uppercase tracking-tighter mb-4 text-[#fff]">
                         System Topology
@@ -92,7 +87,7 @@ flowchart TD
     subgraph POD["POD"]
         APP["Application"]
         SIDE["LogShield Sidecar<br>(LogMask)<br>(Data Plane)"]
-        APP -- "writes logs<br>▼ /shared/app.log" --> SIDE
+        APP -- "writes logs<br>â–¼ /shared/app.log" --> SIDE
     end
 
     SIDE -- "emits sanitized logs" --> FBL["Fluent Bit / Loki"]
@@ -115,7 +110,7 @@ flowchart TD
     CF --> CE["CONTEXT ENGINE<br>(Proximity Analysis)"]
     CE --> SC["SECRET CLASSIFIER<br>(600+ Regex Patterns)"]
     SC --> ML["ML SCORER<br>(Confidence 0-100)"]
-    ML -- "≥80" --> MASK["MASK<br>(Redacted)"]
+    ML -- "â‰¥80" --> MASK["MASK<br>(Redacted)"]
     ML -- "<50" --> ALLOW["ALLOW<br>(Passed through)"]
 `} />
                     </div>
@@ -141,7 +136,7 @@ flowchart TD
                             <h3 className="text-xl font-bold text-[#fff] mb-4">ML Scorer & Vault Integration</h3>
                             <p>
                                 The final stage uses a trained Machine Learning model evaluating features like Shannon entropy, token structure, regex matches (600+ patterns), and contextual proximity to generate a <strong>Secret Confidence Score (0-100)</strong>. 
-                                Scores ≥80 trigger redaction. The original secret is sent to <strong>SecureReveal</strong>—an encrypted local SQLite vault—leaving behind a safe reference such as <code className="text-[#00fff9]">[REDACTED:SEC-1234:SCS=94]</code> for future auditing.
+                                Scores â‰¥80 trigger redaction. The original secret is sent to <strong>SecureReveal</strong>â€”an encrypted local SQLite vaultâ€”leaving behind a safe reference such as <code className="text-[#00fff9]">[REDACTED:SEC-1234:SCS=94]</code> for future auditing.
                             </p>
                         </div>
                     </div>
@@ -169,3 +164,4 @@ flowchart TD
         </main>
     );
 }
+
