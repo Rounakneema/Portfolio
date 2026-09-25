@@ -10,10 +10,19 @@ export default function SortMailPage() {
     return (
         <main className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-red-900 selection:text-white">
             {/* Header / Nav */}
-            <nav className="p-6 md:p-12 border-b border-[#333] flex justify-between items-center text-xs tracking-widest uppercase">
-                <Link href="/" className="hover:text-red-500 transition-colors">
-                    &lt; System.Root
-                </Link>
+            <nav className="p-6 md:p-12 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs tracking-widest uppercase gap-4">
+                <div className="flex gap-6 items-center">
+                    <Link href="/" className="hover:text-red-500 transition-colors">
+                        &lt; System.Root
+                    </Link>
+                    <span className="text-[#444]">|</span>
+                    <Link href="/sortmail/architecture" className="hover:text-white transition-colors">
+                        [Architecture]
+                    </Link>
+                    <Link href="/sortmail/decisions" className="hover:text-white transition-colors">
+                        [Decisions]
+                    </Link>
+                </div>
                 <div className="flex gap-6">
                     <span className="text-[#666]">STATUS: [WIP]</span>
                     <span className="text-[#666]">VER: 0.9.1a</span>

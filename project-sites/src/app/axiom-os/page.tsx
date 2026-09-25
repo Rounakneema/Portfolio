@@ -68,6 +68,20 @@ export default function AxiomOsPage() {
                     {/* LEFT COLUMN: METRICS & TRACES */}
                     <div className="lg:col-span-3 brutalist-border-r p-6 bg-[#050505] flex flex-col gap-8">
                         <div>
+                            <h3 className="text-gray-500 uppercase text-xs tracking-widest mb-4">System Manuals</h3>
+                            <ul className="space-y-4 mb-12">
+                                <li>
+                                    <a href="/axiom-os/architecture" className="block brutalist-border p-4 bg-[#0a0a0a] hover:bg-white hover:text-black transition-colors font-bold uppercase text-sm">
+                                        [01] Architecture Spec &gt;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/axiom-os/decisions" className="block brutalist-border p-4 bg-[#0a0a0a] hover:bg-white hover:text-black transition-colors font-bold uppercase text-sm">
+                                        [02] Eng. Decisions &gt;
+                                    </a>
+                                </li>
+                            </ul>
+
                             <h3 className="text-gray-500 uppercase text-xs tracking-widest mb-4">Core Specifications</h3>
                             <ul className="space-y-4">
                                 {project.metrics?.map((metric, i) => (

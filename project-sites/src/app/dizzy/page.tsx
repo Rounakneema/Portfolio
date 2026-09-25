@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getProjectBySlug } from '@/lib/projects';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Dizzy - Voice-to-Figma UI Creation',
@@ -14,10 +15,11 @@ export default function DizzyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#e0e0e0] font-mono selection:bg-[#ff3366] selection:text-white p-4 md:p-12 lg:p-24 overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#ff3366] selection:text-white p-4 md:p-12 lg:p-24 overflow-x-hidden">
       <style dangerouslySetInnerHTML={{__html: `
         .brutalist-border { border: 2px solid #333; }
         .brutalist-shadow { box-shadow: 8px 8px 0px #333; }
+        .brutalist-nav-link:hover { background: #ff3366; color: #0a0a0a; border-color: #ff3366; }
         .neon-accent { color: #ff3366; }
         .grid-bg {
           background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
@@ -40,7 +42,7 @@ export default function DizzyPage() {
       `}} />
 
       {/* Header */}
-      <header className="mb-24 relative z-10">
+      <header className="mb-16 relative z-10">
         <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black uppercase tracking-tighter leading-none mb-6 text-white mix-blend-difference">
           DIZZY
         </h1>
@@ -54,6 +56,18 @@ export default function DizzyPage() {
           </div>
         </div>
       </header>
+
+      {/* Navigation */}
+      <nav className="mb-24 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Link href="/dizzy/architecture" className="block p-6 brutalist-border transition-colors brutalist-nav-link group">
+          <h2 className="text-2xl font-bold uppercase mb-2">/ Architecture Spec</h2>
+          <p className="text-gray-400 group-hover:text-[#111]">JEV Topology & Component Graph</p>
+        </Link>
+        <Link href="/dizzy/decisions" className="block p-6 brutalist-border transition-colors brutalist-nav-link group">
+          <h2 className="text-2xl font-bold uppercase mb-2">/ Trade-offs & Decisions</h2>
+          <p className="text-gray-400 group-hover:text-[#111]">Streaming Parsing vs Pure UI Gen</p>
+        </Link>
+      </nav>
 
       {/* Grid background container */}
       <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
@@ -81,7 +95,7 @@ export default function DizzyPage() {
           </section>
 
           <section>
-            <h2 className="text-3xl font-bold mb-8 uppercase text-white">System Architecture</h2>
+            <h2 className="text-3xl font-bold mb-8 uppercase text-white">System Architecture Overview</h2>
             <div className="bg-black p-6 brutalist-border font-mono text-sm overflow-x-auto text-green-500">
               <pre>
 {`[ USER VOICE ] 
