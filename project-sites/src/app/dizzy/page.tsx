@@ -5,10 +5,10 @@ import { EntityHeader } from '@/components/EntityHeader';
 import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { TypeWriter } from '@/components/shared/TypeWriter';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { StaggerContainer, StaggerItem, ScrollReveal } from '@/components/shared/ScrollReveal';
 
 export const metadata = {
-  title: 'Dizzy — Voice-to-Figma AI Interface Builder',
+  title: 'Dizzy - Voice-to-Figma AI Interface Builder',
   description: 'A context-aware, generative AI co-pilot that lives natively inside Figma. Translates voice commands into fully editable Auto-Layout Figma components.',
   alternates: {
     canonical: 'https://dizzy.rounakneema.in',
@@ -50,211 +50,202 @@ export default function DizzyPage() {
 }`;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
+    <div className="w-full min-h-screen bg-black text-white selection:bg-[#ff3366] selection:text-white font-sans">
       <ProjectJsonLd slug="dizzy" />
       
-      {/* Abstract background elements */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#ff3366] opacity-5 blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[800px] h-[800px] rounded-full bg-blue-500 opacity-5 blur-[150px]"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
-      </div>
-
-      {/* NEW HERO SEQUENCE */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-[70vh] mb-12 text-center" id="voice-design">
-        <h1 className="text-5xl md:text-7xl font-black mb-12 uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-          Speak Your Interface<br/><span className="text-[#ff3366]">Into Existence.</span>
-        </h1>
-        
-        {/* Fake voice input with typewriter */}
-        <div className="w-full max-w-3xl bg-[#111] border-2 border-[#ff3366] p-6 mb-8 brutalist-shadow rounded-2xl relative">
-          <div className="absolute -top-3 left-6 bg-[#ff3366] text-white px-3 py-1 text-xs font-bold uppercase tracking-wider">
-            Listening...
+      {/* 
+        HERO: Asymmetric, Brutalist Typography 
+        Dials: VARIANCE 9, MOTION 7, DENSITY 4
+      */}
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+          {/* Left Column: Massive Type */}
+          <div className="lg:col-span-8 relative z-10" id="voice-design">
+            <h1 className="text-[clamp(3.5rem,8vw,10rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100">
+              Speak Your <br/>
+              <span className="text-[#ff3366]">Interface</span> <br/>
+              Into Existence.
+            </h1>
+            <p className="mt-12 text-xl lg:text-2xl font-light text-zinc-400 max-w-2xl leading-relaxed tracking-tight">
+              A context-aware, generative AI co-pilot that lives natively inside Figma. We translate natural language into fully editable, auto-layout perfect UI components in real-time.
+            </p>
           </div>
-          <p className="text-2xl md:text-3xl font-medium text-white italic">
-            "<TypeWriter text="Create a dark SaaS dashboard with sidebar, analytics cards and a live revenue graph." delay={40} />"
-          </p>
-          <div className="mt-4 flex gap-2 justify-center">
-            <div className="w-2 h-2 rounded-full bg-[#ff3366] animate-pulse"></div>
-            <div className="w-2 h-2 rounded-full bg-[#ff3366] animate-pulse delay-75"></div>
-            <div className="w-2 h-2 rounded-full bg-[#ff3366] animate-pulse delay-150"></div>
-          </div>
-        </div>
 
-        <div className="text-[#ff3366] font-bold text-xl mb-8 animate-bounce">
-          ↓ DESIGNING...
-        </div>
-
-        {/* Mock generated UI frame */}
-        <div className="w-full max-w-4xl text-left bg-[#f5f5f5] text-black border border-[#333] rounded-xl overflow-hidden shadow-2xl" id="semantic-state">
-          {/* Top Bar */}
-          <div className="bg-[#e5e5e5] px-4 py-3 flex items-center gap-2 border-b border-[#d5d5d5]">
-            <div className="w-3 h-3 rounded-full bg-red-400"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <span className="ml-4 font-mono text-sm font-bold text-gray-500">Auto-Layout Active</span>
-          </div>
-          
-          <div className="p-8 font-mono text-lg flex">
-            {/* Sidebar */}
-            <div className="w-64 border-r border-gray-300 pr-6 mr-6 flex flex-col gap-4">
-              <div className="font-black text-xl mb-4">▌ Dashboard</div>
-              <div className="bg-gray-200 p-2 rounded">Overview</div>
-              <div className="text-gray-500 p-2">Analytics</div>
-              <div className="text-gray-500 p-2">Settings</div>
-            </div>
-            {/* Main Content */}
-            <div className="flex-1">
-              <div className="text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest">Total Revenue</div>
-              <div className="text-5xl font-black mb-8 flex items-baseline gap-4">
-                $48,920
-                <span className="text-green-500 text-lg font-bold">↑ +18.4%</span>
+          {/* Right Column: Interaction Window */}
+          <div className="lg:col-span-4 relative z-20 w-full" id="semantic-state">
+            <div className="bg-[#090909] border border-zinc-800 rounded-lg p-6 shadow-2xl relative group transform hover:-translate-y-2 transition-transform duration-500 ease-out">
+              <div className="absolute -top-3 -right-3 flex h-6 w-6">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff3366] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-6 w-6 bg-[#ff3366] border-2 border-black"></span>
               </div>
-              <div className="h-48 w-full border-b-2 border-l-2 border-gray-300 relative">
-                <svg className="absolute bottom-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <path d="M0,100 L20,80 L40,90 L60,40 L80,50 L100,10" fill="none" stroke="#ff3366" strokeWidth="3" vectorEffect="non-scaling-stroke"/>
-                </svg>
+              <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">
+                Listening Pipeline Active
+              </div>
+              <p className="text-lg md:text-xl font-medium text-zinc-100 italic">
+                "<TypeWriter text="Create a dark SaaS dashboard with sidebar, analytics cards and a live revenue graph." delay={40} cursor={true} />"
+              </p>
+              
+              <div className="mt-8 pt-6 border-t border-zinc-800">
+                <div className="flex items-center gap-3">
+                  <div className="text-[10px] text-[#ff3366] uppercase font-bold tracking-widest flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#ff3366] animate-pulse"></span>
+                    Executing Intent
+                  </div>
+                </div>
+                <div className="mt-4 grid grid-cols-3 gap-2 opacity-60">
+                  <div className="h-1 bg-zinc-700 w-full"></div>
+                  <div className="h-1 bg-zinc-700 w-full"></div>
+                  <div className="h-1 bg-[#ff3366] w-full animate-pulse"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Semantic update demo */}
-        <div className="w-full max-w-4xl text-left bg-black border border-[#333] p-8 mt-12 text-lg font-mono rounded-xl">
-          <div className="mb-6 flex items-start gap-4">
-            <span className="text-[#ff3366] font-black mt-1">USER:</span> 
-            <span className="text-white">"Make the sidebar narrower."</span>
-          </div>
-          
-          <div className="text-gray-500 mb-2 text-sm tracking-widest font-bold">↓ SEMANTIC UPDATE</div>
-          <div className="text-[#e0e0e0] mb-8 bg-white/5 p-4 border-l-2 border-[#ff3366] inline-block font-bold rounded">
-            sidebar.width: <span className="line-through text-gray-500">320</span> → <span className="text-[#ff3366]">240</span>
-          </div>
-          
-          <div className="text-gray-500 mb-2 text-sm tracking-widest font-bold">↓ FIGMA MCP CALL</div>
-          <div className="text-green-500 font-black animate-pulse bg-green-500/10 inline-block px-4 py-2 border border-green-500/30 rounded">
-            FRAME UPDATED ✓
-          </div>
-        </div>
       </div>
 
-      <ScrollReveal direction="up" delay={0.1}>
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pb-32">
         <EntityHeader 
-            title={project.title}
-            subtitle="Design at the Speed of Thought."
-            category={project.category}
-            status={project.status}
-            language="TypeScript, Node.js, WebSockets"
-            github={project.github}
+          title={project.title}
+          subtitle={project.subtitle}
+          category={project.category}
+          status={project.status}
+          language={project.language}
+          github={project.github}
+          className="!px-0 !py-12 border-b border-zinc-900"
         />
-        <ProjectFacts facts={[
-            { label: 'Role', value: 'Architect & Developer' },
-            { label: 'Domain', value: 'Generative UI' },
-            { label: 'Integrations', value: 'Figma MCP, TypeSafe' }
-        ]} />
-      </ScrollReveal>
+      </div>
 
-      {/* DEEP DIVE CONTENT */}
-      <main className="relative z-10 mt-24 space-y-32">
+      {/* 
+        DATA-DENSE TECHNICAL SPECIFICATION
+      */}
+      <main className="max-w-[1600px] mx-auto px-6 md:px-12">
         
-        {/* Section 1 & 2: Exec Summary & Challenges */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-5">
-              <h2 className="text-4xl font-black mb-6 tracking-tight">The Core Engineering Challenges</h2>
-              <p className="text-xl text-gray-400 leading-relaxed mb-8">
-                Building a voice-to-UI agent requires solving complex engineering problems that generic LLM wrappers fail to address. We needed native context awareness.
+        {/* Core Technical Challenges Grid - NO SAAS CARDS, RAW BORDERS */}
+        <section className="mb-32">
+          <div className="border-b border-zinc-800 pb-6 mb-12">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">01 // Architectural Friction</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24">
+            <div className="group">
+              <h3 className="text-4xl font-black text-zinc-100 mb-6 tracking-tighter group-hover:text-[#ff3366] transition-colors">The "This" Problem.</h3>
+              <p className="text-zinc-400 leading-relaxed font-light text-lg">
+                <strong className="text-zinc-200 font-medium">Problem:</strong> Saying "make this button larger" means nothing to a cloud LLM. It lacks the spatial and object context of your canvas.
+                <br/><br/>
+                <strong className="text-zinc-200 font-medium">Solution:</strong> The Figma plugin intercepts the live selection state. It streams the selected Node ID, dimensions, and styling data up to the orchestrator along with the audio. The LLM resolves "this" against the geometric context.
               </p>
             </div>
-            <div className="lg:col-span-7 space-y-8">
-              <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl p-8 hover:border-[#ff3366]/50 transition-colors">
-                <h3 className="text-xl font-bold text-[#ff3366] mb-3 uppercase tracking-wider">A. The "This" Problem (Context)</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  <strong className="text-white">Problem:</strong> If a user says, <em>"Make this dark mode"</em>, the backend is blind.
-                  <br/><br/>
-                  <strong className="text-white">Solution:</strong> A continuous state-sync mechanism. The Figma plugin listens to <code>figma.on('selectionchange')</code> and silently streams the ID, Node Type, and Dimensions of the active selection over a WebSocket to the Node.js backend. This context resolves pronouns perfectly.
-                </p>
-              </div>
-              <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl p-8 hover:border-[#ff3366]/50 transition-colors">
-                <h3 className="text-xl font-bold text-[#ff3366] mb-3 uppercase tracking-wider">B. VAD & The "Voice Stutter"</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  <strong className="text-white">Problem:</strong> Browser Speech-to-Text floods backends with partial fragments, causing hallucinated loops.
-                  <br/><br/>
-                  <strong className="text-white">Solution:</strong> An <strong>Intent Accumulation Layer</strong> with Voice Activity Detection (VAD). A strict debounce buffer accumulates speech and only flushes to the NLP parser after a 1.5s silence boundary.
-                </p>
-              </div>
-              <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl p-8 hover:border-[#ff3366]/50 transition-colors">
-                <h3 className="text-xl font-bold text-[#ff3366] mb-3 uppercase tracking-wider">C. LLM Design Math Hallucination</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  <strong className="text-white">Problem:</strong> LLMs are terrible at exact X/Y coordinates and consistent hex codes.
-                  <br/><br/>
-                  <strong className="text-white">Solution:</strong> The LLM is <strong>only</strong> used for intent extraction and color tokenization. All layout math, auto-layout application, and component structuring are handled by a deterministic Execution Engine in TypeScript.
-                </p>
-              </div>
-            </div>
-          </section>
-        </ScrollReveal>
-
-        {/* Section 3: System Architecture */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="bg-[#111] border border-[#333] rounded-2xl p-8 md:p-12 shadow-2xl">
-            <h2 className="text-3xl font-black mb-8 tracking-tight border-b border-[#333] pb-4">System Architecture</h2>
             
-            <div className="bg-black border border-white/10 rounded-lg p-6 mb-12 font-mono text-sm overflow-x-auto text-blue-400 shadow-inner">
-              <pre>
-{`┌─────────────────┐       ┌──────────────────────┐       ┌──────────────────┐
-│  Voice Remote   │       │  Node.js Backend     │       │   Figma Plugin   │
-│  (Web/Mobile)   │       │  (Orchestrator)      │       │   (code.ts)      │
-├─────────────────┤       ├──────────────────────┤       ├──────────────────┤
-│ - Web Speech API│──────▶│ - Intent Accumulation│──────▶│ - Blueprint      │
-│ - STT Engine    │       │ - TypeSafe (jev)     │       │   Renderer       │
-│ - Silence VAD   │◀──────│ - Content Engine     │◀──────│ - Context Sync   │
-└─────────────────┘  WS   └──────────────────────┘  WS   └──────────────────┘`}
-              </pre>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">1. The Two-Pass TypeSafe Pipeline</h3>
-                <p className="text-gray-400 leading-relaxed">
-                  To ensure strict JSON outputs without hallucination, we utilize a two-pass system:
-                  <br/><br/>
-                  <strong className="text-white">Pass 1 (Intent):</strong> Extracts the <code>operation</code>, <code>product_type</code>, <code>theme</code>, and device.<br/>
-                  <strong className="text-white">Pass 2 (Color):</strong> Resolves semantic moods ("dark navy") into strict palette object mappings.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">2. Domain Content Engine</h3>
-                <p className="text-gray-400 leading-relaxed">
-                  "Lorem Ipsum" ruins the generative illusion. The Content Engine maps the <code>product_type</code> to realistic data schemas.<br/><br/>
-                  <em>If gpu_services:</em> [Overview, Instances, API Keys]<br/>
-                  <em>If ecommerce:</em> [Orders, Inventory, Customers]
-                </p>
-              </div>
-            </div>
-          </section>
-        </ScrollReveal>
-
-        {/* Section 4 & 5: Data Contract & Execution */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl font-black mb-6 tracking-tight">The JSON Blueprint Contract</h2>
-              <p className="text-lg text-gray-400 leading-relaxed mb-6">
-                The backend does not execute Figma commands directly. Instead, it acts as a headless UI engine, assembling a <strong>Blueprint JSON Contract</strong>. This payload is sent over WebSockets to the Figma Plugin.
+            <div className="group">
+              <h3 className="text-4xl font-black text-zinc-100 mb-6 tracking-tighter group-hover:text-[#ff3366] transition-colors">VAD Stuttering.</h3>
+              <p className="text-zinc-400 leading-relaxed font-light text-lg">
+                <strong className="text-zinc-200 font-medium">Problem:</strong> Designers pause while thinking. Standard Voice Activity Detection (VAD) chops these pauses into multiple broken commands.
+                <br/><br/>
+                <strong className="text-zinc-200 font-medium">Solution:</strong> We implemented an Intent Accumulator queue. Even if VAD cuts the audio, the backend waits for a complete semantic intent ("add a shadow...") before dispatching to the NLP pass, ignoring mid-sentence hesitation.
               </p>
-              <h3 className="text-xl font-bold text-white mt-12 mb-4">The Native Execution Engine (code.ts)</h3>
-              <ul className="space-y-4 text-gray-400 list-disc pl-5 marker:text-[#ff3366]">
-                <li><strong className="text-white">Recursive Drawing:</strong> Walks the JSON tree generating native FrameNodes and TextNodes.</li>
-                <li><strong className="text-white">Production Auto-Layout:</strong> Applies native layout properties (<code>layoutMode = 'HORIZONTAL'</code>) making the UI perfectly responsive.</li>
-                <li><strong className="text-white">Real-Time Mutations:</strong> Geometric updates are applied directly to the synced <code>selection.id</code>.</li>
-              </ul>
             </div>
-            <div className="bg-[#050505] border border-[#222] p-6 rounded-xl shadow-2xl relative group">
-              <div className="absolute top-0 right-0 px-4 py-1 bg-[#ff3366]/20 text-[#ff3366] text-xs font-bold rounded-bl-lg">WS PAYLOAD</div>
-              <pre className="font-mono text-sm text-[#a3e635] overflow-x-auto">
-                {blueprintJson}
-              </pre>
+
+            <div className="group">
+              <h3 className="text-4xl font-black text-zinc-100 mb-6 tracking-tighter group-hover:text-[#ff3366] transition-colors">Hallucinated Geometry.</h3>
+              <p className="text-zinc-400 leading-relaxed font-light text-lg">
+                <strong className="text-zinc-200 font-medium">Problem:</strong> LLMs are terrible at exact X/Y coordinates and consistent hex codes.
+                <br/><br/>
+                <strong className="text-zinc-200 font-medium">Solution:</strong> The LLM is strictly confined to intent extraction. All layout math, auto-layout application, and component structuring are handled by a deterministic Execution Engine in TypeScript.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* System Architecture Flow */}
+        <section className="mb-32">
+          <div className="border-b border-zinc-800 pb-6 mb-12 flex flex-col md:flex-row justify-between items-baseline gap-4">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">02 // Systems Flow</h2>
+            <h3 className="text-2xl font-black text-zinc-100 tracking-tighter">THE TWO-PASS TYPESAFE PIPELINE</h3>
+          </div>
+          
+          <div className="bg-[#050505] border border-zinc-900 p-8 md:p-16 overflow-x-auto">
+            <pre className="font-mono text-[10px] md:text-sm text-zinc-500 leading-relaxed">
+{`    [ USER CONTEXT ]
+           │
+           ▼
+    VOICE GATEWAY (JEV)
+    ├─► VAD (Voice Activity Detection)
+    ├─► Streaming STT (Speech-to-Text)
+    └─► Context Injection (Current Figma Canvas State)
+           │
+           ▼
+    AGENTIC ORCHESTRATOR
+    ├─► Router: Maps intent to specific sub-agents
+    │   ├─► Layout Agent (Flexbox/Grids)
+    │   ├─► Typography Agent (Fonts, Weights)
+    │   └─► Styling Agent (Colors, Shadows, Borders)
+    ├─► State Manager: Tracks semantic changes
+    └─► TypeSafe Output Validator
+           │
+           ▼
+    SEMANTIC BUFFER TO FIGMA MCP
+    ├─► Diff Engine: Calculates minimal updates
+    ├─► Figma Plugin Bridge (WebSocket/REST)
+    └─► Native Object Generator (Frames, Text, Vectors)
+           │
+           ▼
+    [ FIGMA NATIVE APPLICATION ]`}
+            </pre>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
+            <div>
+              <h4 className="text-xl font-bold text-zinc-100 mb-4 tracking-tight">Pass 1: Intent & Semantic Resolution</h4>
+              <p className="text-zinc-400 font-light leading-relaxed">
+                To ensure strict JSON outputs without hallucination, we utilize a two-pass system. Pass 1 extracts the <code>operation</code>, <code>product_type</code>, <code>theme</code>, and device.
+                Pass 2 resolves semantic moods (e.g. "dark navy") into strict palette object mappings.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold text-zinc-100 mb-4 tracking-tight">Domain Content Engine</h4>
+              <p className="text-zinc-400 font-light leading-relaxed">
+                "Lorem Ipsum" ruins the generative illusion. The Content Engine maps the <code>product_type</code> to realistic data schemas. If the request is for <code>gpu_services</code>, it populates nodes with [Overview, Instances, API Keys].
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Data Contract / Blueprint */}
+        <ScrollReveal direction="up" delay={0.1}>
+          <section className="mb-32">
+            <div className="border-t border-zinc-800 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+              <div className="lg:col-span-5">
+                <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">03 // Execution</h2>
+                <h3 className="text-4xl font-black text-zinc-100 tracking-tighter mb-8">THE JSON BLUEPRINT CONTRACT</h3>
+                <p className="text-lg font-light text-zinc-400 leading-relaxed mb-8">
+                  The backend does not execute Figma commands directly. Instead, it acts as a headless UI engine, assembling a Blueprint JSON Contract. This payload is sent over WebSockets to the Figma Plugin.
+                </p>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Recursive Drawing</h4>
+                    <p className="text-zinc-500 text-sm">Walks the JSON tree generating native FrameNodes and TextNodes.</p>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Production Auto-Layout</h4>
+                    <p className="text-zinc-500 text-sm">Applies native layout properties (<code>layoutMode = 'HORIZONTAL'</code>) making the UI perfectly responsive.</p>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Real-Time Mutations</h4>
+                    <p className="text-zinc-500 text-sm">Geometric updates are applied directly to the synced <code>selection.id</code>.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-7">
+                <div className="bg-[#050505] border border-zinc-800 p-8 md:p-12 h-full">
+                  <div className="text-[#ff3366] text-[10px] font-bold uppercase tracking-widest mb-8 flex items-center justify-between">
+                    <span>WS Payload</span>
+                    <span className="w-2 h-2 bg-[#ff3366] rounded-full animate-pulse"></span>
+                  </div>
+                  <pre className="font-mono text-xs md:text-sm text-zinc-400 overflow-x-auto leading-loose">
+                    {blueprintJson}
+                  </pre>
+                </div>
+              </div>
             </div>
           </section>
         </ScrollReveal>
@@ -262,25 +253,26 @@ export default function DizzyPage() {
       </main>
 
       {/* FAQ */}
-      <ScrollReveal direction="up" delay={0.1}>
-        <section className="relative z-10 mt-32 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-black mb-12 text-center tracking-tight">Technical FAQ</h2>
-          <StaggerContainer>
-            <div className="space-y-4">
-                {dizzyJsonLd.faq.map((q, idx) => (
-                    <StaggerItem key={idx}>
-                      <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/10 transition-colors">
-                          <h4 className="font-bold text-[#ff3366] mb-3 text-lg">{q.question}</h4>
-                          <p className="text-gray-300 leading-relaxed">{q.answer}</p>
-                      </div>
-                    </StaggerItem>
-                ))}
-            </div>
-          </StaggerContainer>
-        </section>
-      </ScrollReveal>
+      <section className="border-t border-zinc-900 bg-[#020202]">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-32">
+          <div className="text-center mb-24">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">04 // Knowledge Base</h2>
+            <h3 className="text-4xl font-black text-zinc-100 tracking-tighter">TECHNICAL FAQ</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+              {dizzyJsonLd.faq.map((q, idx) => (
+                  <div key={idx} className="border-b border-zinc-800 pb-8 hover:border-zinc-500 transition-colors">
+                      <h4 className="font-medium text-white mb-4 text-xl tracking-tight">{q.question}</h4>
+                      <p className="text-zinc-400 font-light leading-relaxed">{q.answer}</p>
+                  </div>
+              ))}
+          </div>
+        </div>
+      </section>
 
-      <div className="mt-32 border-t border-white/10 py-6 overflow-hidden bg-[#ff3366] text-white font-black text-xl uppercase relative z-10 w-screen ml-[calc(-50vw+50%)]">
+      {/* Marquee Footer */}
+      <div className="border-y border-[#ff3366] py-6 overflow-hidden bg-[#ff3366] text-white font-black text-2xl uppercase tracking-tighter relative z-10 w-full">
         <div className="whitespace-nowrap animate-[marquee_20s_linear_infinite]">
           <span>VOICE TO NATIVE FIGMA ✦ SEMANTIC BUFFER ✦ AGENTIC WORKFLOW ✦ GENERATIVE UI ✦ NO FLATTENED PNGS ✦ JEV LATEST ✦ CONTINUOUS STATE SYNC ✦ </span>
           <span>VOICE TO NATIVE FIGMA ✦ SEMANTIC BUFFER ✦ AGENTIC WORKFLOW ✦ GENERATIVE UI ✦ NO FLATTENED PNGS ✦ JEV LATEST ✦ CONTINUOUS STATE SYNC ✦ </span>
