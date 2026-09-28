@@ -26,7 +26,7 @@ export default function DizzyArchitecturePage() {
 
         <section className="mb-32">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">01 // TOPOLOGY OVERVIEW</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Topology Overview</h2>
           </div>
           
           <div className="bg-[#050505] border border-zinc-900 p-8 md:p-12 overflow-x-auto">
@@ -52,7 +52,7 @@ flowchart TD
 
         <section className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
           <div className="md:col-span-12 border-b border-zinc-800 pb-6">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">02 // LAYER DEFINITIONS</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Layer Definitions</h2>
           </div>
 
           <div className="md:col-span-4 group">

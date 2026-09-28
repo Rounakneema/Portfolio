@@ -150,7 +150,7 @@ export default function DizzyPage() {
         {/* Core Technical Challenges Grid - NO SAAS CARDS, RAW BORDERS */}
         <section className="mb-32">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">01 // Architectural Friction</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Architectural Friction</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24">
@@ -186,7 +186,7 @@ export default function DizzyPage() {
         {/* System Architecture Flow */}
         <section className="mb-32">
           <div className="border-b border-zinc-800 pb-6 mb-12 flex flex-col md:flex-row justify-between items-baseline gap-4">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">02 // Systems Flow</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Systems Flow</h2>
             <h3 className="text-2xl font-black text-zinc-100 tracking-tighter">THE TWO-PASS TYPESAFE PIPELINE</h3>
           </div>
           
@@ -242,7 +242,7 @@ export default function DizzyPage() {
           <section className="mb-32">
             <div className="border-t border-zinc-800 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
               <div className="lg:col-span-5">
-                <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">03 // Execution</h2>
+                <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">Execution</h2>
                 <h3 className="text-4xl font-black text-zinc-100 tracking-tighter mb-8">THE JSON BLUEPRINT CONTRACT</h3>
                 <p className="text-lg font-light text-zinc-400 leading-relaxed mb-8">
                   The backend does not execute Figma commands directly. Instead, it acts as a headless UI engine, assembling a Blueprint JSON Contract. This payload is sent over WebSockets to the Figma Plugin.
@@ -283,7 +283,7 @@ export default function DizzyPage() {
       <section className="border-t border-zinc-900 bg-[#020202]">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-32">
           <div className="text-center mb-24">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">04 // Knowledge Base</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">Knowledge Base</h2>
             <h3 className="text-4xl font-black text-zinc-100 tracking-tighter">TECHNICAL FAQ</h3>
           </div>
           

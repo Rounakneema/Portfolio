@@ -25,7 +25,7 @@ export default function DizzyDocsPage() {
 
         <section className="mb-32">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">01 // AST DEFINITION</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Ast Definition</h2>
             <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">SEMANTIC BUFFER AST</h3>
           </div>
           
@@ -66,7 +66,7 @@ export default function DizzyDocsPage() {
 
         <section className="mb-32">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">02 // DATA STREAMING</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Data Streaming</h2>
             <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">VOICE STREAMING PROTOCOL</h3>
           </div>
           
@@ -98,7 +98,7 @@ export default function DizzyDocsPage() {
 
         <section className="mb-16">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">03 // PLUGIN EXECUTION</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Plugin Execution</h2>
             <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">FIGMA MCP OPERATIONS</h3>
           </div>
           

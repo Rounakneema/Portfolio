@@ -25,7 +25,7 @@ export default function DizzyDecisionsPage() {
 
         <section className="mb-32">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">01 // LATENCY OPTIMIZATION</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Latency Optimization</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
@@ -63,7 +63,7 @@ export default function DizzyDecisionsPage() {
 
         <section className="mb-32">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">02 // DATA STRUCTURE</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Data Structure</h2>
             <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">SEMANTIC BUFFERING VS. PURE UI GENERATION</h3>
           </div>
           
@@ -114,7 +114,7 @@ Figma.getNodeById("node_1").padding = 32;`}
 
         <section className="mb-16">
           <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">03 // PROTOCOL LIMITS</h2>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Protocol Limits</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
