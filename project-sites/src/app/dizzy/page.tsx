@@ -24,7 +24,7 @@ const dizzyJsonLd = {
     ]
 };
 
-import { motion } from 'framer-motion';
+import { FadeIn } from '@/components/shared/FadeIn';
 
 export default function DizzyPage() {
   const project = projects.find((p) => p.slug === 'dizzy');
@@ -62,10 +62,7 @@ export default function DizzyPage() {
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
           {/* Left Column: Massive Type */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          <FadeIn 
             className="lg:col-span-8 relative z-10" id="voice-design"
           >
             <h1 className="text-[clamp(3.5rem,8vw,10rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100 flex flex-col">
@@ -82,13 +79,12 @@ export default function DizzyPage() {
             <p className="mt-12 text-xl lg:text-2xl font-light text-zinc-400 max-w-2xl leading-relaxed tracking-tight">
               A context-aware, generative AI co-pilot that lives natively inside Figma. We translate natural language into fully editable, auto-layout perfect UI components in real-time.
             </p>
-          </motion.div>
+          </FadeIn>
 
           {/* Right Column: Interaction Window (Double-Bezel) */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          <FadeIn 
+            delay={0.2}
+            scale={true}
             className="lg:col-span-4 relative z-20 w-full" id="semantic-state"
           >
             {/* Outer Shell (Double-Bezel Architecture) */}
@@ -126,7 +122,7 @@ export default function DizzyPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </FadeIn>
         </div>
       </div>
 
