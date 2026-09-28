@@ -60,7 +60,7 @@ export default function DizzyPage() {
         Dials: VARIANCE 9, MOTION 7, DENSITY 4
       */}
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Left Column: Massive Type */}
           <FadeIn 
             className="lg:col-span-8 relative z-10" id="voice-design"
@@ -81,14 +81,14 @@ export default function DizzyPage() {
             </p>
           </FadeIn>
 
-          {/* Right Column: Interaction Window (Double-Bezel) */}
+          {/* Right Column: Interaction Window (Double-Bezel) + Generated Mockup */}
           <FadeIn 
             delay={0.2}
             scale={true}
-            className="lg:col-span-4 relative z-20 w-full" id="semantic-state"
+            className="lg:col-span-4 relative z-20 w-full flex flex-col gap-6" id="semantic-state"
           >
-            {/* Outer Shell (Double-Bezel Architecture) */}
-            <div className="bg-white/5 border border-white/10 p-2 rounded-[2rem] shadow-2xl relative group transform hover:-translate-y-2 transition-transform duration-700 ease-out">
+            {/* 1. Listening Pipeline (Moved Up) */}
+            <div className="bg-white/5 border border-white/10 p-2 rounded-[2rem] shadow-2xl relative group transform hover:-translate-y-1 transition-transform duration-700 ease-out">
               <div className="absolute -top-3 -right-3 flex h-6 w-6 z-30">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff3366] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-6 w-6 bg-[#ff3366] border-2 border-black"></span>
@@ -96,7 +96,6 @@ export default function DizzyPage() {
               
               {/* Inner Core */}
               <div className="bg-[#050505] border border-zinc-800/50 rounded-[calc(2rem-0.5rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] relative overflow-hidden">
-                {/* Subtle radial gradient behind the terminal */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff3366] opacity-[0.03] blur-[80px] pointer-events-none"></div>
 
                 <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4 flex items-center justify-between relative z-10">
@@ -118,6 +117,47 @@ export default function DizzyPage() {
                     <div className="h-1 bg-zinc-700 w-full rounded-full"></div>
                     <div className="h-1 bg-zinc-700 w-full rounded-full"></div>
                     <div className="h-1 bg-[#ff3366] w-full animate-pulse rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Generated Dashboard Mock (Below) */}
+            <div className="bg-white/5 border border-white/10 p-2 rounded-[2rem] shadow-2xl relative group opacity-90 hover:opacity-100 transition-opacity duration-500 mt-2">
+              <div className="bg-[#0a0a0a] border border-zinc-800 rounded-[calc(2rem-0.5rem)] h-64 overflow-hidden relative shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                {/* Mock Header */}
+                <div className="h-8 border-b border-zinc-800/50 flex items-center px-4 gap-2 bg-[#050505]">
+                  <div className="w-2 h-2 rounded-full bg-zinc-700"></div>
+                  <div className="w-2 h-2 rounded-full bg-zinc-700"></div>
+                  <div className="w-2 h-2 rounded-full bg-zinc-700"></div>
+                  <div className="ml-auto text-[8px] font-bold text-zinc-600 uppercase tracking-widest">FIGMA MCP RENDER</div>
+                </div>
+                
+                {/* Mock Layout */}
+                <div className="flex h-[calc(100%-2rem)]">
+                  {/* Mock Sidebar */}
+                  <div className="w-16 border-r border-zinc-800/50 bg-[#050505] p-3 flex flex-col gap-3">
+                    <div className="h-2 w-full bg-zinc-800 rounded-full"></div>
+                    <div className="h-2 w-3/4 bg-zinc-800 rounded-full"></div>
+                    <div className="h-2 w-full bg-[#ff3366]/20 rounded-full"></div>
+                    <div className="h-2 w-5/6 bg-zinc-800 rounded-full"></div>
+                  </div>
+                  
+                  {/* Mock Main Content */}
+                  <div className="flex-1 p-4 flex flex-col gap-4">
+                    {/* Analytics Cards */}
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="h-10 bg-zinc-900/50 border border-zinc-800 rounded-md"></div>
+                      <div className="h-10 bg-zinc-900/50 border border-zinc-800 rounded-md"></div>
+                      <div className="h-10 bg-[#ff3366]/10 border border-[#ff3366]/30 rounded-md"></div>
+                    </div>
+                    {/* Revenue Graph */}
+                    <div className="flex-1 bg-zinc-900/30 border border-zinc-800 rounded-lg relative overflow-hidden flex items-end">
+                      <svg className="w-full h-full absolute inset-0 text-[#ff3366]" preserveAspectRatio="none" viewBox="0 0 100 40">
+                        <path d="M0,40 L0,30 C20,20 30,35 50,25 C70,15 80,25 100,10 L100,40 Z" fill="currentColor" fillOpacity="0.1" />
+                        <path d="M0,30 C20,20 30,35 50,25 C70,15 80,25 100,10" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 2" className="animate-[dash_20s_linear_infinite]" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
