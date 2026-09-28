@@ -22,7 +22,7 @@ export function ProjectFooter({ slug }: { slug: string }) {
                     <div className="flex flex-wrap gap-x-12 gap-y-6">
                         <div className="flex flex-col gap-1.5">
                             <span className={`${mutedClass} uppercase tracking-widest font-bold`}>Author</span>
-                            <span className="font-bold">Rounak Neema</span>
+                            <a href="https://rounakneema.in" className={`font-bold ${hoverClass} underline underline-offset-4 transition-colors`}>Rounak Neema</a>
                         </div>
                         <div className="flex flex-col gap-1.5">
                             <span className={`${mutedClass} uppercase tracking-widest font-bold`}>Category</span>
@@ -56,9 +56,11 @@ export function ProjectFooter({ slug }: { slug: string }) {
                 </div>
 
                 <div className={`mt-12 pt-6 border-t ${borderClass} flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono ${mutedClass}`}>
-                    <a href="https://rounakneema.in" className={`${hoverClass} transition-colors underline underline-offset-4 ${decorationClass}`}>
-                        &larr; Back to Portfolio Main
-                    </a>
+                    <div className="flex gap-4">
+                        <a href="https://rounakneema.in" className={`${hoverClass} transition-colors underline underline-offset-4 ${decorationClass}`}>&larr; Root</a>
+                        <a href="https://rounakneema.in/portfolio" className={`${hoverClass} transition-colors underline underline-offset-4 ${decorationClass}`}>Portfolio</a>
+                        <a href="https://rounakneema.in/blog" className={`${hoverClass} transition-colors underline underline-offset-4 ${decorationClass}`}>Blog</a>
+                    </div>
                     <span className="uppercase tracking-widest">
                         {project.title}_SYSTEM // {new Date().getFullYear()}
                     </span>
@@ -67,5 +69,8 @@ export function ProjectFooter({ slug }: { slug: string }) {
         </footer>
     );
 }
+
+
+
 
 

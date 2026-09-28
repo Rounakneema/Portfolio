@@ -43,7 +43,7 @@ const payload = {
       "description": "Computer Science engineering student and early-career Security & Infrastructure Engineer focused on cybersecurity, DevSecOps, cloud infrastructure, security automation, backend engineering, and AI systems.",
       "jobTitle": "Security & Infrastructure Engineer (Early Career)",
       "nationality": { "@type": "Country", "name": "India" },
-      "alumniOf": { "@id": "https://rounakneema.in/#nmims" },
+      "affiliation": { "@id": "https://rounakneema.in/#nmims" },
       "sameAs": [
         "https://github.com/rounakneema",
         "https://www.linkedin.com/in/Rnks23",
@@ -360,3 +360,4 @@ fs.writeFileSync("D:/Protfolio/portfolio/src/components/JsonLd.tsx", tsFile);
 if (fs.existsSync("D:/Protfolio/blog/src/components")) {
     fs.writeFileSync("D:/Protfolio/blog/src/components/JsonLd.tsx", tsFile);
 }
+

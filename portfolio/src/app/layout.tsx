@@ -5,8 +5,8 @@ import JsonLd from '@/components/JsonLd';
 import './styles.css';
 
 export const metadata: Metadata = {
-    title: 'Portfolio // Rounak Neema',
-    description: 'Rounak Neema - DevOps & Security Engineer Portfolio',
+    title: 'Rounak Neema | Cybersecurity, DevSecOps & Cloud Engineering',
+    description: 'Rounak Neema is a computer science student focused on cybersecurity, DevSecOps, cloud infrastructure and security engineering. Explore his projects, technical work, research and engineering portfolio.',
     metadataBase: new URL('https://rounakneema.in'),
     alternates: {},
 };
@@ -27,6 +27,7 @@ export default function RootLayout({
         </html>
     );
 }
+
 
 
 

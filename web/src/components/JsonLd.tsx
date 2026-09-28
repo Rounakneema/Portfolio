@@ -24,7 +24,7 @@ const baseNodes = {
       "@type": "Country",
       "name": "India"
     },
-    "alumniOf": {
+    "affiliation": {
       "@id": "https://rounakneema.in/#nmims"
     },
     "sameAs": [

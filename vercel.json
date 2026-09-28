@@ -1,15 +1,28 @@
 {
-    "functions": {
-        "api/index.go": {
-            "includeFiles": "api/static/**"
-        }
-    },
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/api/index.go"
-        }
-    ],
-    "buildCommand": "node scripts/build-all.js && node bundler.js",
-    "outputDirectory": "api/static"
+    "functions":  {
+                      "api/index.go":  {
+                                           "includeFiles":  "api/static/**"
+                                       }
+                  },
+    "rewrites":  [
+                     {
+                         "source":  "/(.*)",
+                         "destination":  "/api/index.go"
+                     }
+                 ],
+    "buildCommand":  "node scripts/build-all.js \u0026\u0026 node bundler.js",
+    "outputDirectory":  "api/static",
+    "redirects":  [
+                      {
+                          "destination":  "https://rounakneema.in/$1",
+                          "permanent":  true,
+                          "source":  "/(.*)",
+                          "has":  [
+                                      {
+                                          "value":  "www.rounakneema.in",
+                                          "type":  "host"
+                                      }
+                                  ]
+                      }
+                  ]
 }
