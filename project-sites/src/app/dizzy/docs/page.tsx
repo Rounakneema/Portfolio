@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function DizzyDocsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#ff3366] selection:text-white p-4 md:p-12 lg:p-24 overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
       <style dangerouslySetInnerHTML={{__html: `
         .brutalist-border { border: 2px solid #333; }
         .brutalist-shadow { box-shadow: 8px 8px 0px #333; }
@@ -27,7 +27,6 @@ export default function DizzyDocsPage() {
 
       {/* Header */}
       <ScrollReveal direction="up" delay={0.1}>
-<ScrollReveal direction="up" delay={0.1}>
 <header className="mb-16 border-b-4 border-[#333] pb-8 relative z-10">
         <div className="flex items-center gap-4 mb-4">
           
@@ -40,13 +39,11 @@ export default function DizzyDocsPage() {
         </p>
       </header>
 </ScrollReveal>
-</ScrollReveal>
 
       <main className="space-y-24 relative z-10">
         
         {/* Section 1: Semantic Buffer AST */}
         <ScrollReveal direction="up" delay={0.1}>
-<ScrollReveal direction="up" delay={0.1}>
 <section className="space-y-6">
           <h2 className="text-3xl font-bold uppercase border-l-8 border-[#ff3366] pl-4 text-white tracking-tight tracking-tight">1. Semantic Buffer AST</h2>
           <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
@@ -77,11 +74,9 @@ export default function DizzyDocsPage() {
           </div>
         </section>
 </ScrollReveal>
-</ScrollReveal>
 
         {/* Section 2: Voice-to-JSON Protocol */}
         <ScrollReveal direction="up" delay={0.1}>
-<ScrollReveal direction="up" delay={0.1}>
 <section className="space-y-6">
           <h2 className="text-3xl font-bold uppercase border-l-8 border-yellow-400 pl-4 text-white tracking-tight tracking-tight">2. Voice Streaming Protocol</h2>
           <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
@@ -103,11 +98,9 @@ export default function DizzyDocsPage() {
           </div>
         </section>
 </ScrollReveal>
-</ScrollReveal>
 
         {/* Section 3: Figma MCP Execution */}
         <ScrollReveal direction="up" delay={0.1}>
-<ScrollReveal direction="up" delay={0.1}>
 <section className="space-y-6">
           <h2 className="text-3xl font-bold uppercase border-l-8 border-blue-500 pl-4 text-white tracking-tight tracking-tight">3. Figma MCP Operations</h2>
           <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
@@ -145,7 +138,6 @@ export default function DizzyDocsPage() {
             </pre>
           </div>
         </section>
-</ScrollReveal>
 </ScrollReveal>
       </main>
     </div>

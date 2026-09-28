@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function DizzyArchitecturePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#ff3366] selection:text-white p-4 md:p-12 lg:p-24 overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
       <style dangerouslySetInnerHTML={{__html: `
         .brutalist-border { border: 2px solid #333; }
         .grid-bg {
@@ -22,7 +22,6 @@ export default function DizzyArchitecturePage() {
       <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
 
       <ScrollReveal direction="up" delay={0.1}>
-<ScrollReveal direction="up" delay={0.1}>
 <header className="mb-16 relative z-10">
         
         <h1 className="text-2xl lg:text-[6rem] font-black uppercase tracking-tighter leading-none mb-6 text-white mix-blend-difference tracking-tighter tracking-tighter">
@@ -35,12 +34,10 @@ export default function DizzyArchitecturePage() {
         </div>
       </header>
 </ScrollReveal>
-</ScrollReveal>
 
       <main className="relative z-10 space-y-24">
         
         <ScrollReveal direction="up" delay={0.1}>
-<ScrollReveal direction="up" delay={0.1}>
 <section>
           <h2 className="text-3xl font-bold mb-8 uppercase text-white border-l-4 border-[#ff3366] pl-4 tracking-tight tracking-tight">Topology Overview</h2>
           <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl font-mono text-xs md:text-sm overflow-x-auto text-green-400 leading-relaxed shadow-lg">
@@ -64,10 +61,8 @@ flowchart TD
           </div>
         </section>
 </ScrollReveal>
-</ScrollReveal>
 
         <ScrollReveal direction="up" delay={0.1}>
-<ScrollReveal direction="up" delay={0.1}>
 <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-white tracking-tight tracking-tight">1. JEV Voice Gateway</h3>
@@ -90,7 +85,6 @@ flowchart TD
             </p>
           </div>
         </section>
-</ScrollReveal>
 </ScrollReveal>
 
       </main>
