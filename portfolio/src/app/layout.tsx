@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from 'next';
 import { TitleHandler } from '@/components/TitleHandler';
+import Script from 'next/script';
 import JsonLd from '@/components/JsonLd';
 import './styles.css';
 
@@ -23,7 +24,17 @@ export default function RootLayout({
                 <JsonLd type="portfolio" />
                 {children}
                 <Analytics />
-            </body>
+            
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-9VE98GTMDY" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9VE98GTMDY');
+          `}
+        </Script>
+      </body>
         </html>
     );
 }
