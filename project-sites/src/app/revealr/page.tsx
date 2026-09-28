@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   title: 'Revealr — High-Speed Go Network Scanner & Vulnerability Mapping Tool',
   description: 'High-performance Go-based network scanner with stateful scan history, network drift detection, and modular Python vulnerability mapping.',
   keywords: ['Go network scanner', 'port scanner', 'vulnerability mapper', 'network security', 'network drift detection', 'SQLite stateful scanner'],
-  alternates: { canonical: 'https://revealr.rounakneema.in' },
+  alternates: { canonical: 'https://revealr.rounakneema.in', types: { 'application/rss+xml': 'https://rounakneema.in/rss.xml' } },
   openGraph: {
     title: 'Revealr — High-Speed Go Network Scanner & Vulnerability Mapping Tool',
     description: 'High-concurrency network visibility, with memory.',
@@ -58,22 +58,7 @@ export default function RevealrHome() {
 
       <ScrollReveal direction="up" delay={0.1}>
         <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
-          <ProjectJsonLd project={{
-              name: 'Revealr',
-              url: 'https://revealr.rounakneema.in',
-              description: 'High-Speed Go Network Scanner & Vulnerability Mapping Tool',
-              programmingLanguage: 'Go',
-              schemaCategory: 'SoftwareApplication',
-              faq: [
-                  { question: "What is Revealr?", answer: "Revealr is a high-speed Go-based network scanner and vulnerability mapping tool designed to maintain stateful scan history across sessions." },
-                  { question: "What does Revealr scan?", answer: "It scans network ports up to the maximum 65535 range, identifying open services and fingerprinting them." },
-                  { question: "How does Revealr perform network scanning?", answer: "Revealr uses a highly concurrent Go engine with raw sockets for rapid discovery of network assets." },
-                  { question: "How does Revealr detect network changes?", answer: "It stores previous scan states in a local SQLite database and diffs current results against the baseline to detect drift." },
-                  { question: "Can Revealr be extended?", answer: "Yes, it features a Python plugin bridge that allows users to write custom vulnerability mapping and fingerprinting scripts." },
-                  { question: "How fast is Revealr?", answer: "Benchmarks show Revealr can achieve scan times of ~0.8s for local networks." },
-                  { question: "Who built Revealr?", answer: "Revealr was built by Rounak Neema for authorized network security assessments." }
-              ]
-          }} />
+          <ProjectJsonLd slug="revealr" />`n          <h1 className="sr-only">Revealr - High-Speed Go Network Scanner &amp; Vulnerability Mapping Tool</h1>
           <div className="relative mx-auto mt-16 max-w-6xl p-2 md:mt-20 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl shadow-xl transition-all duration-300">
             <div className="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-b from-lime-300/20 via-transparent to-transparent blur-sm" />
             <div className="overflow-hidden rounded-xl border border-white/[0.07] bg-[#090c0b]">
@@ -284,7 +269,7 @@ export default function RevealrHome() {
             <StaggerItem>
               <details className="group bg-white/5 border border-white/10 backdrop-blur-md rounded-lg shadow-xl p-4 hover:-translate-y-1 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
                 <summary className="flex cursor-pointer items-center justify-between font-bold text-white"><span className="text-lime-300 mr-4">07.</span> Who built Revealr?<span className="transition group-open:rotate-180">▼</span></summary>
-                <p className="mt-4 text-zinc-400 pl-8 leading-relaxed">Revealr was built by Rounak Neema for authorized network security assessments.</p>
+                <p className="mt-4 text-zinc-400 pl-8 leading-relaxed">It was built by Rounak Neema for authorized network security assessments.</p>
               </details>
             </StaggerItem>
           </StaggerContainer>
@@ -296,3 +281,6 @@ export default function RevealrHome() {
     </div>
   );
 }
+
+
+
