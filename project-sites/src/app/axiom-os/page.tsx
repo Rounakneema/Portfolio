@@ -125,7 +125,7 @@ export default function AxiomPage() {
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
                             <TerminalStream 
-                                logs={[
+                                entries={[
                                     { time: '10:42', source: 'sensor', message: 'VS Code active — main.go', level: 'ok' },
                                     { time: '10:44', source: 'git', message: 'Commit: "fix db race condition"', level: 'ok' },
                                     { time: '10:51', source: 'sensor', message: 'Chrome active — youtube.com', level: 'info' },
