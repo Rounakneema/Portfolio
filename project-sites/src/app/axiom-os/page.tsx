@@ -1,248 +1,282 @@
 import React from 'react';
-import { Metadata } from 'next';
 import { projects } from '@/lib/projects';
+import { notFound } from 'next/navigation';
+import { EntityHeader } from '@/components/EntityHeader';
+import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
-import { AxiomHud } from '@/components/axiom/AxiomHud';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { TypeWriter } from '@/components/shared/TypeWriter';
+import { TerminalStream } from '@/components/shared/TerminalStream';
+import Link from 'next/link';
 
-export const metadata: Metadata = {
-    title: 'AXIOM OS — Local-First Personal AI Operating System',
-    description: 'Zero-Cloud Local Personal Operating System',
-    alternates: {
-        canonical: 'https://axiom-os.rounakneema.in',
-    },
-    keywords: ['local AI', 'privacy-preserving AI', 'offline AI'],
+export const metadata = {
+  title: 'AXIOM OS — Local-First Personal AI Operating System',
+  description: 'A zero-cloud, high-performance telemetry daemon and interactive desktop pet that tracks your digital life and uses local AI to brutally hold you accountable.',
+  alternates: {
+    canonical: 'https://axiom-os.rounakneema.in',
+  },
 };
 
-export default function AxiomOsPage() {
+const axiomJsonLd = {
+    faq: [
+        { question: "What is AXIOM OS?", answer: "AXIOM is a high-performance telemetry daemon and AI accountability partner built in Go and Java. It watches your digital activity and enforces your career goals using local LLMs." },
+        { question: "Is it cloud-based?", answer: "No. AXIOM operates completely offline. Telemetry is saved to a local SQLite WAL-mode database, and AI processing is done via a local Ollama instance (Qwen 2.5/3B)." },
+        { question: "How does it collect telemetry?", answer: "It uses deep OS hooks, monitoring window focus changes, terminal commands, and file saves across configured Git repositories with virtually zero CPU overhead." },
+        { question: "Why does AXIOM use deterministic policies?", answer: "Rules before models. Evidence > Labels. We use a tri-axis evaluation model to deterministically score whether an activity is productive before invoking the LLM for a qualitative roast." }
+    ]
+};
+
+export default function AxiomPage() {
     const project = projects.find((p) => p.slug === 'axiom-os');
-
-    if (!project) {
-        return <div>Project not found</div>;
-    }
-
-    const axiomJsonLd = {
-        name: 'AXIOM OS',
-        url: 'https://axiom-os.rounakneema.in',
-        description: 'Zero-Cloud Local Personal Operating System',
-        schemaCategory: 'SoftwareApplication',
-        faq: [
-            { question: 'What is AXIOM OS?', answer: 'AXIOM OS is a local-first personal AI operating system designed to run on your own hardware without relying on the cloud.' },
-            { question: 'Is it cloud-based?', answer: 'No, AXIOM OS is completely zero-cloud. It runs locally to ensure maximum privacy and offline availability.' },
-            { question: 'How does it collect telemetry?', answer: 'It uses a custom Golang daemon called Specter to collect contextual telemetry locally.' },
-            { question: 'Why does AXIOM use deterministic policies?', answer: 'To ensure predictable behavior and prioritize your designated goals over probabilistic distractions.' },
-            { question: 'Which LLMs does AXIOM OS support?', answer: 'It primarily utilizes local LLMs running via Ollama.' },
-            { question: 'Where is the data stored?', answer: 'All memory and context data are stored locally in SQLite databases.' },
-            { question: 'Can I use AXIOM OS offline?', answer: 'Yes, because it is local-first, it is fully functional offline.' }
-        ]
-    };
+    if (!project) return notFound();
 
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#00d4aa] selection:text-black">
+        <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#00d4aa] selection:text-black font-sans overflow-hidden">
             <ProjectJsonLd slug="axiom-os" />
-            <style dangerouslySetInnerHTML={{ __html: `
-                .os-border { border: 1px solid #333; }
-                .os-border-b { border-bottom: 1px solid #333; }
-                .grid-bg { background-size: 40px 40px; background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px); }
-            `}} />
 
-            {/* HERO HUD */}
-            <ScrollReveal direction="up" delay={0.1}>
-                <div className="pt-12 px-6 md:px-12 grid-bg pb-12 os-border-b">
-                    <AxiomHud />
-                    
-                    {/* PROCESS CYCLE */}
-                    <div className="max-w-5xl mx-auto mt-16 mb-8">
+            {/* Ambient Background */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full bg-red-600/10 blur-[150px]"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[#00d4aa]/10 blur-[120px]"></div>
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 md:px-12 pt-24 pb-32 relative z-10">
+                
+                {/* SECTION 1: HERO HEADER */}
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="min-h-[70vh] flex flex-col items-center justify-center text-center mt-12 mb-24">
+                        <div className="bg-[#00d4aa]/10 text-[#00d4aa] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 border border-[#00d4aa]/20">
+                            SYSTEM ONLINE ✦ ZERO-CLOUD ARCHITECTURE
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter leading-[1.1] max-w-5xl">
+                            The AI Operating System That <span className="text-red-500">Refuses</span> To Let You Fail.
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed mb-12">
+                            A high-performance telemetry daemon and interactive desktop pet that tracks your digital life, analyzes your focus, and uses local AI to brutally hold you accountable to your career goals.
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center w-full max-w-md mx-auto">
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="bg-[#00d4aa] text-black font-black uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-white transition-all transform hover:-translate-y-1 text-sm flex items-center justify-center shadow-[0_0_40px_rgba(0,212,170,0.3)]">
+                                View on GitHub
+                            </a>
+                            <Link href="/architecture" className="bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-white/10 transition-all text-sm flex items-center justify-center">
+                                Deep Dive
+                            </Link>
+                        </div>
+                    </section>
+                </ScrollReveal>
+
+                {/* HUD MOCKUP */}
+                <ScrollReveal direction="up" delay={0.2}>
+                    <div className="w-full max-w-5xl mx-auto mb-32 bg-[#050505] rounded-xl border border-white/10 shadow-2xl overflow-hidden relative group">
+                        <div className="bg-black/50 border-b border-white/5 px-4 py-3 flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                            <div className="ml-auto flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                                <span className="text-red-500 font-mono text-xs font-bold uppercase tracking-widest">Rage Mode Active</span>
+                            </div>
+                        </div>
+                        <div className="p-8 font-mono text-sm grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div className="space-y-6">
+                                <div className="flex justify-between items-end border-b border-white/10 pb-2">
+                                    <span className="text-gray-400">CURRENT STATE</span>
+                                    <span className="text-[#00d4aa] font-bold">ACTIVE APPS</span>
+                                </div>
+                                <div className="space-y-4">
+                                    <div>
+                                        <div className="flex justify-between mb-1"><span>Focus</span><span className="text-red-400">12%</span></div>
+                                        <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div className="bg-red-500 h-full w-[12%] animate-pulse"></div></div>
+                                    </div>
+                                    <div>
+                                        <div className="flex justify-between mb-1"><span>Intent</span><span className="text-yellow-400">SCROLLING</span></div>
+                                        <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div className="bg-yellow-500 h-full w-[65%]"></div></div>
+                                    </div>
+                                    <div>
+                                        <div className="flex justify-between mb-1"><span>Goal Align</span><span className="text-red-400">4%</span></div>
+                                        <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div className="bg-red-500 h-full w-[4%]"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-6 relative overflow-hidden">
+                                <div className="absolute top-0 right-0 bg-red-500 text-black px-2 py-0.5 text-[10px] font-black">AI ENFORCER</div>
+                                <p className="text-red-400 font-bold mb-4 mt-2">"You've been watching 'Top 10 Mechanical Keyboards' on YouTube for 42 minutes. Your goal is 'Become a DevOps Engineer'. Close the tab, open VS Code, and write the damn Terraform script. Now."</p>
+                            </div>
+                        </div>
+                    </div>
+                </ScrollReveal>
+
+                {/* SECTION 2: THE PROBLEM / SOLUTION */}
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32 items-center">
+                        <div>
+                            <h4 className="text-[#00d4aa] font-bold tracking-widest text-sm uppercase mb-4">Beyond Passive Dashboards</h4>
+                            <h2 className="text-4xl font-black uppercase tracking-tight mb-6 leading-tight">Time trackers tell you what you did. AXIOM tells you to get back to work.</h2>
+                            <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
+                                <p>
+                                    Most productivity tools rely on passive dashboards that you eventually ignore. AXIOM takes a radically different approach. Designed specifically for engineers, it runs silently in the background, consuming practically zero CPU.
+                                </p>
+                                <p>
+                                    It watches your code saves, your terminal commands, and your active windows. When your focus drops, it doesn't just show you a chart—it spawns an interactive mascot, shakes your screen, and uses a local Large Language Model to deliver a hyper-personalized, context-aware roast based on exactly what you were distracted by.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
+                            <TerminalStream 
+                                logs={[
+                                    { time: '10:42', source: 'sensor', message: 'VS Code active — main.go', level: 'ok' },
+                                    { time: '10:44', source: 'git', message: 'Commit: "fix db race condition"', level: 'ok' },
+                                    { time: '10:51', source: 'sensor', message: 'Chrome active — youtube.com', level: 'info' },
+                                    { time: '10:55', source: 'sensor', message: 'Chrome active — youtube.com', level: 'info' },
+                                    { time: '11:02', source: 'eval', message: 'FOCUS SCORE DROPPED < 40%', level: 'warn' },
+                                    { time: '11:03', source: 'ollama', message: 'GENERATING INTERVENTION...', level: 'info' },
+                                    { time: '11:03', source: 'daemon', message: 'TRIGGERING SCREEN SHAKE', level: 'anomaly' },
+                                ]}
+                                intervalMs={1200}
+                            />
+                        </div>
+                    </section>
+                </ScrollReveal>
+
+                {/* SECTION 3: CORE FEATURES */}
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="mb-32">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-black uppercase tracking-tight">System Capabilities</h2>
+                        </div>
                         <StaggerContainer>
-                            <div className="flex flex-col md:flex-row items-center justify-between text-center space-y-4 md:space-y-0 relative">
-                                {/* Connecting Line */}
-                                <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-[#333] -z-10"></div>
-                                
-                                {[
-                                    { step: 'OBSERVE', desc: 'Daemon hooks' },
-                                    { step: 'MEASURE', desc: 'State tracking' },
-                                    { step: 'STORE', desc: 'SQLite memory' },
-                                    { step: 'INTERPRET', desc: 'Ollama eval' },
-                                    { step: 'INTERVENE', desc: 'Policy action' }
-                                ].map((item, i) => (
-                                    <StaggerItem key={i}>
-                                        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl w-40 transform hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                            <p className="text-[#00d4aa] font-bold text-sm tracking-widest mb-2 leading-relaxed tracking-tight">{item.step}</p>
-                                            <p className="text-gray-500 text-xs uppercase leading-relaxed">{item.desc}</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <StaggerItem>
+                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                        <div className="text-3xl mb-6">🧠</div>
+                                        <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">Dynamic Goals Engine</h3>
+                                        <p className="text-gray-400 leading-relaxed">AXIOM reads your personal <code>goals.yaml</code> to understand your exact career targets, minimum daily commits, and Peak Focus Windows. The AI's persona adapts to enforce your specific standards.</p>
+                                    </div>
+                                </StaggerItem>
+                                <StaggerItem>
+                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                        <div className="text-3xl mb-6">📡</div>
+                                        <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">Zero-Cloud Telemetry</h3>
+                                        <p className="text-gray-400 leading-relaxed">Built in Go for blistering speed, AXIOM features deep OS hooks. It tracks file saves, intercepts shell commands, and analyzes background audio—all kept strictly on your local machine.</p>
+                                    </div>
+                                </StaggerItem>
+                                <StaggerItem>
+                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                        <div className="text-3xl mb-6">🤖</div>
+                                        <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">Context-Aware Roasting</h3>
+                                        <p className="text-gray-400 leading-relaxed">AXIOM feeds your live telemetry and current time into a local Ollama instance (Qwen 2.5). The result? A personalized, highly logical, and ruthlessly funny AI that holds you accountable.</p>
+                                    </div>
+                                </StaggerItem>
+                                <StaggerItem>
+                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                        <div className="text-3xl mb-6">👾</div>
+                                        <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">The Enforcer Mascot</h3>
+                                        <p className="text-gray-400 leading-relaxed">A Java-based pixel-art desktop pet lives on top of your windows. If your focus drops below 40%, the mascot enters "Rage Mode," shaking your active screen to break your distraction loop.</p>
+                                    </div>
+                                </StaggerItem>
+                            </div>
+                        </StaggerContainer>
+                    </section>
+                </ScrollReveal>
+
+                {/* SECTION 4: ARCHITECTURE */}
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="bg-[#050505] border border-white/10 rounded-2xl p-8 md:p-12 mb-32 shadow-2xl">
+                        <div className="mb-12 border-b border-white/10 pb-8">
+                            <h4 className="text-[#00d4aa] font-bold tracking-widest text-sm uppercase mb-4">Engineered for Performance</h4>
+                            <h2 className="text-4xl font-black uppercase tracking-tight mb-4">Complex OS Telemetry. Zero Cloud Dependencies.</h2>
+                            <p className="text-xl text-gray-400">AXIOM was architected from the ground up to respect system resources while providing deep analytics. It operates entirely offline, ensuring 100% data privacy.</p>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div className="space-y-6">
+                                <h3 className="text-xl font-bold text-white border-l-4 border-[#00d4aa] pl-4">The Backend (Go)</h3>
+                                <p className="text-gray-400 leading-relaxed">Highly concurrent goroutines manage OS sensors (File Watchers, Windows API hooks, Shell interception). A thread-safe event bus pipes thousands of events a day into a centralized channel without dropping a single frame.</p>
+                            </div>
+                            <div className="space-y-6">
+                                <h3 className="text-xl font-bold text-white border-l-4 border-yellow-500 pl-4">The Memory (SQLite)</h3>
+                                <p className="text-gray-400 leading-relaxed">Telemetry is persisted in a local WAL-mode SQLite database, optimizing for rapid, continuous writes and complex daily rollup queries.</p>
+                            </div>
+                            <div className="space-y-6">
+                                <h3 className="text-xl font-bold text-white border-l-4 border-red-500 pl-4">The Intelligence (Ollama)</h3>
+                                <p className="text-gray-400 leading-relaxed">AI processing is handled fully locally. Asynchronous Go workers prompt a local Qwen 3B model with dynamic system contexts to classify vague data (e.g., classifying a YouTube video as "Educational" vs. "Entertainment") and generate interventions.</p>
+                            </div>
+                            <div className="space-y-6">
+                                <h3 className="text-xl font-bold text-white border-l-4 border-purple-500 pl-4">The Presentation (Java/Swing)</h3>
+                                <p className="text-gray-400 leading-relaxed">The mascot and glassmorphism UI are rendered using lightweight, undecorated Java frames, capable of triggering OS-level screen-shake API calls natively.</p>
+                            </div>
+                        </div>
+                    </section>
+                </ScrollReveal>
+
+                {/* SECTION 5: INTERACTIVE TERMINAL */}
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="mb-32 max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-4xl font-black uppercase tracking-tight mb-4">Your Data, Conversational.</h2>
+                            <p className="text-xl text-gray-400">Because AXIOM stores your entire digital timeline, you can interact with your data naturally.</p>
+                        </div>
+                        
+                        <div className="bg-black border border-[#333] rounded-xl p-6 font-mono shadow-2xl relative">
+                            <div className="absolute top-0 right-0 bg-[#333] text-white px-3 py-1 rounded-bl-lg text-xs font-bold">axiom.exe</div>
+                            <div className="mt-4">
+                                <div className="text-[#00d4aa] mb-2">$ axiom chat --roast-me</div>
+                                <div className="text-gray-400 mb-6 font-italic">Analyzing today's telemetry timeline...</div>
+                                <div className="text-red-400 border-l-2 border-red-500 pl-4">
+                                    <TypeWriter text="You've spent exactly 12 minutes coding in VS Code today, but somehow managed to rack up 45 minutes scrolling r/sysadmin complaining about cloud costs. The only thing scaling right now is your procrastination. Close the browser." delay={30} />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </ScrollReveal>
+
+                <ScrollReveal direction="up" delay={0.1}>
+                    <EntityHeader 
+                        title={project.title}
+                        subtitle="The AI Operating System That Refuses to Let You Fail."
+                        category={project.category}
+                        status={project.status}
+                        language="Go, Java, SQLite, Ollama"
+                        github={project.github}
+                    />
+                    <ProjectFacts facts={[
+                        { label: 'Role', value: 'Architect & Developer' },
+                        { label: 'Domain', value: 'AI OS / Telemetry' },
+                        { label: 'Integrations', value: 'Windows API, Ollama' }
+                    ]} />
+                </ScrollReveal>
+
+                {/* FAQ */}
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="relative z-10 mt-32 max-w-4xl mx-auto">
+                        <h2 className="text-3xl font-black mb-12 text-center tracking-tight uppercase">Technical FAQ</h2>
+                        <StaggerContainer>
+                            <div className="space-y-4">
+                                {axiomJsonLd.faq.map((q, idx) => (
+                                    <StaggerItem key={idx}>
+                                        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/10 transition-colors">
+                                            <h4 className="font-bold text-[#00d4aa] mb-3 text-lg">{q.question}</h4>
+                                            <p className="text-gray-300 leading-relaxed">{q.answer}</p>
                                         </div>
                                     </StaggerItem>
                                 ))}
                             </div>
                         </StaggerContainer>
-                    </div>
-                </div>
-            </ScrollReveal>
+                    </section>
+                </ScrollReveal>
 
-            {/* PROJECT METADATA */}
-            <div className="px-6 md:px-12 py-12 os-border-b bg-[#050505]">
-            </div>
-
-            <div className="max-w-[1600px] mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12">
-                    
-                    {/* LEFT COLUMN: METRICS & TRACES */}
-                    <div className="lg:col-span-3 border-r border-[#333] p-6 bg-[#050505] flex flex-col gap-8">
-                        <ScrollReveal direction="up" delay={0.1}>
-                            <div>
-                                <h3 className="text-gray-500 uppercase text-xs tracking-widest mb-4 tracking-tight">Core Specifications</h3>
-                                <StaggerContainer>
-                                    <ul className="space-y-4">
-                                        {project.metrics?.map((metric, i) => (
-                                            <StaggerItem key={i}>
-                                                <li className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl relative group hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                                    <div className="absolute top-0 left-0 w-full h-1 bg-[#00d4aa] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                                                    <p className="text-gray-500 text-sm uppercase leading-relaxed">{metric.label}</p>
-                                                    <p className="text-xl font-bold mt-1 text-white leading-relaxed tracking-tight">{metric.value}</p>
-                                                </li>
-                                            </StaggerItem>
-                                        ))}
-                                    </ul>
-                                </StaggerContainer>
-                            </div>
-                        </ScrollReveal>
-
-                        <ScrollReveal direction="up" delay={0.1}>
-                            <div className="mt-auto pt-8">
-                                <h3 className="text-gray-500 uppercase text-xs tracking-widest mb-4 tracking-tight">System Trace</h3>
-                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl text-xs text-[#00d4aa] font-mono overflow-hidden h-48 flex flex-col justify-end hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                    <p className="opacity-50 leading-relaxed">kernel: initializing telemetry daemon (Specter)...</p>
-                                    <p className="opacity-60 leading-relaxed">Specter: hooked into process monitor.</p>
-                                    <p className="opacity-70 leading-relaxed">SQLite: memory layer online.</p>
-                                    <p className="opacity-80 leading-relaxed">Ollama: warming up qwen2.5:3b...</p>
-                                    <p className="opacity-90 text-yellow-500 leading-relaxed">WARN: UNKNOWN state detected.</p>
-                                    <p className="opacity-100 text-red-500 leading-relaxed">POLICY: productivity &lt; 0.40 AND intent DISTRACT.</p>
-                                    <p className="opacity-100 font-bold mt-2 text-white leading-relaxed">&gt; executing contextual roast...</p>
-                                </div>
-                            </div>
-                        </ScrollReveal>
-                    </div>
-
-                    {/* MAIN CONTENT AREA */}
-                    <div className="lg:col-span-9 p-6 md:p-12 lg:p-16 xl:p-24 grid-bg relative">
-                        <div className="max-w-4xl space-y-16 relative z-10">
-                            
-                            {/* CHALLENGE / SOLUTION EDITORIAL */}
-                            <ScrollReveal direction="up" delay={0.1}>
-                                <section className="grid md:grid-cols-2 gap-12">
-                                    <div>
-                                        <h3 className="text-red-500 uppercase text-xl font-black mb-4 tracking-tight">01 // The Problem</h3>
-                                        <p className="text-lg text-gray-300 leading-relaxed">
-                                            {project.challenge}
-                                        </p>
-                                    </div>
-                                    <div className="border-l border-[#333] pl-6 md:pl-12">
-                                        <h3 className="text-[#00d4aa] uppercase text-xl font-black mb-4 tracking-tight">02 // The Synthesis</h3>
-                                        <p className="text-lg text-gray-300 leading-relaxed font-semibold">
-                                            {project.solution}
-                                        </p>
-                                    </div>
-                                </section>
-                            </ScrollReveal>
-
-                            <hr className="border-[#333]" />
-
-                            {/* DEEP DIVE */}
-                            <ScrollReveal direction="up" delay={0.1}>
-                                <section>
-                                    <h3 className="text-2xl font-black uppercase mb-8 text-white tracking-tight">System Architecture</h3>
-                                    <p className="text-lg text-gray-400 leading-relaxed mb-8">
-                                        {project.fullDescription}
-                                    </p>
-                                    
-                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl border-l-4 border-l-[#00d4aa] my-12 hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                        <h4 className="text-white font-bold uppercase mb-6 tracking-widest tracking-tight">Tri-Axis Evaluation Model</h4>
-                                        <p className="text-gray-400 mb-6 text-sm leading-relaxed">
-                                            AXIOM evaluates whether an activity is productive in context, not merely whether it advances a declared career goal. 
-                                            Three independent axes define the behavioral state:
-                                        </p>
-                                        <StaggerContainer>
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                                                <StaggerItem>
-                                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                                        <p className="text-xs text-[#00d4aa] uppercase mb-2 leading-relaxed">Axis I</p>
-                                                        <p className="font-bold text-gray-200 uppercase text-sm leading-relaxed">Current Role Duties</p>
-                                                    </div>
-                                                </StaggerItem>
-                                                <StaggerItem>
-                                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                                        <p className="text-xs text-[#00d4aa] uppercase mb-2 leading-relaxed">Axis II</p>
-                                                        <p className="font-bold text-gray-200 uppercase text-sm leading-relaxed">Personal Goal Alignment</p>
-                                                    </div>
-                                                </StaggerItem>
-                                                <StaggerItem>
-                                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                                        <p className="text-xs text-[#00d4aa] uppercase mb-2 leading-relaxed">Axis III</p>
-                                                        <p className="font-bold text-gray-200 uppercase text-sm leading-relaxed">General / Wellbeing</p>
-                                                    </div>
-                                                </StaggerItem>
-                                            </div>
-                                        </StaggerContainer>
-                                        <p className="text-xs text-gray-500 mt-6 text-center uppercase tracking-widest leading-relaxed">
-                                            Rules before models. Evidence &gt; Labels.
-                                        </p>
-                                    </div>
-                                </section>
-                            </ScrollReveal>
-
-                            {/* CAPABILITIES */}
-                            <ScrollReveal direction="up" delay={0.1}>
-                                <section>
-                                    <h3 className="text-2xl font-black uppercase mb-8 text-white tracking-tight">Key Subsystems</h3>
-                                    <StaggerContainer>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            {project.bullets.map((bullet, idx) => (
-                                                <StaggerItem key={idx}>
-                                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300 group h-full">
-                                                        <h4 className="text-white font-bold uppercase text-sm mb-4 group-hover:text-[#00d4aa] transition-colors tracking-tight">
-                                                            {idx + 1}. {bullet.label}
-                                                        </h4>
-                                                        <p className="text-gray-400 text-sm leading-relaxed">
-                                                            {bullet.text}
-                                                        </p>
-                                                    </div>
-                                                </StaggerItem>
-                                            ))}
-                                        </div>
-                                    </StaggerContainer>
-                                </section>
-                            </ScrollReveal>
-
-                            {/* FAQ */}
-                            <ScrollReveal direction="up" delay={0.1}>
-                                <section className="mt-16">
-                                    <h3 className="text-2xl font-black uppercase mb-8 text-white tracking-tight">Frequently Asked Questions</h3>
-                                    <StaggerContainer>
-                                        <div className="space-y-6">
-                                            {axiomJsonLd.faq.map((q, idx) => (
-                                                <StaggerItem key={idx}>
-                                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#00d4aa] transition-all duration-300">
-                                                        <h4 className="font-bold text-white mb-2 text-sm tracking-tight">{q.question}</h4>
-                                                        <p className="text-gray-400 text-sm leading-relaxed">{q.answer}</p>
-                                                    </div>
-                                                </StaggerItem>
-                                            ))}
-                                        </div>
-                                    </StaggerContainer>
-                                </section>
-                            </ScrollReveal>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <ScrollReveal direction="up" delay={0.1}>
-                <footer className="p-6 md:p-12 text-center text-gray-600 text-xs uppercase tracking-widest os-border-b border-t border-[#333] bg-black">
-                    <p>Status: {project.status} // SYSTEM ONLINE // EOF</p>
-                </footer>
-            </ScrollReveal>
-            
-            <div className="px-6 md:px-12 pb-12 bg-black pt-12">
+                {/* SECTION 6: CTA / FOOTER */}
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="mt-32 text-center">
+                        <h2 className="text-4xl font-black uppercase tracking-tight mb-6">Ready to stop slacking?</h2>
+                        <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">Dive into the source code and see how deep OS hooks and local LLMs can redefine productivity.</p>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-black font-black uppercase tracking-widest px-10 py-5 rounded-lg hover:bg-[#00d4aa] transition-colors text-lg shadow-xl">
+                            View Source Code on GitHub
+                        </a>
+                    </section>
+                </ScrollReveal>
             </div>
         </main>
     );
