@@ -8,7 +8,6 @@ export function OsaNav() {
   
   const links = [
     { label: 'Overview', href: '/' },
-    { label: 'Detection', href: '/#detection' },
     { label: 'Architecture', href: '/architecture' },
     { label: 'Forensics', href: '/forensics' },
     { label: 'Benchmarks', href: '/benchmarks' },

@@ -100,8 +100,7 @@ export default function DecisionsPage() {
                     </ScrollReveal>
 
                 </div>
-              </div>
-</div>
+            </div>
         </main>
     );
 }

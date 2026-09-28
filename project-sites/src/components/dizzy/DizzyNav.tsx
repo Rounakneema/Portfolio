@@ -7,9 +7,6 @@ export function DizzyNav() {
   const pathname = usePathname();
   
   const navItems = [
-    { name: 'Concept', href: '/#concept' },
-    { name: 'Voice -> Design', href: '/#voice-to-design' },
-    { name: 'Semantic State', href: '/#semantic-state' },
     { name: 'Architecture', href: '/architecture' },
     { name: 'Decisions', href: '/decisions' },
     { name: 'Docs', href: '/docs' }
@@ -21,7 +18,7 @@ export function DizzyNav() {
         <div className="flex items-center justify-between h-16 overflow-x-auto hide-scrollbar">
           <div className="flex space-x-6 text-xs md:text-sm uppercase font-bold whitespace-nowrap">
             {navItems.map((item) => {
-              const isActive = pathname === item.href || (pathname === '/' && item.href.startsWith('/#'));
+              const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.name}

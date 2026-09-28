@@ -9,10 +9,6 @@ export function AxiomNav() {
 
     const navItems = [
         { name: 'System', href: '/' },
-        { name: 'Telemetry', href: '/#telemetry' },
-        { name: 'Memory', href: '/#memory' },
-        { name: 'Intelligence', href: '/#intelligence' },
-        { name: 'Policies', href: '/#policies' },
         { name: 'Architecture', href: '/architecture' },
         { name: 'Decisions', href: '/decisions' },
         { name: 'Docs', href: '/docs' }
@@ -30,7 +26,7 @@ export function AxiomNav() {
                 
                 <div className="flex overflow-x-auto w-full md:w-auto hide-scrollbar space-x-1 py-4">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href || (pathname === '/' && item.href.startsWith('/#'));
+                        const isActive = pathname === item.href;
                         return (
                             <Link 
                                 key={item.name} 
