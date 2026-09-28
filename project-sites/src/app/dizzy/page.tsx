@@ -24,6 +24,8 @@ const dizzyJsonLd = {
     ]
 };
 
+import { motion } from 'framer-motion';
+
 export default function DizzyPage() {
   const project = projects.find((p) => p.slug === 'dizzy');
   if (!project) return notFound();
@@ -54,52 +56,77 @@ export default function DizzyPage() {
       <ProjectJsonLd slug="dizzy" />
       
       {/* 
-        HERO: Asymmetric, Brutalist Typography 
+        HERO: Asymmetric, Brutalist Typography + Double-Bezel Architecture
         Dials: VARIANCE 9, MOTION 7, DENSITY 4
       */}
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
           {/* Left Column: Massive Type */}
-          <div className="lg:col-span-8 relative z-10" id="voice-design">
-            <h1 className="text-[clamp(3.5rem,8vw,10rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100">
-              Speak Your <br/>
-              <span className="text-[#ff3366]">Interface</span> <br/>
-              Into Existence.
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-8 relative z-10" id="voice-design"
+          >
+            <h1 className="text-[clamp(3.5rem,8vw,10rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100 flex flex-col">
+              <span>Speak Your</span>
+              <span className="flex items-center gap-4 lg:gap-8">
+                {/* Inline Typographic Visual (GPT-Taste rule) */}
+                <span className="inline-flex w-16 h-10 md:w-32 md:h-20 rounded-full border-4 border-[#ff3366] p-1 shadow-[0_0_30px_rgba(255,51,102,0.3)]">
+                  <span className="w-full h-full bg-[#ff3366] rounded-full animate-pulse"></span>
+                </span>
+                <span className="text-[#ff3366]">Interface</span>
+              </span>
+              <span>Into Existence.</span>
             </h1>
             <p className="mt-12 text-xl lg:text-2xl font-light text-zinc-400 max-w-2xl leading-relaxed tracking-tight">
               A context-aware, generative AI co-pilot that lives natively inside Figma. We translate natural language into fully editable, auto-layout perfect UI components in real-time.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Interaction Window */}
-          <div className="lg:col-span-4 relative z-20 w-full" id="semantic-state">
-            <div className="bg-[#090909] border border-zinc-800 rounded-lg p-6 shadow-2xl relative group transform hover:-translate-y-2 transition-transform duration-500 ease-out">
-              <div className="absolute -top-3 -right-3 flex h-6 w-6">
+          {/* Right Column: Interaction Window (Double-Bezel) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-4 relative z-20 w-full" id="semantic-state"
+          >
+            {/* Outer Shell (Double-Bezel Architecture) */}
+            <div className="bg-white/5 border border-white/10 p-2 rounded-[2rem] shadow-2xl relative group transform hover:-translate-y-2 transition-transform duration-700 ease-out">
+              <div className="absolute -top-3 -right-3 flex h-6 w-6 z-30">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff3366] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-6 w-6 bg-[#ff3366] border-2 border-black"></span>
               </div>
-              <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">
-                Listening Pipeline Active
-              </div>
-              <p className="text-lg md:text-xl font-medium text-zinc-100 italic">
-                "<TypeWriter text="Create a dark SaaS dashboard with sidebar, analytics cards and a live revenue graph." delay={40} cursor={true} />"
-              </p>
               
-              <div className="mt-8 pt-6 border-t border-zinc-800">
-                <div className="flex items-center gap-3">
-                  <div className="text-[10px] text-[#ff3366] uppercase font-bold tracking-widest flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#ff3366] animate-pulse"></span>
-                    Executing Intent
-                  </div>
+              {/* Inner Core */}
+              <div className="bg-[#050505] border border-zinc-800/50 rounded-[calc(2rem-0.5rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] relative overflow-hidden">
+                {/* Subtle radial gradient behind the terminal */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff3366] opacity-[0.03] blur-[80px] pointer-events-none"></div>
+
+                <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4 flex items-center justify-between relative z-10">
+                  <span>Listening Pipeline</span>
+                  <span className="px-2 py-0.5 bg-[#ff3366]/10 text-[#ff3366] rounded-sm">ACTIVE</span>
                 </div>
-                <div className="mt-4 grid grid-cols-3 gap-2 opacity-60">
-                  <div className="h-1 bg-zinc-700 w-full"></div>
-                  <div className="h-1 bg-zinc-700 w-full"></div>
-                  <div className="h-1 bg-[#ff3366] w-full animate-pulse"></div>
+                <p className="text-lg md:text-xl font-medium text-zinc-100 italic relative z-10">
+                  "<TypeWriter text="Create a dark SaaS dashboard with sidebar, analytics cards and a live revenue graph." delay={40} cursor={true} />"
+                </p>
+                
+                <div className="mt-8 pt-6 border-t border-zinc-800/50 relative z-10">
+                  <div className="flex items-center gap-3">
+                    <div className="text-[10px] text-[#ff3366] uppercase font-bold tracking-widest flex items-center gap-2">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Executing Intent
+                    </div>
+                  </div>
+                  <div className="mt-4 grid grid-cols-3 gap-2 opacity-60">
+                    <div className="h-1 bg-zinc-700 w-full rounded-full"></div>
+                    <div className="h-1 bg-zinc-700 w-full rounded-full"></div>
+                    <div className="h-1 bg-[#ff3366] w-full animate-pulse rounded-full"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
