@@ -1,5 +1,3 @@
-[Optional: Full comprehensive site details available at /llms-full.txt](https://rounakneema.in/llms-full.txt)
-
 # Rounak Neema
 
 > Security-Oriented Software Engineer | DevSecOps | Systems & Infrastructure
@@ -228,5 +226,3 @@ Technologies: voice AI, LLM agents, Figma MCP, generative UI, structured design 
 - Email: neemarounak9171@gmail.com
 - [GitHub](https://github.com/Rounakneema)
 - [LinkedIn](https://linkedin.com/in/rnks23)
-
-
