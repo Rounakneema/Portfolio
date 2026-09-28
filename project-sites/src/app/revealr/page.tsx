@@ -307,23 +307,15 @@ $ revealr scan --target 127.0.0.1 --ports 1-65535 --rate 5000 --json
                 </p>
               </div>
             </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-lime-400 mb-3">Who built Revealr?</h3>
-                <p className="text-zinc-300 leading-relaxed text-lg">
-                  Revealr was designed and engineered by Rounak Neema as part of a research initiative into high-performance network security tooling and stateful attack surface management.
-                </p>
-              </div>
-            </div>
           </section>
         </ScrollReveal>
-      </ScrollReveal>
 
       <div className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
       </div>
     </div>
   );
 }
+
 
 
 
