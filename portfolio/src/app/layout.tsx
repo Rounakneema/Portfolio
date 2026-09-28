@@ -6,7 +6,7 @@ import './styles.css';
 export const metadata: Metadata = {
     title: 'Portfolio // Rounak Neema',
     description: 'Rounak Neema - DevOps & Security Engineer Portfolio',
-    metadataBase: new URL('https://rounakneema.in/portfolio'),
+    metadataBase: new URL('https://rounakneema.in'),
     alternates: {},
 };
 
@@ -25,3 +25,4 @@ export default function RootLayout({
         </html>
     );
 }
+

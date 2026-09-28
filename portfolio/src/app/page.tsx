@@ -7,8 +7,8 @@ import { LookingForSection } from '@/components/portfolio/sections/LookingForSec
 import { Footer } from '@/components/portfolio/layout/Footer';
 
 export const metadata = {
-    title: 'Portfolio // Rounak',
-    description: 'Rounak Neema\'s professional portfolio. DevOps Engineer and Security Researcher from NMIMS seeking internships. Skills: Go, Kubernetes, Cloud Security.',
+    title: 'Rounak Neema | Cybersecurity, DevSecOps & Cloud Security Engineer',
+    description: 'Rounak Neema is a Computer Science student and early-career security and infrastructure engineer focused on cybersecurity, DevSecOps, cloud security, Go, network security, and security engineering.',
     alternates: {
         canonical: '/portfolio',
     },
@@ -31,3 +31,4 @@ export default function PortfolioPage() {
         </main>
     );
 }
+
