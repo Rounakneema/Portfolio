@@ -1,18 +1,17 @@
-﻿import React from 'react';
+import React from 'react';
 import { projects } from '@/lib/projects';
 
 export function ProjectFooter({ slug }: { slug: string }) {
     const project = projects.find(p => p.slug === slug);
     if (!project) return null;
 
-    // SortMail is light-themed, others are dark-themed
-    const isLight = slug === 'sortmail';
-    const bgClass = isLight ? 'bg-[#f8f9fa]' : 'bg-[#0a0a0a]';
-    const textClass = isLight ? 'text-[#111]' : 'text-[#e0e0e0]';
-    const borderClass = isLight ? 'border-black/10' : 'border-white/10';
-    const mutedClass = isLight ? 'text-gray-500' : 'text-gray-400';
-    const hoverClass = isLight ? 'hover:text-black' : 'hover:text-white';
-    const decorationClass = isLight ? 'decoration-black/20 hover:decoration-black' : 'decoration-white/20 hover:decoration-white';
+    const isLight = false;
+    const bgClass = 'bg-[#050505]';
+    const textClass = 'text-white';
+    const borderClass = 'border-white/5';
+    const mutedClass = 'text-zinc-500';
+    const hoverClass = 'hover:text-white';
+    const decorationClass = 'decoration-white/20 hover:decoration-white';
 
     return (
         <footer className={`w-full ${bgClass} ${textClass}`}>
@@ -49,7 +48,7 @@ export function ProjectFooter({ slug }: { slug: string }) {
                         <div className="flex flex-col gap-2.5">
                             {projects.filter(p => p.slug !== slug).slice(0, 3).map(p => (
                                 <a key={p.slug} href={`https://${p.subdomain}`} className={`${mutedClass} ${hoverClass} transition-colors underline underline-offset-4 ${decorationClass}`}>
-                                    &#8599; {p.title} &mdash; {p.category}
+                                    &#8599; {p.title} // {p.category}
                                 </a>
                             ))}
                         </div>

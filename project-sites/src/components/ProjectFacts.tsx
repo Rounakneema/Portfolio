@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { projects } from '@/lib/projects';
 
 export function ProjectFacts({ facts }: { facts: { label: string; value: string }[] }) {
@@ -33,12 +33,12 @@ export function RelatedProjects({ links }: { links?: { name: string; url: string
             <div className="flex flex-wrap gap-6 font-mono text-xs">
                 {finalLinks.map((link, index) => (
                     <a key={index} href={link.url} className="text-white hover:text-gray-300 underline underline-offset-4 transition-colors">
-                        +? {link.name}
+                        &#8599; {link.name}
                     </a>
                 ))}
                 <div className="w-full mt-4">
                     <a href="https://rounakneema.in" className="text-gray-500 hover:text-white underline underline-offset-4 transition-colors">
-                        +? Back to Portfolio Main
+                        &larr; Back to Portfolio Main
                     </a>
                 </div>
             </div>

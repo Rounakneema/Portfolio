@@ -200,9 +200,7 @@ export default function SortMailPage() {
                 </div>
             </div>
 
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12 mt-32 border-t border-zinc-900 pt-32">
-                <RelatedProjects currentSlug="sortmail" />
-            </div>
+            {/* Footer space handled by layout */}
         </div>
     );
 }
