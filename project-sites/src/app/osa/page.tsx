@@ -51,22 +51,7 @@ export default function OSAPage() {
 
             {/* HEADER */}
             
-            <ProjectJsonLd project={{
-                name: 'OSA',
-                url: 'https://osa.rounakneema.in',
-                description: 'Offline Security Auditor for Air-Gapped Environments',
-                programmingLanguage: 'Go',
-                schemaCategory: 'SoftwareApplication',
-                faq: [
-                    { question: "What is OSA?", answer: "OSA — Offline Security Auditor designed for air-gapped environments." },
-                    { question: "What is an offline security auditor?", answer: "It's a tool that analyzes security logs without requiring an active internet connection or external APIs." },
-                    { question: "How does OSA analyze security logs?", answer: "OSA uses statistical detection engines including Z-Score and Markov Chains." },
-                    { question: "Can OSA run without internet?", answer: "Yes, OSA is a single-binary application that requires zero runtime dependencies and no internet access." },
-                    { question: "What makes OSA suitable for air-gapped environments?", answer: "Its standalone nature, built-in analytics, and complete lack of external telemetry or API calls." },
-                    { question: "Who created OSA?", answer: "OSA was developed by Rounak Neema for specialized security environments." },
-                    { question: "What languages is OSA written in?", answer: "The primary language for OSA is Go." }
-                ]
-            }} />
+            <ProjectJsonLd slug="osa" />`n            <h1 className="sr-only">OSA - Offline Security Auditor for Air-Gapped Environments</h1>
             <div className="max-w-7xl mx-auto px-6 pt-12 md:pt-16">
             </div>
 
@@ -249,3 +234,5 @@ export default function OSAPage() {
         </main>
     );
 }
+
+

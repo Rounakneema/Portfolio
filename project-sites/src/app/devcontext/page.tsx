@@ -36,7 +36,7 @@ export default function DevContextPage() {
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#1f6feb] selection:text-[#fff] overflow-x-hidden">
-            <ProjectJsonLd slug="devcontext" />
+            <ProjectJsonLd slug="devcontext" />`n            <h1 className="sr-only">Klarity - AI Repository Intelligence for Technical Recruiting</h1>
             {/* Header */}
             <ScrollReveal direction="up" delay={0.1}>
                 <header className="p-4 md:p-8 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
@@ -168,3 +168,4 @@ export default function DevContextPage() {
         </main>
     );
 }
+

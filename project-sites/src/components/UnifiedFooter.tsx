@@ -11,6 +11,7 @@ export function UnifiedFooter() {
                  <div className="flex items-center gap-6">
                     <span className="hidden md:block">DEVOPS • SECURITY • PENTESTING</span>
                     <a href="https://github.com/rounakneema" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">GITHUB</a>
+                    <a href="https://rounakneema.in/about" className="hover:text-black transition-colors">ABOUT</a>
                     <a href="https://www.linkedin.com/in/Rnks23" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">LINKEDIN</a>
                     <a href="mailto:rounakneema414@gmail.com" className="hover:text-red-500 transition-colors">MAIL</a>
                     <span>© {new Date().getFullYear()} ROUNAK NEEMA</span>
@@ -19,3 +20,5 @@ export function UnifiedFooter() {
         </footer>
     );
 }
+
+

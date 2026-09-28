@@ -12,7 +12,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet" />
+        <link rel="alternate" type="application/rss+xml" title="Rounak Neema | RSS Feed" href="https://rounakneema.in/feed.xml" />
       </head>
       <body className="min-h-screen flex flex-col selection:bg-blue-100 selection:text-blue-900 bg-gray-50 text-black">
         <TitleHandler />
@@ -38,3 +39,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+

@@ -67,3 +67,5 @@ export function ProjectFooter({ slug }: { slug: string }) {
         </footer>
     );
 }
+
+

@@ -1,25 +1,47 @@
 import { NextResponse } from 'next/server';
+import { getProjectBySlug } from '@/lib/projects';
 
 export async function GET() {
-  const content = `# Klarity
+  const project = getProjectBySlug('devcontext');
+  
+  if (!project) {
+    return new NextResponse('Project not found', { status: 404 });
+  }
 
-> AI Repository Intelligence for Technical Recruiting. Evaluates candidates using evidence-grounded AI analysis, Amazon Bedrock, Claude, and repository tokenization.
+  const content = `# ${project.title}
+
+> ${project.subtitle}
 
 ## Overview
-Klarity is a technical project developed by Rounak Neema.
-- Official Domain: https://devcontext.rounakneema.in
-- Author: Rounak Neema (https://rounakneema.in)
-- Source Repository: https://github.com/rounakneema/devcontext
+${project.fullDescription}
+
+- [Official Domain](https://revealr.rounakneema.in)
+- [Author: Rounak Neema](https://rounakneema.in)
+- [Source Repository](https://github.com/Rounakneema)
+
+## Architecture & Features
+${project.solution}
+
+### Key Capabilities
+${project.bullets.map(b => `- **${b.label}**: ${b.text}`).join('\n')}
+
+### Technologies Used
+${project.tech.join(', ')}
+
+### System Metrics
+${project.metrics.map(m => `- **${m.label}**: ${m.value}`).join('\n')}
 
 ## Author & Related Projects
-- Author: Rounak Neema (https://rounakneema.in)
-- GitHub Profile: https://github.com/rounakneema
-- LinkedIn: https://linkedin.com/in/Rnks23
+- [Author: Rounak Neema](https://rounakneema.in)
+- [GitHub Profile](https://github.com/rounakneema)
+- [LinkedIn Profile](https://linkedin.com/in/Rnks23)
 
-### Also By Rounak Neema:
-- PipelineForge: https://pipelineforge.rounakneema.in
-- Dizzy: https://dizzy.rounakneema.in
-- MetroMind: https://metromind.rounakneema.in
+### Also By Rounak Neema
+- [SortMail - AI Email Layer](https://sortmail.rounakneema.in)
+- [PipelineForge - DevSecOps](https://pipelineforge.rounakneema.in)
+- [MetroMind - Document AI](https://metromind.rounakneema.in)
+- [AXIOM OS - Local AI](https://axiom-os.rounakneema.in)
+- [OSA - Security Analytics](https://osa.rounakneema.in)
 `;
 
   return new NextResponse(content, {
@@ -30,3 +52,4 @@ Klarity is a technical project developed by Rounak Neema.
     },
   });
 }
+

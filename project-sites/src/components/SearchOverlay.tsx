@@ -43,7 +43,7 @@ export function SearchOverlay({ posts, isOpen, onClose }: SearchOverlayProps) {
                     <span className="text-cyan-400 mr-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     </span>
-                    <input
+                    <input aria-label="Search the archive" data-mcp-toolname="search_archive" data-mcp-tooldescription="Search through Rounak Neema's projects and engineering logs"
                         type="text"
                         className="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-500 font-mono text-lg"
                         placeholder="SEARCH_ARCHIVE..."
@@ -93,3 +93,5 @@ export function SearchOverlay({ posts, isOpen, onClose }: SearchOverlayProps) {
         </div>
     );
 }
+
+

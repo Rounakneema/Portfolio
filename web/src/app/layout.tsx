@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: 'Rounak Neema builds security tooling, cloud-native infrastructure, AI systems, and distributed backends. Portfolio, projects, and engineering logs.',
   metadataBase: new URL('https://rounakneema.in'),
   alternates: {
-    canonical: 'https://rounakneema.in',
+    canonical: 'https://rounakneema.in', types: { 'application/rss+xml': 'https://rounakneema.in/feed.xml' },
   },
   keywords: [
     'Rounak Neema',
@@ -94,3 +94,4 @@ export default function RootLayout({
     </html>
   );
 }
+

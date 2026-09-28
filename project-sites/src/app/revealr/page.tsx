@@ -58,7 +58,8 @@ export default function RevealrHome() {
 
       <ScrollReveal direction="up" delay={0.1}>
         <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
-          <ProjectJsonLd slug="revealr" />`n          <h1 className="sr-only">Revealr - High-Speed Go Network Scanner &amp; Vulnerability Mapping Tool</h1>
+          <ProjectJsonLd slug="revealr" />
+          <h1 className="sr-only">Revealr - High-Speed Go Network Scanner &amp; Vulnerability Mapping Tool</h1>
           <div className="relative mx-auto mt-16 max-w-6xl p-2 md:mt-20 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl shadow-xl transition-all duration-300">
             <div className="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-b from-lime-300/20 via-transparent to-transparent blur-sm" />
             <div className="overflow-hidden rounded-xl border border-white/[0.07] bg-[#090c0b]">
@@ -281,6 +282,7 @@ export default function RevealrHome() {
     </div>
   );
 }
+
 
 
 

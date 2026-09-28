@@ -8,8 +8,31 @@ export default function JsonLd() {
                 'url': 'https://rounakneema.in',
                 'name': 'Rounak Neema',
                 'publisher': {
-                    '@id': 'https://rounakneema.in/#person'
+                    '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
                 }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'Person',
@@ -48,56 +71,248 @@ export default function JsonLd() {
                 'name': 'Revealr',
                 'url': 'https://revealr.rounakneema.in',
                 'description': 'High-Speed Go Network Scanner & Vulnerability Mapping Tool',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'SoftwareApplication',
                 'name': 'OSA',
                 'url': 'https://osa.rounakneema.in',
                 'description': 'Offline Security Auditor for Air-Gapped Environments',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'SoftwareApplication',
                 'name': 'MetroMind',
                 'url': 'https://metromind.rounakneema.in',
                 'description': 'Enterprise AI Document Intelligence Platform',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'SoftwareApplication',
                 'name': 'PipelineForge',
                 'url': 'https://pipelineforge.rounakneema.in',
                 'description': 'GitOps DevSecOps CI/CD Pipeline Automation',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'SoftwareApplication',
                 'name': 'SortMail',
                 'url': 'https://sortmail.rounakneema.in',
                 'description': 'AI Operating Layer for Professional Email',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'SoftwareApplication',
                 'name': 'Klarity',
                 'url': 'https://devcontext.rounakneema.in',
                 'description': 'AI Repository Intelligence for Technical Recruiting',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'SoftwareApplication',
                 'name': 'AXIOM OS',
                 'url': 'https://axiom-os.rounakneema.in',
                 'description': 'Local-First Personal AI Operating System',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'SoftwareApplication',
                 'name': 'Dizzy',
                 'url': 'https://dizzy.rounakneema.in',
                 'description': 'Voice-to-Figma AI Interface Builder',
-                'author': { '@id': 'https://rounakneema.in/#person' }
+                'author': { '@id': 'https://rounakneema.in/#organization'
+                },
+                'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://rounakneema.in/search?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                }
+            },
+            {
+                '@type': 'Organization',
+                '@id': 'https://rounakneema.in/#organization',
+                'name': 'Rounak Neema | Software Engineering',
+                'url': 'https://rounakneema.in',
+                'logo': 'https://rounakneema.in/favicon.ico',
+                'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'contactType': 'Customer Service',
+                    'email': 'neemarounak9171@gmail.com'
+                },
+                'sameAs': [
+                    'https://github.com/rounakneema',
+                    'https://linkedin.com/in/Rnks23',
+                    'https://twitter.com/rounakneema'
+                ]
+            
             },
             {
                 '@type': 'FAQPage',
@@ -130,3 +345,4 @@ export default function JsonLd() {
         />
     );
 }
+
