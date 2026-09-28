@@ -1,188 +1,69 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { FadeIn } from '@/components/shared/FadeIn';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge Decisions | Trade-offs & Metrics',
+  title: 'PipelineForge // Decisions',
   description: 'Technical page covering engineering trade-offs, security gates, and performance metrics for PipelineForge.',
 };
 
 export default function DecisionsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
-      <ScrollReveal direction="up" delay={0.1}>
-        <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
-          <div className="text-xl">
-            <Link href="/" className="hover:bg-white hover:text-black hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 px-2 py-1 inline-block border border-transparent">← BACK TO PIPELINEFORGE</Link>
-          </div>
-          <div className="text-right flex flex-col items-end">
-            <div className="bg-white text-black px-2 py-1 text-sm font-black mb-1">DECISIONS</div>
-          </div>
-        </header>
-      </ScrollReveal>
+    <div className="w-full min-h-[100dvh] bg-[#030303] text-white font-sans selection:bg-[#f0883e]/20 selection:text-[#f0883e] pb-32">
+      {/* Premium Minimal Navbar */}
+      <div className="w-full px-6 md:px-12 py-8 flex justify-between items-center max-w-[1400px] mx-auto sticky top-0 bg-[#030303]/80 backdrop-blur-xl z-50 border-b border-white/5">
+        <div className="text-xl font-bold tracking-tighter text-white">
+          PIPELINEFORGE<span className="text-[#f0883e]">.</span>
+        </div>
+        <div className="flex gap-8 text-[11px] font-bold tracking-widest uppercase text-zinc-500">
+            <Link href="/pipelineforge" className="hover:text-white transition-colors">Overview</Link>
+            <Link href="/pipelineforge/architecture" className="hover:text-white transition-colors">Architecture</Link>
+            <Link href="/pipelineforge/decisions" className="text-[#f0883e] transition-colors">Decisions</Link>
+            <Link href="/pipelineforge/docs" className="hover:text-white transition-colors">Docs</Link>
+        </div>
+      </div>
 
-      <main className="p-6 md:p-12 lg:p-24 overflow-hidden">
-        <ScrollReveal direction="up" delay={0.1}>
-          <h1 className="text-2xl font-black uppercase tracking-tighter leading-tight mb-12 border-b-8 border-white pb-6">
-            ENGINEERING TRADE-OFFS
+      <main className="max-w-[1400px] mx-auto px-6 md:px-12 pt-24 lg:pt-32">
+        <FadeIn>
+          <div className="text-[10px] font-bold uppercase tracking-widest text-[#f0883e] mb-6">Tradeoffs & Metrics</div>
+          <h1 className="text-[clamp(3rem,6vw,5rem)] font-black uppercase tracking-tighter leading-none text-white mb-24">
+            Engineering <br /> Decisions.
           </h1>
-        </ScrollReveal>
+        </FadeIn>
 
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24">
-            <StaggerContainer>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <StaggerItem>
-                  <div>
-                    <h2 className="text-3xl font-black uppercase tracking-tight mb-6 bg-white text-black inline-block px-4 py-2">The 99.3% Optimization</h2>
-                    <p className="text-xl leading-relaxed mb-6">
-                      The original Docker image using <code className="bg-[#222] px-2 py-1">golang:1.21</code> resulted in a massive 1.1GB artifact. By switching to a multi-stage build using <code className="bg-[#222] px-2 py-1">gcr.io/distroless/static:nonroot</code>, the final image was aggressively stripped down to <strong>8MB</strong>.
-                    </p>
-                    <div className="border-l-4 border-white pl-6">
-                      <h3 className="text-2xl font-bold tracking-tight mb-2 uppercase">Why Distroless?</h3>
-                      <StaggerContainer>
-                        <ul className="list-disc list-inside text-lg space-y-2">
-                          <StaggerItem>
-                            <li>No shell (<code className="bg-[#222] px-1">/bin/sh</code>)</li>
-                          </StaggerItem>
-                          <StaggerItem>
-                            <li>No package managers</li>
-                          </StaggerItem>
-                          <StaggerItem>
-                            <li>No OS utilities</li>
-                          </StaggerItem>
-                          <StaggerItem>
-                            <li>Reduced CVE surface area to near-zero</li>
-                          </StaggerItem>
-                        </ul>
-                      </StaggerContainer>
-                    </div>
-                  </div>
-                </StaggerItem>
-                
-                <StaggerItem>
-                  <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
-                    <h3 className="text-2xl font-black uppercase tracking-tight mb-4 border-b-2 border-white/20 pb-2">Dockerfile Trace</h3>
-                    <pre className="text-sm text-yellow-400 overflow-x-auto">
-{`FROM golang:1.25.7 AS builder
-WORKDIR /build
-COPY go.mod go.sum ./
-RUN go mod download
-COPY app/ ./app/
-RUN CGO_ENABLED=0 GOOS=linux go build \\
-    -trimpath \\
-    -ldflags="-s -w" \\
-    -o /pipelineforge ./app/
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+          <FadeIn delay={0.1}>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">Multi-stage Distroless Builds</h2>
+            <div className="text-2xl font-bold text-white mb-4 tracking-tight">1.1GB &rarr; 8MB</div>
+            <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
+              Using standard Golang images resulted in a massive footprint full of unused operating system binaries. By switching to a multi-stage distroless build, the final container only contains the compiled Go binary. This reduces the attack surface dramatically and speeds up K8s image pull times.
+            </p>
+          </FadeIn>
 
-FROM gcr.io/distroless/static:nonroot
-COPY --from=builder /pipelineforge /pipelineforge
-USER nonroot:nonroot
-EXPOSE 8080
-ENTRYPOINT ["/pipelineforge"]`}
-                    </pre>
-                  </div>
-                </StaggerItem>
-              </div>
-            </StaggerContainer>
-          </section>
-        </ScrollReveal>
+          <FadeIn delay={0.2}>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">GitHub Actions vs Jenkins</h2>
+            <div className="text-2xl font-bold text-white mb-4 tracking-tight">SaaS vs Self-hosted CI</div>
+            <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
+              While Jenkins offers unparalleled customizability, maintaining the Jenkins server and plugins is a DevOps anti-pattern for small teams. GitHub Actions provides native repository integration, ephemeral runners, and reduces infrastructure overhead to zero.
+            </p>
+          </FadeIn>
 
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24">
-            <h2 className="text-3xl font-black uppercase tracking-tight mb-6 bg-white text-black inline-block px-4 py-2">Security Gates: Trivy Integration</h2>
-            <StaggerContainer>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                <StaggerItem>
-                  <div className="md:col-span-8">
-                    <p className="text-xl leading-relaxed mb-6">
-                      Security cannot be an afterthought. Integrating Aquasecurity's Trivy into the CI pipeline enforces a hard gate: if any CRITICAL or HIGH vulnerabilities are detected in the container layers, the build instantly fails and deployment is halted.
-                    </p>
-                    <p className="text-xl leading-relaxed">
-                      By explicitly enforcing this rule at the CI level before the image is pushed to the container registry, we adhere to the <em>Shift Left</em> paradigm, identifying flaws when they are cheapest to fix.
-                    </p>
-                  </div>
-                </StaggerItem>
-                <StaggerItem>
-                  <div className="md:col-span-4 bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
-                    <h3 className="text-2xl font-black tracking-tight text-red-500 uppercase mb-4">Trivy Gate</h3>
-                    <pre className="text-sm text-red-400">
-{`$ trivy image \\
-    --exit-code 1 \\
-    --severity HIGH,CRITICAL \\
-    pipelineforge:latest
+          <FadeIn delay={0.3}>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">Trivy over Clair</h2>
+            <div className="text-2xl font-bold text-white mb-4 tracking-tight">Scan Speed & Accuracy</div>
+            <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
+              Trivy was selected as the security gate because it operates statelessly without requiring a background database, making it perfect for ephemeral CI pipelines. It executes faster than Clair and handles both OS packages and language-specific dependencies in a single run.
+            </p>
+          </FadeIn>
 
-2026-07-20T00:10:16Z
-FATAL vulnerability found`}
-                    </pre>
-                  </div>
-                </StaggerItem>
-              </div>
-            </StaggerContainer>
-          </section>
-        </ScrollReveal>
-
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24">
-            <h2 className="text-3xl font-black uppercase tracking-tight mb-6 bg-white text-black inline-block px-4 py-2">Performance Metrics: k6 Load Test</h2>
-            <StaggerContainer>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <StaggerItem>
-                  <div>
-                    <p className="text-xl leading-relaxed mb-6">
-                      To validate the Horizontal Pod Autoscaler (HPA) and readiness probes, a synthetic load was generated using <code className="bg-[#222] px-2 py-1">k6</code>. We slammed the <code className="bg-[#222] px-2 py-1">/work</code> endpoint with 500 concurrent Virtual Users (VUs).
-                    </p>
-                    <StaggerContainer>
-                      <ul className="text-lg space-y-4 font-bold">
-                        <StaggerItem>
-                          <li className="flex justify-between border-b border-gray-600/50 pb-2">
-                            <span>ITERATIONS</span>
-                            <span>120,531</span>
-                          </li>
-                        </StaggerItem>
-                        <StaggerItem>
-                          <li className="flex justify-between border-b border-gray-600/50 pb-2">
-                            <span>AVG HTTP REQ DURATION</span>
-                            <span>4.12ms</span>
-                          </li>
-                        </StaggerItem>
-                        <StaggerItem>
-                          <li className="flex justify-between border-b border-gray-600/50 pb-2">
-                            <span>SUCCESS RATE (200 OK)</span>
-                            <span>100.00%</span>
-                          </li>
-                        </StaggerItem>
-                        <StaggerItem>
-                          <li className="flex justify-between border-b border-gray-600/50 pb-2">
-                            <span>HPA SCALING</span>
-                            <span>1 Pod → 8 Pods</span>
-                          </li>
-                        </StaggerItem>
-                      </ul>
-                    </StaggerContainer>
-                  </div>
-                </StaggerItem>
-                <StaggerItem>
-                  <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
-                    <pre className="text-sm text-green-400 overflow-x-auto">
-{`running (1m00.1s), 500/500 VUs, 120531 complete iterations
-default ✓ [======================================] 500 VUs  1m0s
-
-     ✓ status was 200
-
-     checks.........................: 100.00% ✓ 120531      ✗ 0
-     http_req_duration..............: 4.12ms  avg=4.12ms max=45.12ms
-     vus............................: 500     min=500       max=500
-
-[SYSTEM] Horizontal Pod Autoscaler triggered
-[SYSTEM] Replicas scaled from 1 -> 8 (CPU > 70%)`}
-                    </pre>
-                  </div>
-                </StaggerItem>
-              </div>
-            </StaggerContainer>
-          </section>
-        </ScrollReveal>
-
+          <FadeIn delay={0.4}>
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">Helm vs Kustomize</h2>
+            <div className="text-2xl font-bold text-white mb-4 tracking-tight">Templating over Patching</div>
+            <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
+              We chose Helm for its powerful templating engine and package management capabilities. While Kustomize is great for simple overlay patching, Helm allows us to bundle the entire microservice architecture (including Redis and Postgres dependencies) into a single installable release.
+            </p>
+          </FadeIn>
+        </div>
       </main>
     </div>
   );
