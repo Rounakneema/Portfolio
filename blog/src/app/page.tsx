@@ -45,6 +45,8 @@ export default function Home() {
         <PostList initialPosts={posts} allTags={allTags} />
       </div>
     </div>
+    </>
   );
 }
+
 

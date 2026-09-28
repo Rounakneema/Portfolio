@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from 'next';
 import { getAllPosts } from '@/lib/posts';
@@ -81,4 +82,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 

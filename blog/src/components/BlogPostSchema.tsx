@@ -18,16 +18,14 @@ export default function BlogPostSchema({ post, url }: BlogPostSchemaProps) {
         'description': post.excerpt,
         'datePublished': post.date,
         'dateModified': post.date, // Assuming no separate modified date for now
-        'author': {
-            '@type': 'Person',
-            'name': 'Rounak Neema',
-            'url': 'https://rounakneema.in'
+                'author': {
+            '@id': 'https://rounakneema.in/#person'
         },
-        'publisher': {
-            '@type': 'Person',
-            'name': 'Rounak Neema',
-            'url': 'https://rounakneema.in'
+        
+        'isPartOf': {
+            '@id': 'https://rounakneema.in/blog/#blog'
         },
+        
         'image': post.coverImage ? `https://rounakneema.in${post.coverImage}` : 'https://rounakneema.in/og-image.png',
         'url': url,
         'keywords': post.tags
@@ -40,3 +38,4 @@ export default function BlogPostSchema({ post, url }: BlogPostSchemaProps) {
         />
     );
 }
+
