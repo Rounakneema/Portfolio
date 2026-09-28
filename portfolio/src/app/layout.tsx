@@ -20,12 +20,13 @@ export default function RootLayout({
         <html lang="en">
             <body className="bg-paper text-black font-sans antialiased">
                 <TitleHandler />
-                <JsonLd />
+                <JsonLd type="portfolio" />
                 {children}
                 <Analytics />
             </body>
         </html>
     );
 }
+
 
 

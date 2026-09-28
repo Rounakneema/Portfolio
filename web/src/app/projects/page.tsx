@@ -2,6 +2,7 @@ import { Navbar } from '@/components/portfolio/layout/Navbar';
 import { Footer } from '@/components/portfolio/layout/Footer';
 import { ProjectsHubClient } from '@/components/ProjectsHubClient';
 import { projects } from '@/lib/projects';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata = {
     title: 'Projects Hub // Rounak Neema',
@@ -12,6 +13,7 @@ export const metadata = {
 export default function ProjectsPage() {
     return (
         <main className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+            <JsonLd type="projects" />
             <Navbar />
 
             <div className="px-6 md:px-12 max-w-[1400px] mx-auto pt-28">
@@ -45,3 +47,4 @@ export default function ProjectsPage() {
         </main>
     );
 }
+

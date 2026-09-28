@@ -1,4 +1,5 @@
 import { HubClient } from '@/components/HubClient';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata = {
   title: 'Rounak Neema | DevOps Engineer & Penetration Tester',
@@ -6,5 +7,12 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <HubClient />;
+  return (
+    <>
+      <JsonLd type="home" />
+      <HubClient />
+    </>
+  );
 }
+
+

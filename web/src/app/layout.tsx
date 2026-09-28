@@ -9,7 +9,6 @@ import type { Metadata } from 'next';
 
 import { getAllPosts } from '@/lib/posts';
 import { GlobalSearchWrapper } from '@/components/GlobalSearchWrapper';
-import JsonLd from '@/components/JsonLd';
 import { TitleHandler } from '@/components/TitleHandler';
 import './globals.css';
 
@@ -86,12 +85,11 @@ export default function RootLayout({
           {children}
         </div>
 
-        <JsonLd />
-
         <SpeedInsights />
         <Analytics />
       </body>
     </html>
   );
 }
+
 
