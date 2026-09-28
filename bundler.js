@@ -52,6 +52,13 @@ var assets = map[string][]byte{
 ${assetsMap}}
 
 func Handler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "OPTIONS" {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "*")
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
 \tw.Header().Set("X-Content-Type-Options", "nosniff")
 \tw.Header().Set("X-Frame-Options", "DENY")
 \tw.Header().Set("X-XSS-Protection", "1; mode=block")
@@ -115,6 +122,10 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 \t\t\t}
 \t\t}
 \t\tw.Header().Set("Content-Type", ctype)
+		if ext == ".txt" || ext == ".json" {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+		}
 \t\thttp.ServeContent(w, r, assetPath, time.Now(), bytes.NewReader(content))
 \t}
 
@@ -124,3 +135,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 fs.writeFileSync(outputFile, goContent);
 console.log(`Successfully generated ${outputFile} with ${files.length} assets.`);
+
