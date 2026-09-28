@@ -71,7 +71,7 @@ export default function PipelineForgePage() {
                     <span className="text-[10px] font-mono text-zinc-600">ID: PF-8482</span>
                 </div>
                 <div className="p-8 pb-12">
-                  <PipelineSteps steps={pipelineSteps} stepDurationMs={700} successColor="#3fb950" />
+                  <PipelineSteps stepDurationMs={700} successColor="#3fb950" />
                 </div>
               </div>
             </div>
