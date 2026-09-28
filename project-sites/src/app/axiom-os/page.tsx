@@ -149,28 +149,28 @@ export default function AxiomPage() {
                         <StaggerContainer>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <StaggerItem>
-                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                    <div id="policies" className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full scroll-mt-24">
                                         <div className="text-3xl mb-6">🧠</div>
                                         <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">Dynamic Goals Engine</h3>
                                         <p className="text-gray-400 leading-relaxed">AXIOM reads your personal <code>goals.yaml</code> to understand your exact career targets, minimum daily commits, and Peak Focus Windows. The AI's persona adapts to enforce your specific standards.</p>
                                     </div>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                    <div id="telemetry" className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full scroll-mt-24">
                                         <div className="text-3xl mb-6">📡</div>
                                         <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">Zero-Cloud Telemetry</h3>
                                         <p className="text-gray-400 leading-relaxed">Built in Go for blistering speed, AXIOM features deep OS hooks. It tracks file saves, intercepts shell commands, and analyzes background audio—all kept strictly on your local machine.</p>
                                     </div>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                    <div id="intelligence" className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full scroll-mt-24">
                                         <div className="text-3xl mb-6">🤖</div>
                                         <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">Context-Aware Roasting</h3>
                                         <p className="text-gray-400 leading-relaxed">AXIOM feeds your live telemetry and current time into a local Ollama instance (Qwen 2.5). The result? A personalized, highly logical, and ruthlessly funny AI that holds you accountable.</p>
                                     </div>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <div className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full">
+                                    <div id="memory" className="bg-white/5 border border-white/10 rounded-xl p-8 hover:-translate-y-2 transition-all duration-300 hover:border-[#00d4aa]/50 h-full scroll-mt-24">
                                         <div className="text-3xl mb-6">👾</div>
                                         <h3 className="text-xl font-bold uppercase tracking-tight mb-4 text-white">The Enforcer Mascot</h3>
                                         <p className="text-gray-400 leading-relaxed">A Java-based pixel-art desktop pet lives on top of your windows. If your focus drops below 40%, the mascot enters "Rage Mode," shaking your active screen to break your distraction loop.</p>
