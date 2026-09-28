@@ -1,6 +1,4 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Dizzy Trade-offs & Decisions',
@@ -9,100 +7,91 @@ export const metadata: Metadata = {
 
 export default function DizzyDecisionsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
-      <style dangerouslySetInnerHTML={{__html: `
-        .brutalist-border { border: 2px solid #333; }
-        .grid-bg {
-          background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-      `}} />
-
-      <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
-
-      <ScrollReveal direction="up" delay={0.1}>
-<header className="mb-16 relative z-10">
+    <div className="w-full bg-black text-white selection:bg-[#ff3366] selection:text-white font-sans">
+      
+      <main className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-32">
         
-        <h1 className="text-2xl lg:text-[6rem] font-black uppercase tracking-tighter leading-none mb-6 text-white mix-blend-difference tracking-tighter tracking-tighter">
-          TRADE-OFFS & DECISIONS
-        </h1>
-        <div className="border-b-4 border-[#333] pb-8">
-          <p className="text-xl font-light uppercase tracking-widest text-gray-400 leading-relaxed leading-relaxed">
-            Engineering the Agentic Loop
-          </p>
-        </div>
-      </header>
-</ScrollReveal>
-
-      <main className="relative z-10 space-y-24">
-        
-        <ScrollReveal direction="up" delay={0.1}>
-<section className="brutalist-border p-8 bg-black">
-          <h2 className="text-3xl font-bold mb-8 uppercase text-white border-b border-[#333] pb-4 tracking-tight tracking-tight">Streaming Intent Parsing vs. Batch Processing</h2>
-          <div className="space-y-6 text-gray-300 leading-relaxed">
-            <p>
-              Traditional voice commands rely on a <code className="bg-[#111] text-[#ff3366] px-1 py-0.5">VAD (Voice Activity Detection) -&gt; Stop -&gt; Transcribe -&gt; Process</code> pipeline. For a real-time UI design tool, this latency is unacceptable.
-            </p>
-            <p>
-              <strong>The Trade-off:</strong> By using streaming intent parsing, we feed partial transcripts into the LLM. The LLM attempts to deduce intent before the user finishes speaking. This significantly reduces apparent latency, making the tool feel like an extension of the designer&apos;s mind.
-            </p>
-            <p>
-              <strong>The Cost:</strong> High token usage and potential hallucination on incomplete sentences. If the user says &quot;Make the background red... no, wait, blue,&quot; the streaming parser might eagerly execute the &quot;red&quot; command before the correction arrives.
-            </p>
-            <p>
-              <strong>The Resolution:</strong> We implemented a debounce mechanism tied to confidence scores. If the LLM&apos;s confidence in the inferred semantic action is below a threshold, it buffers the intent. If it&apos;s high, it executes optimistically, relying on the Semantic Buffer&apos;s diff engine to easily revert or patch the state when the final transcript arrives.
+        <header className="mb-24 md:mb-32">
+          <h1 className="text-[clamp(3rem,6vw,8rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100 mb-8">
+            TRADE-OFFS & <br/>
+            <span className="text-[#ff3366]">DECISIONS.</span>
+          </h1>
+          <div className="border-t border-zinc-900 pt-6">
+            <p className="text-xl lg:text-2xl font-light text-zinc-400 max-w-3xl leading-relaxed tracking-tight">
+              Engineering the Agentic Loop
             </p>
           </div>
-        </section>
-</ScrollReveal>
+        </header>
 
-        <ScrollReveal direction="up" delay={0.1}>
-<section className="bg-[#111] p-8 border-l-8 border-green-500">
-          <h2 className="text-3xl font-bold mb-8 uppercase text-white tracking-tight tracking-tight">Semantic Buffering vs. Pure UI Generation</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-gray-300">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4 tracking-tight tracking-tight">Pure UI Gen (v0, Midjourney approach)</h3>
-              <StaggerContainer>
-<ul className="list-disc pl-5 space-y-2">
-                <StaggerItem>
-<li>Prompt generates a complete component or image from scratch.</li>
-</StaggerItem>
-                <StaggerItem>
-<li>Stateless. No memory of previous specific pixel values.</li>
-</StaggerItem>
-                <StaggerItem>
-<li>&quot;Change the padding&quot; requires regenerating the entire component, often changing unrelated details.</li>
-</StaggerItem>
-                <StaggerItem>
-<li>Fast to implement, terrible UX for precise design.</li>
-</StaggerItem>
-              </ul>
-</StaggerContainer>
+        <section className="mb-32">
+          <div className="border-b border-zinc-800 pb-6 mb-12">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">01 // LATENCY OPTIMIZATION</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
+            <div className="md:col-span-5">
+              <h3 className="text-3xl font-black text-zinc-100 tracking-tighter">Streaming Intent Parsing vs. Batch Processing</h3>
             </div>
+            <div className="md:col-span-7 space-y-8">
+              <p className="text-zinc-400 leading-relaxed font-light text-lg">
+                Traditional voice commands rely on a <code className="bg-zinc-900 text-[#ff3366] px-2 py-1 border border-zinc-800">VAD -> Stop -> Transcribe -> Process</code> pipeline. For a real-time UI design tool, this latency is unacceptable.
+              </p>
+              
+              <div className="border-l border-[#ff3366] pl-6 py-2">
+                <strong className="text-white block mb-2 font-medium">The Trade-off</strong>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  By using streaming intent parsing, we feed partial transcripts into the LLM. The LLM attempts to deduce intent before the user finishes speaking. This significantly reduces apparent latency, making the tool feel like an extension of the designer&apos;s mind.
+                </p>
+              </div>
+
+              <div className="border-l border-zinc-800 pl-6 py-2">
+                <strong className="text-white block mb-2 font-medium">The Cost</strong>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  High token usage and potential hallucination on incomplete sentences. If the user says &quot;Make the background red... no, wait, blue,&quot; the streaming parser might eagerly execute the &quot;red&quot; command before the correction arrives.
+                </p>
+              </div>
+
+              <div className="border-l border-zinc-800 pl-6 py-2">
+                <strong className="text-white block mb-2 font-medium">The Resolution</strong>
+                <p className="text-zinc-500 text-sm leading-relaxed">
+                  We implemented a debounce mechanism tied to confidence scores. If the LLM&apos;s confidence in the inferred semantic action is below a threshold, it buffers the intent. If it&apos;s high, it executes optimistically, relying on the Semantic Buffer&apos;s diff engine to easily revert or patch the state when the final transcript arrives.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-32">
+          <div className="border-b border-zinc-800 pb-6 mb-12">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">02 // DATA STRUCTURE</h2>
+            <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">SEMANTIC BUFFERING VS. PURE UI GENERATION</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
             <div>
-              <h3 className="text-xl font-bold text-white mb-4 tracking-tight tracking-tight">Semantic Buffering (Dizzy approach)</h3>
-              <StaggerContainer>
-<ul className="list-disc pl-5 space-y-2">
-                <StaggerItem>
-<li>Maintains a JSON AST (Abstract Syntax Tree) of the Figma document state.</li>
-</StaggerItem>
-                <StaggerItem>
-<li>Agents mutate specific nodes in the AST.</li>
-</StaggerItem>
-                <StaggerItem>
-<li>Stateful. &quot;Change the padding&quot; only modifies the <code className="bg-black text-[#ff3366] px-1">padding</code> property of the target node AST.</li>
-</StaggerItem>
-                <StaggerItem>
-<li>Complex to orchestrate, requires strict schema validation, but enables perfect precision and iterative design.</li>
-</StaggerItem>
+              <h4 className="text-xl font-bold text-zinc-100 mb-6 tracking-tight">Pure UI Gen (v0, Image approach)</h4>
+              <ul className="space-y-4 text-zinc-400 font-light border-l border-zinc-900 pl-6">
+                <li>Prompt generates a complete component or image from scratch.</li>
+                <li>Stateless. No memory of previous specific pixel values.</li>
+                <li>&quot;Change the padding&quot; requires regenerating the entire component, often changing unrelated details.</li>
+                <li>Fast to implement, terrible UX for precise design.</li>
               </ul>
-</StaggerContainer>
+            </div>
+            
+            <div>
+              <h4 className="text-xl font-bold text-[#ff3366] mb-6 tracking-tight">Semantic Buffering (Dizzy approach)</h4>
+              <ul className="space-y-4 text-zinc-400 font-light border-l border-[#ff3366] pl-6">
+                <li>Maintains a JSON AST (Abstract Syntax Tree) of the Figma document state.</li>
+                <li>Agents mutate specific nodes in the AST.</li>
+                <li>Stateful. &quot;Change the padding&quot; only modifies the padding property of the target node AST.</li>
+                <li>Complex to orchestrate, requires strict schema validation, but enables perfect precision and iterative design.</li>
+              </ul>
             </div>
           </div>
           
-          <div className="mt-8 bg-black p-6 font-mono text-sm text-gray-400 overflow-x-auto brutalist-border">
-            <h4 className="text-white mb-4 uppercase">AST Mutation Trace</h4>
-            <pre className="text-green-400">
+          <div className="mt-16 bg-[#050505] p-8 md:p-12 font-mono text-xs md:text-sm text-zinc-500 overflow-x-auto border border-zinc-900 leading-loose">
+            <div className="text-white mb-6 uppercase tracking-widest font-bold text-[10px]">AST Mutation Trace</div>
+            <pre>
 {`// 1. Initial State
 { id: "node_1", type: "FRAME", padding: 16, children: [...] }
 
@@ -122,21 +111,26 @@ Figma.getNodeById("node_1").padding = 32;`}
             </pre>
           </div>
         </section>
-</ScrollReveal>
 
-        <ScrollReveal direction="up" delay={0.1}>
-<section className="brutalist-border p-8 bg-black">
-          <h2 className="text-3xl font-bold mb-8 uppercase text-white border-b border-[#333] pb-4 tracking-tight tracking-tight">The Figma MCP Bottleneck</h2>
-          <div className="space-y-6 text-gray-300 leading-relaxed">
-            <p>
-              Interfacing with Figma&apos;s plugin API natively from an external agentic loop requires a bridge. We utilize the Model Context Protocol (MCP) to standardize this communication.
-            </p>
-            <p>
-              A major challenge is rate limiting and the synchronous nature of Figma&apos;s API updates when touching many nodes. By batching operations through the Semantic Buffer&apos;s diff engine, we reduce 50 individual node property updates into a single atomic transaction sent over the MCP WebSocket connection, preventing UI freezing in the Figma client.
-            </p>
+        <section className="mb-16">
+          <div className="border-b border-zinc-800 pb-6 mb-12">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">03 // PROTOCOL LIMITS</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
+            <div className="md:col-span-5">
+              <h3 className="text-3xl font-black text-zinc-100 tracking-tighter">The Figma MCP Bottleneck</h3>
+            </div>
+            <div className="md:col-span-7 space-y-6 text-zinc-400 font-light text-lg leading-relaxed">
+              <p>
+                Interfacing with Figma&apos;s plugin API natively from an external agentic loop requires a bridge. We utilize the Model Context Protocol (MCP) to standardize this communication.
+              </p>
+              <p>
+                A major challenge is rate limiting and the synchronous nature of Figma&apos;s API updates when touching many nodes. By batching operations through the Semantic Buffer&apos;s diff engine, we reduce 50 individual node property updates into a single atomic transaction sent over the MCP WebSocket connection, preventing UI freezing in the Figma client.
+              </p>
+            </div>
           </div>
         </section>
-</ScrollReveal>
 
       </main>
     </div>

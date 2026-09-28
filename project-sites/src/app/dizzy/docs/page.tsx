@@ -1,6 +1,4 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Dizzy Protocol Specs - Semantic Buffer & MCP',
@@ -9,51 +7,41 @@ export const metadata: Metadata = {
 
 export default function DizzyDocsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
-      <style dangerouslySetInnerHTML={{__html: `
-        .brutalist-border { border: 2px solid #333; }
-        .brutalist-shadow { box-shadow: 8px 8px 0px #333; }
-        .neon-accent { color: #ff3366; }
-        pre { scrollbar-width: none; }
-        pre::-webkit-scrollbar { display: none; }
-        .grid-bg {
-          background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-      `}} />
-
-      {/* Grid background container */}
-      <div className="grid-bg fixed inset-0 z-0 opacity-50 pointer-events-none"></div>
-
-      {/* Header */}
-      <ScrollReveal direction="up" delay={0.1}>
-<header className="mb-16 border-b-4 border-[#333] pb-8 relative z-10">
-        <div className="flex items-center gap-4 mb-4">
-          
-        </div>
-        <h1 className="text-2xl font-black uppercase tracking-tighter leading-none mb-6 text-white tracking-tighter tracking-tighter">
-          ENGINEERING <span className="neon-accent">DOCS</span>
-        </h1>
-        <p className="text-xl max-w-2xl font-light uppercase tracking-widest text-gray-400 leading-relaxed leading-relaxed">
-          v1.0.4-alpha / Protocol Specifications
-        </p>
-      </header>
-</ScrollReveal>
-
-      <main className="space-y-24 relative z-10">
+    <div className="w-full bg-black text-white selection:bg-[#ff3366] selection:text-white font-sans">
+      
+      <main className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-32">
         
-        {/* Section 1: Semantic Buffer AST */}
-        <ScrollReveal direction="up" delay={0.1}>
-<section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase border-l-8 border-[#ff3366] pl-4 text-white tracking-tight tracking-tight">1. Semantic Buffer AST</h2>
-          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
-            The Semantic Buffer is a stateful tree that receives intention-based nodes from the Voice-to-JSON stream.
-            Unlike raw LLM outputs (which frequently hallucinate unstructured JSON), this component guarantees structural type safety before execution via the Figma MCP.
-          </p>
+        <header className="mb-24 md:mb-32">
+          <h1 className="text-[clamp(3rem,6vw,8rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100 mb-8">
+            ENGINEERING <br/>
+            <span className="text-[#ff3366]">DOCS.</span>
+          </h1>
+          <div className="border-t border-zinc-900 pt-6">
+            <p className="text-xl lg:text-2xl font-light text-zinc-400 max-w-3xl leading-relaxed tracking-tight">
+              v1.0.4-alpha / Protocol Specifications
+            </p>
+          </div>
+        </header>
+
+        <section className="mb-32">
+          <div className="border-b border-zinc-800 pb-6 mb-12">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">01 // AST DEFINITION</h2>
+            <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">SEMANTIC BUFFER AST</h3>
+          </div>
           
-          <div className="bg-black brutalist-border brutalist-shadow p-6 overflow-x-auto">
-            <h3 className="text-sm text-gray-500 uppercase mb-4 border-b border-[#333] pb-2 tracking-tight tracking-tight">Schema definition: BufferNode (TypeScript)</h3>
-            <pre className="text-green-500 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
+            <div className="md:col-span-5 text-zinc-400 font-light text-lg leading-relaxed space-y-6">
+              <p>
+                The Semantic Buffer is a stateful tree that receives intention-based nodes from the Voice-to-JSON stream.
+              </p>
+              <p>
+                Unlike raw LLM outputs (which frequently hallucinate unstructured JSON), this component guarantees structural type safety before execution via the Figma MCP.
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="bg-[#050505] p-8 font-mono text-xs md:text-sm text-zinc-400 overflow-x-auto border border-zinc-900">
+                <div className="text-zinc-600 mb-6 uppercase tracking-widest font-bold text-[10px] border-b border-zinc-800 pb-4">Schema definition: BufferNode (TypeScript)</div>
+                <pre className="text-[#ff3366]">
 {`interface BufferNode {
   id: string;               // UUID-v4
   type: ElementType;        // 'FRAME' | 'TEXT' | 'BUTTON' | 'INPUT'
@@ -70,47 +58,63 @@ export default function DizzyDocsPage() {
   children: BufferNode[];
   _mcp_ref?: string;        // Native Figma node ID after MCP realization
 }`}
-            </pre>
-          </div>
-        </section>
-</ScrollReveal>
-
-        {/* Section 2: Voice-to-JSON Protocol */}
-        <ScrollReveal direction="up" delay={0.1}>
-<section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase border-l-8 border-yellow-400 pl-4 text-white tracking-tight tracking-tight">2. Voice Streaming Protocol</h2>
-          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
-            Voice streams are chunked via WebRTC and piped to the JEV endpoint. 
-            Partial transcripts are eagerly resolved into diffs against the Semantic Buffer to provide real-time UI feedback while the user is still speaking.
-          </p>
-
-          <div className="bg-black brutalist-border p-6 font-mono text-sm brutalist-shadow">
-            <h3 className="text-sm text-gray-500 uppercase mb-4 border-b border-[#333] pb-2 tracking-tight tracking-tight">Terminal trace: WebSocket Engine (Port 8080)</h3>
-            <div className="space-y-2">
-              <div className="text-blue-400">[15:42:01.102] INFO: ws_connect client=v_designer_99</div>
-              <div className="text-gray-400">{"<"} AUDIO_CHUNK [4096 bytes]</div>
-              <div className="text-gray-400">{"<"} AUDIO_CHUNK [4096 bytes]</div>
-              <div className="text-yellow-400">{">"} PARTIAL_JSON: {`{"transcript": "add a red button", "confidence": 0.89}`}</div>
-              <div className="text-gray-400">{"<"} AUDIO_CHUNK [4096 bytes]</div>
-              <div className="text-green-400">{">"} COMMIT_JSON: {`{"transcript": "add a red button that says submit", "intent_parsed": true}`}</div>
-              <div className="text-purple-400">{"*"} BUFFER_DIFF: +Node(type=BUTTON, fill=#FF0000, text="Submit")</div>
+                </pre>
+              </div>
             </div>
           </div>
         </section>
-</ScrollReveal>
 
-        {/* Section 3: Figma MCP Execution */}
-        <ScrollReveal direction="up" delay={0.1}>
-<section className="space-y-6">
-          <h2 className="text-3xl font-bold uppercase border-l-8 border-blue-500 pl-4 text-white tracking-tight tracking-tight">3. Figma MCP Operations</h2>
-          <p className="text-gray-400 max-w-4xl leading-relaxed leading-relaxed leading-relaxed">
-            The MCP server polls the Semantic Buffer and executes atomic design operations via Figma's native Plugin API.
-            By maintaining the <code>_mcp_ref</code>, future edits target existing nodes rather than re-generating elements from scratch.
-          </p>
+        <section className="mb-32">
+          <div className="border-b border-zinc-800 pb-6 mb-12">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">02 // DATA STREAMING</h2>
+            <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">VOICE STREAMING PROTOCOL</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
+            <div className="md:col-span-5 text-zinc-400 font-light text-lg leading-relaxed space-y-6">
+              <p>
+                Voice streams are chunked via WebRTC and piped to the JEV endpoint.
+              </p>
+              <p>
+                Partial transcripts are eagerly resolved into diffs against the Semantic Buffer to provide real-time UI feedback while the user is still speaking.
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="bg-[#050505] p-8 font-mono text-xs md:text-sm text-zinc-400 overflow-x-auto border border-zinc-900">
+                <div className="text-zinc-600 mb-6 uppercase tracking-widest font-bold text-[10px] border-b border-zinc-800 pb-4">Terminal trace: WebSocket Engine (Port 8080)</div>
+                <div className="space-y-2">
+                  <div className="text-zinc-300">[15:42:01.102] INFO: ws_connect client=v_designer_99</div>
+                  <div className="text-zinc-600">{"<"} AUDIO_CHUNK [4096 bytes]</div>
+                  <div className="text-zinc-600">{"<"} AUDIO_CHUNK [4096 bytes]</div>
+                  <div className="text-amber-500">{">"} PARTIAL_JSON: {`{"transcript": "add a red button", "confidence": 0.89}`}</div>
+                  <div className="text-zinc-600">{"<"} AUDIO_CHUNK [4096 bytes]</div>
+                  <div className="text-green-500">{">"} COMMIT_JSON: {`{"transcript": "add a red button that says submit", "intent_parsed": true}`}</div>
+                  <div className="text-[#ff3366]">{"*"} BUFFER_DIFF: +Node(type=BUTTON, fill=#FF0000, text="Submit")</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <div className="bg-black brutalist-border p-6 overflow-x-auto relative brutalist-shadow">
-            <div className="absolute top-0 right-0 px-3 py-1 bg-blue-500 text-black text-xs font-bold uppercase">operation.ts</div>
-            <pre className="text-gray-300 text-sm mt-8">
+        <section className="mb-16">
+          <div className="border-b border-zinc-800 pb-6 mb-12">
+            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">03 // PLUGIN EXECUTION</h2>
+            <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">FIGMA MCP OPERATIONS</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
+            <div className="md:col-span-5 text-zinc-400 font-light text-lg leading-relaxed space-y-6">
+              <p>
+                The MCP server polls the Semantic Buffer and executes atomic design operations via Figma's native Plugin API.
+              </p>
+              <p>
+                By maintaining the <code className="bg-zinc-900 text-[#ff3366] px-2 py-1 border border-zinc-800">_mcp_ref</code>, future edits target existing nodes rather than re-generating elements from scratch.
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="bg-[#050505] p-8 font-mono text-xs md:text-sm text-zinc-400 overflow-x-auto border border-zinc-900 relative">
+                <div className="absolute top-0 right-0 px-4 py-2 bg-zinc-900 text-zinc-300 text-xs font-bold uppercase border-b border-l border-zinc-800">operation.ts</div>
+                <pre className="text-zinc-300 mt-6">
 {`async function executeMcpCommand(node: BufferNode) {
   if (node._mcp_ref) {
     // Node exists, apply mutation (progressive editing)
@@ -135,10 +139,12 @@ export default function DizzyDocsPage() {
   node._mcp_ref = frame.id;
   figma.currentPage.appendChild(frame);
 }`}
-            </pre>
+                </pre>
+              </div>
+            </div>
           </div>
         </section>
-</ScrollReveal>
+
       </main>
     </div>
   );
