@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 
 export default function DizzyDocsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
+    <div className="w-full min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white font-sans">
+    <div className="max-w-7xl mx-auto px-4 md:px-12 py-24 pb-32 overflow-hidden">
       <style dangerouslySetInnerHTML={{__html: `
         .brutalist-border { border: 2px solid #333; }
         .brutalist-shadow { box-shadow: 8px 8px 0px #333; }
@@ -140,6 +141,7 @@ export default function DizzyDocsPage() {
         </section>
 </ScrollReveal>
       </main>
-    </div>
+      </div>
+</div>
   );
 }

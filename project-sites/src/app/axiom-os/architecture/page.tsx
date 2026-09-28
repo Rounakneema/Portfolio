@@ -115,7 +115,8 @@ export default function ArchitecturePage() {
 
                     </div>
                 </div>
-            </div>
+              </div>
+</div>
         </main>
     );
 }

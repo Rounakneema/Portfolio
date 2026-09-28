@@ -11,9 +11,8 @@ interface TypeWriterProps {
 }
 
 export function TypeWriter({ text, speedMs = 40, delayMs = 0, className = '', cursor = true, onDone }: TypeWriterProps) {
-  const [displayed, setDisplayed] = useState('');
+  const textRef = useRef<HTMLSpanElement>(null);
   const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const timeout = setTimeout(() => setStarted(true), delayMs);
@@ -21,22 +20,29 @@ export function TypeWriter({ text, speedMs = 40, delayMs = 0, className = '', cu
   }, [delayMs]);
 
   useEffect(() => {
-    if (!started) return;
+    if (!started || !textRef.current) return;
+    
     let i = 0;
+    // Clear initial text just in case
+    textRef.current.textContent = '';
+    
     const interval = setInterval(() => {
-      setDisplayed(text.slice(0, ++i));
+      if (textRef.current) {
+        textRef.current.textContent = text.slice(0, ++i);
+      }
       if (i >= text.length) {
         clearInterval(interval);
         onDone?.();
       }
     }, speedMs);
+    
     return () => clearInterval(interval);
   }, [started, text, speedMs, onDone]);
 
   return (
-    <span ref={ref} className={className}>
-      {displayed}
-      {cursor && <span className="animate-pulse">█</span>}
+    <span className={className}>
+      <span ref={textRef}></span>
+      {cursor && <span className="animate-pulse ml-1">-^</span>}
     </span>
   );
 }

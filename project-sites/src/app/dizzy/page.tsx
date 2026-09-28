@@ -50,7 +50,8 @@ export default function DizzyPage() {
 }`;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
+    <div className="w-full min-h-screen bg-[#0a0a0a] text-white selection:bg-[#ff3366] selection:text-white font-sans">
+    <div className="max-w-7xl mx-auto px-4 md:px-12 py-24 pb-32 overflow-hidden">
       <ProjectJsonLd slug="dizzy" />
       
       {/* Abstract background elements */}
@@ -287,6 +288,7 @@ export default function DizzyPage() {
         </div>
       </div>
 
-    </div>
+      </div>
+</div>
   );
 }

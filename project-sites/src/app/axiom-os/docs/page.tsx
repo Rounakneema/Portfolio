@@ -131,7 +131,8 @@ curl -X POST http://$OLLAMA_HOST/api/generate -d '{
 }'
 
 echo "[+] Inference layer online."`}</pre>
-                    </div>
+                      </div>
+</div>
                 </section>
             </ScrollReveal>
 
