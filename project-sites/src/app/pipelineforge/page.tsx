@@ -3,11 +3,10 @@ import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { PipelineSteps } from '@/components/shared/PipelineSteps';
 import { AnimatedStat } from '@/components/shared/AnimatedStat';
-import { FadeIn } from '@/components/shared/FadeIn';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge // GitOps DevSecOps CI/CD',
+  title: 'PipelineForge — GitOps DevSecOps CI/CD Pipeline Automation',
   description: 'Zero-touch GitOps CI/CD pipeline and cloud-native Go microservice built to demonstrate production-grade DevOps automation.',
   alternates: { canonical: 'https://pipelineforge.rounakneema.in' },
 };
@@ -19,146 +18,135 @@ const pipelineSteps = [
   { label: 'PACKAGE', sublabel: 'Helm Chart' },
   { label: 'DEPLOY', sublabel: 'K8s Rollout' },
   { label: 'VERIFY', sublabel: 'Health Check' },
-  { label: 'DONE', sublabel: 'Success' },
+  { label: 'DONE', sublabel: '✓' },
 ];
 
 export default function PipelineForgePage() {
   return (
-    <div className="w-full min-h-[100dvh] bg-[#030303] text-white font-sans selection:bg-[#f0883e]/20 selection:text-[#f0883e] pb-32">
+    <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
       <ProjectJsonLd slug="pipelineforge" />
-      
-      {/* Premium Minimal Navbar */}
-      <div className="w-full px-6 md:px-12 py-8 flex justify-between items-center max-w-[1400px] mx-auto sticky top-0 bg-[#030303]/80 backdrop-blur-xl z-50 border-b border-white/5">
-        <div className="text-xl font-bold tracking-tighter text-white">
-          PIPELINEFORGE<span className="text-[#f0883e]">.</span>
-        </div>
-        <div className="flex gap-8 text-[11px] font-bold tracking-widest uppercase text-zinc-500">
-            <Link href="/" className="hover:text-white transition-colors">&larr; Portfolio</Link>
-            <Link href="/pipelineforge" className="text-[#f0883e] transition-colors">Overview</Link>
-            <Link href="/pipelineforge/architecture" className="hover:text-white transition-colors">Architecture</Link>
-            <Link href="/pipelineforge/decisions" className="hover:text-white transition-colors">Decisions</Link>
-            <Link href="/pipelineforge/docs" className="hover:text-white transition-colors">Docs</Link>
-        </div>
-      </div>
+      {/* Navigation / Header */}
+      <ScrollReveal direction="up" delay={0.1}>
+        <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
+          <div className="text-xl">
+            <Link href="/" className="hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 hover:bg-white hover:text-black px-2 py-1 rounded">← INDEX</Link>
+          </div>
+          <div className="text-right flex flex-col items-end">
+            <div className="bg-white text-black px-2 py-1 text-sm font-black mb-1">DEVSECOPS</div>
+            <div className="text-sm">PROJECT: PIPELINEFORGE</div>
+          </div>
+        </header>
+      </ScrollReveal>
 
-      <main className="max-w-[1400px] mx-auto px-6 md:px-12 pt-24 lg:pt-32">
-        {/* Kinetic Hero */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start mb-32">
-          
-          <FadeIn className="lg:col-span-6 relative z-10">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="px-3 py-1 bg-[#f0883e]/10 border border-[#f0883e]/20 text-[#f0883e] text-[10px] font-bold uppercase tracking-widest rounded-full flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#f0883e] animate-pulse"></span>
-                DevSecOps Control Plane
-              </div>
-            </div>
-            <h1 className="text-[clamp(3.5rem,7vw,6.5rem)] font-black uppercase tracking-tighter leading-[0.85] text-white mb-10">
-              Ship <br />
-              Code <br />
-              <span className="text-zinc-600">Securely.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-zinc-400 max-w-md leading-relaxed font-light mb-12">
-              A comprehensive GitOps pipeline orchestrating Docker builds, Trivy security gates, and Kubernetes deployments. Designed for zero-touch velocity and military-grade compliance.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.2} className="lg:col-span-6 relative w-full lg:mt-12">
-            {/* Doppelrand Pipeline Dashboard */}
-            <div className="bg-white/5 border border-white/10 p-2 rounded-[2rem] shadow-2xl relative group">
-              <div className="bg-[#0a0a0a] border border-zinc-800 rounded-[calc(2rem-0.5rem)] overflow-hidden relative shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] flex flex-col">
-                <div className="p-4 border-b border-zinc-800/50 bg-[#0c0c0c] flex justify-between items-center">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Execution Matrix</span>
-                    <span className="text-[10px] font-mono text-zinc-600">ID: PF-8482</span>
-                </div>
-                <div className="p-8 pb-12">
-                  <PipelineSteps stepDurationMs={700} successColor="#3fb950" />
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-
-        {/* Metrics Section (Bento Grid) */}
+      <main className="p-6 md:p-12 lg:p-24 overflow-hidden">
+        {/* Hero Section - Interactive Pipeline */}
         <ScrollReveal direction="up" delay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
-            <div className="bg-[#0a0a0a] border border-white/5 p-8 rounded-3xl relative overflow-hidden group hover:border-[#f0883e]/30 transition-colors">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#f0883e] opacity-0 group-hover:opacity-[0.05] blur-[40px] transition-opacity duration-700"></div>
-                <AnimatedStat value={99.3} suffix="%" label="Image Reduction" className="flex-col items-start" />
-                <p className="text-xs text-zinc-500 mt-4 leading-relaxed">Multi-stage distroless builds shrank containers from 1.1GB down to 8MB.</p>
+          <div className="mb-24 flex flex-col items-center border-4 border-[#30363d] p-8 md:p-16 relative bg-white/5 backdrop-blur-md rounded-lg shadow-xl">
+            <div className="absolute top-0 left-0 bg-[#30363d] text-white px-3 py-1 text-xs font-bold uppercase rounded-tl-lg rounded-br-lg">
+              Control Plane
             </div>
-            <div className="bg-[#0a0a0a] border border-white/5 p-8 rounded-3xl relative overflow-hidden group hover:border-[#f0883e]/30 transition-colors">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#f0883e] opacity-0 group-hover:opacity-[0.05] blur-[40px] transition-opacity duration-700"></div>
-                <AnimatedStat prefix="<" value={5} suffix="ms" label="Latency Overhead" className="flex-col items-start" />
-                <p className="text-xs text-zinc-500 mt-4 leading-relaxed">Highly optimized Go microservices ensure minimal execution latency.</p>
-            </div>
-            <div className="bg-[#0a0a0a] border border-white/5 p-8 rounded-3xl relative overflow-hidden group hover:border-[#f0883e]/30 transition-colors">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#f0883e] opacity-0 group-hover:opacity-[0.05] blur-[40px] transition-opacity duration-700"></div>
-                <AnimatedStat value={500} suffix=" VU" label="Load Tested" className="flex-col items-start" />
-                <p className="text-xs text-zinc-500 mt-4 leading-relaxed">Load tested concurrently using K6 to guarantee production readiness.</p>
-            </div>
+            <PipelineSteps 
+              steps={pipelineSteps} 
+              stepDurationMs={700} 
+              successColor="#3fb950" 
+              className="w-full flex justify-center mb-16 overflow-x-auto" 
+            />
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-4xl text-center border-t border-[#30363d] pt-12">
+               <StaggerItem><AnimatedStat value={99} suffix=".3%" label="IMAGE REDUCTION" className="items-center bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl" /></StaggerItem>
+               <StaggerItem><AnimatedStat prefix="<" value={5} suffix="ms" label="LATENCY" className="items-center bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl" /></StaggerItem>
+               <StaggerItem><AnimatedStat value={500} suffix=" VU" label="LOAD TESTED" className="items-center bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl" /></StaggerItem>
+            </StaggerContainer>
           </div>
         </ScrollReveal>
 
-        {/* Navigation to Sub-pages (Liquid Glass Minimal) */}
-        <ScrollReveal direction="up" delay={0.2}>
-          <div className="border-t border-zinc-900 pt-32 mb-32">
-            <h2 className="text-[10px] font-bold uppercase tracking-widest text-[#f0883e] mb-12">Deep Dive</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Link href="/pipelineforge/architecture" className="group block">
-                <div className="pb-4 border-b border-zinc-800 group-hover:border-[#f0883e] transition-colors duration-500">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-2">Architecture &rarr;</h3>
-                  <p className="text-sm text-zinc-400 font-light leading-relaxed">Topology, cluster design, and data flows.</p>
-                </div>
-              </Link>
-              <Link href="/pipelineforge/decisions" className="group block">
-                <div className="pb-4 border-b border-zinc-800 group-hover:border-[#f0883e] transition-colors duration-500">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-2">Decisions &rarr;</h3>
-                  <p className="text-sm text-zinc-400 font-light leading-relaxed">Trade-offs, security gates, and optimization.</p>
-                </div>
-              </Link>
-              <Link href="/pipelineforge/docs" className="group block">
-                <div className="pb-4 border-b border-zinc-800 group-hover:border-[#f0883e] transition-colors duration-500">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-2">Docs &rarr;</h3>
-                  <p className="text-sm text-zinc-400 font-light leading-relaxed">YAML manifests, scripts, and terminal traces.</p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Tech Stack */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-32 py-16 border-t border-zinc-900">
-            <h2 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-12 text-center">Engineered With</h2>
-            <div className="flex flex-wrap gap-x-8 gap-y-4 text-sm uppercase font-bold tracking-widest text-zinc-400 justify-center items-center">
-              {['GitHub Actions', 'Docker', 'Kubernetes', 'Helm', 'Trivy', 'K6', 'Go'].map((tech) => (
-                <span key={tech} className="hover:text-white transition-colors cursor-default">{tech}</span>
-              ))}
-            </div>
-          </section>
-        </ScrollReveal>
-
-        {/* FAQ */}
+        {/* Navigation to Sub-pages */}
         <ScrollReveal direction="up" delay={0.1}>
           <section className="mb-32">
-            <h2 className="text-4xl font-black uppercase tracking-tighter text-white mb-16">Questions.</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-              {[
-                { q: "What is PipelineForge?", a: "A GitOps DevSecOps CI/CD Pipeline Automation framework demonstrating production-grade DevOps." },
-                { q: "How does it secure pipelines?", a: "It utilizes Trivy security gates for automated vulnerability scanning during the deployment process." },
-                { q: "How was the image size reduced?", a: "Container images were optimized from 1.1GB down to 8MB (99.3% reduction) via multi-stage distroless builds." },
-                { q: "What orchestration platform is used?", a: "The deployment environment and GitOps pipeline are orchestrated using Kubernetes and Helm." }
-              ].map((faq, idx) => (
-                <div key={idx} className="border-t border-zinc-800 pt-6">
-                  <h3 className="text-lg font-bold text-white mb-3">{faq.q}</h3>
-                  <p className="text-sm text-zinc-400 font-light leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <StaggerItem>
+                <Link href="/architecture" className="group border-4 border-white p-8 hover:bg-white hover:text-black hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 block bg-white/5 backdrop-blur-md rounded-lg shadow-xl">
+                  <h2 className="text-2xl xl:text-2xl font-black uppercase mb-4 tracking-tight group-hover:underline">Architecture →</h2>
+                  <p className="text-xl font-medium leading-relaxed">Deep dive into the DevSecOps GitOps pipeline topology, cluster design, and data flows.</p>
+                </Link>
+              </StaggerItem>
+              <StaggerItem>
+                <Link href="/decisions" className="group border-4 border-white p-8 hover:bg-white hover:text-black hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 block bg-white/5 backdrop-blur-md rounded-lg shadow-xl">
+                  <h2 className="text-2xl xl:text-2xl font-black uppercase mb-4 tracking-tight group-hover:underline">Decisions & Metrics →</h2>
+                  <p className="text-xl font-medium leading-relaxed">Technical trade-offs, security gates (Trivy), and performance optimization breakdowns.</p>
+                </Link>
+              </StaggerItem>
+              <StaggerItem>
+                <Link href="/docs" className="group border-4 border-white p-8 hover:bg-white hover:text-black hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 block bg-white/5 backdrop-blur-md rounded-lg shadow-xl">
+                  <h2 className="text-2xl xl:text-2xl font-black uppercase mb-4 tracking-tight group-hover:underline">Docs & Code →</h2>
+                  <p className="text-xl font-medium leading-relaxed">Raw engineering documentation, YAML manifests, CI/CD scripts, and terminal traces.</p>
+                </Link>
+              </StaggerItem>
+            </StaggerContainer>
+          </section>
+        </ScrollReveal>
+
+        {/* Challenge vs Solution */}
+        <ScrollReveal direction="up" delay={0.1}>
+          <section className="mb-32 border-4 border-white p-8 md:p-16 relative shadow-[16px_16px_0px_0px_rgba(255,255,255,1)] bg-white/5 backdrop-blur-md rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2 tracking-tighter">The Challenge</h2>
+                <p className="text-xl leading-relaxed">
+                  Manual deployments suffer from poor auditability, lack automated vulnerability scanning, missing rollbacks, and unrestricted network access.
+                </p>
+              </div>
+              <div>
+                <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2 tracking-tighter">The Solution</h2>
+                <p className="text-xl leading-relaxed">
+                  A comprehensive DevSecOps pipeline orchestrating Docker builds, Trivy security gates, and Kubernetes GitOps deployments. Optimized container images from 1.1GB down to 8MB via multi-stage distroless builds.
+                </p>
+              </div>
             </div>
           </section>
         </ScrollReveal>
 
-      </main>
+        {/* Tech Stack Marquee / Brutalist List */}
+        <ScrollReveal direction="up" delay={0.1}>
+          <section className="mb-32 border-y-4 border-white py-12 bg-white text-black shadow-xl">
+            <StaggerContainer className="flex flex-wrap gap-6 text-3xl uppercase font-black justify-center items-center px-4">
+              <StaggerItem><span className="hover:-translate-y-1 hover:text-[#f97316] transition-all duration-300 inline-block">[ GITHUB ACTIONS ]</span></StaggerItem>
+              <StaggerItem><span className="hover:-translate-y-1 hover:text-[#f97316] transition-all duration-300 inline-block">[ DOCKER ]</span></StaggerItem>
+              <StaggerItem><span className="hover:-translate-y-1 hover:text-[#f97316] transition-all duration-300 inline-block">[ KUBERNETES ]</span></StaggerItem>
+              <StaggerItem><span className="hover:-translate-y-1 hover:text-[#f97316] transition-all duration-300 inline-block">[ HELM ]</span></StaggerItem>
+              <StaggerItem><span className="hover:-translate-y-1 hover:text-[#f97316] transition-all duration-300 inline-block">[ TRIVY ]</span></StaggerItem>
+              <StaggerItem><span className="hover:-translate-y-1 hover:text-[#f97316] transition-all duration-300 inline-block">[ K6 ]</span></StaggerItem>
+              <StaggerItem><span className="hover:-translate-y-1 hover:text-[#f97316] transition-all duration-300 inline-block">[ GO ]</span></StaggerItem>
+            </StaggerContainer>
+          </section>
+        </ScrollReveal>
+      
+        {/* SEO/AEO FAQ Section */}
+        <ScrollReveal direction="up" delay={0.1}>
+          <section className="mb-32 border-4 border-white p-8 md:p-16 shadow-[16px_16px_0px_0px_rgba(255,255,255,1)] bg-white/5 backdrop-blur-md rounded-lg">
+            <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2 tracking-tighter">Frequently Asked Questions</h2>
+            <StaggerContainer className="space-y-6" itemScope itemType="https://schema.org/FAQPage">
+              {[
+                { q: "What is PipelineForge?", a: "PipelineForge is a GitOps DevSecOps CI/CD Pipeline Automation framework demonstrating production-grade DevOps." },
+                { q: "How does PipelineForge secure CI/CD pipelines?", a: "It utilizes Trivy security gates for automated vulnerability scanning during the deployment process." },
+                { q: "How was the Docker image size reduced?", a: "Container images were optimized from 1.1GB down to 8MB (99.3% reduction) via multi-stage distroless builds." },
+                { q: "What orchestration platform is used?", a: "The deployment environment and GitOps pipeline are orchestrated using Kubernetes and Helm." },
+                { q: "What role does GitHub Actions play?", a: "GitHub Actions serves as the CI runner to build, test, and push the application before GitOps syncs." },
+                { q: "How is performance tested?", a: "Load testing is conducted using K6 to simulate 500 VUs and ensure latency remains under 5ms." },
+                { q: "Who built PipelineForge?", a: "PipelineForge was architected and engineered by Rounak Neema." }
+              ].map((faq, idx) => (
+                <StaggerItem key={idx}>
+                  <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question" className="p-4 bg-white/5 border border-white/10 backdrop-blur-md rounded-lg shadow-xl hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
+                    <h3 className="text-xl font-bold uppercase tracking-tight" itemProp="name">{faq.q}</h3>
+                    <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                      <p className="text-lg mt-2 leading-relaxed" itemProp="text">{faq.a}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </section>
+        </ScrollReveal>
+        </main>
     </div>
   );
 }
