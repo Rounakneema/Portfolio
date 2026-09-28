@@ -1,0 +1,42 @@
+# Coding docs - local documentation, not for version control
+coding docs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies (already in subdirectory .gitignores)
+node_modules/
+
+# Build outputs (already in subdirectory .gitignores)
+.next/
+out/
+dist/
+build/
+
+# Vercel
+.vercel
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Testing
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
