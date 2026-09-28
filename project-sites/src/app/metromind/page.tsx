@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { ShieldAlert, Cpu } from 'lucide-react';
 import type { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
@@ -214,28 +214,44 @@ export default function MetroMindHome() {
 </ScrollReveal>
 </ScrollReveal>
 
-                {/* ─── FAQ ─────────────────────────────────────────────── */}
+                {/* ─── Technical Briefing ──────────────────────────────── */}
                 <ScrollReveal direction="up" delay={0.1}>
 <ScrollReveal direction="up" delay={0.1}>
-<section className="border-b border-fuchsia-500/10 p-8 md:p-16">
-                    <h2 className="text-2xl font-black text-white mb-8 tracking-tight tracking-tight">Frequently Asked Questions</h2>
-                    <div className="space-y-6" itemScope itemType="https://schema.org/FAQPage">
-                        {[
-                            { q: "What is MetroMind?", a: "MetroMind is an Enterprise AI Document Intelligence Platform that transforms scanned documents into a secure semantic search engine." },
-                            { q: "How does it process documents?", a: "It uses an automated OCR pipeline to extract text asynchronously and chunk it for semantic vectors using embedding models." },
-                            { q: "What languages is MetroMind built in?", a: "MetroMind is built using Go for microservices and Python for OCR workers." },
-                            { q: "Does MetroMind support vector search?", a: "Yes, it uses Milvus Vector DB for high-performance semantic vector search capabilities." },
-                            { q: "How is access control managed?", a: "Access is managed via JWT and strict RBAC microservices ensuring secure document retrieval." },
-                            { q: "How does MetroMind handle large volumes of documents?", a: "It employs an event-driven architecture with RabbitMQ and 12+ microservices to process large workloads." },
-                            { q: "Who built MetroMind?", a: "MetroMind was architected and built by Rounak Neema." },
-                        ].map((faq, idx) => (
-                            <div key={idx} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
-                                <h3 className="text-lg font-bold text-fuchsia-400 tracking-tight tracking-tight" itemProp="name">{faq.q}</h3>
-                                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                                    <p className="text-zinc-400 mt-2 leading-relaxed leading-relaxed" itemProp="text">{faq.a}</p>
-                                </div>
-                            </div>
-                        ))}
+<section className="border-b border-fuchsia-500/10 grid lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-fuchsia-500/10">
+                    <div className="p-8 md:p-16">
+                        <div className="text-fuchsia-500 mb-6 border-b border-fuchsia-500/20 pb-4 inline-flex items-center gap-3 w-full">
+                            <span className="uppercase tracking-widest text-xs font-bold">Technical Briefing</span>
+                        </div>
+                        <h2 className="text-3xl font-sans font-black text-white leading-tight mb-6 tracking-tight tracking-tight">
+                            Architecture & Capabilities
+                        </h2>
+                        <div className="space-y-6 text-zinc-400 font-sans text-base leading-relaxed leading-relaxed">
+                            <p>
+                                <strong className="text-white font-bold block mb-1">Platform Overview</strong>
+                                MetroMind is an Enterprise AI Document Intelligence Platform that transforms scanned documents into a secure semantic search engine. It employs an event-driven architecture with RabbitMQ and 12+ microservices to process large workloads. Architected and built by Rounak Neema.
+                            </p>
+                            <p>
+                                <strong className="text-white font-bold block mb-1">Processing Pipeline</strong>
+                                Uses an automated OCR pipeline to extract text asynchronously and chunk it for semantic vectors using embedding models. High-performance semantic vector search capabilities are powered by Milvus Vector DB.
+                            </p>
+                            <p>
+                                <strong className="text-white font-bold block mb-1">Security & Tech Stack</strong>
+                                Built primarily using Go for microservices and Python for OCR workers. Access is managed via JWT and strict RBAC microservices ensuring secure document retrieval.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="p-8 md:p-16 bg-white/[0.01] flex flex-col justify-center">
+                        <div className="text-cyan-400 mb-6 border-b border-cyan-500/20 pb-4 inline-flex items-center gap-3 w-full">
+                            <span className="uppercase tracking-widest text-xs font-bold">Evidence / Proof of Work</span>
+                        </div>
+                        <h3 className="text-lg font-sans font-bold text-white mb-4 tracking-tight tracking-tight">Enterprise Document OCR & Vector Search</h3>
+                        <div className="border border-zinc-800 bg-black p-5 font-mono text-xs leading-relaxed overflow-x-auto relative shadow-2xl">
+                            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-fuchsia-500 to-cyan-500 opacity-50" />
+                            <pre className="text-zinc-300"><code><span className="text-fuchsia-400">$</span> metromind ingest --file contract_v3.pdf
+<span className="text-cyan-400">[+]</span> OCR Pipeline: Extracted 4,291 tokens
+<span className="text-cyan-400">[+]</span> Chunking: 12 semantic blocks generated
+<span className="text-cyan-400">[+]</span> Vector DB: Indexed in Milvus successfully</code></pre>
+                        </div>
                     </div>
                 </section>
 </ScrollReveal>

@@ -3,6 +3,7 @@ import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { EntityHeader } from '@/components/EntityHeader';
 import { ProjectFacts, RelatedProjects } from '@/components/ProjectFacts';
 import { FadeIn } from '@/components/shared/FadeIn';
+import { ScrollReveal } from '@/components/shared/ScrollReveal';
 
 export const metadata: Metadata = {
     title: 'SortMail // AI Intelligence Layer',
@@ -200,7 +201,30 @@ export default function SortMailPage() {
                 </div>
             </div>
 
+            {/* Technical Briefing */}
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 mt-32 lg:mt-48">
+                <ScrollReveal direction="up" delay={0.1}>
+                    <section className="border border-zinc-800 bg-zinc-900/30 p-8 shadow-xl">
+                        <h2 className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-8 border-b border-zinc-800 pb-2 tracking-tight">Technical Briefing</h2>
+                        
+                        <div className="space-y-8">
+                            <div>
+                                <h3 className="text-xl font-bold text-white mb-4">Evidence Claim: <span className="text-[#f59e0b]">AI Deadline Extraction & Threat Blocking</span></h3>
+                            </div>
+                            
+                            <div className="bg-[#050505] p-6 border border-zinc-800 rounded font-mono text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] leading-relaxed">
+                                <div className="text-zinc-500">$ sortmail process --msg "NDA_Q3.eml"</div>
+                                <div className="text-white">[+] Semantic Analysis: "Please review by Friday EOD"</div>
+                                <div className="text-[#22c55e]">[✓] Deadline Extracted: 2026-10-02T17:00:00Z</div>
+                                <div className="text-[#ef4444]">[!] Threat Blocked: Invoice.pdf.exe (MIME mismatch: application/x-dosexec)</div>
+                            </div>
+                        </div>
+                    </section>
+                </ScrollReveal>
+            </div>
+
             {/* Footer space handled by layout */}
         </div>
     );
 }
+

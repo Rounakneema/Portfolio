@@ -315,21 +315,61 @@ export default function DizzyPage() {
 
       </main>
 
-      {/* FAQ */}
+      {/* TECHNICAL BRIEFING & EVIDENCE */}
       <section className="border-t border-zinc-900 bg-[#020202]">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-32">
-          <div className="text-center mb-24">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6">Knowledge Base</h2>
-            <h3 className="text-4xl font-black text-zinc-100 tracking-tighter">TECHNICAL FAQ</h3>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-              {dizzyJsonLd.faq.map((q, idx) => (
-                  <div key={idx} className="border-b border-zinc-800 pb-8 hover:border-zinc-500 transition-colors">
-                      <h4 className="font-medium text-white mb-4 text-xl tracking-tight">{q.question}</h4>
-                      <p className="text-zinc-400 font-light leading-relaxed">{q.answer}</p>
+        <div className="max-w-[1600px] mx-auto px-6 md:px-12 py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            {/* EVIDENCE BLOCK */}
+            <div className="lg:col-span-5 space-y-8">
+              <ScrollReveal direction="up" delay={0.1}>
+                <div>
+                  <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6 border-b border-zinc-800 pb-2">Evidence</h2>
+                  <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mb-8">Voice-Controlled UI Semantic Updates</h3>
+                </div>
+                
+                <div className="bg-[#050505] border border-zinc-800 p-6 rounded-lg font-mono text-sm leading-relaxed shadow-xl">
+                  <div className="flex gap-2 mb-4 border-b border-zinc-800 pb-4">
+                    <div className="w-3 h-3 bg-[#ff3366] rounded-full"></div>
+                    <div className="w-3 h-3 bg-zinc-700 rounded-full"></div>
+                    <div className="w-3 h-3 bg-zinc-700 rounded-full"></div>
                   </div>
-              ))}
+                  <div className="text-zinc-300">
+                    <span className="text-zinc-500">$</span> dizzy receive-intent --audio "Make the sidebar narrower"<br/>
+                    <span className="text-zinc-400">[+]</span> Speech-to-Text: "Make the sidebar narrower"<br/>
+                    <span className="text-zinc-400">[+]</span> Semantic Command: <span className="text-[#ff3366]">sidebar.width = 240px</span><br/>
+                    <span className="text-zinc-400">[+]</span> Figma MCP: Updating node 4:218...<br/>
+                    <span className="text-zinc-400">[✓]</span> UI Frame Updated Successfully
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* TECHNICAL BRIEFING */}
+            <div className="lg:col-span-7">
+              <ScrollReveal direction="up" delay={0.2}>
+                <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-8 border-b border-zinc-800 pb-2">Technical Briefing</h2>
+                <StaggerContainer className="space-y-4">
+                  {dizzyJsonLd.faq.map((q, idx) => (
+                    <StaggerItem key={idx}>
+                      <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-zinc-800 pb-4 hover:-translate-y-1 transition-all duration-300">
+                        <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm">
+                          <span className="flex items-center">
+                            <span className="text-[#ff3366] mr-4">{(idx + 1).toString().padStart(2, '0')}.</span> 
+                            {q.question}
+                          </span>
+                          <span className="transition group-open:rotate-180 ml-4 text-zinc-500">▼</span>
+                        </summary>
+                        <p className="mt-4 text-zinc-400 pl-9 font-mono leading-relaxed text-sm">
+                          {q.answer}
+                        </p>
+                      </details>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </ScrollReveal>
+            </div>
+            
           </div>
         </div>
       </section>

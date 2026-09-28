@@ -248,22 +248,48 @@ export default function AxiomPage() {
                     ]} />
                 </ScrollReveal>
 
-                {/* FAQ */}
+                {/* TECHNICAL BRIEFING */}
                 <ScrollReveal direction="up" delay={0.1}>
                     <section className="relative z-10 mt-32 max-w-4xl mx-auto">
-                        <h2 className="text-3xl font-black mb-12 text-center tracking-tight uppercase">Technical FAQ</h2>
+                        <h2 className="text-3xl font-black mb-12 text-center tracking-tight uppercase">Technical Briefing</h2>
                         <StaggerContainer>
                             <div className="space-y-4">
-                                {axiomJsonLd.faq.map((q, idx) => (
-                                    <StaggerItem key={idx}>
-                                        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/10 transition-colors">
-                                            <h4 className="font-bold text-[#00d4aa] mb-3 text-lg">{q.question}</h4>
-                                            <p className="text-gray-300 leading-relaxed">{q.answer}</p>
-                                        </div>
-                                    </StaggerItem>
-                                ))}
+                                {axiomJsonLd.faq.map((q, idx) => {
+                                    const num = String(idx + 1).padStart(2, '0');
+                                    return (
+                                        <StaggerItem key={idx}>
+                                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-white/10 pb-4 hover:-translate-y-1 transition-all duration-300">
+                                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm">
+                                                    <span><span className="text-[#00d4aa] mr-4">{num}.</span> {q.question}</span>
+                                                    <span className="transition group-open:rotate-180">▼</span>
+                                                </summary>
+                                                <p className="mt-4 text-gray-400 pl-8 font-mono leading-relaxed">{q.answer}</p>
+                                            </details>
+                                        </StaggerItem>
+                                    );
+                                })}
                             </div>
                         </StaggerContainer>
+
+                        {/* EVIDENCE BLOCK */}
+                        <ScrollReveal direction="up" delay={0.2}>
+                            <div className="mt-16 bg-[#050505] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <div className="bg-black/50 border-b border-white/5 px-4 py-3 flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                    <div className="ml-auto">
+                                        <span className="text-[#00d4aa] font-mono text-[10px] font-bold uppercase tracking-widest">Evidence: Local-First Privacy & Offline AI Execution</span>
+                                    </div>
+                                </div>
+                                <div className="p-6 font-mono text-sm leading-relaxed text-gray-300">
+                                    <div><span className="text-[#00d4aa]">$</span> specter start --daemon</div>
+                                    <div className="text-gray-400">[+] Telemetry ingest started locally. Network: DISABLED</div>
+                                    <div className="text-gray-400">[+] Ollama inference engine loaded in memory</div>
+                                    <div className="text-green-500">[✓] Policy Engine: Running locally without cloud APIs</div>
+                                </div>
+                            </div>
+                        </ScrollReveal>
                     </section>
                 </ScrollReveal>
 

@@ -134,20 +134,24 @@ export default function DevContextPage() {
                 </section>
             </ScrollReveal>
             
-            {/* FAQ Section */}
+            {/* Technical Briefing Section */}
             <ScrollReveal direction="up" delay={0.1}>
                 <section className="p-4 md:p-8 lg:p-16 bg-[#000] border-t border-[#333]">
-                    <h2 className="text-2xl font-bold uppercase tracking-tight text-white mb-8 border-l-4 border-[#1f6feb] pl-4">Frequently Asked Questions</h2>
+                    <h2 className="text-2xl font-bold uppercase tracking-tight text-white mb-8 border-l-4 border-[#1f6feb] pl-4">Technical Briefing</h2>
                     <StaggerContainer>
                         <div className="space-y-6 max-w-4xl">
-                            {projectData.faq.map((q, i) => (
-                                <StaggerItem key={i}>
-                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
-                                        <h3 className="text-white font-bold mb-2 tracking-tight">{q.question}</h3>
-                                        <p className="text-[#aaa] text-sm leading-relaxed">{q.answer}</p>
-                                    </div>
-                                </StaggerItem>
-                            ))}
+                            <StaggerItem>
+                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
+                                    <h3 className="text-white font-bold mb-4 tracking-tight text-lg">Evidence / Benchmark</h3>
+                                    <div className="text-[#1f6feb] text-sm font-bold uppercase mb-4 tracking-widest">Claim: Repository Grounding & Hallucination Prevention</div>
+                                    <pre className="bg-[#0a0a0a] p-4 rounded text-xs font-mono text-[#aaa] border border-[#333] overflow-x-auto whitespace-pre-wrap">
+{`$ klarity query --repo /src/auth --question "Does it use bcrypt?"
+[+] Searching abstract syntax trees...
+[+] Grounding engine verified lines 45-89 in auth/hash.go
+[✓] ANSWER: Yes. Evidence: \`bcrypt.GenerateFromPassword()\``}
+                                    </pre>
+                                </div>
+                            </StaggerItem>
                         </div>
                     </StaggerContainer>
                 </section>

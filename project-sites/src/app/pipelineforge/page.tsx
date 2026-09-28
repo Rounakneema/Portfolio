@@ -120,27 +120,35 @@ export default function PipelineForgePage() {
           </section>
         </ScrollReveal>
       
-        {/* SEO/AEO FAQ Section */}
+        {/* Technical Briefing Section */}
         <ScrollReveal direction="up" delay={0.1}>
           <section className="mb-32 border-4 border-white p-8 md:p-16 shadow-[16px_16px_0px_0px_rgba(255,255,255,1)] bg-white/5 backdrop-blur-md rounded-lg">
-            <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2 tracking-tighter">Frequently Asked Questions</h2>
-            <StaggerContainer className="space-y-6" itemScope itemType="https://schema.org/FAQPage">
+            <h2 className="text-2xl font-black uppercase mb-8 border-b-4 border-white inline-block pb-2 tracking-tighter">Technical Briefing</h2>
+            
+            <div className="mb-12 p-6 bg-[#050505] border border-[#333] rounded-lg shadow-xl">
+              <div className="text-xs uppercase tracking-[0.2em] text-[#f97316] mb-4 font-bold">Evidence // 99.3% Image Reduction (1.1GB to 8MB)</div>
+              <pre className="text-gray-300 font-mono text-sm overflow-x-auto whitespace-pre"><code>{`$ docker images
+pipelineforge-app  latest  1.1GB (Before)
+pipelineforge-app  distroless  8.4MB (After)
+$ trivy image pipelineforge-app:distroless
+Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)`}</code></pre>
+            </div>
+
+            <StaggerContainer className="space-y-4">
               {[
-                { q: "What is PipelineForge?", a: "PipelineForge is a GitOps DevSecOps CI/CD Pipeline Automation framework demonstrating production-grade DevOps." },
-                { q: "How does PipelineForge secure CI/CD pipelines?", a: "It utilizes Trivy security gates for automated vulnerability scanning during the deployment process." },
-                { q: "How was the Docker image size reduced?", a: "Container images were optimized from 1.1GB down to 8MB (99.3% reduction) via multi-stage distroless builds." },
-                { q: "What orchestration platform is used?", a: "The deployment environment and GitOps pipeline are orchestrated using Kubernetes and Helm." },
-                { q: "What role does GitHub Actions play?", a: "GitHub Actions serves as the CI runner to build, test, and push the application before GitOps syncs." },
-                { q: "How is performance tested?", a: "Load testing is conducted using K6 to simulate 500 VUs and ensure latency remains under 5ms." },
-                { q: "Who built PipelineForge?", a: "PipelineForge was architected and engineered by Rounak Neema." }
-              ].map((faq, idx) => (
-                <StaggerItem key={idx}>
-                  <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question" className="p-4 bg-white/5 border border-white/10 backdrop-blur-md rounded-lg shadow-xl hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
-                    <h3 className="text-xl font-bold uppercase tracking-tight" itemProp="name">{faq.q}</h3>
-                    <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                      <p className="text-lg mt-2 leading-relaxed" itemProp="text">{faq.a}</p>
-                    </div>
-                  </div>
+                { num: "01", q: "What is PipelineForge?", a: "PipelineForge is a GitOps DevSecOps CI/CD Pipeline Automation framework demonstrating production-grade DevOps." },
+                { num: "02", q: "How does PipelineForge secure CI/CD pipelines?", a: "It utilizes Trivy security gates for automated vulnerability scanning during the deployment process." },
+                { num: "03", q: "How was the Docker image size reduced?", a: "Container images were optimized from 1.1GB down to 8MB (99.3% reduction) via multi-stage distroless builds." },
+                { num: "04", q: "What orchestration platform is used?", a: "The deployment environment and GitOps pipeline are orchestrated using Kubernetes and Helm." },
+                { num: "05", q: "What role does GitHub Actions play?", a: "GitHub Actions serves as the CI runner to build, test, and push the application before GitOps syncs." },
+                { num: "06", q: "How is performance tested?", a: "Load testing is conducted using K6 to simulate 500 VUs and ensure latency remains under 5ms." },
+                { num: "07", q: "Who built PipelineForge?", a: "PipelineForge was architected and engineered by Rounak Neema." }
+              ].map((faq, i) => (
+                <StaggerItem key={i}>
+                  <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4 hover:-translate-y-1 transition-all duration-300">
+                    <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm"><span className="text-[#f97316] mr-4">{faq.num}.</span> {faq.q}<span className="transition group-open:rotate-180">▼</span></summary>
+                    <p className="mt-4 text-gray-400 pl-8 font-mono leading-relaxed">{faq.a}</p>
+                  </details>
                 </StaggerItem>
               ))}
             </StaggerContainer>
