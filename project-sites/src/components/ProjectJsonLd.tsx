@@ -5,13 +5,13 @@ export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { 
     const project = projects.find(p => p.slug === slug);
     if (!project) return null;
 
-    const baseUrl = \https://\\;
+    const baseUrl = `https://${project.subdomain}`;
     
     // Core Entity (SoftwareApplication)
     const softwareApp = {
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
-        '@id': \\/#software\,
+        '@id': `${baseUrl}/#software`,
         'name': project.title,
         'url': baseUrl,
         'description': project.subtitle,
@@ -29,7 +29,7 @@ export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { 
         jsonLd.push({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            '@id': \\/#website\,
+            '@id': `${baseUrl}/#website`,
             'name': project.title,
             'url': baseUrl,
             'publisher': {
@@ -42,7 +42,7 @@ export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { 
             'mainEntity': [
                 {
                     '@type': 'Question',
-                    'name': \What is \?\,
+                    'name': `What is ${project.title}?`,
                     'acceptedAnswer': {
                         '@type': 'Answer',
                         'text': project.fullDescription || project.subtitle
@@ -52,20 +52,20 @@ export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { 
         });
     } else {
         // Subpage emits a TechArticle or highly scoped WebPage referencing the software
-        const currentUrl = \\/\\;
+        const currentUrl = `${baseUrl}/${pageType.toLowerCase()}`;
         jsonLd.push({
             '@context': 'https://schema.org',
             '@type': 'TechArticle',
-            '@id': \\/#article\,
-            'name': pageTitle || \\ | \\,
-            'headline': pageTitle || \\ \\,
-            'description': pageDescription || \Technical documentation and \ details for \.\,
+            '@id': `${currentUrl}/#article`,
+            'name': pageTitle || `${project.title} | ${pageType}`,
+            'headline': pageTitle || `${project.title} ${pageType}`,
+            'description': pageDescription || `Technical documentation and ${pageType.toLowerCase()} details for ${project.title}.`,
             'url': currentUrl,
             'about': {
-                '@id': \\/#software\
+                '@id': `${baseUrl}/#software`
             },
             'isPartOf': {
-                '@id': \\/#website\
+                '@id': `${baseUrl}/#website`
             },
             'author': {
                 '@id': 'https://rounakneema.in/#person'
