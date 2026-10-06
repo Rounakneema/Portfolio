@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import MermaidDiagram from '@/components/Mermaid';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
     title: 'OSA - Architecture Spec',
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function OSAArchitecturePage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#ffb800] selection:text-[#000] overflow-x-hidden pb-32">
+        <ProjectJsonLd slug="osa" pageType="Architecture" />
             <style dangerouslySetInnerHTML={{ __html: `
                 .text-glitch { position: relative; }
                 .grid-bg {

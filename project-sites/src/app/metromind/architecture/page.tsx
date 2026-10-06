@@ -3,6 +3,7 @@ import { Database, Workflow, ShieldCheck, FileSearch, ArrowLeft, ArrowRight, Ter
 import type { Metadata } from 'next';
 import MermaidDiagram from '@/components/Mermaid';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
     title: 'Architecture Spec — MetroMind',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function MetroMindArchitecture() {
     return (
         <div className="min-h-screen bg-[#030305] text-zinc-400 font-mono text-sm selection:bg-cyan-500/30">
+        <ProjectJsonLd slug="metromind" pageType="Architecture" />
             
             {/* Top Nav Rail */}
             <nav className="border-b border-fuchsia-500/20 bg-[#030305] sticky top-0 z-50">

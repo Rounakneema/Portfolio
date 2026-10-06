@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
     title: 'AXIOM OS | Decisions',
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function DecisionsPage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#00d4aa] selection:text-black px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
+        <ProjectJsonLd slug="axiom-os" pageType="Decisions" />
             <style dangerouslySetInnerHTML={{ __html: `
                 .grid-bg { background-size: 40px 40px; background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px); }
             `}} />

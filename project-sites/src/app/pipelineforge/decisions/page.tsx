@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
   title: 'PipelineForge Decisions | Trade-offs & Metrics',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function DecisionsPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
+        <ProjectJsonLd slug="pipelineforge" pageType="Decisions" />
       <ScrollReveal direction="up" delay={0.1}>
         <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
           <div className="text-xl">

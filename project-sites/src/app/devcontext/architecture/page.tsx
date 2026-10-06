@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import MermaidDiagram from '@/components/Mermaid';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata = {
     title: 'Architecture Spec | DevContext.AI',
@@ -10,6 +11,7 @@ export const metadata = {
 export default function ArchitecturePage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#1f6feb] selection:text-[#fff] overflow-x-hidden">
+        <ProjectJsonLd slug="devcontext" pageType="Architecture" />
             {/* Header */}
             <ScrollReveal direction="up" delay={0.1}>
                 <header className="p-4 md:p-8 border-b border-[#1f6feb]/30 flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">

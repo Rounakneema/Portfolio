@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
     title: 'OSA - Engineering Decisions',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function OSADecisionsPage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#fff] selection:text-[#000] overflow-x-hidden pb-32">
+        <ProjectJsonLd slug="osa" pageType="Decisions" />
             <style dangerouslySetInnerHTML={{ __html: `
                 .brutalist-border { border: 2px solid #333; }
                 .grid-bg {

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import MermaidDiagram from '@/components/Mermaid';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
   title: 'Dizzy Architecture Spec',
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function DizzyArchitecturePage() {
   return (
     <div className="w-full bg-black text-white selection:bg-[#ff3366] selection:text-white font-sans">
+        <ProjectJsonLd slug="dizzy" pageType="Architecture" />
       
       <main className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-32">
         

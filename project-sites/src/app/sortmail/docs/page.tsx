@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FadeIn } from '@/components/shared/FadeIn';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
     title: 'SortMail // Docs',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function DocsPage() {
     return (
         <main className="min-h-[100dvh] bg-[#050505] text-white font-sans selection:bg-amber-500/20 selection:text-amber-500 pb-32">
+        <ProjectJsonLd slug="sortmail" pageType="Docs" />
             {/* Header / Nav */}
             <div className="w-full px-6 md:px-12 py-8 flex justify-between items-center max-w-[1400px] mx-auto sticky top-0 bg-[#050505]/80 backdrop-blur-md z-50 border-b border-white/5">
                 <div className="text-xl font-bold tracking-tighter text-white">

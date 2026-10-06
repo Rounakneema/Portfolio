@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
     title: 'AXIOM OS | Documentation',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function AxiomOsDocsPage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#00d4aa] selection:text-black px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
+        <ProjectJsonLd slug="axiom-os" pageType="Docs" />
             <style dangerouslySetInnerHTML={{ __html: `
                 .brutalist-border { border: 2px solid #333; }
                 .brutalist-border-b { border-bottom: 2px solid #333; }

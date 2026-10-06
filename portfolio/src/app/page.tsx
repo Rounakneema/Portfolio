@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/portfolio/layout/Navbar';
+﻿import { Navbar } from '@/components/portfolio/layout/Navbar';
 import { Hero } from '@/components/portfolio/sections/Hero';
 import { AboutSection } from '@/components/portfolio/sections/AboutSection';
 import { SkillsSection } from '@/components/portfolio/sections/SkillsSection';
@@ -10,7 +10,7 @@ export const metadata = {
     title: 'Rounak Neema | Cybersecurity, DevSecOps & Cloud Security Engineer',
     description: 'Rounak Neema is a Computer Science student and early-career security and infrastructure engineer focused on cybersecurity, DevSecOps, cloud security, Go, network security, and security engineering.',
     alternates: {
-        canonical: '/portfolio',
+        canonical: 'https://rounakneema.in/portfolio',
     },
 };
 
@@ -31,4 +31,5 @@ export default function PortfolioPage() {
         </main>
     );
 }
+
 

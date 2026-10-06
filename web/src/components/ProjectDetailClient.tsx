@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -38,7 +38,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                 </Link>
             </motion.div>
 
-            {/* Hero — creative split layout */}
+            {/* Hero â€” creative split layout */}
             <motion.header
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                 </div>
             </motion.header>
 
-            {/* Main content — 3-col grid */}
+            {/* Main content â€” 3-col grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-20">
 
                 {/* Main column (2/3 width) */}
@@ -179,6 +179,42 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                                     </a>
                                 );
                             })}
+                    {/* Deep Dives (SEO Internal Links) */}
+                    {project.slug && ['revealr', 'metromind', 'axiom-os', 'devcontext', 'dizzy', 'osa', 'pipelineforge', 'sortmail'].includes(project.slug) && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="flex flex-col gap-4 pt-6 border-t border-gray-100"
+                        >
+                            <div className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-2">// Deep Dives & Documentation</div>
+                            <div className="flex flex-wrap gap-3">
+                                {(() => {
+                                    const projectPaths: Record<string, string[]> = {
+                                        'revealr': ['architecture', 'benchmarks', 'changelog', 'docs', 'security'],
+                                        'metromind': ['architecture'],
+                                        'axiom-os': ['architecture', 'decisions', 'docs'],
+                                        'devcontext': ['architecture', 'decisions', 'docs'],
+                                        'dizzy': ['architecture', 'decisions', 'docs'],
+                                        'osa': ['architecture', 'decisions', 'docs'],
+                                        'pipelineforge': ['architecture', 'decisions', 'docs'],
+                                        'sortmail': ['architecture', 'decisions', 'docs']
+                                    };
+                                    const validPaths = projectPaths[project.slug] || [];
+                                    return validPaths.map(path => (
+                                        <a
+                                            key={path}
+                                            href={https://\/\}
+                                            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold border border-gray-200 text-gray-600 transition-all rounded-md hover:border-black hover:text-black hover:bg-gray-50"
+                                        >
+                                            <FileCode className="w-3.5 h-3.5 opacity-70" />
+                                            {path.charAt(0).toUpperCase() + path.slice(1)}
+                                        </a>
+                                    ));
+                                })()}
+                            </div>
+                        </motion.div>
+                    )}
                         </motion.div>
                     )}
                 </div>
@@ -240,7 +276,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                                 <span className="text-zinc-500 text-xs ml-1.5">bash</span>
                             </div>
                             <div className="flex items-start gap-2 text-white mb-3">
-                                <span className="text-blue-500 shrink-0">➜</span>
+                                <span className="text-blue-500 shrink-0">âžœ</span>
                                 <span className="text-zinc-400 shrink-0">~</span>
                                 <span className="break-all">{project.terminal.command}</span>
                             </div>
@@ -256,3 +292,4 @@ export function ProjectDetailClient({ project }: { project: Project }) {
         </div>
     );
 }
+

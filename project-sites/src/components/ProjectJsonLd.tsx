@@ -1,77 +1,77 @@
-import React from 'react';
+﻿import React from 'react';
 import { projects } from '@/lib/projects';
 
-export function ProjectJsonLd({ slug }: { slug: string }) {
+export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { slug: string, pageType?: 'Architecture' | 'Docs' | 'Security' | 'Benchmarks' | 'Changelog' | 'Decisions' | 'Forensics', pageTitle?: string, pageDescription?: string }) {
     const project = projects.find(p => p.slug === slug);
     if (!project) return null;
 
-    const jsonLd: any[] = [
-        {
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            'name': project.title,
-            'url': `https://${project.subdomain}`,
-            'description': project.subtitle,
-            'applicationCategory': 'SoftwareApplication',
-            'author': {
-                '@type': 'Person',
-                'name': 'Rounak Neema',
-                '@id': 'https://rounakneema.in/#person',
-                'url': 'https://rounakneema.in'
-            }
-        },
-        {
+    const baseUrl = \https://\\;
+    
+    // Core Entity (SoftwareApplication)
+    const softwareApp = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        '@id': \\/#software\,
+        'name': project.title,
+        'url': baseUrl,
+        'description': project.subtitle,
+        'applicationCategory': 'SoftwareApplication',
+        'author': {
+            '@id': 'https://rounakneema.in/#person'
+        }
+    };
+
+    const jsonLd: any[] = [];
+
+    if (!pageType) {
+        // Root Page emits the full WebSite, SoftwareApplication, and FAQ
+        jsonLd.push(softwareApp);
+        jsonLd.push({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
+            '@id': \\/#website\,
             'name': project.title,
-            'url': `https://${project.subdomain}`,
-            'potentialAction': {
-                '@type': 'SearchAction',
-                'target': `https://${project.subdomain}/search?q={search_term_string}`,
-                'query-input': 'required name=search_term_string'
-            },
+            'url': baseUrl,
             'publisher': {
-                '@type': 'Organization',
-                'name': 'Rounak Neema',
-                'url': 'https://rounakneema.in',
-                'logo': 'https://rounakneema.in/favicon.ico',
-                'contactPoint': {
-                    '@type': 'ContactPoint',
-                    'contactType': 'Customer Service',
-                    'email': 'hello@rounakneema.in'
-                },
-                'sameAs': [
-                    'https://github.com/Rounakneema',
-                    'https://www.linkedin.com/in/rounakneema',
-                    'https://twitter.com/rounakneema'
-                ]
+                '@id': 'https://rounakneema.in/#person'
             }
-        }
-    ];
-
-    // Dummy FAQ for AI Crawlers based on project
-    jsonLd.push({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        'mainEntity': [
-            {
-                '@type': 'Question',
-                'name': `What is ${project.title}?`,
-                'acceptedAnswer': {
-                    '@type': 'Answer',
-                    'text': project.fullDescription || project.subtitle
+        });
+        jsonLd.push({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': [
+                {
+                    '@type': 'Question',
+                    'name': \What is \?\,
+                    'acceptedAnswer': {
+                        '@type': 'Answer',
+                        'text': project.fullDescription || project.subtitle
+                    }
                 }
+            ]
+        });
+    } else {
+        // Subpage emits a TechArticle or highly scoped WebPage referencing the software
+        const currentUrl = \\/\\;
+        jsonLd.push({
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            '@id': \\/#article\,
+            'name': pageTitle || \\ | \\,
+            'headline': pageTitle || \\ \\,
+            'description': pageDescription || \Technical documentation and \ details for \.\,
+            'url': currentUrl,
+            'about': {
+                '@id': \\/#software\
             },
-            {
-                '@type': 'Question',
-                'name': `How does ${project.title} work?`,
-                'acceptedAnswer': {
-                    '@type': 'Answer',
-                    'text': project.solution || 'See our architecture page for details.'
-                }
+            'isPartOf': {
+                '@id': \\/#website\
+            },
+            'author': {
+                '@id': 'https://rounakneema.in/#person'
             }
-        ]
-    });
+        });
+    }
 
     return (
         <script

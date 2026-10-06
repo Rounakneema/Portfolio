@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Activity, ArrowRight, Gauge, MonitorCog, Network, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
   title: 'Benchmarks — Revealr Network Scanner',
@@ -19,6 +20,7 @@ const benchmarkData = [
 export default function RevealrBenchmarks() {
   return (
     <div className="relative isolate overflow-hidden bg-[#080b0a] text-zinc-400">
+        <ProjectJsonLd slug="revealr" pageType="Benchmarks" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[700px] overflow-hidden">
         <div className="absolute left-[53%] top-[-330px] h-[720px] w-[720px] rounded-full border border-lime-300/10 bg-lime-400/[0.035] shadow-[0_0_170px_45px_rgba(132,204,22,0.08)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(132,204,22,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(132,204,22,0.022)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />

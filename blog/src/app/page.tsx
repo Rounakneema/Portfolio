@@ -1,10 +1,10 @@
-import { getAllPosts } from '@/lib/posts';
+﻿import { getAllPosts } from '@/lib/posts';
 import { PostList } from '@/components/PostList';
 import { ScrambleText } from '@/components/ScrambleText';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata = {
-  alternates: { canonical: '/blog' }
+  alternates: { canonical: 'https://rounakneema.in/blog' }
 };
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
       <JsonLd type="blog" />
     <div className="max-w-6xl mx-auto px-6 py-24 relative">
       <a href="/" className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full glass-panel hover:bg-white/50 transition-all group border border-gray-200 text-xs font-bold font-mono text-gray-500 hover:text-black">
-        ← HUB
+        â† HUB
       </a>
 
       <header className="mb-24 text-center">
@@ -48,5 +48,6 @@ export default function Home() {
     </>
   );
 }
+
 
 

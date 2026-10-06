@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
     title: 'OSA - Documentation & Manifests',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function OSADocsPage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#fff] selection:text-[#000] overflow-x-hidden pb-32">
+        <ProjectJsonLd slug="osa" pageType="Docs" />
             <style dangerouslySetInnerHTML={{ __html: `
                 .crt-flicker { animation: flicker 0.15s infinite; }
                 @keyframes flicker {

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, Braces, Database, Layers3, Network, PlugZap, Radar, ScanSearch, Terminal, Workflow } from 'lucide-react';
 import type { Metadata } from 'next';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
   title: 'Architecture — Revealr Network Scanner',
@@ -19,6 +20,7 @@ const layers = [
 export default function RevealrArchitecture() {
   return (
     <div className="relative isolate overflow-hidden bg-[#080b0a] text-zinc-400">
+        <ProjectJsonLd slug="revealr" pageType="Architecture" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[700px] overflow-hidden">
         <div className="absolute left-1/2 top-[-370px] h-[760px] w-[760px] -translate-x-1/2 rounded-full border border-lime-300/10 bg-lime-400/[0.035] shadow-[0_0_160px_40px_rgba(132,204,22,0.07)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(190,242,100,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(190,242,100,0.025)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
