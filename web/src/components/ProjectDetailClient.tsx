@@ -200,7 +200,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                                     return validPaths.map(path => (
                                         <a
                                             key={path}
-                                            href={https://\/\}
+                                            href={`https://${project.subdomain}/${path}`}
                                             className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold border border-gray-200 text-gray-600 transition-all rounded-md hover:border-black hover:text-black hover:bg-gray-50"
                                         >
                                             <FileCode className="w-3.5 h-3.5 opacity-70" />
