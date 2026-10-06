@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'export',
   basePath: '/blog',
-  trailingSlash: true,
+  trailingSlash: false,
   images: { unoptimized: true },
   /* config options here */
   typescript: { ignoreBuildErrors: true },
@@ -15,3 +15,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
