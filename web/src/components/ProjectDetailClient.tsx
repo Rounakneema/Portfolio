@@ -29,21 +29,17 @@ export function ProjectDetailClient({ project }: { project: Project }) {
     return (
         <div className="max-w-7xl mx-auto">
             {/* Back link */}
-            <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="mb-12">
+            <div className="animate-fade-in opacity-0-init mb-12">
                 <Link
                     href="/projects"
                     className="inline-flex items-center gap-2 text-sm font-bold font-mono text-gray-400 hover:text-black transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" /> PROJECTS HUB
                 </Link>
-            </motion.div>
+            </div>
 
             {/* Hero â€” creative split layout */}
-            <motion.header
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-16"
-            >
+            <header className="animate-fade-in-up opacity-0-init delay-100 mb-16">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start">
                     {/* Left: title block */}
                     <div>
@@ -92,7 +88,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                         ))}
                     </div>
                 </div>
-            </motion.header>
+            </header>
 
             {/* Main content â€” 3-col grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-20">

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { ArrowUpRight, Shield, Terminal, Cpu, ChevronDown, FileText } from 'lucide-react';
@@ -35,33 +35,21 @@ export function HubClient() {
             {/* Hero Section */}
             <header className="mb-16 text-center max-w-4xl mx-auto mt-20">
 
-                <motion.h1
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.7 }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter leading-none"
+                <h1 className="animate-scale-in opacity-0-init delay-100 text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter leading-none"
                 >
                     ROUNAK NEEMA
-                </motion.h1>
+                </h1>
 
-                <motion.h2
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-xl md:text-2xl text-zinc-800 font-bold mb-6 tracking-tight"
+                <h2 className="animate-fade-in opacity-0-init delay-300 text-xl md:text-2xl text-zinc-800 font-bold mb-6 tracking-tight"
                 >
                     DevOps, Security Engineer & Penetration Tester
-                </motion.h2>
+                </h2>
 
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-10"
+                <p className="animate-fade-in opacity-0-init delay-400 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-10"
                 >
                     I build cloud-native systems, security tooling, and automation.
                     <br className="hidden md:block" /> This site documents my projects, engineering write-ups, and portfolio.
-                </motion.p>
+                </p>
 
                 {/* Proof Strip */}
                 <motion.div
@@ -237,14 +225,14 @@ export function HubClient() {
                         <dt>What projects has Rounak Neema built?</dt>
                         <dd>
                             <ul>
-                                <li>Revealr — High-Speed Go Network Scanner</li>
-                                <li>OSA — Offline Security Auditor for Air-Gapped Environments</li>
-                                <li>MetroMind — Enterprise AI Document Intelligence Platform</li>
-                                <li>PipelineForge — GitOps DevSecOps CI/CD Pipeline Automation</li>
-                                <li>SortMail — AI Operating Layer for Professional Email</li>
-                                <li>Klarity — AI Repository Intelligence for Technical Recruiting</li>
-                                <li>AXIOM OS — Local-First Personal AI Operating System</li>
-                                <li>Dizzy — Voice-to-Figma AI Interface Builder</li>
+                                <li>Revealr â€” High-Speed Go Network Scanner</li>
+                                <li>OSA â€” Offline Security Auditor for Air-Gapped Environments</li>
+                                <li>MetroMind â€” Enterprise AI Document Intelligence Platform</li>
+                                <li>PipelineForge â€” GitOps DevSecOps CI/CD Pipeline Automation</li>
+                                <li>SortMail â€” AI Operating Layer for Professional Email</li>
+                                <li>Klarity â€” AI Repository Intelligence for Technical Recruiting</li>
+                                <li>AXIOM OS â€” Local-First Personal AI Operating System</li>
+                                <li>Dizzy â€” Voice-to-Figma AI Interface Builder</li>
                             </ul>
                         </dd>
                     </dl>
@@ -272,3 +260,5 @@ export function HubClient() {
         </div >
     );
 }
+
+
