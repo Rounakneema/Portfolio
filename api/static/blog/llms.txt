@@ -1,0 +1,228 @@
+# Rounak Neema
+
+> Security-Oriented Software Engineer | DevSecOps | Systems & Infrastructure
+
+Rounak Neema is a Computer Science engineer focused on cybersecurity, high-performance networking, backend systems, DevSecOps, cloud infrastructure, and AI-powered developer tooling.
+
+Primary technical areas include Go, Python, Linux, networking, vulnerability assessment, distributed systems, Docker, Kubernetes, AWS, CI/CD, microservices, security analytics, LLM applications, and AI agents.
+
+## Portfolio & Hub
+
+- [Main Website](https://rounakneema.in): Personal website and professional profile.
+- [Projects](https://rounakneema.in/projects): Central project directory.
+- [Portfolio](https://rounakneema.in/portfolio): Selected professional portfolio.
+- [Blog](https://rounakneema.in/blog): Technical articles, engineering notes, and research.
+- [GitHub](https://github.com/Rounakneema): Source code and open-source contributions.
+- [LinkedIn](https://linkedin.com/in/rnks23): Professional profile.
+
+## Projects
+
+### Revealr
+
+[Project](https://revealr.rounakneema.in)
+
+High-concurrency adaptive network scanner and vulnerability-mapping platform built with Go and Python.
+
+Key areas:
+- Concurrent network and port scanning
+- Service and version fingerprinting
+- Offline vulnerability mapping
+- Stateful SQLite-backed scan management
+- Historical baseline comparison
+- Network drift detection
+- Modular Python security plugins
+- Protocol analysis and custom vulnerability checks
+- IDS/IPS-aware scanning profiles
+
+A documented benchmark reports approximately 50,000 ports/minute under the tested configuration.
+
+Technologies: Go, Python, SQLite, networking, concurrency, vulnerability assessment.
+
+### MetroMind
+
+[Project](https://metromind.rounakneema.in)
+
+Enterprise AI document-intelligence platform developed for the Smart India Hackathon and designed around Kochi Metro Rail document workflows.
+
+Key areas:
+- Microservices architecture
+- Document processing
+- OCR and search workflows
+- Multi-tenant architecture
+- RBAC
+- Authentication and authorization
+- Audit logging
+- Docker and Docker Compose
+- Backend APIs and data pipelines
+
+Technologies: Go, Docker, REST APIs, microservices, SQL, RBAC, audit logging, AI/document intelligence.
+
+### OSA — Offline Security Auditor
+
+[Project](https://osa.rounakneema.in)
+
+Offline-first security analytics and threat-detection platform designed for air-gapped and restricted environments.
+
+Key areas:
+- Zero-dependency Go binary
+- Real-time log ingestion
+- Historical forensic analysis
+- Linux syslog analysis
+- Nginx access logs
+- Docker logs
+- Kubernetes logs
+- Windows Event Log JSON
+- Z-score anomaly detection
+- Markov-chain behavioral analysis
+- Threat detection and incident analysis
+
+The project has been benchmarked at sub-200 ms analysis latency across its documented log sources and includes an evaluation showing approximately 38% fewer false-positive alerts when combining behavioral analysis with statistical detection versus the statistical baseline.
+
+Status: In progress.
+
+Technologies: Go, log analytics, anomaly detection, Markov chains, statistics, Linux, Windows, Docker, Kubernetes.
+
+### SortMail
+
+[Project](https://sortmail.rounakneema.in)
+
+AI operating layer for professional email designed to work with Gmail and Outlook.
+
+Key capabilities:
+- Executive email briefings
+- Email summarization
+- Attachment intelligence
+- Smart replies
+- Task and priority extraction
+- Follow-up detection
+- Deadline extraction
+- Calendar-oriented workflows
+- AI-powered email search and reasoning
+
+Security architecture includes OAuth security, authentication, authorization, rate limiting, attachment validation, malware/ZIP-bomb protections, secure secret management, monitoring, and privacy/compliance considerations.
+
+Technologies: AI/LLMs, Gmail/Outlook integrations, APIs, OAuth, backend systems, databases, cloud infrastructure.
+
+### SPQR
+
+[Project](https://spqr.rounakneema.in)
+
+Open-source contribution to SPQR, a distributed PostgreSQL sharding router.
+
+Contribution:
+- Implemented native Request Per Second (RPS) tracking in the Go routing layer.
+- Added routing-layer performance instrumentation.
+- Improved throughput observability and diagnosis of routing bottlenecks.
+- Worked through GitHub pull requests, debugging, and code review.
+
+Technologies: Go, PostgreSQL, distributed systems, database sharding, observability.
+
+### PipelineForge
+
+[Project](https://pipelineforge.rounakneema.in)
+
+GitOps-based DevSecOps CI/CD deployment automation platform.
+
+Key areas:
+- GitHub Actions
+- Docker image builds
+- Trivy container vulnerability scanning
+- Kubernetes deployments
+- Helm
+- Dev/staging environment promotion
+- Automated rollback
+- Kubernetes HPA
+- NetworkPolicies
+- Resource quotas
+- k6 load testing
+- Audit trails
+
+A documented optimization reduced a Go Docker image from approximately 1.1 GB to approximately 8 MB using multi-stage and distroless builds, a reduction of approximately 99.3%.
+
+Technologies: GitHub Actions, Docker, Kubernetes, Helm, Trivy, k6, GitOps, DevSecOps.
+
+### DevContext.AI / Klarity
+
+[Project](https://devcontext.rounakneema.in)
+
+AI-powered repository intelligence platform that analyzes software repositories and converts them into engineering and interview intelligence.
+
+Core capabilities:
+- Repository analysis
+- Code-quality analysis
+- Architecture reconstruction
+- Employability-oriented project analysis
+- Evidence-grounded AI analysis
+- Resume bullet generation
+- Project-specific interview questions
+- AI mock interviews
+- Answer evaluation
+- Follow-up questioning
+
+Architecture includes a React frontend, AWS serverless backend, Amazon Bedrock, Claude models, repository processing, grounding validation, token-budget management, and asynchronous analysis pipelines.
+
+Status: Active development.
+
+Technologies: React, TypeScript, AWS, AWS Lambda/serverless, Amazon Bedrock, Claude, GitHub, LLMs.
+
+### AXIOM OS
+
+[Project](https://axiom-os.rounakneema.in)
+
+Local-first personal operating system and AI accountability layer designed around behavioral telemetry, goal tracking, local memory, and contextual intervention.
+
+Core architecture:
+- Go telemetry daemon ("Specter")
+- Local SQLite memory
+- YAML-based goal definitions
+- Local Ollama inference
+- Behavioral event processing
+- Context classification
+- Goal alignment
+- Policy-driven interventions
+- Accountability and productivity workflows
+
+The architecture is designed to minimize dependence on cloud AI and keep personal behavioral data local.
+
+Status: In development.
+
+Technologies: Go, Python, Java, SQLite, Ollama, local LLMs, browser integration, behavioral analytics.
+
+### Dizzy
+
+[Project](https://dizzy.rounakneema.in)
+
+Voice-to-Figma generative UI system exploring natural-language design creation and modification through Figma MCP.
+
+Conceptual workflow:
+
+Voice → speech/agent reasoning → design intent → structured design operations → Figma MCP → native Figma design.
+
+Key areas:
+- Voice-driven UI generation
+- Natural-language design commands
+- Incremental design modification
+- Design-state management
+- Figma MCP
+- Agentic UI generation
+
+Status: In development.
+
+Technologies: voice AI, LLM agents, Figma MCP, generative UI, structured design operations.
+
+## Technical Focus
+
+- **Programming:** Go, Python, Java, Bash, SQL, TypeScript
+- **Security:** Network security, vulnerability assessment, threat detection, penetration testing, threat modeling, security analytics
+- **Systems:** Linux, networking, concurrency, distributed systems, backend engineering
+- **Cloud:** AWS, serverless architecture, Docker, Kubernetes
+- **DevSecOps:** GitHub Actions, CI/CD, GitOps, Trivy, Helm, infrastructure security
+- **Data:** PostgreSQL, SQLite, data pipelines, log analytics
+- **AI:** LLM applications, Amazon Bedrock, Claude, RAG, repository intelligence, local LLMs, AI agents
+- **Observability:** Metrics, logging, performance instrumentation, anomaly detection
+
+## Contact
+
+- Email: neemarounak9171@gmail.com
+- [GitHub](https://github.com/Rounakneema)
+- [LinkedIn](https://linkedin.com/in/rnks23)

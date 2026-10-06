@@ -1,0 +1,11 @@
+User-Agent: *
+Allow: /
+
+# GEO/AEO Discovery Endpoints
+Summary: /ai/summary.json
+FAQ: /ai/faq.json
+Service: /ai/service.json
+
+# Trust & Verification
+Contact: mailto:neemarounak9171@gmail.com
+Identity: https://rounakneema.in

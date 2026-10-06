@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://rounakneema.in/blog</loc>
+<lastmod>2026-10-06T19:30:20.110Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://rounakneema.in/blog/posts/go-raw-packet-scanner</loc>
+<lastmod>2026-01-02T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://rounakneema.in/blog/posts/zero-trust-aws-lambda-api-gateway</loc>
+<lastmod>2025-06-28T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://rounakneema.in/blog/posts/distroless-docker-go-apps</loc>
+<lastmod>2025-02-04T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://rounakneema.in/blog/posts/kubernetes-rbac-audit-lessons</loc>
+<lastmod>2024-11-12T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+</urlset>

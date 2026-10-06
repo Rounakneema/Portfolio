@@ -1,0 +1,15 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+
+User-Agent: GPTBot
+User-Agent: CCBot
+User-Agent: Claude-Web
+User-Agent: Google-Extended
+User-Agent: ClaudeBot
+User-Agent: ChatGPT-User
+Allow: /
+
+Sitemap: https://rounakneema.in/sitemap.xml
+Sitemap: https://rounakneema.in/projects/sitemap.xml
+Sitemap: https://rounakneema.in/blog/sitemap.xml

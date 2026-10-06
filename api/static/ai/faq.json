@@ -1,0 +1,24 @@
+{
+  "faqs": [
+    {
+      "question": "What is Revealr?",
+      "answer": "Revealr is a high-speed Go-based network scanner and vulnerability mapping tool designed to maintain stateful scan history across sessions."
+    },
+    {
+      "question": "What is PipelineForge?",
+      "answer": "A GitOps DevSecOps CI/CD Pipeline Automation framework demonstrating production-grade DevOps using GitHub Actions, Kubernetes, Helm, and Trivy."
+    },
+    {
+      "question": "What is SortMail?",
+      "answer": "An intelligence layer that sits on top of Gmail and Outlook to automatically extract tasks, deadlines, and context from email threads using Gemini 2.0 Flash."
+    },
+    {
+      "question": "What is MetroMind?",
+      "answer": "An enterprise AI document intelligence platform built for OCR and vector search workflows."
+    },
+    {
+      "question": "Who developed these projects?",
+      "answer": "These projects were architected and engineered by Rounak Neema."
+    }
+  ]
+}
