@@ -7,7 +7,18 @@ import JsonLd from '@/components/JsonLd';
 export const metadata = {
     title: 'Projects Hub // Rounak Neema',
     description: 'A collection of engineering projects spanning high-performance network scanning, offline security analytics, DevOps tooling, and microservices platforms.',
-    alternates: { canonical: '/projects' },
+    alternates: { canonical: 'https://rounakneema.in/projects' },
+    openGraph: {
+        title: 'Projects Hub // Rounak Neema',
+        description: 'A collection of engineering projects spanning high-performance network scanning, offline security analytics, DevOps tooling, and microservices platforms.',
+        url: 'https://rounakneema.in/projects',
+        siteName: 'Rounak Neema',
+        type: 'website',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function ProjectsPage() {

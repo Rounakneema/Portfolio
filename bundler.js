@@ -98,45 +98,64 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 \t\t}
 \t}
 
-\tserveAsset := func(assetPath string) {
-\t\tassetPath = strings.TrimPrefix(strings.ReplaceAll(assetPath, "\\\\", "/"), "/")
-\t\tif assetPath == "" {
-\t\t\tassetPath = "index.html"
-\t\t}
+	serveAsset := func(assetPath string) {
+		assetPath = strings.TrimPrefix(strings.ReplaceAll(assetPath, "\\", "/"), "/")
+		if assetPath == "" {
+			assetPath = "index.html"
+		}
 
-\t\tcontent, ok := assets[assetPath]
-\t\tif !ok {
-\t\t\tdirIndex := strings.TrimSuffix(assetPath, "/") + "/index.html"
-\t\t\tcontent, ok = assets[strings.TrimPrefix(dirIndex, "/")]
-\t\t\tif ok {
-\t\t\t\tassetPath = dirIndex
-\t\t\t}
-\t\t}
+		cleanPath := strings.TrimSuffix(assetPath, "/")
 
-\t\tif !ok {
-\t\t\tif strings.HasPrefix(reqPath, "/portfolio/") {
-\t\t\t\tassetPath = "portfolio/index.html"
-\t\t\t\tcontent, ok = assets[assetPath]
-\t\t\t} else if strings.HasPrefix(reqPath, "/blog/") {
-\t\t\t\tassetPath = "blog/index.html"
-\t\t\t\tcontent, ok = assets[assetPath]
-\t\t\t}
-\t\t}
+		// 1. Direct match (e.g. static assets, images, txt files, exact filenames)
+		content, ok := assets[cleanPath]
+		if ok {
+			assetPath = cleanPath
+		}
 
-\t\tif !ok {
-\t\t\tif notFound, exists := assets["404.html"]; exists {
-\t\t\t\tw.WriteHeader(http.StatusNotFound)
-\t\t\t\tw.Header().Set("Content-Type", "text/html")
-\t\t\t\thttp.ServeContent(w, r, "404.html", time.Now(), bytes.NewReader(notFound))
-\t\t\t} else {
-\t\t\t\tw.Header().Set("Content-Type", "text/plain")
-\t\t\t\tw.WriteHeader(http.StatusNotFound)
-\t\t\t\tfmt.Fprintf(w, "404 Not Found: %s\\n", r.URL.Path)
-\t\t\t}
-\t\t\treturn
-\t\t}
+		// 2. Clean URL match with .html extension (e.g. /projects -> projects.html, /projects/revealr -> projects/revealr.html)
+		if !ok {
+			htmlPath := cleanPath + ".html"
+			content, ok = assets[htmlPath]
+			if ok {
+				assetPath = htmlPath
+			}
+		}
 
-\t\text := filepath.Ext(assetPath)
+		// 3. Directory index fallback (e.g. /portfolio/ -> portfolio/index.html)
+		if !ok {
+			dirIndex := cleanPath + "/index.html"
+			content, ok = assets[strings.TrimPrefix(dirIndex, "/")]
+			if ok {
+				assetPath = dirIndex
+			}
+		}
+
+		// 4. Sub-app SPA fallback
+		if !ok {
+			if strings.HasPrefix(reqPath, "/portfolio/") || reqPath == "/portfolio" {
+				assetPath = "portfolio/index.html"
+				content, ok = assets[assetPath]
+			} else if strings.HasPrefix(reqPath, "/blog/") || reqPath == "/blog" {
+				assetPath = "blog/index.html"
+				content, ok = assets[assetPath]
+			}
+		}
+
+		// 5. 404 Not Found (genuine HTTP 404 status code)
+		if !ok {
+			if notFound, exists := assets["404.html"]; exists {
+				w.Header().Set("Content-Type", "text/html; charset=utf-8")
+				w.WriteHeader(http.StatusNotFound)
+				w.Write(notFound)
+			} else {
+				w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+				w.WriteHeader(http.StatusNotFound)
+				fmt.Fprintf(w, "404 Not Found: %s\\n", r.URL.Path)
+			}
+			return
+		}
+
+		ext := filepath.Ext(assetPath)
 \t\tctype := mime.TypeByExtension(ext)
 \t\tif ctype == "" {
 \t\t\tswitch ext {

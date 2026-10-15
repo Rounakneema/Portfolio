@@ -61,25 +61,51 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			assetPath = "index.html"
 		}
 
-		content, ok := assets[assetPath]
-		if !ok {
-			dirIndex := strings.TrimSuffix(assetPath, "/") + "/index.html"
-			content, ok = assets[strings.TrimPrefix(dirIndex, "/")]
+		cleanPath := strings.TrimSuffix(assetPath, "/")
+
+		// 1. Direct match (e.g. static assets, images, txt files, exact filenames)
+		content, ok := assets[cleanPath]
+		if ok {
+			assetPath = cleanPath
 		}
+
+		// 2. Clean URL match with .html extension (e.g. /projects -> projects.html, /projects/revealr -> projects/revealr.html)
 		if !ok {
-			if strings.HasPrefix(reqPath, "/portfolio/") {
-				content, ok = assets["portfolio/index.html"]
-			} else if strings.HasPrefix(reqPath, "/blog/") {
-				content, ok = assets["blog/index.html"]
+			htmlPath := cleanPath + ".html"
+			content, ok = assets[htmlPath]
+			if ok {
+				assetPath = htmlPath
 			}
 		}
+
+		// 3. Directory index fallback (e.g. /portfolio/ -> portfolio/index.html)
+		if !ok {
+			dirIndex := cleanPath + "/index.html"
+			content, ok = assets[strings.TrimPrefix(dirIndex, "/")]
+			if ok {
+				assetPath = dirIndex
+			}
+		}
+
+		// 4. Sub-app SPA fallback
+		if !ok {
+			if strings.HasPrefix(reqPath, "/portfolio/") || reqPath == "/portfolio" {
+				assetPath = "portfolio/index.html"
+				content, ok = assets[assetPath]
+			} else if strings.HasPrefix(reqPath, "/blog/") || reqPath == "/blog" {
+				assetPath = "blog/index.html"
+				content, ok = assets[assetPath]
+			}
+		}
+
+		// 5. 404 Not Found (genuine HTTP 404 status code)
 		if !ok {
 			if notFound, exists := assets["404.html"]; exists {
+				w.Header().Set("Content-Type", "text/html; charset=utf-8")
 				w.WriteHeader(http.StatusNotFound)
-				w.Header().Set("Content-Type", "text/html")
-				http.ServeContent(w, r, "404.html", time.Now(), bytes.NewReader(notFound))
+				w.Write(notFound)
 			} else {
-				w.Header().Set("Content-Type", "text/plain")
+				w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 				w.WriteHeader(http.StatusNotFound)
 				fmt.Fprintf(w, "404 Not Found: %s\n", r.URL.Path)
 			}

@@ -17,14 +17,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title: `${project.title} | Rounak Neema`,
         description: project.fullDescription.substring(0, 160),
         keywords: [project.title, ...project.tech, project.category, 'Rounak Neema', 'Projects'],
+        alternates: { canonical: `https://rounakneema.in/projects/${project.slug}` },
+        robots: {
+            index: true,
+            follow: true,
+        },
         openGraph: {
             title: `${project.title} | Project by Rounak Neema`,
             description: project.fullDescription.substring(0, 160),
-            url: `https://${project.subdomain}`,
+            url: `https://rounakneema.in/projects/${project.slug}`,
             siteName: 'Rounak Neema',
             images: [
                 {
-                    url: '/og-image.png', // Assuming default og-image for now
+                    url: '/og-image.png',
                     width: 1200,
                     height: 630,
                     alt: project.title,

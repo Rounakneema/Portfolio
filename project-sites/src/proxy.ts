@@ -35,7 +35,13 @@ export default function proxy(req: NextRequest) {
     subdomain = hostWithoutPort.replace('.localhost', '');
   }
 
-  // Strip 'www.' if someone explicitly typed it on a subdomain
+  // 301 Permanent Redirect: Consolidate www.<subdomain>.rounakneema.in to <subdomain>.rounakneema.in
+  if (hostWithoutPort.startsWith('www.') && hostWithoutPort.endsWith('.rounakneema.in') && hostWithoutPort !== 'www.rounakneema.in') {
+    const nonWwwHost = hostWithoutPort.replace(/^www\./, '');
+    return NextResponse.redirect(`https://${nonWwwHost}${url.pathname}${url.search}`, 301);
+  }
+
+  // Strip 'www.' if someone explicitly typed it on a subdomain (e.g. localhost)
   if (subdomain.startsWith('www.')) {
     subdomain = subdomain.replace('www.', '');
   }

@@ -2,12 +2,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from 'next/script';
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from 'next';
-
-// ... inside the default export function, likely near JsonLd or children ...
-// Wait, I should not use comment placeholders in ReplacementContent if I want to be precise.
-// I will use strict StartLine/EndLine or carefully construct the replacement.
-// Let's modify imports first then the body.
-
 import { getAllPosts } from '@/lib/posts';
 import { GlobalSearchWrapper } from '@/components/GlobalSearchWrapper';
 import { TitleHandler } from '@/components/TitleHandler';
