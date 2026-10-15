@@ -1,8 +1,9 @@
 import { Navbar } from '@/components/portfolio/layout/Navbar';
 import { Footer } from '@/components/portfolio/layout/Footer';
 import Link from 'next/link';
-import { Mail, Clock, ShieldCheck, CheckCircle2, ArrowRight, Github, Linkedin, FileText, Send } from 'lucide-react';
+import { Mail, Clock, ShieldCheck, CheckCircle2, ArrowRight, Github, Linkedin, FileText, Send, Sparkles } from 'lucide-react';
 import JsonLd from '@/components/JsonLd';
+import { ContactForm } from '@/components/ContactForm';
 
 export const metadata = {
     title: 'Contact & Hire // Rounak Neema',
@@ -127,80 +128,70 @@ export default function ContactPage() {
                         </div>
                     </div>
 
-                    {/* Right: Structured Project Intake Scope Helper */}
-                    <div className="lg:col-span-7">
+                    {/* Right: Interactive Project Intake Form */}
+                    <div className="lg:col-span-7 space-y-8">
                         <div className="border border-gray-200 rounded-2xl p-8 bg-white shadow-sm">
-                            <span className="font-mono text-xs font-bold text-blue-600 uppercase tracking-widest block mb-2">Project Intake</span>
-                            <h2 className="text-2xl font-black text-black mb-2">Submit Project Scope</h2>
+                            <span className="font-mono text-xs font-bold text-blue-600 uppercase tracking-widest block mb-2">Project Intake Form</span>
+                            <h2 className="text-2xl font-black text-black mb-2">Submit Scope &amp; Requirements</h2>
                             <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                                Click your service category below to prepare a pre-filled direct inquiry email with all necessary technical parameters.
+                                Fill in your parameters below to generate a detailed project briefing. I will evaluate your stack and respond with a technical assessment and timeline within 24 hours.
                             </p>
 
-                            <div className="space-y-4 mb-8">
+                            <ContactForm />
+                        </div>
+
+                        {/* Secondary: Quick Templates */}
+                        <div className="border border-gray-200 rounded-2xl p-6 bg-gray-50/50">
+                            <span className="font-mono text-xs font-bold text-gray-400 uppercase tracking-widest block mb-2">Alternative: One-Click Email Templates</span>
+                            <h3 className="text-base font-bold text-black mb-4">Launch Pre-formatted Email Scope</h3>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <a
                                     href="mailto:rounakneema414@gmail.com?subject=Project%20Inquiry%3A%20Backend%20Engineering%20%2F%20MVP%20Development&body=Hello%20Rounak%2C%0A%0AI%20would%20like%20to%20discuss%20a%20backend%20software%20project.%0A%0A1.%20Project%20Overview%3A%20%0A2.%20Technical%20Stack%20(Go%2C%20Python%2C%20API%2C%20DB)%3A%20%0A3.%20Desired%20Timeline%3A%20%0A4.%20Budget%20Range%20%2F%20Engagement%20Model%3A%20%0A%0ABest%20regards%2C"
-                                    className="p-5 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all flex items-center justify-between group block"
+                                    className="p-4 border border-gray-200 rounded-xl bg-white hover:border-black transition-all block group"
                                 >
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="font-mono text-xs font-bold text-blue-600 uppercase">Option A</span>
-                                            <h4 className="font-bold text-base text-black">Backend &amp; MVP Development</h4>
-                                        </div>
-                                        <p className="text-xs text-gray-500">Go/Python microservices, API architecture, database design.</p>
+                                    <div className="flex items-center justify-between mb-1">
+                                        <span className="font-mono text-[10px] font-bold text-blue-600 uppercase">Option A</span>
+                                        <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-black group-hover:translate-x-0.5 transition-all" />
                                     </div>
-                                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-black group-hover:translate-x-1 transition-all shrink-0" />
+                                    <div className="font-bold text-xs text-black mb-0.5">Backend &amp; MVP Dev</div>
+                                    <div className="text-[11px] text-gray-500">Go/Python services, APIs, databases.</div>
                                 </a>
 
                                 <a
                                     href="mailto:rounakneema414@gmail.com?subject=Inquiry%3A%20Authorized%20Cybersecurity%20Assessment&body=Hello%20Rounak%2C%0A%0AWe%20are%20looking%20to%20schedule%20an%20authorized%20security%20assessment.%0A%0A1.%20Application%20%2F%20Target%20Scope%3A%20%0A2.%20Assessment%20Type%20(Web%20App%2C%20API%2C%20AWS%20IAM)%3A%20%0A3.%20Target%20Start%20Date%3A%20%0A4.%20Compliance%20or%20Security%20Objectives%3A%20%0A%0ABest%20regards%2C"
-                                    className="p-5 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all flex items-center justify-between group block"
+                                    className="p-4 border border-gray-200 rounded-xl bg-white hover:border-black transition-all block group"
                                 >
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="font-mono text-xs font-bold text-red-600 uppercase">Option B</span>
-                                            <h4 className="font-bold text-base text-black">Cybersecurity &amp; Vulnerability Assessment</h4>
-                                        </div>
-                                        <p className="text-xs text-gray-500">Authorized web/API vulnerability testing, AWS IAM reviews.</p>
+                                    <div className="flex items-center justify-between mb-1">
+                                        <span className="font-mono text-[10px] font-bold text-red-600 uppercase">Option B</span>
+                                        <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-black group-hover:translate-x-0.5 transition-all" />
                                     </div>
-                                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-black group-hover:translate-x-1 transition-all shrink-0" />
+                                    <div className="font-bold text-xs text-black mb-0.5">Cybersecurity Audit</div>
+                                    <div className="text-[11px] text-gray-500">Web apps, APIs, IAM assessments.</div>
                                 </a>
 
                                 <a
                                     href="mailto:rounakneema414@gmail.com?subject=Inquiry%3A%20DevSecOps%20%26%20CI%2FCD%20Automation&body=Hello%20Rounak%2C%0A%0AWe%20would%20like%20assistance%20with%20our%20DevSecOps%20and%20deployment%20pipelines.%0A%0A1.%20Current%20Infrastructure%20(GitHub%20Actions%2C%20Docker%2C%20Kubernetes)%3A%20%0A2.%20Key%20Objectives%20(Distroless%20packaging%2C%20Trivy%20gates%2C%20CI%20speed)%3A%20%0A3.%20Target%20Timeline%3A%20%0A%0ABest%20regards%2C"
-                                    className="p-5 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all flex items-center justify-between group block"
+                                    className="p-4 border border-gray-200 rounded-xl bg-white hover:border-black transition-all block group"
                                 >
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="font-mono text-xs font-bold text-orange-600 uppercase">Option C</span>
-                                            <h4 className="font-bold text-base text-black">DevSecOps &amp; CI/CD Hardening</h4>
-                                        </div>
-                                        <p className="text-xs text-gray-500">Distroless Docker containers, GitHub Actions security gates.</p>
+                                    <div className="flex items-center justify-between mb-1">
+                                        <span className="font-mono text-[10px] font-bold text-orange-600 uppercase">Option C</span>
+                                        <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-black group-hover:translate-x-0.5 transition-all" />
                                     </div>
-                                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-black group-hover:translate-x-1 transition-all shrink-0" />
+                                    <div className="font-bold text-xs text-black mb-0.5">DevSecOps &amp; CI/CD</div>
+                                    <div className="text-[11px] text-gray-500">Distroless Docker, Trivy gates.</div>
                                 </a>
 
                                 <a
                                     href="mailto:rounakneema414@gmail.com?subject=Inquiry%3A%20AI%20Engineering%20%26%20Document%20Automation&body=Hello%20Rounak%2C%0A%0AWe%20have%20an%20AI%20%2F%20document%20intelligence%20project%20to%20discuss.%0A%0A1.%20Use%20Case%20(OCR%2C%20Contract%20Intelligence%2C%20RAG%2C%20Local%20Ollama)%3A%20%0A2.%20Document%20Volume%20%2F%20Scale%3A%20%0A3.%20Privacy%20Requirements%20(Cloud%20vs%20On-Prem)%3A%20%0A4.%20Target%20Completion%20Date%3A%20%0A%0ABest%20regards%2C"
-                                    className="p-5 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all flex items-center justify-between group block"
+                                    className="p-4 border border-gray-200 rounded-xl bg-white hover:border-black transition-all block group"
                                 >
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="font-mono text-xs font-bold text-purple-600 uppercase">Option D</span>
-                                            <h4 className="font-bold text-base text-black">AI Systems &amp; Document Intelligence</h4>
-                                        </div>
-                                        <p className="text-xs text-gray-500">OCR ingestion, vector search, codebase AST grounding.</p>
+                                    <div className="flex items-center justify-between mb-1">
+                                        <span className="font-mono text-[10px] font-bold text-purple-600 uppercase">Option D</span>
+                                        <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-black group-hover:translate-x-0.5 transition-all" />
                                     </div>
-                                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-black group-hover:translate-x-1 transition-all shrink-0" />
-                                </a>
-                            </div>
-
-                            <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center">
-                                <span className="text-xs text-gray-500 block mb-1">Prefer to write a custom email?</span>
-                                <a
-                                    href="mailto:rounakneema414@gmail.com"
-                                    className="text-sm font-bold text-black border-b border-black hover:text-blue-600 hover:border-blue-600 transition-colors"
-                                >
-                                    rounakneema414@gmail.com
+                                    <div className="font-bold text-xs text-black mb-0.5">AI &amp; Document Ingest</div>
+                                    <div className="text-[11px] text-gray-500">OCR pipelines, Milvus vector RAG.</div>
                                 </a>
                             </div>
                         </div>
