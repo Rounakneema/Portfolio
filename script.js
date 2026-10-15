@@ -112,7 +112,7 @@ const payload = {
         { "@type": "ListItem", "position": 4, "item": { "@id": "https://pipelineforge.rounakneema.in/#software" } },
         { "@type": "ListItem", "position": 5, "item": { "@id": "https://sortmail.rounakneema.in/#software" } },
         { "@type": "ListItem", "position": 6, "item": { "@id": "https://devcontext.rounakneema.in/#software" } },
-        { "@type": "ListItem", "position": 7, "item": { "@id": "https://axiom-os.rounakneema.in/#software" } },
+        { "@type": "ListItem", "position": 7, "item": { "@id": "https://axiomos.rounakneema.in/#software" } },
         { "@type": "ListItem", "position": 8, "item": { "@id": "https://dizzy.rounakneema.in/#software" } }
       ]
     },
@@ -196,9 +196,9 @@ const payload = {
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://axiom-os.rounakneema.in/#software",
+      "@id": "https://axiomos.rounakneema.in/#software",
       "name": "AXIOM OS",
-      "url": "https://axiom-os.rounakneema.in",
+      "url": "https://axiomos.rounakneema.in",
       "description": "Local-first personal AI operating system.",
       "applicationCategory": "ProductivityApplication",
       "applicationSubCategory": "Artificial Intelligence",
@@ -234,7 +234,7 @@ const payload = {
       "@type": "Blog",
       "@id": "https://rounakneema.in/blog#blog",
       "url": "https://rounakneema.in/blog",
-      "name": "Rounak Neema — Engineering Blog",
+      "name": "Rounak Neema ï¿½ Engineering Blog",
       "description": "Technical writing covering cybersecurity, networking, Go, DevSecOps, cloud infrastructure, security engineering, and software development.",
       "publisher": { "@id": "https://rounakneema.in/#person" },
       "author": { "@id": "https://rounakneema.in/#person" },

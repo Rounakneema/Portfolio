@@ -11,7 +11,7 @@ export default function AxiomOsLayout({
     <div className="w-full min-h-screen bg-[#0a0a0a] text-white">
       <AxiomNav />
       {children}
-      <ProjectFooter slug="axiom-os" />
+      <ProjectFooter slug="axiomos" />
     </div>
   );
 }

@@ -29,6 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projectPaths: Record<string, string[]> = {
     'revealr': ['architecture', 'benchmarks', 'changelog', 'docs', 'security'],
     'metromind': ['architecture'],
+    'axiomos': ['architecture', 'decisions', 'docs'],
     'axiom-os': ['architecture', 'decisions', 'docs'],
     'devcontext': ['architecture', 'decisions', 'docs'],
     'dizzy': ['architecture', 'decisions', 'docs'],

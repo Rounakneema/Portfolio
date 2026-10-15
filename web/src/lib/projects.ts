@@ -1,4 +1,4 @@
-﻿export type Tag = {
+export type Tag = {
     text: string;
     type: 'blue' | 'green' | 'purple' | 'red' | 'yellow' | 'default';
 };
@@ -264,12 +264,12 @@ export const projects: Project[] = [
         ],
     },
     {
-        slug: 'axiom-os',
+        slug: 'axiomos',
         title: 'AXIOM OS',
         subtitle: 'Zero-Cloud Local Personal Operating System',
         status: 'concept',
         category: 'Local AI / OS',
-        subdomain: 'axiom-os.rounakneema.in',
+        subdomain: 'axiomos.rounakneema.in',
         tags: [
             { text: 'GO', type: 'blue' },
             { text: 'LOCAL AI', type: 'purple' },

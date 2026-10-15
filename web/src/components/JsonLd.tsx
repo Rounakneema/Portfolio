@@ -210,7 +210,7 @@ const baseNodes = {
         "@type": "ListItem",
         "position": 7,
         "item": {
-          "@id": "https://axiom-os.rounakneema.in/#software"
+          "@id": "https://axiomos.rounakneema.in/#software"
         }
       },
       {
@@ -575,9 +575,9 @@ const baseNodes = {
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://axiom-os.rounakneema.in/#software",
+      "@id": "https://axiomos.rounakneema.in/#software",
       "name": "AXIOM OS",
-      "url": "https://axiom-os.rounakneema.in",
+      "url": "https://axiomos.rounakneema.in",
       "description": "Local-first personal AI operating system.",
       "applicationCategory": "ProductivityApplication",
       "applicationSubCategory": "Artificial Intelligence",

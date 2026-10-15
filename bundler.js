@@ -59,7 +59,8 @@ var projectSubdomains = map[string]string{
 	"spqr":          "spqr",
 	"pipelineforge": "pipelineforge",
 	"devcontext":    "devcontext",
-	"axiom-os":      "axiom-os",
+	"axiomos":       "axiomos",
+	"axiom-os":      "axiomos",
 	"dizzy":         "dizzy",
 }
 

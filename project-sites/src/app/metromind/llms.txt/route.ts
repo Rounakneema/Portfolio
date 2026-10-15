@@ -40,7 +40,7 @@ ${project.metrics.map(m => `- **${m.label}**: ${m.value}`).join('\n')}
 - [SortMail - AI Email Layer](https://sortmail.rounakneema.in)
 - [PipelineForge - DevSecOps](https://pipelineforge.rounakneema.in)
 - [MetroMind - Document AI](https://metromind.rounakneema.in)
-- [AXIOM OS - Local AI](https://axiom-os.rounakneema.in)
+- [AXIOM OS - Local AI](https://axiomos.rounakneema.in)
 - [OSA - Security Analytics](https://osa.rounakneema.in)
 `;
 

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -176,7 +176,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                                 );
                             })}
                     {/* Deep Dives (SEO Internal Links) */}
-                    {project.slug && ['revealr', 'metromind', 'axiom-os', 'devcontext', 'dizzy', 'osa', 'pipelineforge', 'sortmail'].includes(project.slug) && (
+                    {project.slug && ['revealr', 'metromind', 'axiomos', 'axiom-os', 'devcontext', 'dizzy', 'osa', 'pipelineforge', 'sortmail'].includes(project.slug) && (
                         <motion.div
                             initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -189,6 +189,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                                     const projectPaths: Record<string, string[]> = {
                                         'revealr': ['architecture', 'benchmarks', 'changelog', 'docs', 'security'],
                                         'metromind': ['architecture'],
+                                        'axiomos': ['architecture', 'decisions', 'docs'],
                                         'axiom-os': ['architecture', 'decisions', 'docs'],
                                         'devcontext': ['architecture', 'decisions', 'docs'],
                                         'dizzy': ['architecture', 'decisions', 'docs'],

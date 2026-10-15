@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getProjectBySlug } from '@/lib/projects';
 
 export async function GET() {
-  const project = getProjectBySlug('axiom-os');
+  const project = getProjectBySlug('axiomos');
   
   if (!project) {
     return new NextResponse('Project not found', { status: 404 });
@@ -15,7 +15,7 @@ export async function GET() {
 ## Overview
 ${project.fullDescription}
 
-- [Official Domain](https://revealr.rounakneema.in)
+- [Official Domain](https://axiomos.rounakneema.in)
 - [Author: Rounak Neema](https://rounakneema.in)
 - [Source Repository](https://github.com/Rounakneema)
 
@@ -29,7 +29,7 @@ ${project.bullets.map(b => `- **${b.label}**: ${b.text}`).join('\n')}
 ${project.tech.join(', ')}
 
 ### System Metrics
-${project.metrics.map(m => `- **${m.label}**: ${m.value}`).join('\n')}
+${project.metrics ? project.metrics.map(m => `- **${m.label}**: ${m.value}`).join('\n') : ''}
 
 ## Author & Related Projects
 - [Author: Rounak Neema](https://rounakneema.in)
@@ -40,7 +40,7 @@ ${project.metrics.map(m => `- **${m.label}**: ${m.value}`).join('\n')}
 - [SortMail - AI Email Layer](https://sortmail.rounakneema.in)
 - [PipelineForge - DevSecOps](https://pipelineforge.rounakneema.in)
 - [MetroMind - Document AI](https://metromind.rounakneema.in)
-- [AXIOM OS - Local AI](https://axiom-os.rounakneema.in)
+- [AXIOM OS - Local AI](https://axiomos.rounakneema.in)
 - [OSA - Security Analytics](https://osa.rounakneema.in)
 `;
 

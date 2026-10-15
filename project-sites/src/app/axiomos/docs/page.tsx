@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function AxiomOsDocsPage() {
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#00d4aa] selection:text-black px-4 md:px-12 py-24 pb-32 max-w-7xl mx-auto overflow-hidden font-sans">
-        <ProjectJsonLd slug="axiom-os" pageType="Docs" />
+        <ProjectJsonLd slug="axiomos" pageType="Docs" />
             <style dangerouslySetInnerHTML={{ __html: `
                 .brutalist-border { border: 2px solid #333; }
                 .brutalist-border-b { border-bottom: 2px solid #333; }
@@ -20,7 +20,7 @@ export default function AxiomOsDocsPage() {
 
             <ScrollReveal direction="up" delay={0.1}>
                 <header className="mb-16 brutalist-border-b pb-8">
-                    <p className="text-red-500 font-bold mb-4 tracking-widest text-sm uppercase">AXIOM-OS // DOCS</p>
+                    <p className="text-red-500 font-bold mb-4 tracking-widest text-sm uppercase">AXIOM OS // DOCS</p>
                     <h1 className="text-2xl font-black uppercase tracking-tighter">System Manual</h1>
                     <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
                         Raw engineering documentation for AXIOM OS. Specter daemon flags, memory schema definitions, and local Ollama setup.
@@ -139,7 +139,7 @@ echo "[+] Inference layer online."`}</pre>
 
             <ScrollReveal direction="up" delay={0.1}>
                 <footer className="brutalist-border-t pt-8 mt-16 text-center text-gray-600 text-xs uppercase tracking-widest">
-                    End of Documentation // AXIOM-OS
+                    End of Documentation // AXIOM OS
                 </footer>
             </ScrollReveal>
         </main>

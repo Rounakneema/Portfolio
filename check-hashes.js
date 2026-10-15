@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const projectDirs = ['axiom-os', 'devcontext', 'dizzy', 'metromind', 'osa', 'pipelineforge', 'revealr', 'sortmail'];
+const projectDirs = ['axiomos', 'devcontext', 'dizzy', 'metromind', 'osa', 'pipelineforge', 'revealr', 'sortmail'];
 
 function getIds(content) {
     const ids = new Set();

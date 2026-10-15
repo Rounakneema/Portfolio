@@ -42,9 +42,11 @@ export default function proxy(req: NextRequest) {
 
   // If accessed via a specific subdomain (e.g. revealr.rounakneema.in)
   if (subdomain && subdomain !== 'www') {
+    // Support axiom-os alias mapped to axiomos
+    const targetSubdomain = subdomain === 'axiom-os' ? 'axiomos' : subdomain;
     // Avoid double prefixing
-    if (!url.pathname.startsWith(`/${subdomain}`)) {
-      url.pathname = `/${subdomain}${url.pathname}`;
+    if (!url.pathname.startsWith(`/${targetSubdomain}`)) {
+      url.pathname = `/${targetSubdomain}${url.pathname}`;
     }
     return NextResponse.rewrite(url);
   }

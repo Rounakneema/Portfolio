@@ -13,7 +13,7 @@ export const metadata = {
   title: 'AXIOM OS — Local-First Personal AI Operating System',
   description: 'A zero-cloud, high-performance telemetry daemon and interactive desktop pet that tracks your digital life and uses local AI to brutally hold you accountable.',
   alternates: {
-    canonical: 'https://axiom-os.rounakneema.in',
+    canonical: 'https://axiomos.rounakneema.in',
   },
 };
 
@@ -27,12 +27,12 @@ const axiomJsonLd = {
 };
 
 export default function AxiomPage() {
-    const project = projects.find((p) => p.slug === 'axiom-os');
+    const project = projects.find((p) => p.slug === 'axiomos');
     if (!project) return notFound();
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#00d4aa] selection:text-black font-sans overflow-hidden">
-            <ProjectJsonLd slug="axiom-os" />
+            <ProjectJsonLd slug="axiomos" />
 
             {/* Ambient Background */}
             <div className="fixed inset-0 z-0 pointer-events-none">

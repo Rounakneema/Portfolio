@@ -169,7 +169,7 @@ Technologies: React, TypeScript, AWS, AWS Lambda/serverless, Amazon Bedrock, Cla
 
 ### AXIOM OS
 
-[Project](https://axiom-os.rounakneema.in)
+[Project](https://axiomos.rounakneema.in)
 
 Local-first personal operating system and AI accountability layer designed around behavioral telemetry, goal tracking, local memory, and contextual intervention.
 
