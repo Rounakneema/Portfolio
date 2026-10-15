@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import { ArrowUpRight, Shield, Terminal, Cpu, ChevronDown, FileText } from 'lucide-react';
@@ -125,9 +125,19 @@ export function HubClient() {
 
                     <div className="h-8 w-px bg-zinc-300 mx-2 hidden sm:block"></div>
 
-                    <a href="mailto:rounakneema414@gmail.com" className="px-6 py-3 rounded-full bg-white border border-zinc-200 hover:border-black font-bold text-zinc-600 hover:text-black transition-all hover:shadow-md flex items-center gap-2 text-sm">
-                        EMAIL ME
-                    </a>
+                    <Link
+                        href="/freelance"
+                        className="px-6 py-4 rounded-full bg-emerald-500 text-black hover:bg-emerald-400 font-bold tracking-wide transition-all shadow-md hover:scale-105 flex items-center gap-2 text-sm md:text-base"
+                    >
+                        FREELANCE SERVICES <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+
+                    <Link
+                        href="/contact"
+                        className="px-6 py-3 rounded-full bg-white border border-zinc-200 hover:border-black font-bold text-zinc-600 hover:text-black transition-all hover:shadow-md flex items-center gap-2 text-sm"
+                    >
+                        CONTACT &amp; HIRE
+                    </Link>
 
                     <div className="flex gap-2">
                         <a href="https://github.com/rounakneema" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white border border-zinc-200 hover:border-black hover:bg-black hover:text-white transition-all hover:shadow-md group">
@@ -246,10 +256,18 @@ export function HubClient() {
                     </p>
 
                     {/* Semantic Text Navigation for Crawlers */}
-                    <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-zinc-600">
-                        <Link href="/portfolio" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Portfolio</Link>
-                        <Link href="/projects" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Projects Hub</Link>
-                        <Link href="/blog" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Engineering Archive</Link>
+                    <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-zinc-600 mb-4">
+                        <Link href="/freelance" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4 font-bold text-black">Freelance Services</Link>
+                        <Link href="/freelance/software-development" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Backend Development</Link>
+                        <Link href="/freelance/cybersecurity" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">Cybersecurity Audits</Link>
+                        <Link href="/freelance/devsecops" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">DevSecOps &amp; CI/CD</Link>
+                        <Link href="/freelance/ai-development" className="hover:text-black hover:underline decoration-zinc-400 underline-offset-4">AI Systems</Link>
+                    </nav>
+                    <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-zinc-400">
+                        <Link href="/portfolio" className="hover:text-black hover:underline">Portfolio</Link>
+                        <Link href="/projects" className="hover:text-black hover:underline">Projects Hub</Link>
+                        <Link href="/blog" className="hover:text-black hover:underline">Engineering Archive</Link>
+                        <Link href="/contact" className="hover:text-black hover:underline">Contact &amp; Hire</Link>
                     </nav>
                 </div>
             </motion.section>

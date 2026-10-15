@@ -20,6 +20,17 @@ export function Footer() {
                     </a>
                 </div>
 
+                {/* Center: Services & Links */}
+                <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-xs font-mono">
+                    <span className="col-span-2 text-gray-500 font-bold uppercase tracking-widest mb-1">Freelance Services</span>
+                    <a href="/freelance/software-development" className="text-gray-400 hover:text-white transition-colors">Go &amp; Backend MVP</a>
+                    <a href="/freelance/cybersecurity" className="text-gray-400 hover:text-white transition-colors">Security Audits</a>
+                    <a href="/freelance/devsecops" className="text-gray-400 hover:text-white transition-colors">DevSecOps &amp; CI/CD</a>
+                    <a href="/freelance/ai-development" className="text-gray-400 hover:text-white transition-colors">AI &amp; Document Ingest</a>
+                    <a href="/freelance" className="text-blue-400 hover:text-blue-300 transition-colors font-bold mt-1">All Services &rarr;</a>
+                    <a href="/projects" className="text-blue-400 hover:text-blue-300 transition-colors font-bold mt-1">Projects Hub &rarr;</a>
+                </div>
+
                 {/* Right: icons + tagline */}
                 <div className="flex flex-col items-start md:items-end gap-4">
                     <div className="flex gap-3">
@@ -41,8 +52,8 @@ export function Footer() {
                         </a>
                     </div>
                     <div className="text-xs font-mono text-gray-500 text-left md:text-right leading-relaxed">
-                        ROUNAK NEEMA · Security & Infrastructure (Early Career)<br />
-                        India · Open to Work · © {new Date().getFullYear()}
+                        ROUNAK NEEMA · Software, Security &amp; Infrastructure<br />
+                        India · Available for Freelance &amp; Roles · © {new Date().getFullYear()}
                     </div>
                 </div>
             </div>

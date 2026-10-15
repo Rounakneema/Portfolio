@@ -13,9 +13,9 @@ export function Navbar() {
             <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
                 {/* Logo & Status */}
                 <div className="flex items-center gap-4">
-                    <div className="w-8 h-8 bg-black text-white flex items-center justify-center font-bold font-mono rounded-sm select-none">
+                    <a href="/" className="w-8 h-8 bg-black text-white flex items-center justify-center font-bold font-mono rounded-sm select-none hover:bg-zinc-800 transition-colors">
                         RN
-                    </div>
+                    </a>
                     <div className="hidden md:block text-right">
                         <div className="text-xs font-mono text-secondary leading-tight mb-1">STATUS</div>
                         <div className="text-sm font-bold tracking-widest text-green-600 flex items-center justify-end gap-3">
@@ -29,15 +29,25 @@ export function Navbar() {
                 </div>
 
                 {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-8">
-                    <a href="https://github.com/rounakneema" target="_blank" rel="noopener noreferrer" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-2 tracking-wide">
-                        <Github className="w-5 h-5" /> GITHUB
+                <div className="hidden md:flex items-center gap-6">
+                    <a href="/freelance" className="text-sm font-bold hover:text-accent transition-colors tracking-wide">
+                        SERVICES
                     </a>
-                    <a href="/blog" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-2 tracking-wide">
-                        <PenTool className="w-5 h-5" /> WRITINGS
+                    <a href="/projects" className="text-sm font-bold hover:text-accent transition-colors tracking-wide">
+                        PROJECTS
                     </a>
-                    <a href="https://www.linkedin.com/in/Rnks23" target="_blank" rel="noopener noreferrer" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-2 tracking-wide">
-                        <Linkedin className="w-5 h-5" /> LINKEDIN
+                    <a href="/blog" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-1.5 tracking-wide">
+                        <PenTool className="w-4 h-4" /> WRITINGS
+                    </a>
+                    <a href="/contact" className="text-sm font-bold hover:text-accent transition-colors tracking-wide">
+                        CONTACT
+                    </a>
+                    <div className="h-4 w-px bg-gray-200"></div>
+                    <a href="https://github.com/rounakneema" target="_blank" rel="noopener noreferrer" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-1.5 tracking-wide">
+                        <Github className="w-4 h-4" /> GITHUB
+                    </a>
+                    <a href="https://www.linkedin.com/in/Rnks23" target="_blank" rel="noopener noreferrer" className="text-sm font-bold hover:text-accent transition-colors flex items-center gap-1.5 tracking-wide">
+                        <Linkedin className="w-4 h-4" /> LINKEDIN
                     </a>
                     <ResumeDropdown />
                 </div>
@@ -60,11 +70,23 @@ export function Navbar() {
                         exit={{ height: 0, opacity: 0 }}
                         className="md:hidden border-b border-border bg-white overflow-hidden"
                     >
-                        <div className="px-6 py-4 flex flex-col gap-4">
-                            <a href="#" className="text-sm font-bold flex items-center gap-3 py-2">
+                        <div className="px-6 py-4 flex flex-col gap-3">
+                            <a href="/freelance" className="text-sm font-bold py-2 border-b border-gray-100">
+                                FREELANCE SERVICES
+                            </a>
+                            <a href="/projects" className="text-sm font-bold py-2 border-b border-gray-100">
+                                PROJECTS HUB
+                            </a>
+                            <a href="/blog" className="text-sm font-bold py-2 border-b border-gray-100 flex items-center gap-2">
+                                <PenTool className="w-4 h-4" /> WRITINGS
+                            </a>
+                            <a href="/contact" className="text-sm font-bold py-2 border-b border-gray-100">
+                                CONTACT &amp; HIRE
+                            </a>
+                            <a href="https://github.com/rounakneema" target="_blank" rel="noopener noreferrer" className="text-sm font-bold flex items-center gap-3 py-2">
                                 <Github className="w-4 h-4" /> GITHUB
                             </a>
-                            <a href="#" className="text-sm font-bold flex items-center gap-3 py-2">
+                            <a href="https://www.linkedin.com/in/Rnks23" target="_blank" rel="noopener noreferrer" className="text-sm font-bold flex items-center gap-3 py-2">
                                 <Linkedin className="w-4 h-4" /> LINKEDIN
                             </a>
                             <a href="/resume-sre.pdf" className="text-sm font-bold flex items-center gap-3 py-2 text-accent">

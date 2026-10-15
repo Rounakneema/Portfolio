@@ -1,6 +1,54 @@
-export type PageType = 'home' | 'portfolio' | 'projects' | 'blog' | 'post';
+export type PageType = 'home' | 'portfolio' | 'projects' | 'blog' | 'post' | 'freelance';
 
 const baseNodes = {
+  "freelanceService": {
+    "@type": "ProfessionalService",
+    "@id": "https://rounakneema.in/freelance#service",
+    "url": "https://rounakneema.in/freelance",
+    "name": "Rounak Neema — Freelance Software & Security Engineering",
+    "provider": {
+      "@id": "https://rounakneema.in/#person"
+    },
+    "description": "High-reliability software development, authorized cybersecurity assessments, GitOps DevSecOps automation, and document AI systems.",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Freelance Engineering Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Backend Software Engineering & MVP Development",
+            "url": "https://rounakneema.in/freelance/software-development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Cybersecurity & Vulnerability Assessment",
+            "url": "https://rounakneema.in/freelance/cybersecurity"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "DevSecOps & CI/CD Pipeline Automation",
+            "url": "https://rounakneema.in/freelance/devsecops"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Systems & Document Intelligence",
+            "url": "https://rounakneema.in/freelance/ai-development"
+          }
+        }
+      ]
+    }
+  },
   "website": {
     "@type": "WebSite",
     "@id": "https://rounakneema.in/#website",
@@ -643,6 +691,9 @@ export default function JsonLd({ type = 'home' }: { type?: PageType }) {
         if (baseNodes.breadcrumbProjects) graph.push(baseNodes.breadcrumbProjects);
     } else if (type === 'blog') {
         if (baseNodes.blog) graph.push(baseNodes.blog);
+    } else if (type === 'freelance') {
+        if (baseNodes.freelanceService) graph.push(baseNodes.freelanceService);
+        if (baseNodes.faq) graph.push(baseNodes.faq);
     }
 
     const jsonLd = {
