@@ -43,6 +43,11 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if len(parts) == 2 {
 		subdomain := strings.ToLower(parts[0])
 		if slug, ok := projectSubdomains[subdomain]; ok {
+			// If verification key file or sitemap, serve directly without redirecting
+			if strings.HasSuffix(reqPath, ".txt") || strings.HasSuffix(reqPath, ".xml") {
+				serveAsset(reqPath)
+				return
+			}
 			// Redirect to the project detail page on the main domain
 			http.Redirect(w, r, "https://rounakneema.in/projects/"+slug, http.StatusFound)
 			return

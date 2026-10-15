@@ -318,12 +318,12 @@ Landing pages live on the **first impression**, not the full read. Cut ruthlessl
   - **Grouped chunks:** group 10 specs into 3 logical clusters (e.g. "Materials", "Cooking", "Warranty"), each cluster gets ONE soft divider and a cluster heading.
   - **Featured-vs-rest:** 3-4 hero specs visualised as large display tiles, the rest collapsed under a "View full specifications" disclosure.
 
-* **COPY SELF-AUDIT (mandatory before ship):** Before declaring any task done, re-read every visible string on the page (headlines, subheads, eyebrows, button labels, body copy, captions, alt text, footer text, error messages). Flag any string that is:
+* **COPY SELF-AUDIT (mandatory before ship):** Before declaring any task done, re-read every visible string on the page (headlines, subheads, eyebrows, button labels, body copy, captions, alt text, footer text, error messages). **Apply the `deslop` skill to all prose.** Flag and rewrite any string that is:
   - **Grammatically broken** ("free on its past", "two plans but one is honest", "to put it on the table" out of context)
   - **Has unclear referents** ("we plan to stay that way" without prior context)
   - **Sounds like AI hallucination** (cute-but-wrong wordplay, forced metaphors that don't track, "elegant nothing" phrases)
-  - **Reads like an LLM trying to sound thoughtful** (passive-aggressive humility, fake-craftsman labels, mock-poetic micro-meta)
-  Rewrite every flagged string. If unsure whether a string makes sense, replace it with a plain functional sentence. AI-generated cute copy is worse than boring copy.
+  - **Reads like an LLM trying to sound thoughtful** (passive-aggressive humility, fake-craftsman labels, throat-clearing openers, "Let that sink in", "Here's the thing")
+  Rewrite every flagged string. Use active voice with human subjects, be specific, and trust the reader. If unsure whether a string makes sense, replace it with a plain functional sentence. AI-generated cute copy is worse than boring copy.
 * **Fake-precise numbers are flagged.** Numbers like `92%`, `4.1×`, `48k`, `5.8 mm`, `13.4 lb` either:
   - Come from real data (brief, brand guidelines, public metrics) - fine
   - Are explicitly labeled as mock (`<!-- mock -->`, "example", "sample data") - fine

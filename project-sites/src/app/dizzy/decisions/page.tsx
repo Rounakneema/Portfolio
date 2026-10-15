@@ -36,7 +36,7 @@ export default function DizzyDecisionsPage() {
             </div>
             <div className="md:col-span-7 space-y-8">
               <p className="text-zinc-400 leading-relaxed font-light text-lg">
-                Traditional voice commands rely on a <code className="bg-zinc-900 text-[#ff3366] px-2 py-1 border border-zinc-800">VAD -> Stop -> Transcribe -> Process</code> pipeline. For a real-time UI design tool, this latency is unacceptable.
+                Traditional voice commands rely on a <code className="bg-zinc-900 text-[#ff3366] px-2 py-1 border border-zinc-800">VAD -&gt; Stop -&gt; Transcribe -&gt; Process</code> pipeline. For a real-time UI design tool, this latency is unacceptable.
               </p>
               
               <div className="border-l border-[#ff3366] pl-6 py-2">

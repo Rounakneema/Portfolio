@@ -51,6 +51,18 @@ import (
 var assets = map[string][]byte{
 ${assetsMap}}
 
+var projectSubdomains = map[string]string{
+	"revealr":       "revealr",
+	"metromind":     "metromind",
+	"osa":           "osa",
+	"sortmail":      "sortmail",
+	"spqr":          "spqr",
+	"pipelineforge": "pipelineforge",
+	"devcontext":    "devcontext",
+	"axiom-os":      "axiom-os",
+	"dizzy":         "dizzy",
+}
+
 func Handler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "OPTIONS" {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -66,6 +78,24 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 \tw.Header().Set("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
 
 \treqPath := r.URL.Path
+
+\t// --- Subdomain routing ---
+\thost := r.Host
+\tif idx := strings.LastIndex(host, ":"); idx != -1 {
+\t\thost = host[:idx]
+\t}
+\tparts := strings.SplitN(host, ".", 2)
+\tif len(parts) == 2 {
+\t\tsubdomain := strings.ToLower(parts[0])
+\t\tif slug, ok := projectSubdomains[subdomain]; ok {
+\t\t\tif strings.HasSuffix(reqPath, ".txt") || strings.HasSuffix(reqPath, ".xml") {
+\t\t\t\t// Serve verification and sitemap files directly
+\t\t\t} else {
+\t\t\t\thttp.Redirect(w, r, "https://rounakneema.in/projects/"+slug, http.StatusFound)
+\t\t\t\treturn
+\t\t\t}
+\t\t}
+\t}
 
 \tserveAsset := func(assetPath string) {
 \t\tassetPath = strings.TrimPrefix(strings.ReplaceAll(assetPath, "\\\\", "/"), "/")
