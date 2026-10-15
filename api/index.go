@@ -10,10 +10,9 @@ import (
 	"time"
 )
 
-// assets is populated by bundler.js at build time (regenerates this entire file)
-var assets = map[string][]byte{}
+var assets = map[string][]byte{
+}
 
-// projectSubdomains maps subdomain prefixes to project slugs
 var projectSubdomains = map[string]string{
 	"revealr":       "revealr",
 	"metromind":     "metromind",
@@ -27,31 +26,37 @@ var projectSubdomains = map[string]string{
 	"dizzy":         "dizzy",
 }
 
-
 func Handler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "OPTIONS" {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "*")
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
 	w.Header().Set("X-Content-Type-Options", "nosniff")
 	w.Header().Set("X-Frame-Options", "DENY")
+	w.Header().Set("X-XSS-Protection", "1; mode=block")
+	w.Header().Set("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; img-src 'self' data: https:; font-src 'self' https: data:;")
+	w.Header().Set("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+
 	reqPath := r.URL.Path
 
 	// --- Subdomain routing ---
 	host := r.Host
-	// Strip port if present
 	if idx := strings.LastIndex(host, ":"); idx != -1 {
 		host = host[:idx]
 	}
-	// Extract subdomain: e.g. "revealr.rounakneema.in" → "revealr"
 	parts := strings.SplitN(host, ".", 2)
 	if len(parts) == 2 {
 		subdomain := strings.ToLower(parts[0])
 		if slug, ok := projectSubdomains[subdomain]; ok {
-			// If verification key file or sitemap, serve directly without redirecting
 			if strings.HasSuffix(reqPath, ".txt") || strings.HasSuffix(reqPath, ".xml") {
-				serveAsset(reqPath)
+				// Serve verification and sitemap files directly
+			} else {
+				http.Redirect(w, r, "https://rounakneema.in/projects/"+slug, http.StatusFound)
 				return
 			}
-			// Redirect to the project detail page on the main domain
-			http.Redirect(w, r, "https://rounakneema.in/projects/"+slug, http.StatusFound)
-			return
 		}
 	}
 
@@ -129,9 +134,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		w.Header().Set("Content-Type", ctype)
+		if ext == ".txt" || ext == ".json" {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+		}
 		http.ServeContent(w, r, assetPath, time.Now(), bytes.NewReader(content))
 	}
 
 	serveAsset(reqPath)
 }
-

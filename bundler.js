@@ -99,7 +99,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 \t}
 
 	serveAsset := func(assetPath string) {
-		assetPath = strings.TrimPrefix(strings.ReplaceAll(assetPath, "\\", "/"), "/")
+		assetPath = strings.TrimPrefix(strings.ReplaceAll(assetPath, "\\\\", "/"), "/")
 		if assetPath == "" {
 			assetPath = "index.html"
 		}
