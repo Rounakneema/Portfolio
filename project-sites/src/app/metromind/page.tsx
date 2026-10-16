@@ -151,12 +151,13 @@ export default function MetroMindHome() {
                   <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.1)] border border-slate-200/80 bg-white/95 backdrop-blur-md">
                     
                     {/* Top Callout Badge */}
-                    <div className="absolute top-3 right-3 z-20 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 shadow-2xs">
-                      <span className="text-[11px] font-serif italic text-slate-700">Different documents. One verified answer.</span>
+                    <div className="absolute top-3.5 right-3.5 z-20 bg-slate-950/75 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-white text-[11px] font-mono flex items-center gap-1.5 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                      <span>Line 2 &middot; Operational Records</span>
                     </div>
 
                     {/* Main Hero Photograph with Subtle Diffused Gradient */}
-                    <div className="relative h-[220px] sm:h-[260px] w-full">
+                    <div className="relative h-[240px] sm:h-[280px] w-full">
                       <Image
                         src="/images/metromind-hero-desk.jpg"
                         alt="Transit engineering analyst querying MetroMind document intelligence system"
@@ -164,86 +165,53 @@ export default function MetroMindHome() {
                         priority
                         className="object-cover object-center"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                      
-                      {/* Photo Bottom Caption */}
-                      <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-[11px] font-mono">
-                        <span className="flex items-center gap-1.5 opacity-90">
-                          <TrainFront className="w-3.5 h-3.5 text-teal-400" />
-                          <span>Metro Rail Line 2 &middot; Operational Records Archive</span>
-                        </span>
-                        <span className="text-teal-300 font-semibold text-[10px] px-2 py-0.5 rounded bg-teal-950/70 border border-teal-500/30">
-                          Active Cluster
-                        </span>
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent" />
                     </div>
 
-                    {/* Live Grounded Query & Citation Mockup Card */}
-                    <div className="p-4 sm:p-5 bg-white border-t border-slate-200/80 space-y-3.5 text-left">
+                    {/* Streamlined Live Grounded Query & Answer Card */}
+                    <div className="p-5 sm:p-6 bg-white border-t border-slate-200/80 space-y-4 text-left">
                       
                       {/* Query Input Box */}
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-teal-600">
-                          <Search className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-800 flex items-center justify-between">
-                          <span>What is the scheduled ultrasonic bogie inspection cycle?</span>
-                          <span className="text-[10px] font-mono text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200/80">
-                            238ms
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Grounded Intelligence Answer Box */}
-                      <div className="p-3.5 rounded-xl bg-teal-50/70 border border-teal-200/80 space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-1.5">
-                            <span className="w-4 h-4 rounded bg-teal-700 text-white flex items-center justify-center text-[10px] font-bold font-mono">Q</span>
-                            <span className="text-[11px] font-bold text-teal-950 uppercase tracking-wider font-mono">Grounded Intelligence</span>
-                          </div>
-                          <span className="text-[10px] font-mono font-semibold text-emerald-700 flex items-center gap-1">
-                            <CheckCircle2 className="w-3 h-3" />
-                            <span>99.4% Verified</span>
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-800 leading-relaxed">
-                          According to the Q2 2024 maintenance report, bogie suspension inspections are mandated every{' '}
-                          <span className="bg-teal-200/80 text-teal-950 font-semibold px-1 py-0.5 rounded">
-                            15,000 km or 30 days
-                          </span>
-                          , whichever occurs first. Critical wear thresholds require immediate ultrasonic testing.
-                        </p>
-                      </div>
-
-                      {/* Document Citation Link */}
-                      <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 flex items-center justify-between text-xs">
-                        <div className="flex items-center gap-2">
-                          <FileCheck className="w-4 h-4 text-teal-700 shrink-0" />
-                          <div>
-                            <div className="font-semibold text-slate-900 text-xs">Maintenance Report &middot; Section 4.2</div>
-                            <div className="text-[10px] text-slate-500 font-mono">Page 18 &middot; Track Integrity Protocols</div>
-                          </div>
-                        </div>
-                        <span className="text-[10px] font-mono text-teal-800 bg-teal-100/70 px-2 py-0.5 rounded">
-                          View PDF &rarr;
+                      <div className="flex items-center gap-2.5 px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800">
+                        <Search className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                        <span className="font-medium truncate flex-1">
+                          What is the scheduled ultrasonic bogie inspection cycle?
+                        </span>
+                        <span className="text-[10px] font-mono font-semibold text-teal-800 bg-teal-100/70 px-2 py-0.5 rounded shrink-0">
+                          &lt;240ms
                         </span>
                       </div>
 
-                      {/* Stacked Report Indicators */}
-                      <div className="pt-1 flex flex-wrap gap-1.5">
-                        {[
-                          'Maintenance Report Q2 2024',
-                          'Inspection Summary',
-                          'Safety Audit SIL-4',
-                          'Operational Guidelines',
-                        ].map((item) => (
-                          <span
-                            key={item}
-                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200/70"
-                          >
-                            {item}
+                      {/* Unified Grounded Intelligence Answer & Citation */}
+                      <div className="p-4 rounded-xl bg-teal-50/60 border border-teal-200/80 space-y-2.5">
+                        <div className="flex items-center justify-between text-[11px] font-mono">
+                          <span className="font-bold text-teal-950 uppercase tracking-wider flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-teal-600" />
+                            Verified Grounding
                           </span>
-                        ))}
+                          <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                            <CheckCircle2 className="w-3.5 h-3.5" />
+                            <span>99.4% Match</span>
+                          </span>
+                        </div>
+
+                        <p className="text-xs sm:text-sm text-slate-800 leading-relaxed">
+                          Bogie suspension inspections are mandated every{' '}
+                          <span className="bg-teal-200/90 text-teal-950 font-semibold px-1 py-0.5 rounded">
+                            15,000 km or 30 days
+                          </span>
+                          . Critical wear thresholds require immediate ultrasonic testing.
+                        </p>
+
+                        <div className="pt-2.5 border-t border-teal-200/70 flex items-center justify-between text-[11px] text-slate-600 font-mono">
+                          <span className="flex items-center gap-1.5 text-slate-700 truncate">
+                            <FileCheck className="w-3.5 h-3.5 text-teal-700 shrink-0" />
+                            <span className="truncate">Maintenance_Report_Q2_2024.pdf &middot; &sect;4.2, p. 18</span>
+                          </span>
+                          <span className="text-teal-800 font-semibold shrink-0">
+                            Source Verified
+                          </span>
+                        </div>
                       </div>
 
                     </div>
