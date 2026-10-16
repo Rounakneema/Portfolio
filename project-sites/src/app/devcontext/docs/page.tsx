@@ -1,74 +1,129 @@
+import React from 'react';
 import Link from 'next/link';
+import { ArrowLeft, BookOpen, Terminal, Code2, Server } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata = {
-    title: 'DevContext.AI | Engineering Documentation',
-    description: 'Raw API Specs, Payloads, and WebSocket Schemas',
+  title: 'Technical Docs & Schemas · DevContext',
+  description: 'API specifications, WebSocket streaming schemas, SAM templates, and deployment traces for DevContext.',
+  alternates: {
+    canonical: 'https://devcontext.rounakneema.in/docs',
+  },
 };
 
 export default function DevContextDocsPage() {
-    return (
-        <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#1f6feb] selection:text-[#fff] overflow-x-hidden">
-        <ProjectJsonLd slug="devcontext" pageType="Docs" />
-            {/* Header */}
-            <ScrollReveal direction="up" delay={0.1}>
-                <header className="p-4 md:p-8 border-b border-[#1f6feb]/30 flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
-                    <div className="flex gap-4">
-                        <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Project Ref: devcontext</span>
-                        <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Document: API_SPECS</span>
-                    </div>
-                    <nav className="flex gap-6 border-l border-[#1f6feb]/30 pl-6 text-sm">
-                        <Link href="/devcontext" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Analysis Pipeline</Link>
-                        <Link href="/devcontext/architecture" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Architecture</Link>
-                        <Link href="/devcontext/decisions" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Decisions</Link>
-                        <Link href="/devcontext/docs" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Docs</Link>
-                    </nav>
-                </header>
-            </ScrollReveal>
+  return (
+    <main className="min-h-screen bg-[#f7f5ee] text-[#18181b] font-sans selection:bg-[#1d4ed8] selection:text-white pb-32">
+      <ProjectJsonLd slug="devcontext" pageType="Docs" />
 
-            <ScrollReveal direction="up" delay={0.1}>
-                <section className="p-4 md:p-8 lg:p-16 border-b border-[#1f6feb]/30">
-                    <h1 className="text-2xl font-bold uppercase tracking-tighter mb-4 text-[#58a6ff]">
-                        API & Schema Documentation
-                    </h1>
-                    <p className="text-[#888] max-w-2xl border-l-4 border-[#1f6feb] pl-4 leading-relaxed">
-                        Internal technical references, payload schemas, and SAM template configurations for DevContext.AI.
-                    </p>
-                </section>
-            </ScrollReveal>
+      {/* Sticky Top Navigation */}
+      <nav className="border-b border-[#e5ded2] bg-[#f7f5ee]/95 backdrop-blur-md sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto flex h-14 items-center justify-between px-6 md:px-10">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/devcontext"
+              className="text-[#52525b] hover:text-[#1d4ed8] font-medium text-xs flex items-center gap-1.5 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Return to DevContext</span>
+            </Link>
+            <span className="text-[#d4cebf]">/</span>
+            <span className="text-[#1d4ed8] font-mono font-bold tracking-widest uppercase text-[11px]">
+              Docs &amp; Schemas
+            </span>
+          </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 border-b border-[#1f6feb]/30">
-                {/* Sidebar Navigation */}
-                <aside className="lg:col-span-1 border-b lg:border-b-0 lg:border-r border-[#333] p-4 md:p-8 bg-[#050505]">
-                    <div className="text-xs text-[#555] uppercase tracking-widest mb-6">Table of Contents</div>
-                    <StaggerContainer>
-                        <ul className="space-y-4 text-sm text-[#888]">
-                            <StaggerItem><li><a href="#rest-api" className="hover:text-[#58a6ff] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> REST API</a></li></StaggerItem>
-                            <StaggerItem><li><a href="#websocket" className="hover:text-[#58a6ff] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> WebSocket Events</a></li></StaggerItem>
-                            <StaggerItem><li><a href="#aws-sam" className="hover:text-[#58a6ff] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> AWS SAM Config</a></li></StaggerItem>
-                            <StaggerItem><li><a href="#terminal" className="hover:text-[#58a6ff] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"><span className="w-2 h-[1px] bg-current"></span> Deployment Trace</a></li></StaggerItem>
-                        </ul>
-                    </StaggerContainer>
-                </aside>
+          <div className="flex items-center gap-4 text-xs font-mono">
+            <Link
+              href="/devcontext/architecture"
+              className="text-[#52525b] hover:text-[#1d4ed8] transition-colors hidden sm:block"
+            >
+              Architecture &rarr;
+            </Link>
+            <Link
+              href="/devcontext/decisions"
+              className="text-[#52525b] hover:text-[#1d4ed8] transition-colors hidden sm:block"
+            >
+              Decisions &rarr;
+            </Link>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#dce6fa] border border-[#bfdbfe] text-[#1d4ed8] text-[10px] font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1d4ed8]" />
+              API Specs
+            </span>
+          </div>
+        </div>
+      </nav>
 
-                {/* Main Content */}
-                <div className="lg:col-span-3 p-4 md:p-8 lg:p-16 space-y-24">
-                    
-                    {/* REST API Section */}
-                    <ScrollReveal direction="up" delay={0.1}>
-                        <section id="rest-api" className="scroll-mt-16">
-                            <h2 className="text-2xl font-bold uppercase tracking-tighter text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
-                                <span className="text-[#555]">01.</span> API Gateway REST Integration
-                            </h2>
-                            
-                            <div className="mb-12">
-                                <h3 className="text-lg font-bold tracking-tight text-[#aaa] mb-4">POST /api/v1/analyze</h3>
-                                <p className="text-sm text-[#777] mb-6 leading-relaxed">Triggers an asynchronous analysis of a GitHub repository via the Bedrock 3-stage pipeline.</p>
-                                
-                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 mb-6">
-                                    <div className="text-xs text-[#555] uppercase mb-4 border-b border-[#222] pb-2">Request Payload (application/json)</div>
-                                    <pre className="text-xs md:text-sm text-[#a8ff60] overflow-x-auto">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 pt-12 md:pt-16 space-y-12">
+        
+        {/* Header */}
+        <div>
+          <div className="inline-block px-3 py-1 rounded-sm bg-[#dce6fa] border border-[#bfdbfe] text-[#1d4ed8] font-mono text-[10px] font-bold uppercase tracking-wider mb-3">
+            ENGINEERING SCHEMAS &amp; INTERFACES
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#18181b] tracking-tight font-sans">
+            API &amp; WebSocket Specifications
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-[#52525b] leading-relaxed max-w-3xl">
+            Internal contract references, event payload schemas, and AWS SAM deployment blueprints for the DevContext intelligence engine.
+          </p>
+        </div>
+
+        {/* Content Layout with Sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Sidebar TOC */}
+          <aside className="lg:col-span-3">
+            <div className="bg-white border border-[#ded7c8] rounded-2xl p-5 shadow-xs sticky top-20 space-y-3 font-mono text-xs">
+              <div className="text-[10px] uppercase font-bold text-[#71717a] tracking-wider pb-2 border-b border-[#f0ebe0]">
+                Table of Contents
+              </div>
+              <ul className="space-y-2 text-[#52525b]">
+                <li>
+                  <a href="#rest-api" className="hover:text-[#1d4ed8] transition-colors block py-0.5">
+                    01. REST API Ingestion
+                  </a>
+                </li>
+                <li>
+                  <a href="#websocket" className="hover:text-[#1d4ed8] transition-colors block py-0.5">
+                    02. WebSocket Streaming
+                  </a>
+                </li>
+                <li>
+                  <a href="#aws-sam" className="hover:text-[#1d4ed8] transition-colors block py-0.5">
+                    03. AWS SAM Template
+                  </a>
+                </li>
+                <li>
+                  <a href="#deployment" className="hover:text-[#1d4ed8] transition-colors block py-0.5">
+                    04. Deployment Trace
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+
+          {/* Main Content Area */}
+          <div className="lg:col-span-9 space-y-12">
+            
+            {/* Section 1: REST API */}
+            <section id="rest-api" className="bg-white border border-[#ded7c8] rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+              <div className="border-b border-[#e5ded2] pb-3">
+                <span className="text-xs font-mono font-bold text-[#1d4ed8]">01 // REST INTERFACE</span>
+                <h2 className="text-xl font-bold text-[#18181b] tracking-tight mt-1">
+                  POST /api/v1/analyze
+                </h2>
+                <p className="text-xs text-[#52525b] mt-1">
+                  Triggers asynchronous cloning, AST mapping, and 3-stage synthesis for a public GitHub repository.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <span className="text-xs font-mono text-[#71717a] font-bold block mb-2">Request Payload (JSON)</span>
+                  <div className="bg-[#18181b] border border-[#27272a] rounded-xl p-4 text-[#f4efe4] overflow-x-auto">
+                    <pre className="text-xs font-mono leading-relaxed text-emerald-400">
 {`{
   "repository_url": "https://github.com/rounakneema/Revealr",
   "branch": "main",
@@ -79,12 +134,14 @@ export default function DevContextDocsPage() {
   },
   "callback_url": "https://webhook.site/..."
 }`}
-                                    </pre>
-                                </div>
+                    </pre>
+                  </div>
+                </div>
 
-                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
-                                    <div className="text-xs text-[#555] uppercase mb-4 border-b border-[#222] pb-2">Response Payload (202 Accepted)</div>
-                                    <pre className="text-xs md:text-sm text-[#96cbfe] overflow-x-auto">
+                <div>
+                  <span className="text-xs font-mono text-[#71717a] font-bold block mb-2">Response Payload (202 Accepted)</span>
+                  <div className="bg-[#18181b] border border-[#27272a] rounded-xl p-4 text-[#f4efe4] overflow-x-auto">
+                    <pre className="text-xs font-mono leading-relaxed text-blue-300">
 {`{
   "job_id": "dcx_9f8b2c1a4e",
   "status": "queued",
@@ -94,29 +151,28 @@ export default function DevContextDocsPage() {
     "status": "/api/v1/analyze/dcx_9f8b2c1a4e/status"
   }
 }`}
-                                    </pre>
-                                </div>
-                            </div>
-                        </section>
-                    </ScrollReveal>
+                    </pre>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-                    {/* WebSocket Section */}
-                    <ScrollReveal direction="up" delay={0.1}>
-                        <section id="websocket" className="scroll-mt-16">
-                            <h2 className="text-2xl font-bold uppercase tracking-tighter text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
-                                <span className="text-[#555]">02.</span> WebSocket Streaming Protocol
-                            </h2>
-                            
-                            <p className="text-sm text-[#777] mb-8 leading-relaxed">
-                                Used for streaming the simulated interview session and real-time intelligence report generation. Connections authenticated via <code>websocket_ticket</code>.
-                            </p>
+            {/* Section 2: WebSocket Events */}
+            <section id="websocket" className="bg-white border border-[#ded7c8] rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+              <div className="border-b border-[#e5ded2] pb-3">
+                <span className="text-xs font-mono font-bold text-[#1d4ed8]">02 // WEBSOCKET STREAMING</span>
+                <h2 className="text-xl font-bold text-[#18181b] tracking-tight mt-1">
+                  Real-Time Mock Interview Event Loop
+                </h2>
+                <p className="text-xs text-[#52525b] mt-1">
+                  Streams incremental AST parsing progress and interactive interview Q&amp;A sessions.
+                </p>
+              </div>
 
-                            <StaggerContainer>
-                                <div className="space-y-6">
-                                    <StaggerItem>
-                                        <div className="border-l border-[#333] pl-6">
-                                            <h4 className="text-[#58a6ff] font-bold text-sm uppercase mb-2 tracking-tight">Event: ANALYSIS_PROGRESS</h4>
-                                            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 text-xs text-[#d3d0c8] overflow-x-auto">
+              <div className="space-y-4">
+                <div className="bg-[#faf8f3] border border-[#e4ded2] rounded-xl p-4 space-y-2">
+                  <span className="text-xs font-mono font-bold text-[#18181b] block">Event: ANALYSIS_PROGRESS</span>
+                  <div className="bg-[#18181b] border border-[#27272a] rounded-lg p-3 text-[#d4d4d8] font-mono text-xs overflow-x-auto">
 {`{
   "type": "ANALYSIS_PROGRESS",
   "payload": {
@@ -126,44 +182,40 @@ export default function DevContextDocsPage() {
     "current_file": "src/core/engine.go"
   }
 }`}
-                                            </div>
-                                        </div>
-                                    </StaggerItem>
-                                    
-                                    <StaggerItem>
-                                        <div className="border-l border-[#333] pl-6">
-                                            <h4 className="text-[#58a6ff] font-bold text-sm uppercase mb-2 tracking-tight">Event: INTERVIEW_CHUNK</h4>
-                                            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 text-xs text-[#d3d0c8] overflow-x-auto">
+                  </div>
+                </div>
+
+                <div className="bg-[#faf8f3] border border-[#e4ded2] rounded-xl p-4 space-y-2">
+                  <span className="text-xs font-mono font-bold text-[#18181b] block">Event: INTERVIEW_CHUNK</span>
+                  <div className="bg-[#18181b] border border-[#27272a] rounded-lg p-3 text-[#d4d4d8] font-mono text-xs overflow-x-auto">
 {`{
   "type": "INTERVIEW_CHUNK",
   "payload": {
     "chunk_id": "chk_001",
     "role": "interviewer",
-    "text": "I noticed you used raw sockets in Revealr instead of...",
+    "text": "Why did you choose raw sockets in Revealr instead of net.Dial?",
     "grounding": {
       "file": "scanner/network.go",
       "lines": [45, 89]
     }
   }
 }`}
-                                            </div>
-                                        </div>
-                                    </StaggerItem>
-                                </div>
-                            </StaggerContainer>
-                        </section>
-                    </ScrollReveal>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-                    {/* AWS SAM Section */}
-                    <ScrollReveal direction="up" delay={0.1}>
-                        <section id="aws-sam" className="scroll-mt-16">
-                            <h2 className="text-2xl font-bold uppercase tracking-tighter text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
-                                <span className="text-[#555]">03.</span> Infrastructure as Code (SAM)
-                            </h2>
-                            
-                            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
-                                <div className="text-xs text-[#555] uppercase mb-4 border-b border-[#222] pb-2">template.yaml (Snippet)</div>
-                                <pre className="text-xs md:text-sm text-[#e6d07d] overflow-x-auto">
+            {/* Section 3: SAM Template */}
+            <section id="aws-sam" className="bg-white border border-[#ded7c8] rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+              <div className="border-b border-[#e5ded2] pb-3">
+                <span className="text-xs font-mono font-bold text-[#1d4ed8]">03 // INFRASTRUCTURE AS CODE</span>
+                <h2 className="text-xl font-bold text-[#18181b] tracking-tight mt-1">
+                  AWS SAM Definition (template.yaml)
+                </h2>
+              </div>
+
+              <div className="bg-[#18181b] border border-[#27272a] rounded-xl p-4 text-[#f4efe4] overflow-x-auto">
+                <pre className="text-xs font-mono leading-relaxed text-amber-200">
 {`Resources:
   AnalyzeRepoFunction:
     Type: AWS::Serverless::Function
@@ -185,98 +237,46 @@ export default function DevContextDocsPage() {
               Action:
                 - bedrock:InvokeModel
                 - bedrock:InvokeModelWithResponseStream
-              Resource: "*"
+              Resource: "*"`}
+                </pre>
+              </div>
+            </section>
 
-  WebSocketApi:
-    Type: AWS::ApiGatewayV2::Api
-    Properties:
-      Name: DevContextWS
-      ProtocolType: WEBSOCKET
-      RouteSelectionExpression: "$request.body.action"`}
-                                </pre>
-                            </div>
-                        </section>
-                    </ScrollReveal>
+            {/* Section 4: Deployment Trace */}
+            <section id="deployment" className="bg-white border border-[#ded7c8] rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+              <div className="border-b border-[#e5ded2] pb-3">
+                <span className="text-xs font-mono font-bold text-[#1d4ed8]">04 // DEPLOYMENT VERIFICATION</span>
+                <h2 className="text-xl font-bold text-[#18181b] tracking-tight mt-1">
+                  Pipeline CloudFormation Trace
+                </h2>
+              </div>
 
-                    {/* Terminal Trace */}
-                    <ScrollReveal direction="up" delay={0.1}>
-                        <section id="terminal" className="scroll-mt-16">
-                            <h2 className="text-2xl font-bold uppercase tracking-tighter text-[#58a6ff] mb-8 border-b border-[#1f6feb]/30 pb-4 flex items-center gap-4">
-                                <span className="text-[#555]">04.</span> Pipeline Deployment Trace
-                            </h2>
-
-                            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 overflow-hidden">
-                                <div className="flex items-center gap-2 px-4 py-2 border-b border-[#1f6feb]/30 pb-4">
-                                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                                    <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-                                    <div className="ml-4 text-xs text-[#555]">deploy_production.sh</div>
-                                </div>
-                                <div className="pt-4 text-xs md:text-sm text-[#ccc] font-mono leading-relaxed overflow-x-auto">
-                                    <div className="text-[#888] mb-2">$ sam build --use-container</div>
-                                    <div>Starting Build inside a container...</div>
-                                    <div>Building codeuri: /workspace/src/analyze runtime: python3.11</div>
-                                    <div className="text-[#a8ff60] mb-4">Build Succeeded</div>
-                                    
-                                    <div className="text-[#888] mb-2">$ sam deploy --config-env prod --no-confirm-changeset</div>
-                                    <div>Deploying with following values:</div>
-                                    <div>===============================</div>
-                                    <div>Stack name                   : devcontext-prod</div>
-                                    <div>Region                         : us-east-1</div>
-                                    <div>Confirm changeset              : False</div>
-                                    <div className="mb-4">Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket</div>
-                                    
-                                    <div>Initiating deployment</div>
-                                    <div>===============================</div>
-                                    <div className="text-[#ffffb6] mb-2">Waiting for changeset to be created..</div>
-                                    
-                                    <StaggerContainer>
-                                        <div className="grid grid-cols-4 gap-4 text-[#888] border-b border-[#1f6feb]/30 pb-1 mb-2">
-                                            <div className="col-span-1">Operation</div>
-                                            <div className="col-span-2">LogicalResourceId</div>
-                                            <div className="col-span-1">ResourceType</div>
-                                        </div>
-                                        <StaggerItem>
-                                            <div className="grid grid-cols-4 gap-4 mb-1">
-                                                <div className="col-span-1 text-[#a8ff60]">* Modify</div>
-                                                <div className="col-span-2">AnalyzeRepoFunction</div>
-                                                <div className="col-span-1">AWS::Lambda::Function</div>
-                                            </div>
-                                        </StaggerItem>
-                                        <StaggerItem>
-                                            <div className="grid grid-cols-4 gap-4 mb-4">
-                                                <div className="col-span-1 text-[#a8ff60]">* Modify</div>
-                                                <div className="col-span-2">WebSocketApi</div>
-                                                <div className="col-span-1">AWS::ApiGatewayV2::Api</div>
-                                            </div>
-                                        </StaggerItem>
-                                    </StaggerContainer>
-
-                                    <div className="text-[#96cbfe]">CloudFormation events from stack operations (lineage: ...):</div>
-                                    <div>UPDATE_IN_PROGRESS   AWS::Lambda::Function  AnalyzeRepoFunction</div>
-                                    <div className="text-[#a8ff60]">UPDATE_COMPLETE      AWS::Lambda::Function  AnalyzeRepoFunction</div>
-                                    <div>UPDATE_IN_PROGRESS   AWS::CloudFormation::Stack  devcontext-prod</div>
-                                    <div className="text-[#a8ff60] mb-4">UPDATE_COMPLETE      AWS::CloudFormation::Stack  devcontext-prod</div>
-                                    
-                                    <div className="text-[#58a6ff] font-bold">Successfully created/updated stack - devcontext-prod in us-east-1</div>
-                                    <div className="text-[#58a6ff] animate-pulse mt-2">_</div>
-                                </div>
-                            </div>
-                        </section>
-                    </ScrollReveal>
+              <div className="bg-[#18181b] border border-[#27272a] rounded-xl p-5 text-[#f4efe4] font-mono text-xs leading-relaxed overflow-x-auto">
+                <div className="flex items-center gap-2 pb-3 mb-3 border-b border-[#27272a] text-[#71717a]">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  <span className="ml-2 text-[11px]">sam deploy --config-env prod</span>
                 </div>
-            </div>
+                <div className="text-[#a1a1aa]">$ sam deploy --config-env prod --no-confirm-changeset</div>
+                <div className="text-emerald-400 mt-1">Initiating deployment to devcontext-prod (us-east-1)...</div>
+                <div className="text-[#d4d4d8] mt-2">
+                  UPDATE_IN_PROGRESS &nbsp; AWS::Lambda::Function &nbsp; AnalyzeRepoFunction<br />
+                  UPDATE_COMPLETE &nbsp;&nbsp;&nbsp;&nbsp; AWS::Lambda::Function &nbsp; AnalyzeRepoFunction<br />
+                  UPDATE_IN_PROGRESS &nbsp; AWS::CloudFormation::Stack &nbsp; devcontext-prod<br />
+                  UPDATE_COMPLETE &nbsp;&nbsp;&nbsp;&nbsp; AWS::CloudFormation::Stack &nbsp; devcontext-prod
+                </div>
+                <div className="text-blue-400 font-bold mt-3">
+                  Stack devcontext-prod successfully updated. Zero errors detected.
+                </div>
+              </div>
+            </section>
 
-            {/* Footer */}
-            <ScrollReveal direction="up" delay={0.1}>
-                <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
-                    <div>DevContext.AI // Documentation</div>
-                    <Link href="/" className="hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 flex items-center gap-2">
-                        <span className="w-4 h-[1px] bg-current"></span>
-                        Back to Project
-                    </Link>
-                </footer>
-            </ScrollReveal>
-        </main>
-    );
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  );
 }

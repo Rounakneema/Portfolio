@@ -1,135 +1,183 @@
+import React from 'react';
 import Link from 'next/link';
+import { ArrowLeft, GitPullRequest, ShieldCheck, Scale, Cpu } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata = {
-    title: 'Engineering Decisions | DevContext.AI',
-    description: 'Engineering trade-offs, AI routing, and grounding logic.',
+  title: 'Engineering Decisions · DevContext',
+  description: 'Engineering trade-offs, multi-model routing, and evidence grounding logic in DevContext.',
+  alternates: {
+    canonical: 'https://devcontext.rounakneema.in/decisions',
+  },
 };
 
 export default function DecisionsPage() {
-    return (
-        <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#1f6feb] selection:text-[#fff] overflow-x-hidden">
-        <ProjectJsonLd slug="devcontext" pageType="Decisions" />
-            {/* Header */}
-            <ScrollReveal direction="up" delay={0.1}>
-                <header className="p-4 md:p-8 border-b border-[#1f6feb]/30 flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
-                    <div className="flex gap-4">
-                        <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Ref: devcontext/decisions</span>
-                    </div>
-                    <nav className="flex gap-6 border-l border-[#1f6feb]/30 pl-6 text-sm">
-                        <Link href="/devcontext" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Analysis Pipeline</Link>
-                        <Link href="/devcontext/architecture" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Architecture</Link>
-                        <Link href="/devcontext/decisions" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Decisions</Link>
-                        <Link href="/devcontext/docs" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Docs</Link>
-                    </nav>
-                </header>
-            </ScrollReveal>
+  return (
+    <main className="min-h-screen bg-[#f7f5ee] text-[#18181b] font-sans selection:bg-[#1d4ed8] selection:text-white pb-32">
+      <ProjectJsonLd slug="devcontext" pageType="Decisions" />
 
-            <ScrollReveal direction="up" delay={0.1}>
-                <section className="p-4 md:p-8 lg:p-16 max-w-7xl mx-auto">
-                    <h1 className="text-2xl font-bold uppercase tracking-tighter leading-[0.9] mb-12 text-[#58a6ff] border-l-4 border-[#1f6feb] pl-6">
-                        Engineering Trade-offs & Decisions
-                    </h1>
+      {/* Sticky Top Navigation */}
+      <nav className="border-b border-[#e5ded2] bg-[#f7f5ee]/95 backdrop-blur-md sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto flex h-14 items-center justify-between px-6 md:px-10">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/devcontext"
+              className="text-[#52525b] hover:text-[#1d4ed8] font-medium text-xs flex items-center gap-1.5 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Return to DevContext</span>
+            </Link>
+            <span className="text-[#d4cebf]">/</span>
+            <span className="text-[#1d4ed8] font-mono font-bold tracking-widest uppercase text-[11px]">
+              Decisions
+            </span>
+          </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                        <div className="lg:col-span-8 prose prose-invert prose-p:text-[#aaa] prose-headings:text-[#58a6ff] prose-a:text-[#58a6ff] max-w-none">
-                            <p className="text-xl mb-12 leading-relaxed">
-                                Building an AI-driven code intelligence platform at scale requires strict trade-offs between latency, cost, and analytical depth. We opted for a "Progressive Delivery" model powered by a multi-model routing strategy on Amazon Bedrock.
-                            </p>
+          <div className="flex items-center gap-4 text-xs font-mono">
+            <Link
+              href="/devcontext/architecture"
+              className="text-[#52525b] hover:text-[#1d4ed8] transition-colors hidden sm:block"
+            >
+              Architecture &rarr;
+            </Link>
+            <Link
+              href="/devcontext/docs"
+              className="text-[#52525b] hover:text-[#1d4ed8] transition-colors hidden sm:block"
+            >
+              Docs &rarr;
+            </Link>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#dce6fa] border border-[#bfdbfe] text-[#1d4ed8] text-[10px] font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1d4ed8]" />
+              Trade-off Matrix
+            </span>
+          </div>
+        </div>
+      </nav>
 
-                            <h2 className="text-2xl uppercase tracking-tighter border-b border-[#1f6feb]/30 pb-4 mb-8">AI Grounding Logic</h2>
-                            <p className="leading-relaxed">
-                                LLMs have a tendency to hallucinate architectural complexity when reading code. To counter this, we implemented strict <strong>Grounding Assertions</strong>. The system is programmed to distinguish between user-written code and boilerplate framework code (e.g., standard React setup, Express middleware defaults).
-                            </p>
-                            <p className="leading-relaxed">
-                                Every architectural claim made by the Synthesis Agent MUST reference a specific file path and line number. If the assertion engine detects a claim without verifiable origin in the Context Map, the claim is stripped. This ensures recruiters get an honest, factual representation of the candidate's actual work.
-                            </p>
+      <div className="max-w-6xl mx-auto px-6 md:px-10 pt-12 md:pt-16 space-y-16">
+        
+        {/* Header */}
+        <div>
+          <div className="inline-block px-3 py-1 rounded-sm bg-[#dce6fa] border border-[#bfdbfe] text-[#1d4ed8] font-mono text-[10px] font-bold uppercase tracking-wider mb-3">
+            ARCHITECTURAL TRADEOFFS
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#18181b] tracking-tight font-sans">
+            Engineering Trade-offs &amp; Grounding Logic
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-[#52525b] leading-relaxed max-w-3xl">
+            Designing an evidence-grounded code intelligence engine requires balancing latency, token economics, and analytical fidelity across multi-thousand line repositories.
+          </p>
+        </div>
 
-                            <h2 className="text-2xl uppercase tracking-tighter border-b border-[#1f6feb]/30 pb-4 mb-8 mt-16">Multi-Model AI Routing</h2>
-                            <p className="leading-relaxed">
-                                Cost optimization is critical when processing 50K+ tokens per repository. We use a dynamic routing strategy via Amazon Bedrock:
-                            </p>
-                            <StaggerContainer>
-                                <ul className="space-y-4 my-8 list-none pl-0">
-                                    <StaggerItem>
-                                        <li className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
-                                            <strong className="text-[#58a6ff] block mb-2 tracking-tight">Stage 1 (Code Review) & Stage 2 (Intelligence)</strong>
-                                            <span className="text-sm leading-relaxed">We route to Claude 3.5 Sonnet / Mistral Large 3 for high-reasoning tasks. These models excel at synthesizing architectural trade-offs from raw code but are expensive. We offset costs by parallelizing narrow queries rather than asking one massive question.</span>
-                                        </li>
-                                    </StaggerItem>
-                                    <StaggerItem>
-                                        <li className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
-                                            <strong className="text-[#58a6ff] block mb-2 tracking-tight">Stage 3 (Interview Real-Time Evaluation)</strong>
-                                            <span className="text-sm leading-relaxed">We step down to faster inference models for the interactive websocket loop. The context window is small (just the current question and answer), requiring low latency rather than deep code synthesis.</span>
-                                        </li>
-                                    </StaggerItem>
-                                </ul>
-                            </StaggerContainer>
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          {/* Main Column */}
+          <div className="lg:col-span-8 space-y-12">
+            
+            {/* Grounding Logic */}
+            <div className="bg-white border border-[#ded7c8] rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+              <h2 className="text-xl font-bold text-[#18181b] tracking-tight">
+                AI Grounding &amp; Hallucination Prevention
+              </h2>
+              <p className="text-sm text-[#52525b] leading-relaxed">
+                Foundation models tend to extrapolate architectural patterns that do not actually exist in the codebase. To prevent this, DevContext introduces strict AST Grounding Assertions. The ingestion engine isolates user-authored code from vendor dependencies, framework scaffolding, and generated boilerplate.
+              </p>
+              <p className="text-sm text-[#52525b] leading-relaxed">
+                Every technical claim generated by synthesis workers must cite a verified file path, import declaration, and function signature. If a claim lacks line-level evidence in the AST map, it is automatically purged before reaching the user interface.
+              </p>
+            </div>
 
-                            <h2 className="text-2xl uppercase tracking-tighter border-b border-[#1f6feb]/30 pb-4 mb-8 mt-16">Trade-off: Serverless Cold Starts vs Idle Costs</h2>
-                            <p className="leading-relaxed">
-                                Running this on provisioned containers (ECS/EKS) would solve cold starts but incur massive idle costs given the bursty nature of resume processing. We chose AWS Lambda for scale-to-zero capabilities. The trade-off is a potential 1-3 second cold start penalty on the initial repository clone. We mask this latency from the user using an optimistic UI loading sequence on the frontend.
-                            </p>
-                        </div>
+            {/* Model Routing */}
+            <div className="bg-white border border-[#ded7c8] rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+              <h2 className="text-xl font-bold text-[#18181b] tracking-tight">
+                Multi-Model Inference Routing
+              </h2>
+              <p className="text-sm text-[#52525b] leading-relaxed">
+                Ingesting 50,000+ tokens per repository demands cost and latency discipline. We route requests dynamically across tiers:
+              </p>
+              <div className="space-y-3 pt-2">
+                <div className="p-4 rounded-xl bg-[#faf8f3] border border-[#e4ded2]">
+                  <strong className="text-xs font-mono font-bold text-[#18181b] block mb-1">
+                    Stage 1 (Code Review) &amp; Stage 2 (Architecture Synthesis)
+                  </strong>
+                  <span className="text-xs text-[#52525b] leading-relaxed block">
+                    Routed to high-reasoning models (Claude 3.5 Sonnet / Mistral Large). These models analyze trade-offs, interface decoupling, and edge-case resilience. Narrow, partitioned queries prevent token bloat.
+                  </span>
+                </div>
 
-                        <div className="lg:col-span-4 space-y-8">
-                            <StaggerContainer>
-                                <StaggerItem>
-                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 mb-8">
-                                        <div className="text-xs text-[#666] uppercase mb-4 border-b border-[#1f6feb]/30 pb-2">Cost Metrics</div>
-                                        <div className="space-y-4">
-                                            <div>
-                                                <div className="text-[#888] text-sm">Avg Tokens / Repo</div>
-                                                <div className="text-[#58a6ff] text-xl font-bold tracking-tight">~55,000</div>
-                                            </div>
-                                            <div>
-                                                <div className="text-[#888] text-sm">Cost / Analysis</div>
-                                                <div className="text-[#58a6ff] text-xl font-bold tracking-tight">~$1.42</div>
-                                            </div>
-                                            <div>
-                                                <div className="text-[#888] text-sm">SLA Time-to-First-Byte</div>
-                                                <div className="text-[#58a6ff] text-xl font-bold tracking-tight">&lt; 30s</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </StaggerItem>
+                <div className="p-4 rounded-xl bg-[#faf8f3] border border-[#e4ded2]">
+                  <strong className="text-xs font-mono font-bold text-[#18181b] block mb-1">
+                    Stage 3 (Mock Interview WebSocket Evaluation)
+                  </strong>
+                  <span className="text-xs text-[#52525b] leading-relaxed block">
+                    Routed to sub-second inference agents. Because context is scoped solely to the current question and candidate answer, low conversational latency is prioritized over massive context windows.
+                  </span>
+                </div>
+              </div>
+            </div>
 
-                                <StaggerItem>
-                                    <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 font-mono text-[10px] text-[#888]">
-                                        <div className="text-[#58a6ff] mb-2">// Grounding Assertion Snippet</div>
-                                        <pre className="overflow-x-auto">
+            {/* Serverless vs Containers */}
+            <div className="bg-white border border-[#ded7c8] rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+              <h2 className="text-xl font-bold text-[#18181b] tracking-tight">
+                Serverless Scale-to-Zero vs Long-Running Containers
+              </h2>
+              <p className="text-sm text-[#52525b] leading-relaxed">
+                Running provisioned Kubernetes nodes eliminates cold starts but incurs high idle costs during off-peak periods. We chose AWS Lambda for its scale-to-zero economics. A 1 to 2 second cold start on the initial git clone is masked from the user through an optimistic staged progress UI.
+              </p>
+            </div>
+
+          </div>
+
+          {/* Sidebar Metrics */}
+          <div className="lg:col-span-4 space-y-6">
+            
+            <div className="bg-white border border-[#ded7c8] rounded-2xl p-6 shadow-sm space-y-4">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#71717a] border-b border-[#f0ebe0] pb-2">
+                Operational Metrics
+              </div>
+
+              <div className="space-y-3">
+                <div>
+                  <div className="text-xs text-[#71717a]">Avg Tokens per Repo</div>
+                  <div className="text-xl font-bold text-[#18181b] font-mono">~55,000</div>
+                </div>
+                <div>
+                  <div className="text-xs text-[#71717a]">Inference Cost per Review</div>
+                  <div className="text-xl font-bold text-[#18181b] font-mono">~$1.42</div>
+                </div>
+                <div>
+                  <div className="text-xs text-[#71717a]">SLA Time to First Byte</div>
+                  <div className="text-xl font-bold text-[#1d4ed8] font-mono">&lt; 30s</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Assertion Snippet */}
+            <div className="bg-[#18181b] border border-[#27272a] rounded-2xl p-5 shadow-sm text-[#f4efe4] space-y-2">
+              <span className="text-[10px] font-mono text-[#a1a1aa] block uppercase">
+                // Grounding Assertion Logic
+              </span>
+              <pre className="text-[11px] font-mono leading-relaxed text-[#d4d4d8] overflow-x-auto">
 {`function validateClaim(claim) {
-  if (!claim.filePath || !claim.lineRefs) {
-    return { valid: false, reason: 'unverifiable' }
+  if (!claim.filePath || !claim.lines) {
+    return { valid: false, err: 'unverifiable' };
   }
-  
-  const mapNode = contextMap.get(claim.filePath);
-  if (mapNode.isBoilerplate) {
-    return { valid: false, reason: 'framework_code' }
+  const node = astMap.get(claim.filePath);
+  if (node.isVendorScaffold) {
+    return { valid: false, err: 'boilerplate' };
   }
-  
   return { valid: true };
 }`}
-                                        </pre>
-                                    </div>
-                                </StaggerItem>
-                            </StaggerContainer>
-                        </div>
-                    </div>
-                </section>
-            </ScrollReveal>
+              </pre>
+            </div>
 
-            {/* Footer */}
-            <ScrollReveal direction="up" delay={0.1}>
-                <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
-                    <div>DevContext.AI // {new Date().getFullYear()}</div>
-                    <Link href="/" className="hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 flex items-center gap-2">
-                        <span className="w-4 h-[1px] bg-current"></span>
-                        Back
-                    </Link>
-                </footer>
-            </ScrollReveal>
-        </main>
-    );
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  );
 }
