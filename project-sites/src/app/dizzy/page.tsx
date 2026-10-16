@@ -4,6 +4,7 @@ import { projects } from '@/lib/projects';
 import { notFound } from 'next/navigation';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import dizzyMockup from '@/assets/dizzy-context-mockup.png';
 
 export const metadata = {
   title: 'Dizzy — Voice-to-Figma AI Interface Builder',
@@ -496,12 +497,11 @@ export default function DizzyPage() {
             <div className="lg:col-span-7">
               <div className="relative mx-auto rounded-2xl lg:rounded-3xl overflow-hidden border border-neutral-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] bg-neutral-100 group transition-all duration-300 hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)]">
                 <Image
-                  src="/images/dizzy-context-mockup.png"
+                  src={dizzyMockup}
                   alt="Dizzy Voice-to-UI Interface running on a laptop with live Figma canvas and design tokens"
-                  width={1400}
-                  height={788}
+                  placeholder="blur"
                   className="w-full h-auto object-cover block"
-                  priority={false}
+                  priority={true}
                 />
               </div>
             </div>
