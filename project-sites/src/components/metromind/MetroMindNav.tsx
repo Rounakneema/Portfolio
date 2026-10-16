@@ -5,18 +5,19 @@ import { usePathname } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
 
 const links = [
+  { href: '#demo', label: 'Interactive Demo' },
+  { href: '#capabilities', label: 'Capabilities' },
+  { href: '#teams', label: 'Stakeholders' },
   { href: '#how-it-works', label: 'How it works' },
-  { href: '#capabilities', label: 'What it helps with' },
-  { href: '#teams', label: 'For teams' },
-  { href: '/architecture', label: 'Architecture' },
-  { href: '#story', label: 'Our story' },
+  { href: '/metromind/architecture', label: 'Architecture' },
+  { href: '#faq', label: 'FAQ' },
 ];
 
 export function MetroMindNav() {
   const pathname = usePathname() || '/';
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-200/80 bg-[#fcfbf9]/90 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-slate-200/60 bg-[#faf8f5]/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
         
         {/* Brand with Connected Dots Logo */}
