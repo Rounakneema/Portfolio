@@ -19,6 +19,9 @@ import type { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { NetworkTopology } from '@/components/revealr/NetworkTopology';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { SearchableFaq } from '@/components/shared/SearchableFaq';
+import { projectFaqs } from '@/lib/projectFaqs';
+import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata: Metadata = {
   title: 'Revealr — High-Speed Go Network Scanner & Vulnerability Mapping Tool',
@@ -241,88 +244,62 @@ export default function RevealrHome() {
         </section>
       </ScrollReveal>
     
-      <ScrollReveal direction="up" delay={0.1}>
-          <section className="mx-auto max-w-4xl px-6 py-24 md:px-10">
-            <h2 className="text-3xl font-black text-white mb-12 tracking-tight border-b border-white/10 pb-4">Technical Briefing</h2>
-            <div className="space-y-12">
-              <div>
-                <h3 className="text-xl font-bold text-lime-400 mb-3">What is Revealr?</h3>
-                <p className="text-zinc-300 leading-relaxed text-lg">
-                  Revealr is a high-speed, stateful network reconnaissance and vulnerability mapping tool. Built entirely in Go, it leverages highly concurrent network sockets and an integrated SQLite state machine to map network attack surfaces instantly.
-                </p>
-                <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-lg text-sm text-zinc-400">
-                  <span className="text-lime-300 font-bold block mb-1">Architecture Note:</span>
-                  Unlike stateless scanners, Revealr maintains historical awareness of network topologies, allowing for autonomous detection of drift and newly exposed services across scan iterations.
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-lime-400 mb-3">What problem does Revealr solve?</h3>
-                <p className="text-zinc-300 leading-relaxed text-lg">
-                  Continuous attack surface management requires real-time knowledge of service drift. Traditional scanners often run as slow, stateless cron jobs that dump raw output requiring secondary parsing. Revealr solves this by making state management a native feature of the scanning engine itself, instantly highlighting what changed since the last execution.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-lime-400 mb-3">What technologies does Revealr use?</h3>
-                <p className="text-zinc-300 leading-relaxed text-lg">
-                  The core network engine is written in Go to maximize concurrent network I/O. The state layer utilizes embedded SQLite to ensure it remains a single-binary deployment. A built-in plugin bridge allows seamless execution of Python-based vulnerability mapping scripts directly against the discovered asset inventory.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-lime-400 mb-3">How fast is Revealr?</h3>
-                <p className="text-zinc-300 leading-relaxed text-lg">
-                  Revealr is optimized for raw throughput. In benchmark environments, it is capable of achieving scan rates exceeding 50,000 ports per minute, completing full 65,535 port sweeps on local targets in ~0.8 seconds.
-                </p>
-                <div className="mt-6 border border-white/10 rounded-lg overflow-hidden bg-[#0a0a0a]">
-                  <div className="bg-white/5 border-b border-white/10 px-4 py-2 flex items-center">
-                    <span className="text-lime-400 text-xs font-bold uppercase tracking-widest">Performance Benchmark Evidence</span>
-                  </div>
-                  <div className="p-4 md:p-6 grid gap-6">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm border-b border-white/5 pb-6">
-                      <div>
-                        <span className="block text-zinc-500 uppercase text-xs mb-1">Claim</span>
-                        <span className="text-white font-mono">50,000+ ports/min</span>
-                      </div>
-                      <div>
-                        <span className="block text-zinc-500 uppercase text-xs mb-1">Hardware</span>
-                        <span className="text-white font-mono">8-Core ARM, 16GB RAM</span>
-                      </div>
-                      <div>
-                        <span className="block text-zinc-500 uppercase text-xs mb-1">Network</span>
-                        <span className="text-white font-mono">Localhost / loopback</span>
-                      </div>
-                      <div>
-                        <span className="block text-zinc-500 uppercase text-xs mb-1">Configuration</span>
-                        <span className="text-white font-mono">--rate 5000</span>
-                      </div>
-                    </div>
-                    <div>
-                      <span className="block text-zinc-500 uppercase text-xs mb-2">Raw Methodology & Output</span>
-                      <pre className="text-lime-300 font-mono text-xs overflow-x-auto whitespace-pre-wrap leading-relaxed p-4 bg-black rounded border border-white/5">
-$ revealr scan --target 127.0.0.1 --ports 1-65535 --rate 5000 --json
-[+] Initializing adaptive concurrent engine (workers=5000)
-[+] State machine loaded: 0 known hosts
-[+] Scanning 127.0.0.1 (65535 ports)
-...
-[?] Scan complete in 821ms. 
-[?] Discovered 4 open ports. Throughput: 79,823 ports/sec.
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-lime-400 mb-3">Can we hire you for custom security or high-throughput Go backend tooling?</h3>
-                <p className="text-zinc-300 leading-relaxed text-lg">
-                  Yes. We engineer bespoke high-concurrency Go backends, raw socket network tools, and vulnerability management pipelines for organizations needing reliable, high-speed infrastructure. Explore our <a href="https://rounakneema.in/freelance/software-development" className="text-lime-400 underline font-bold">software development services</a> or <a href="https://rounakneema.in/contact" className="text-white underline font-bold">start a direct project inquiry</a>.
-                </p>
-              </div>
+      {/* Architecture Spec Banner & Searchable SEO FAQs */}
+      <section className="border-t border-white/[0.07] py-20 lg:py-24 bg-[#0a0e0c]">
+        <div className="max-w-5xl mx-auto px-6 md:px-10">
+          
+          {/* Architecture Documentation Banner Card */}
+          <div className="mb-16 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-lime-400/30 transition-all duration-300">
+            <div className="space-y-2">
+              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-lime-400 font-mono block">
+                ENGINEERING SPECIFICATION
+              </span>
+              <h3 className="text-2xl font-bold tracking-tight text-white">
+                Inspect System Architecture &amp; Scan Pipeline
+              </h3>
+              <p className="text-zinc-400 text-sm leading-relaxed max-w-xl">
+                Explore the complete technical breakdown including goroutine concurrency models, SQLite WAL state management, raw TCP sockets, and verified throughput benchmarks.
+              </p>
             </div>
-          </section>
-        </ScrollReveal>
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <Link
+                href="/architecture"
+                className="px-5 py-3 bg-lime-400 hover:bg-lime-300 text-black font-bold text-xs font-mono uppercase tracking-wider rounded-xl transition-all shadow-sm flex items-center gap-2"
+              >
+                <span>Architecture Spec</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+              <Link
+                href="/benchmarks"
+                className="px-5 py-3 border border-zinc-700 hover:border-lime-400 text-zinc-300 hover:text-white font-medium text-xs font-mono uppercase tracking-wider rounded-xl transition-all bg-black/40 flex items-center gap-2"
+              >
+                <span>Benchmarks</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Searchable FAQ Component for SEO */}
+          <SearchableFaq
+            items={projectFaqs.revealr}
+            theme="dark"
+            accentColor="#a3e635"
+            title="Frequently Asked Questions"
+            eyebrow="ENGINEERING KNOWLEDGE BASE &amp; FAQ"
+            projectName="Revealr"
+          />
+
+          {/* Email Intake & Custom Tooling Inquiry */}
+          <div className="mt-16">
+            <ProjectEmailIntake
+              slug="revealr"
+              projectName="Revealr"
+              isLight={false}
+            />
+          </div>
+
+        </div>
+      </section>
 
       <div className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
       </div>

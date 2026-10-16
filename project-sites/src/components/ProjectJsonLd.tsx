@@ -1,5 +1,6 @@
-﻿import React from 'react';
+import React from 'react';
 import { projects } from '@/lib/projects';
+import { projectFaqs } from '@/lib/projectFaqs';
 
 export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { slug: string, pageType?: 'Architecture' | 'Docs' | 'Security' | 'Benchmarks' | 'Changelog' | 'Decisions' | 'Forensics', pageTitle?: string, pageDescription?: string }) {
     const project = projects.find(p => p.slug === slug);
@@ -24,7 +25,7 @@ export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { 
     const jsonLd: any[] = [];
 
     if (!pageType) {
-        // Root Page emits the full WebSite, SoftwareApplication, and FAQ
+        // Root Page emits the full WebSite, SoftwareApplication, and complete FAQPage
         jsonLd.push(softwareApp);
         jsonLd.push({
             '@context': 'https://schema.org',
@@ -36,10 +37,18 @@ export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { 
                 '@id': 'https://rounakneema.in/#person'
             }
         });
-        jsonLd.push({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            'mainEntity': [
+
+        const faqs = projectFaqs[slug] || [];
+        const faqEntities = faqs.length > 0
+            ? faqs.map(f => ({
+                '@type': 'Question',
+                'name': f.question,
+                'acceptedAnswer': {
+                    '@type': 'Answer',
+                    'text': f.answer
+                }
+            }))
+            : [
                 {
                     '@type': 'Question',
                     'name': `What is ${project.title}?`,
@@ -48,7 +57,12 @@ export function ProjectJsonLd({ slug, pageType, pageTitle, pageDescription }: { 
                         'text': project.fullDescription || project.subtitle
                     }
                 }
-            ]
+            ];
+
+        jsonLd.push({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': faqEntities
         });
     } else {
         // Subpage emits a TechArticle or highly scoped WebPage referencing the software

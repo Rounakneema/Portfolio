@@ -4,6 +4,8 @@ import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { TerminalTabs } from '@/components/pipelineforge/TerminalTabs';
 import { PipelineDiagram } from '@/components/pipelineforge/PipelineDiagram';
 import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
+import { SearchableFaq } from '@/components/shared/SearchableFaq';
+import { projectFaqs } from '@/lib/projectFaqs';
 
 export const metadata = {
   title: 'PipelineForge - Production GitOps DevSecOps Pipeline',
@@ -12,33 +14,6 @@ export const metadata = {
     canonical: 'https://pipelineforge.rounakneema.in',
   },
 };
-
-const pipelineForgeFaq = [
-  {
-    question: "What is PipelineForge?",
-    answer: "PipelineForge is a complete DevSecOps pipeline automating build, security scanning, and Kubernetes deployment using GitHub Actions, multi-stage Distroless Docker containers, Trivy security gates, and Helm."
-  },
-  {
-    question: "How does the multi-stage build achieve an 8MB container?",
-    answer: "The build separates the compilation stage from runtime. A golang:1.21-alpine container compiles a statically linked Go binary. The compiled binary is copied into gcr.io/distroless/static-debian11, leaving behind shells, package managers, and development utilities."
-  },
-  {
-    question: "How does the Trivy security gate operate?",
-    answer: "Trivy scans the newly packaged container image immediately after build. If any High or Critical CVE vulnerabilities appear in the report, the CI workflow exits with code 1, preventing the image from reaching the container registry."
-  },
-  {
-    question: "How are rollouts and rollbacks managed with Helm?",
-    answer: "Deployments use Helm templates defining HorizontalPodAutoscalers, NetworkPolicies, and rolling update strategies. If health probes fail during deployment, Kubernetes halts the rollout and keeps existing pods online."
-  },
-  {
-    question: "What load testing was performed with k6?",
-    answer: "We ran k6 load tests simulating 500 concurrent virtual users against the ingress endpoint. P95 latency remained under 5ms, and the Horizontal Pod Autoscaler dynamically scaled replicas from 2 to 8 without dropping connections."
-  },
-  {
-    question: "Can we hire you for DevSecOps, container reduction, or CI/CD pipelines?",
-    answer: "Yes. We partner with engineering teams to shrink container attack surfaces, eliminate CVEs with Distroless packaging, and automate Trivy security gates before code reaches production. Reach out through our contact page or email rounakneema414@gmail.com."
-  }
-];
 
 export default function PipelineForgePage() {
   return (
@@ -625,103 +600,51 @@ export default function PipelineForgePage() {
       </section>
 
       {/* ========================================================= */}
-      {/* TECHNICAL BRIEFING & EVIDENCE BLOCK                       */}
+      {/* SECTION 05: ARCHITECTURE SPECS & SEARCHABLE FAQ            */}
       {/* ========================================================= */}
-      <section className="py-20 lg:py-24 bg-neutral-50/50">
+      <section className="py-20 lg:py-24 bg-neutral-50/50 border-t border-neutral-200/90">
         <div className="max-w-[1200px] mx-auto px-6 md:px-10">
           
-          <div className="flex items-center justify-between border-b border-neutral-200 pb-6 mb-12">
-            <div>
-              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono block mb-2">
-                SYSTEM VERIFICATION &amp; EVIDENCE
+          {/* Architecture Banner Card */}
+          <div className="mb-16 p-8 rounded-2xl bg-white border border-neutral-200/90 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-2">
+              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono block">
+                ENGINEERING SPECIFICATION
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">
-                Technical Briefing
-              </h2>
+              <h3 className="text-2xl font-bold tracking-tight text-neutral-900">
+                Inspect DevSecOps Pipeline &amp; Cluster Topology
+              </h3>
+              <p className="text-neutral-600 text-sm leading-relaxed max-w-xl">
+                Explore the complete technical breakdown including multi-stage Distroless packaging, Trivy CVE gate automation, and Kubernetes rolling update configurations.
+              </p>
             </div>
-            <div className="hidden sm:flex gap-3">
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
               <Link
                 href="/architecture"
-                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+                className="px-5 py-3 bg-neutral-950 hover:bg-neutral-800 text-white font-medium text-xs font-mono uppercase tracking-wider rounded-xl transition-all shadow-sm flex items-center gap-2"
               >
                 <span>Pipeline Architecture</span>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                <span aria-hidden="true">&rarr;</span>
               </Link>
               <Link
                 href="/decisions"
-                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+                className="px-5 py-3 border border-neutral-300 hover:border-neutral-900 text-neutral-800 font-medium text-xs font-mono uppercase tracking-wider rounded-xl transition-all bg-white flex items-center gap-2"
               >
-                <span>Metrics &amp; Trade-offs</span>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                <span>Decisions &amp; Trade-offs</span>
+                <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
           </div>
 
-          {/* Q&A List */}
-          <div className="space-y-10">
-            {pipelineForgeFaq.map((item, idx) => (
-              <div key={idx} className="space-y-3">
-                <h3 className="text-lg font-bold text-neutral-900 flex items-center gap-3">
-                  <span className="text-xs font-mono text-[#f97316]">0{idx + 1}</span>
-                  <span>{item.question}</span>
-                </h3>
-                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed pl-7">
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Evidence Block */}
-          <div className="mt-16 border border-neutral-200 rounded-2xl bg-white overflow-hidden shadow-sm">
-            <div className="bg-neutral-100/70 border-b border-neutral-200 px-6 py-3.5 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span className="text-xs font-bold font-mono uppercase tracking-widest text-neutral-800">
-                  99.3% Container Image Reduction &amp; Zero CVE Gate Evidence
-                </span>
-              </div>
-              <span className="text-[11px] font-mono text-neutral-500">Verified Pipeline</span>
-            </div>
-
-            <div className="p-6 md:p-8 space-y-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm border-b border-neutral-100 pb-6">
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Standard Go Image</span>
-                  <span className="text-neutral-900 font-semibold font-mono">1.1 GB (Alpine)</span>
-                </div>
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Distroless Image</span>
-                  <span className="text-emerald-600 font-semibold font-mono">8.4 MB (Final)</span>
-                </div>
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Trivy CVE Count</span>
-                  <span className="text-emerald-600 font-semibold font-mono">0 Vulnerabilities</span>
-                </div>
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Target Cluster</span>
-                  <span className="text-neutral-900 font-semibold font-mono">Kubernetes (Helm)</span>
-                </div>
-              </div>
-
-              <div>
-                <span className="block text-neutral-500 font-mono text-xs mb-2">Build &amp; Scan Verification Output</span>
-                <pre className="font-mono text-xs bg-neutral-950 text-neutral-200 p-5 rounded-xl overflow-x-auto leading-relaxed border border-neutral-800 shadow-inner">
-{`$ docker images | grep pipelineforge
-pipelineforge-app  builder     1.1GB (golang:1.21-alpine)
-pipelineforge-app  distroless  8.4MB (gcr.io/distroless/static-debian11)
-
-$ trivy image --severity HIGH,CRITICAL pipelineforge-app:distroless
-2026-10-15T12:00:00Z INFO Vulnerability database up to date
-pipelineforge-app:distroless (debian 11.9)
-=========================================
-Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
-
-[✓] Security gate passed: zero CVE vulnerabilities detected`}
-                </pre>
-              </div>
-            </div>
-          </div>
+          {/* Searchable FAQ Component for SEO */}
+          <SearchableFaq
+            items={projectFaqs.pipelineforge}
+            theme="light"
+            accentColor="text-[#f97316]"
+            title="Frequently Asked Questions"
+            eyebrow="SEO &amp; KNOWLEDGE BASE"
+            projectName="PipelineForge"
+          />
 
           {/* Email Intake & Custom Pipeline Engineering */}
           <div className="mt-16">

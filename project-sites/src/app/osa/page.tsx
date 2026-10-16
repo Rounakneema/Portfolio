@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { TerminalStream, LogEntry } from '@/components/shared/TerminalStream';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { SearchableFaq } from '@/components/shared/SearchableFaq';
+import { projectFaqs } from '@/lib/projectFaqs';
+import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata: Metadata = {
   title: 'OSA — Offline Security Auditor for Air-Gapped Environments',
@@ -211,70 +214,65 @@ export default function OSAPage() {
                         </section>
                     </ScrollReveal>
 
-                    <ScrollReveal direction="up" delay={0.1}>
-                        <section className="brutalist-border p-8 bg-white/5 border border-white/10 backdrop-blur-md rounded-lg shadow-xl">
-                            <h2 className="text-3xl font-black text-white mb-12 tracking-tight border-b border-white/10 pb-4">Technical Briefing</h2>
-                            <div className="space-y-12">
-                                <div>
-                                    <h3 className="text-xl font-bold text-[#ffb800] mb-3">What is OSA?</h3>
-                                    <p className="text-zinc-300 leading-relaxed text-lg">OSA — Offline Security Auditor designed for air-gapped environments. It's a tool that analyzes security logs without requiring an active internet connection or external APIs.</p>
-                                </div>
-                                
-                                <div>
-                                    <h3 className="text-xl font-bold text-[#ffb800] mb-3">Can OSA run without internet?</h3>
-                                    <p className="text-zinc-300 leading-relaxed text-lg">Yes, OSA is a single-binary application that requires zero runtime dependencies and no internet access. Its standalone nature, built-in analytics, and complete lack of external telemetry or API calls make it suitable for air-gapped environments.</p>
-                                </div>
-
-                                <div>
-                                    <h3 className="text-xl font-bold text-[#ffb800] mb-3">How does OSA detect anomalies offline?</h3>
-                                    <p className="text-zinc-300 leading-relaxed text-lg">OSA uses statistical detection engines including Z-Score and Markov Chains to identify behavioral deviations without network dependency.</p>
-                                    
-                                    <div className="mt-6 border border-white/10 rounded-lg overflow-hidden bg-[#0a0a0a]">
-                                        <div className="bg-white/5 border-b border-white/10 px-4 py-2 flex items-center">
-                                            <span className="text-[#ffb800] text-xs font-bold uppercase tracking-widest">Analytics Benchmark Evidence</span>
-                                        </div>
-                                        <div className="p-4 md:p-6 grid gap-6">
-                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm border-b border-white/5 pb-6">
-                                                <div>
-                                                    <span className="block text-zinc-500 uppercase text-xs mb-1">Claim</span>
-                                                    <span className="text-white font-mono">&lt;200ms Pipeline</span>
-                                                </div>
-                                                <div>
-                                                    <span className="block text-zinc-500 uppercase text-xs mb-1">Methodology</span>
-                                                    <span className="text-white font-mono">Z-Score + Markov</span>
-                                                </div>
-                                                <div>
-                                                    <span className="block text-zinc-500 uppercase text-xs mb-1">Telemetry</span>
-                                                    <span className="text-white font-mono">0 Bytes</span>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span className="block text-zinc-500 uppercase text-xs mb-2">Raw Methodology & Output</span>
-                                                <pre className="text-[#ffb800] font-mono text-xs overflow-x-auto whitespace-pre-wrap leading-relaxed p-4 bg-black rounded border border-white/5">
-$ osa audit --logs /var/log/auth.log --offline
-[+] Ingesting 50,000 log events...
-[+] Baseline computed in 142ms.
-[!] ANOMALY: Z-SCORE 4.2 — auth.log:4821
-                                                </pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h3 className="text-xl font-bold text-[#ffb800] mb-3">Can we hire you for air-gapped security audits or custom tooling?</h3>
-                                    <p className="text-zinc-300 leading-relaxed text-lg">
-                                        Yes. We deliver authorized security evaluations, offline log anomaly baselining, and zero-telemetry audit tools designed for high-compliance, air-gapped perimeters. Explore our <a href="https://rounakneema.in/freelance/cybersecurity" className="text-[#ffb800] underline font-bold">cybersecurity services</a> or <a href="https://rounakneema.in/contact" className="text-white underline font-bold">start a direct project inquiry</a>.
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                    </ScrollReveal>
                 </div>
             </div>
-        
-            <div className="max-w-7xl mx-auto px-6 pb-24">
-            </div>
+
+            {/* Architecture Spec Banner & Searchable SEO FAQs */}
+            <section className="border-t border-[#333] py-20 lg:py-24 bg-[#080808]">
+                <div className="max-w-5xl mx-auto px-6 md:px-10">
+                    
+                    {/* Architecture Documentation Banner Card */}
+                    <div className="mb-16 p-8 brutalist-border bg-white/5 border border-white/10 backdrop-blur-md rounded-xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#ffb800]/50 transition-all duration-300">
+                        <div className="space-y-2">
+                            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#ffb800] font-mono block">
+                                AIR-GAPPED SPECIFICATION
+                            </span>
+                            <h3 className="text-2xl font-bold tracking-tight text-white font-mono">
+                                Inspect Air-Gapped Topology &amp; SCS Pipeline
+                            </h3>
+                            <p className="text-zinc-400 font-mono text-sm leading-relaxed max-w-xl">
+                                Explore the complete technical architecture: Mutating Admission Webhook sidecar injection, Aho-Corasick linear filtering, Secret Confidence Scoring, and encrypted SQLite audit vaults.
+                            </p>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-3 shrink-0">
+                            <Link
+                                href="/architecture"
+                                className="px-5 py-3 bg-[#ffb800] hover:bg-[#e0a300] text-black font-bold text-xs font-mono uppercase tracking-wider rounded-lg transition-all shadow-sm flex items-center gap-2"
+                            >
+                                <span>Architecture Spec</span>
+                                <span aria-hidden="true">&rarr;</span>
+                            </Link>
+                            <Link
+                                href="/docs"
+                                className="px-5 py-3 border border-zinc-700 hover:border-[#ffb800] text-zinc-300 hover:text-white font-medium text-xs font-mono uppercase tracking-wider rounded-lg transition-all bg-black/40 flex items-center gap-2"
+                            >
+                                <span>Docs &amp; Benchmarks</span>
+                                <span aria-hidden="true">&rarr;</span>
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Searchable FAQ Component for SEO */}
+                    <SearchableFaq
+                        items={projectFaqs.osa}
+                        theme="dark"
+                        accentColor="#ffb800"
+                        title="Frequently Asked Questions"
+                        eyebrow="SECURITY KNOWLEDGE BASE &amp; FAQ"
+                        projectName="OSA"
+                    />
+
+                    {/* Email Intake & Custom Tooling Inquiry */}
+                    <div className="mt-16">
+                        <ProjectEmailIntake
+                            slug="osa"
+                            projectName="OSA"
+                            isLight={false}
+                        />
+                    </div>
+
+                </div>
+            </section>
         </main>
     );
 }

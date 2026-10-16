@@ -4,6 +4,9 @@ import type { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { TerminalStream } from '@/components/shared/TerminalStream';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { SearchableFaq } from '@/components/shared/SearchableFaq';
+import { projectFaqs } from '@/lib/projectFaqs';
+import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata: Metadata = {
     title: 'MetroMind — Enterprise AI Document Intelligence Platform',
@@ -198,46 +201,55 @@ export default function MetroMindHome() {
                     </section>
                 </ScrollReveal>
 
-                {/* ─── Technical Briefing ──────────────────────────────── */}
-                <ScrollReveal direction="up" delay={0.1}>
-                    <section className="border-b border-fuchsia-500/10 grid lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-fuchsia-500/10">
-                        <div className="p-8 md:p-16">
-                            <div className="text-fuchsia-500 mb-6 border-b border-fuchsia-500/20 pb-4 inline-flex items-center gap-3 w-full">
-                                <span className="uppercase tracking-widest text-xs font-bold">Technical Briefing</span>
+                {/* ─── Architecture Spec Banner & Searchable SEO FAQs ──── */}
+                <section className="border-b border-fuchsia-500/10 py-16 md:py-24 px-6 md:px-16 bg-[#040407]">
+                    <div className="max-w-5xl mx-auto">
+                        
+                        {/* Architecture Documentation Banner Card */}
+                        <div className="mb-16 p-8 rounded-2xl bg-white/5 border border-fuchsia-500/20 backdrop-blur-md shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-fuchsia-500/40 transition-all duration-300">
+                            <div className="space-y-2">
+                                <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-cyan-400 font-mono block">
+                                    DISTRIBUTED ARCHITECTURE SPECIFICATION
+                                </span>
+                                <h3 className="text-2xl font-bold tracking-tight text-white font-sans">
+                                    Inspect Distributed Microservices &amp; Milvus Topology
+                                </h3>
+                                <p className="text-zinc-400 font-sans text-sm leading-relaxed max-w-xl">
+                                    Examine the complete distributed architecture: Go API Gateway, RabbitMQ message brokers, asynchronous Python OCR workers, all-MiniLM embeddings, and RBAC-governed PostgreSQL audit logs.
+                                </p>
                             </div>
-                            <h2 className="text-3xl font-sans font-black text-white leading-tight mb-6 tracking-tight">
-                                Architecture &amp; Capabilities
-                            </h2>
-                            <div className="space-y-6 text-zinc-400 font-sans text-base leading-relaxed">
-                                <p>
-                                    <strong className="text-white font-bold block mb-1">Platform Architecture</strong>
-                                    MetroMind is an enterprise document intelligence platform that transforms scanned paperwork into a secure semantic search engine. It employs an event-driven microservices architecture orchestrating RabbitMQ queues and Milvus vector indices to process high-throughput document volumes.
-                                </p>
-                                <p>
-                                    <strong className="text-white font-bold block mb-1">OCR &amp; Vector Pipeline</strong>
-                                    Documents are parsed by asynchronous Python OCR workers, split into sliding semantic windows, and converted into dense vector embeddings. High-concurrency vector similarity search is executed in sub-100ms via Milvus.
-                                </p>
-                                <p>
-                                    <strong className="text-white font-bold block mb-1">Freelance &amp; Client Engagements</strong>
-                                    We build custom OCR ingestion pipelines, enterprise vector search systems, and private RAG architectures for organizations. Explore our <a href="https://rounakneema.in/freelance/ai-development" className="text-fuchsia-400 underline font-bold">AI development services</a> or reach out to discuss your project requirements.
-                                </p>
+                            <div className="shrink-0">
+                                <Link
+                                    href="/architecture"
+                                    className="px-6 py-3.5 bg-gradient-to-r from-fuchsia-500 to-cyan-500 hover:from-fuchsia-400 hover:to-cyan-400 text-black font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg flex items-center gap-2"
+                                >
+                                    <span>Architecture Spec</span>
+                                    <span aria-hidden="true">&rarr;</span>
+                                </Link>
                             </div>
                         </div>
-                        <div className="p-8 md:p-16 bg-white/[0.01] flex flex-col justify-center">
-                            <div className="text-cyan-400 mb-6 border-b border-cyan-500/20 pb-4 inline-flex items-center gap-3 w-full">
-                                <span className="uppercase tracking-widest text-xs font-bold">Evidence / Proof of Work</span>
-                            </div>
-                            <h3 className="text-lg font-sans font-bold text-white mb-4 tracking-tight">Enterprise Document OCR &amp; Vector Search</h3>
-                            <div className="border border-zinc-800 bg-black p-5 font-mono text-xs leading-relaxed overflow-x-auto relative shadow-2xl">
-                                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-fuchsia-500 to-cyan-500 opacity-50" />
-                                <pre className="text-zinc-300"><code><span className="text-fuchsia-400">$</span> metromind ingest --file contract_v3.pdf
-<span className="text-cyan-400">[+]</span> OCR Pipeline: Extracted 4,291 tokens
-<span className="text-cyan-400">[+]</span> Chunking: 12 semantic blocks generated
-<span className="text-cyan-400">[+]</span> Vector DB: Indexed in Milvus successfully (latency: 38ms)</code></pre>
-                            </div>
+
+                        {/* Searchable FAQ Component for SEO */}
+                        <SearchableFaq
+                            items={projectFaqs.metromind}
+                            theme="dark"
+                            accentColor="#e879f9"
+                            title="Frequently Asked Questions"
+                            eyebrow="ENTERPRISE KNOWLEDGE BASE &amp; FAQ"
+                            projectName="MetroMind"
+                        />
+
+                        {/* Email Intake & Custom Tooling Inquiry */}
+                        <div className="mt-16">
+                            <ProjectEmailIntake
+                                slug="metromind"
+                                projectName="MetroMind"
+                                isLight={false}
+                            />
                         </div>
-                    </section>
-                </ScrollReveal>
+
+                    </div>
+                </section>
 
             </main>
 

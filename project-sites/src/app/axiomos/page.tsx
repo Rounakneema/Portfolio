@@ -8,6 +8,9 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared
 import { TypeWriter } from '@/components/shared/TypeWriter';
 import { TerminalStream } from '@/components/shared/TerminalStream';
 import Link from 'next/link';
+import { SearchableFaq } from '@/components/shared/SearchableFaq';
+import { projectFaqs } from '@/lib/projectFaqs';
+import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata = {
   title: 'AXIOM OS — Local-First Personal AI Operating System',
@@ -248,50 +251,51 @@ export default function AxiomPage() {
                     ]} />
                 </ScrollReveal>
 
-                {/* TECHNICAL BRIEFING */}
-                <ScrollReveal direction="up" delay={0.1}>
-                    <section className="relative z-10 mt-32 max-w-4xl mx-auto">
-                        <h2 className="text-3xl font-black mb-12 text-center tracking-tight uppercase">Technical Briefing</h2>
-                        <StaggerContainer>
-                            <div className="space-y-4">
-                                {axiomJsonLd.faq.map((q, idx) => {
-                                    const num = String(idx + 1).padStart(2, '0');
-                                    return (
-                                        <StaggerItem key={idx}>
-                                            <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-white/10 pb-4 hover:-translate-y-1 transition-all duration-300">
-                                                <summary className="flex cursor-pointer items-center justify-between font-bold text-white uppercase text-sm">
-                                                    <span><span className="text-[#00d4aa] mr-4">{num}.</span> {q.question}</span>
-                                                    <span className="transition group-open:rotate-180">▼</span>
-                                                </summary>
-                                                <p className="mt-4 text-gray-400 pl-8 font-mono leading-relaxed">{q.answer}</p>
-                                            </details>
-                                        </StaggerItem>
-                                    );
-                                })}
-                            </div>
-                        </StaggerContainer>
+                {/* ARCHITECTURE SPEC BANNER & SEARCHABLE SEO FAQS */}
+                <section className="relative z-10 mt-32 max-w-5xl mx-auto">
+                    {/* Architecture Documentation Banner Card */}
+                    <div className="mb-16 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#00d4aa]/50 transition-all duration-300">
+                        <div className="space-y-2">
+                            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#00d4aa] font-mono block">
+                                SYSTEM ARCHITECTURE SPECIFICATION
+                            </span>
+                            <h3 className="text-2xl font-bold tracking-tight text-white font-sans">
+                                Inspect Local-First Daemon &amp; Ollama Topology
+                            </h3>
+                            <p className="text-zinc-400 font-sans text-sm leading-relaxed max-w-xl">
+                                Explore the complete technical architecture: Go Specter background daemon, SQLite WAL event persistence, on-device Ollama model orchestration, and local policy engines.
+                            </p>
+                        </div>
+                        <div className="shrink-0">
+                            <Link
+                                href="/architecture"
+                                className="px-6 py-3.5 bg-[#00d4aa] hover:bg-white text-black font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg flex items-center gap-2"
+                            >
+                                <span>Architecture Spec</span>
+                                <span aria-hidden="true">&rarr;</span>
+                            </Link>
+                        </div>
+                    </div>
 
-                        {/* EVIDENCE BLOCK */}
-                        <ScrollReveal direction="up" delay={0.2}>
-                            <div className="mt-16 bg-[#050505] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-                                <div className="bg-black/50 border-b border-white/5 px-4 py-3 flex items-center gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                    <div className="ml-auto">
-                                        <span className="text-[#00d4aa] font-mono text-[10px] font-bold uppercase tracking-widest">Evidence: Local-First Privacy & Offline AI Execution</span>
-                                    </div>
-                                </div>
-                                <div className="p-6 font-mono text-sm leading-relaxed text-gray-300">
-                                    <div><span className="text-[#00d4aa]">$</span> specter start --daemon</div>
-                                    <div className="text-gray-400">[+] Telemetry ingest started locally. Network: DISABLED</div>
-                                    <div className="text-gray-400">[+] Ollama inference engine loaded in memory</div>
-                                    <div className="text-green-500">[✓] Policy Engine: Running locally without cloud APIs</div>
-                                </div>
-                            </div>
-                        </ScrollReveal>
-                    </section>
-                </ScrollReveal>
+                    {/* Searchable FAQ Component for SEO */}
+                    <SearchableFaq
+                        items={projectFaqs.axiomos}
+                        theme="dark"
+                        accentColor="#00d4aa"
+                        title="Frequently Asked Questions"
+                        eyebrow="SYSTEM KNOWLEDGE BASE &amp; FAQ"
+                        projectName="AXIOM OS"
+                    />
+
+                    {/* Email Intake & Custom Tooling Inquiry */}
+                    <div className="mt-16">
+                        <ProjectEmailIntake
+                            slug="axiomos"
+                            projectName="AXIOM OS"
+                            isLight={false}
+                        />
+                    </div>
+                </section>
 
                 {/* SECTION 6: CTA / FREELANCE SHOWCASE */}
                 <ScrollReveal direction="up" delay={0.1}>

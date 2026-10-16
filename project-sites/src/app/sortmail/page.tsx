@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
+import { SearchableFaq } from '@/components/shared/SearchableFaq';
+import { projectFaqs } from '@/lib/projectFaqs';
 import sortmailHeroScene from '@/assets/sortmail-hero-scene.png';
 
 export const metadata: Metadata = {
@@ -15,29 +17,6 @@ export const metadata: Metadata = {
     canonical: 'https://sortmail.rounakneema.in',
   },
 };
-
-const sortmailFaq = [
-  {
-    question: "What is SortMail?",
-    answer: "SortMail is an inbox intelligence engine that turns chaotic email threads into structured action items. It reads message context, drafts executive briefings, extracts deadlines, and surfaces critical attachments before you click through threads."
-  },
-  {
-    question: "How does the Database-First architecture improve load speed?",
-    answer: "Rather than waiting on synchronous Gmail API round-trips every time you open your inbox, SortMail serves cached metadata from PostgreSQL in under 50 milliseconds. A background worker performs delta syncs using Gmail historyId to pull only new messages."
-  },
-  {
-    question: "Why use a single-pass LLM pipeline?",
-    answer: "Multi-agent loops introduce latency and unpredictable billing. SortMail uses a single structured JSON invocation with Gemini 2.0 Flash, extracting thread intent, tasks, and deadlines in under 850 milliseconds for approximately ₹0.25 per email."
-  },
-  {
-    question: "How does SortMail protect against malicious attachments?",
-    answer: "The ingestion gateway verifies file headers and MIME types before preview generation. If a message contains an executable disguised as an invoice, the system flags the MIME mismatch and halts execution."
-  },
-  {
-    question: "Can we commission similar email automation or LLM pipeline engineering?",
-    answer: "Yes. Rounak Neema builds custom email intelligence engines, FastAPI LLM pipelines, and secure document ingestion tools. Reach out through the contact page or submit your email below."
-  }
-];
 
 export default function SortMailPage() {
   const project = projects.find((p) => p.slug === 'sortmail');
@@ -447,31 +426,42 @@ export default function SortMailPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* SECTION 03: TECHNICAL BRIEFING & BENCHMARKS               */}
+      {/* SECTION 04: ARCHITECTURE SPECS & SEARCHABLE FAQ            */}
       {/* ========================================================= */}
       <section className="border-t border-neutral-200/90 py-20 lg:py-24 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 md:px-10">
           
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-200 pb-6 mb-12 gap-4">
-            <div>
-              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono block mb-2">
-                VERIFICATION &amp; EVIDENCE
+          {/* Architecture Banner Card */}
+          <div className="mb-16 p-8 rounded-2xl bg-[#faf9f6] border border-neutral-200/90 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-2">
+              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono block">
+                ENGINEERING SPECIFICATION
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">
-                Technical Briefing
-              </h2>
+              <h3 className="text-2xl font-bold tracking-tight text-neutral-900">
+                Inspect System Topology &amp; Database-First Architecture
+              </h3>
+              <p className="text-neutral-600 text-sm leading-relaxed max-w-xl">
+                Explore the complete technical breakdown including PostgreSQL delta sync cursors, Gemini 2.0 Flash JSON schemas, and verified latency benchmarks.
+              </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <a
+                href="/sortmail/architecture"
+                className="px-5 py-3 bg-neutral-950 hover:bg-neutral-800 text-white font-medium text-xs font-mono uppercase tracking-wider rounded-xl transition-all shadow-sm flex items-center gap-2"
+              >
+                <span>Topology Spec</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
               <a
                 href="/sortmail/decisions"
-                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+                className="px-5 py-3 border border-neutral-300 hover:border-neutral-900 text-neutral-800 font-medium text-xs font-mono uppercase tracking-wider rounded-xl transition-all bg-white flex items-center gap-2"
               >
-                <span>Engineering Tradeoffs</span>
+                <span>Decisions &amp; Trade-offs</span>
                 <span aria-hidden="true">&rarr;</span>
               </a>
               <a
                 href="/sortmail/docs"
-                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+                className="px-5 py-3 border border-neutral-300 hover:border-neutral-900 text-neutral-800 font-medium text-xs font-mono uppercase tracking-wider rounded-xl transition-all bg-white flex items-center gap-2"
               >
                 <span>Schema Docs</span>
                 <span aria-hidden="true">&rarr;</span>
@@ -479,70 +469,15 @@ export default function SortMailPage() {
             </div>
           </div>
 
-          {/* Q&A Accordion */}
-          <div className="space-y-10">
-            {sortmailFaq.map((item, idx) => (
-              <div key={idx} className="space-y-3">
-                <h3 className="text-lg font-bold text-neutral-900 flex items-center gap-3">
-                  <span className="text-xs font-mono text-neutral-400">0{idx + 1}</span>
-                  <span>{item.question}</span>
-                </h3>
-                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed pl-7">
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* CLI Pipeline Benchmark Evidence Card */}
-          <div className="mt-16 border border-neutral-200 rounded-2xl bg-neutral-50/50 overflow-hidden shadow-sm">
-            <div className="bg-neutral-100/70 border-b border-neutral-200 px-6 py-3.5 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span className="text-xs font-bold font-mono uppercase tracking-widest text-neutral-800">
-                  AI Pipeline Benchmark Evidence
-                </span>
-              </div>
-              <span className="text-[11px] font-mono text-neutral-500">Verified Pipeline</span>
-            </div>
-
-            <div className="p-6 md:p-8 space-y-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm border-b border-neutral-200/80 pb-6">
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Local Read Latency</span>
-                  <span className="text-neutral-900 font-semibold font-mono">&lt;50ms (PostgreSQL)</span>
-                </div>
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Inference Round-Trip</span>
-                  <span className="text-neutral-900 font-semibold font-mono">&lt;850ms (Gemini 2.0)</span>
-                </div>
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Sync Strategy</span>
-                  <span className="text-neutral-900 font-semibold font-mono">Gmail historyId Delta</span>
-                </div>
-                <div>
-                  <span className="block text-neutral-400 font-mono text-xs mb-1">Security Gate</span>
-                  <span className="text-neutral-900 font-semibold font-mono">Strict MIME Verification</span>
-                </div>
-              </div>
-
-              <div>
-                <span className="block text-neutral-500 font-mono text-xs mb-2">Live Session Trace</span>
-                <pre className="font-mono text-xs bg-neutral-950 text-neutral-200 p-5 rounded-xl overflow-x-auto leading-relaxed border border-neutral-800 shadow-inner">
-{`$ sortmail process --msg "NDA_Q3.eml"
-[info] Fetching thread via historyId: 18F4B2
-[info] Cache hit: PostgreSQL local replica ready (38ms)
-[info] Invoking Gemini 2.0 Flash single-pass extractor
-[✓] Extracted bluf: "Priya Mehta shared updated Q3 agreement for review."
-[✓] Deadline Extracted: 2026-10-17T17:00:00Z (Priority: High)
-[✓] Extracted action items: 3 tasks routed to tasks table
-[✓] Attachment verified: Q3_Analytics_Agreement.pdf (MIME: application/pdf)
-[!] Threat check complete: 0 warnings
-[info] Published intel_ready on Redis channel: thread_18F4B2 (62ms)`}
-                </pre>
-              </div>
-            </div>
-          </div>
+          {/* Searchable FAQ Component for SEO */}
+          <SearchableFaq
+            items={projectFaqs.sortmail}
+            theme="light"
+            accentColor="text-blue-600"
+            title="Frequently Asked Questions"
+            eyebrow="SEO &amp; KNOWLEDGE BASE"
+            projectName="SortMail"
+          />
 
           {/* Direct Email Intake Section */}
           <div className="mt-16">

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { HeroSequence } from './HeroSequence';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { SearchableFaq } from '@/components/shared/SearchableFaq';
+import { projectFaqs } from '@/lib/projectFaqs';
+import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata = {
     title: 'Klarity — AI Repository Intelligence for Technical Recruiting',
@@ -138,31 +141,62 @@ export default function DevContextPage() {
                 </section>
             </ScrollReveal>
             
-            {/* Technical Briefing Section */}
-            <ScrollReveal direction="up" delay={0.1}>
-                <section className="p-4 md:p-8 lg:p-16 bg-[#000] border-t border-[#333]">
-                    <h2 className="text-2xl font-bold uppercase tracking-tight text-white mb-8 border-l-4 border-[#1f6feb] pl-4">Technical Briefing</h2>
-                    <StaggerContainer>
-                        <div className="space-y-6 max-w-4xl">
-                            <StaggerItem>
-                                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">
-                                    <h3 className="text-white font-bold mb-4 tracking-tight text-lg">Evidence / Benchmark</h3>
-                                    <div className="text-[#1f6feb] text-sm font-bold uppercase mb-4 tracking-widest">Claim: Repository Grounding & Hallucination Prevention</div>
-                                    <pre className="bg-[#0a0a0a] p-4 rounded text-xs font-mono text-[#aaa] border border-[#333] overflow-x-auto whitespace-pre-wrap">
-{`$ klarity query --repo /src/auth --question "Does it use bcrypt?"
-[+] Searching abstract syntax trees...
-[+] Grounding engine verified lines 45-89 in auth/hash.go
-[✓] ANSWER: Yes. Evidence: \`bcrypt.GenerateFromPassword()\``}
-                                    </pre>
-                                </div>
-                            </StaggerItem>
+            {/* Architecture Spec Banner & Searchable SEO FAQs */}
+            <section className="p-4 md:p-8 lg:p-16 bg-[#000] border-t border-[#333]">
+                <div className="max-w-5xl mx-auto">
+                    
+                    {/* Architecture Documentation Banner Card */}
+                    <div className="mb-16 p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#1f6feb]/50 transition-all duration-300">
+                        <div className="space-y-2">
+                            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#58a6ff] font-mono block">
+                                ARCHITECTURE SPECIFICATION
+                            </span>
+                            <h3 className="text-2xl font-bold tracking-tight text-white font-mono">
+                                Inspect Serverless Architecture &amp; AST Pipeline
+                            </h3>
+                            <p className="text-zinc-400 font-mono text-sm leading-relaxed max-w-xl">
+                                Explore the complete technical architecture: Amazon Bedrock multi-model routing, AST context mapping, parallel Lambda agent synthesis, and DynamoDB state persistence.
+                            </p>
                         </div>
-                    </StaggerContainer>
-                </section>
-            </ScrollReveal>
+                        <div className="flex flex-wrap items-center gap-3 shrink-0">
+                            <Link
+                                href="/architecture"
+                                className="px-5 py-3 bg-[#1f6feb] hover:bg-[#58a6ff] text-white font-bold text-xs font-mono uppercase tracking-wider rounded-lg transition-all shadow-sm flex items-center gap-2"
+                            >
+                                <span>Architecture Spec</span>
+                                <span aria-hidden="true">&rarr;</span>
+                            </Link>
+                            <Link
+                                href="/docs"
+                                className="px-5 py-3 border border-zinc-700 hover:border-[#1f6feb] text-zinc-300 hover:text-white font-medium text-xs font-mono uppercase tracking-wider rounded-lg transition-all bg-black/40 flex items-center gap-2"
+                            >
+                                <span>Docs &amp; Specs</span>
+                                <span aria-hidden="true">&rarr;</span>
+                            </Link>
+                        </div>
+                    </div>
 
-            <div className="px-4 md:px-8 lg:px-16 pb-16 bg-[#0a0a0a]">
+                    {/* Searchable FAQ Component for SEO */}
+                    <SearchableFaq
+                        items={projectFaqs.devcontext}
+                        theme="dark"
+                        accentColor="#1f6feb"
+                        title="Frequently Asked Questions"
+                        eyebrow="TECHNICAL KNOWLEDGE BASE &amp; FAQ"
+                        projectName="Klarity"
+                    />
+
+                    {/* Email Intake & Custom Tooling Inquiry */}
+                    <div className="mt-16">
+                        <ProjectEmailIntake
+                            slug="devcontext"
+                            projectName="Klarity"
+                            isLight={false}
+                        />
+                    </div>
+
                 </div>
+            </section>
             {/* Footer */}
             <ScrollReveal direction="up" delay={0.1}>
                 <footer className="p-8 border-t border-[#333] flex justify-between items-center text-xs uppercase text-[#555]">
