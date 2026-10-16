@@ -10,7 +10,7 @@ export function DizzyNav() {
     { name: 'Product', href: '/#features' },
     { name: 'Features', href: '/#workflow' },
     { name: 'Use Cases', href: '/#built-for' },
-    { name: 'Pricing', href: 'https://rounakneema.in/freelance' },
+    { name: 'Services', href: 'https://rounakneema.in/freelance' },
     { name: 'Docs', href: '/docs' },
   ];
 
@@ -44,13 +44,13 @@ export function DizzyNav() {
               href="https://rounakneema.in/contact"
               className="font-normal text-neutral-600 hover:text-neutral-900 transition-colors"
             >
-              Log in
+              Contact
             </Link>
             <Link
               href="https://rounakneema.in/contact"
               className="bg-neutral-950 hover:bg-neutral-800 text-white font-medium px-4 py-2 rounded-lg text-sm transition-all shadow-sm active:scale-95"
             >
-              Get Started
+              Inquire
             </Link>
           </div>
 
@@ -60,7 +60,7 @@ export function DizzyNav() {
               href="https://rounakneema.in/contact"
               className="bg-neutral-950 text-white text-xs font-medium px-3 py-1.5 rounded-lg"
             >
-              Get Started
+              Inquire
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -94,9 +94,9 @@ export function DizzyNav() {
             <div className="pt-2 border-t border-neutral-100 flex items-center justify-between">
               <Link
                 href="https://rounakneema.in/contact"
-                className="text-sm text-neutral-600 hover:text-neutral-900"
+                className="text-sm font-medium text-neutral-900 hover:text-neutral-600"
               >
-                Log in
+                Inquire
               </Link>
             </div>
           </div>

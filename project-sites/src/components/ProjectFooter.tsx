@@ -1,5 +1,6 @@
 import React from 'react';
 import { projects } from '@/lib/projects';
+import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 const servicePillarMap: Record<string, {
     title: string;
@@ -110,6 +111,15 @@ export function ProjectFooter({ slug }: { slug: string }) {
                             Start Inquiry
                         </a>
                     </div>
+                </div>
+
+                {/* Direct Interest Email Intake */}
+                <div className="mb-12">
+                    <ProjectEmailIntake
+                        slug={slug}
+                        projectName={project.title}
+                        isLight={isLight}
+                    />
                 </div>
 
                 <div className="flex flex-col lg:flex-row justify-between gap-12 text-xs font-mono">
