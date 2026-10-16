@@ -1,46 +1,107 @@
 'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
 
 export function DizzyNav() {
-  const pathname = usePathname();
-  
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const navItems = [
-    { name: 'System', href: '/' },
-    { name: 'Architecture', href: '/architecture' },
-    { name: 'Decisions', href: '/decisions' },
-    { name: 'Docs', href: '/docs' }
+    { name: 'Product', href: '/#features' },
+    { name: 'Features', href: '/#workflow' },
+    { name: 'Use Cases', href: '/#built-for' },
+    { name: 'Pricing', href: 'https://rounakneema.in/freelance' },
+    { name: 'Docs', href: '/docs' },
   ];
 
   return (
-    <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="sticky top-0 z-50 bg-black border-b border-zinc-900 font-mono">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-        <div className="flex items-center justify-between h-16 overflow-x-auto hide-scrollbar">
-          <div className="flex items-center gap-4 border-r border-zinc-900 pr-6 mr-2">
-            <span className="font-black text-white uppercase tracking-widest text-lg">DIZZY</span>
-            <span className="w-2 h-2 bg-[#ff3366] rounded-full animate-pulse"></span>
-          </div>
-          <div className="flex space-x-6 text-xs uppercase font-bold whitespace-nowrap w-full">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-200/80 transition-all font-sans">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center gap-8">
+            <Link href="/" className="text-xl font-bold tracking-tight text-neutral-900 hover:opacity-80 transition-opacity">
+              Dizzy
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-7 text-sm font-normal text-neutral-600">
+              {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`transition-colors ${isActive ? 'text-[#ff3366]' : 'text-[#e0e0e0] hover:text-[#ff3366]'}`}
+                  className="hover:text-neutral-900 transition-colors"
                 >
                   {item.name}
                 </Link>
-              );
-            })}
+              ))}
+            </div>
+          </div>
+
+          {/* Right Action Buttons */}
+          <div className="hidden md:flex items-center space-x-5 text-sm">
+            <Link
+              href="https://rounakneema.in/contact"
+              className="font-normal text-neutral-600 hover:text-neutral-900 transition-colors"
+            >
+              Log in
+            </Link>
+            <Link
+              href="https://rounakneema.in/contact"
+              className="bg-neutral-950 hover:bg-neutral-800 text-white font-medium px-4 py-2 rounded-lg text-sm transition-all shadow-sm active:scale-95"
+            >
+              Get Started
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="flex md:hidden items-center gap-3">
+            <Link
+              href="https://rounakneema.in/contact"
+              className="bg-neutral-950 text-white text-xs font-medium px-3 py-1.5 rounded-lg"
+            >
+              Get Started
+            </Link>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-1.5 text-neutral-600 hover:text-neutral-900 rounded-md"
+              aria-label="Toggle menu"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
+
+        {/* Mobile dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-neutral-100 space-y-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm text-neutral-600 hover:text-neutral-900 py-1"
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="pt-2 border-t border-neutral-100 flex items-center justify-between">
+              <Link
+                href="https://rounakneema.in/contact"
+                className="text-sm text-neutral-600 hover:text-neutral-900"
+              >
+                Log in
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
-      <style jsx>{`
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
-    </motion.nav>
+    </nav>
   );
 }

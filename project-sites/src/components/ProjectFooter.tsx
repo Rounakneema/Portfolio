@@ -63,7 +63,7 @@ export function ProjectFooter({ slug }: { slug: string }) {
     const project = projects.find(p => p.slug === slug);
     if (!project) return null;
 
-    const isLight = slug === 'sortmail';
+    const isLight = slug === 'sortmail' || slug === 'dizzy';
     const bgClass = isLight ? 'bg-gray-50' : 'bg-[#050505]';
     const textClass = isLight ? 'text-black' : 'text-white';
     const borderClass = isLight ? 'border-black/10' : 'border-white/5';
