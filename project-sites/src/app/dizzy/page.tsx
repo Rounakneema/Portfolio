@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { projects } from '@/lib/projects';
 import { notFound } from 'next/navigation';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
@@ -491,110 +492,17 @@ export default function DizzyPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* Left Column: Angled / Realistic Laptop Frame */}
+            {/* Left Column: Realistic 3D Laptop Interface */}
             <div className="lg:col-span-7">
-              <div className="relative mx-auto max-w-[620px] rounded-[24px] p-3 sm:p-4 bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-2xl border border-neutral-700/60">
-                {/* Camera Notch */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-neutral-950 border border-neutral-700"></div>
-
-                {/* Laptop Screen Content */}
-                <div className="rounded-[14px] bg-white overflow-hidden border border-neutral-200 shadow-inner flex flex-col text-neutral-900 text-xs">
-                  
-                  {/* Laptop Mini App Bar */}
-                  <div className="h-9 bg-neutral-50/90 border-b border-neutral-200/80 px-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded bg-neutral-900 text-white flex items-center justify-center font-bold text-[10px]">
-                        D
-                      </div>
-                      <span className="text-[11px] font-medium text-neutral-800">E-commerce App ▼</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-neutral-200"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-neutral-200"></div>
-                    </div>
-                  </div>
-
-                  {/* Laptop Mini Workspace */}
-                  <div className="flex min-h-[290px] sm:min-h-[340px]">
-                    
-                    {/* Mini Sidebar */}
-                    <div className="w-32 bg-neutral-50/60 border-r border-neutral-200/70 p-2.5 hidden sm:flex flex-col gap-3 shrink-0">
-                      <div className="text-[9px] text-neutral-400 bg-white border border-neutral-200 rounded px-2 py-0.5">Search</div>
-                      <div className="space-y-1 text-[10px] text-neutral-600">
-                        <div className="font-semibold text-blue-600 bg-blue-50 px-1.5 py-1 rounded">Canvas</div>
-                        <div className="px-1.5 py-0.5">Layers</div>
-                        <div className="px-1.5 py-0.5">Components</div>
-                        <div className="px-1.5 py-0.5">Design System</div>
-                        <div className="px-1.5 py-0.5">Assets</div>
-                      </div>
-                    </div>
-
-                    {/* Mini Canvas: Modern Furniture E-Commerce Store */}
-                    <div className="flex-1 bg-white p-4 sm:p-6 flex flex-col justify-between">
-                      {/* Shop Navbar */}
-                      <div className="flex items-center justify-between pb-3 border-b border-neutral-100 text-[10px]">
-                        <span className="font-bold text-xs tracking-tight">Shop</span>
-                        <div className="flex items-center gap-3 text-neutral-500">
-                          <span className="font-medium text-neutral-900">Home</span>
-                          <span>Shop</span>
-                          <span>Collections</span>
-                          <span>About</span>
-                        </div>
-                      </div>
-
-                      {/* Shop Hero Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center my-auto py-4">
-                        
-                        {/* Furniture Image / Visual Representation */}
-                        <div className="relative rounded-xl overflow-hidden bg-gradient-to-tr from-amber-100/60 via-stone-100 to-amber-50/40 p-4 aspect-[4/3] flex items-center justify-center border border-neutral-200/60 shadow-sm">
-                          <div className="relative w-32 h-32 flex items-center justify-center">
-                            {/* Stylized Modern Minimalist Lounge Chair SVG */}
-                            <svg viewBox="0 0 120 120" className="w-28 h-28 drop-shadow-md text-amber-900/80" fill="currentColor">
-                              {/* Chair Cushion */}
-                              <path d="M30 45 C30 25, 90 25, 90 45 C90 65, 80 80, 80 85 L40 85 C40 80, 30 65, 30 45 Z" fill="#e7ded5" stroke="#d5c8bb" strokeWidth="2" />
-                              {/* Seat base */}
-                              <rect x="35" y="75" width="50" height="14" rx="4" fill="#dfd4c6" stroke="#c9baa9" strokeWidth="1.5" />
-                              {/* Wood Armrests */}
-                              <path d="M26 50 L36 50 L34 82 L24 82 Z" fill="#8c5835" />
-                              <path d="M94 50 L84 50 L86 82 L96 82 Z" fill="#8c5835" />
-                              {/* Tapered Wood Legs */}
-                              <line x1="38" y1="89" x2="30" y2="114" stroke="#683d21" strokeWidth="3.5" strokeLinecap="round" />
-                              <line x1="82" y1="89" x2="90" y2="114" stroke="#683d21" strokeWidth="3.5" strokeLinecap="round" />
-                              <line x1="48" y1="89" x2="44" y2="110" stroke="#523019" strokeWidth="3" strokeLinecap="round" />
-                              <line x1="72" y1="89" x2="76" y2="110" stroke="#523019" strokeWidth="3" strokeLinecap="round" />
-                            </svg>
-                          </div>
-                        </div>
-
-                        {/* Furniture Copy & CTA */}
-                        <div className="space-y-2">
-                          <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 leading-tight">
-                            Modern<br />
-                            Furniture
-                          </h4>
-                          <p className="text-[11px] text-neutral-500 leading-normal">
-                            Timeless pieces for modern living
-                          </p>
-                          <div className="pt-2">
-                            <button className="px-4 py-2 bg-neutral-950 text-white text-[10px] font-medium rounded-lg shadow-sm">
-                              Shop Now
-                            </button>
-                          </div>
-                        </div>
-
-                      </div>
-
-                      {/* Shop Footer subtle bar */}
-                      <div className="flex justify-between items-center pt-2 border-t border-neutral-100 text-[9px] text-neutral-400">
-                        <span>Free delivery on orders over ₹5,000</span>
-                        <span>Figma Auto-Layout Frame: #shop-hero</span>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
+              <div className="relative mx-auto rounded-2xl lg:rounded-3xl overflow-hidden border border-neutral-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] bg-neutral-100 group transition-all duration-300 hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)]">
+                <Image
+                  src="/images/dizzy-context-mockup.png"
+                  alt="Dizzy Voice-to-UI Interface running on a laptop with live Figma canvas and design tokens"
+                  width={1400}
+                  height={788}
+                  className="w-full h-auto object-cover block"
+                  priority={false}
+                />
               </div>
             </div>
 
