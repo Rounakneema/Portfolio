@@ -82,11 +82,11 @@ export function HeroSequence() {
                     'The scanner uses bounded concurrency.'
                 </div>
                 <div className="text-[#888] text-sm mb-4">
-                    Evidence: <span className="text-[#e0e0e0]">scanner/network.go</span> Lines 45–89
+                    Evidence: <span className="text-[#e0e0e0]">scanner/network.go</span> Lines 45-89
                 </div>
                 <div className="text-[#58a6ff] font-bold flex items-center gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    VERIFIED — 3 direct references found
+                    VERIFIED: 3 direct references found
                 </div>
             </div>
         </div>

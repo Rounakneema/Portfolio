@@ -140,8 +140,7 @@ flowchart TD
                                         <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl hover:-translate-y-1 hover:border-[#ffb800] transition-all duration-300">
                                             <h3 className="text-xl font-bold text-white tracking-tight mb-4">ML Scorer & Vault Integration</h3>
                                             <p>
-                                                The final stage uses a trained Machine Learning model evaluating features like Shannon entropy, token structure, regex matches (600+ patterns), and contextual proximity to generate a <strong>Secret Confidence Score (0-100)</strong>. 
-                                                Scores ≥80 trigger redaction. The original secret is sent to <strong>SecureReveal</strong>—an encrypted local SQLite vault—leaving behind a safe reference such as <code className="text-[#ffb800]">[REDACTED:SEC-1234:SCS=94]</code> for future auditing.
+                                                The final stage uses a trained Machine Learning model evaluating features like Shannon entropy, token structure, regex matches (600+ patterns), and contextual proximity to generate a <strong>Secret Confidence Score (0-100)</strong>. Scores ≥80 trigger redaction. The original secret is sent to <strong>SecureReveal</strong> (an encrypted local SQLite vault), leaving behind a safe reference such as <code className="text-[#ffb800]">[REDACTED:SEC-1234:SCS=94]</code> for future auditing.
                                             </p>
                                         </div>
                                     </StaggerItem>
@@ -208,7 +207,7 @@ flowchart TD
 [+] Initializing offline baseline parser (zero outbound telemetry)...
 [+] Ingesting 50,000 log events...
 [+] Baseline computed in 142ms.
-[!] ANOMALY: Z-SCORE 4.2 — auth.log:4821 (Unusual privilege escalation sequence)
+[!] ANOMALY: Z-SCORE 4.2 - auth.log:4821 (Unusual privilege escalation sequence)
 [✓] Generated forensic report: /var/osa/reports/audit-20261017.json`}
                                     </pre>
                                 </div>

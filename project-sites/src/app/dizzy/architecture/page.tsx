@@ -3,7 +3,7 @@ import MermaidDiagram from '@/components/Mermaid';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Dizzy Architecture Spec — Voice-to-Figma Engine',
+  title: 'Dizzy Architecture Spec · Voice-to-Figma Engine',
   description: 'System topology, WebSocket bridge, and semantic buffer architecture for the Dizzy voice-to-Figma engine.',
   alternates: {
     canonical: 'https://dizzy.rounakneema.in/architecture',

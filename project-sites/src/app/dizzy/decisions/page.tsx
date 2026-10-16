@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Dizzy Engineering Decisions — Voice Parsing & AST Buffering',
+  title: 'Dizzy Engineering Decisions · Voice Parsing & AST Buffering',
   description: 'Engineering decisions and trade-offs behind real-time voice parsing, debouncing, and semantic AST buffering.',
   alternates: {
     canonical: 'https://dizzy.rounakneema.in/decisions',

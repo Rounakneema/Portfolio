@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge Documentation — Manifests & Workflows',
+  title: 'PipelineForge Documentation · Manifests & Workflows',
   description: 'Production manifests, multi-stage Dockerfiles, GitHub Actions workflows, and Helm configurations for PipelineForge.',
   alternates: {
     canonical: 'https://pipelineforge.rounakneema.in/docs',

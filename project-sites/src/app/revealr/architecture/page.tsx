@@ -5,7 +5,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Architecture — Revealr Network Scanner',
+  title: 'Architecture · Revealr Network Scanner',
   description: 'A visual technical overview of Revealr’s concurrent scanning engine, state layer, plugin bridge, and output pipeline.',
   alternates: { canonical: 'https://revealr.rounakneema.in/architecture' },
 };

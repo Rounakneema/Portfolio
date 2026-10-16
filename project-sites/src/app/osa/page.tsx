@@ -9,7 +9,7 @@ import { projectFaqs } from '@/lib/projectFaqs';
 import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata: Metadata = {
-  title: 'OSA — Offline Security Auditor for Air-Gapped Environments',
+  title: 'OSA · Offline Security Auditor for Air-Gapped Environments',
   description: 'Single-binary offline security auditor for air-gapped security auditing. Features built-in statistical detection engines (Z-Score & Markov Chains).',
   keywords: ['air-gapped security auditing', 'offline security auditor', 'Go security tool', 'Z-Score analytics'],
   alternates: { canonical: 'https://osa.rounakneema.in' },
@@ -23,7 +23,7 @@ const LOG_ENTRIES: LogEntry[] = [
   { time: '14:32:03', source: 'windows-event', message: 'INGESTING', level: 'info' },
   { time: '14:32:03', source: 'auth.log', message: 'BASELINE COMPUTED', level: 'ok' },
   { time: '14:32:04', source: 'z-score', message: 'ANALYZING WINDOW...', level: 'info' },
-  { time: '14:32:04', source: 'ANOMALY', message: 'Z-SCORE 4.2 — auth.log:4821 — ALERT', level: 'anomaly' },
+  { time: '14:32:04', source: 'ANOMALY', message: 'Z-SCORE 4.2 - auth.log:4821 - ALERT', level: 'anomaly' },
   { time: '14:32:05', source: 'markov', message: 'BEHAVIORAL SEQUENCE DEVIATION DETECTED', level: 'warn' },
   { time: '14:32:05', source: 'policy', message: 'REPORT WRITTEN → /var/osa/reports/', level: 'ok' },
 ];

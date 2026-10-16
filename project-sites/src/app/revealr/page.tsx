@@ -24,12 +24,12 @@ import { projectFaqs } from '@/lib/projectFaqs';
 import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata: Metadata = {
-  title: 'Revealr — High-Speed Go Network Scanner & Vulnerability Mapping Tool',
+  title: 'Revealr · High-Speed Go Network Scanner & Vulnerability Mapping Tool',
   description: 'High-performance Go-based network scanner with stateful scan history, network drift detection, and modular Python vulnerability mapping.',
   keywords: ['Go network scanner', 'port scanner', 'vulnerability mapper', 'network security', 'network drift detection', 'SQLite stateful scanner'],
   alternates: { canonical: 'https://revealr.rounakneema.in', types: { 'application/rss+xml': 'https://rounakneema.in/rss.xml' } },
   openGraph: {
-    title: 'Revealr — High-Speed Go Network Scanner & Vulnerability Mapping Tool',
+    title: 'Revealr · High-Speed Go Network Scanner & Vulnerability Mapping Tool',
     description: 'High-concurrency network visibility, with memory.',
     url: 'https://revealr.rounakneema.in',
     siteName: 'Revealr',

@@ -8,7 +8,7 @@ import { projectFaqs } from '@/lib/projectFaqs';
 import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 
 export const metadata = {
-    title: 'Klarity — AI Repository Intelligence for Technical Recruiting',
+    title: 'Klarity · AI Repository Intelligence for Technical Recruiting',
     description: 'AI Repository Intelligence for Technical Recruiting featuring repository grounding.',
     alternates: {
         canonical: 'https://devcontext.rounakneema.in'
@@ -53,10 +53,9 @@ export default function DevContextPage() {
                     </div>
                     <nav className="flex gap-6 border-l border-[#333] pl-6 overflow-x-auto w-full md:w-auto">
                         <Link href="/devcontext" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Analysis Pipeline</Link>
-                        <Link href="/grounding" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Grounding</Link>
-                        <Link href="/architecture" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Architecture</Link>
-                        <Link href="/interview" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Interview Engine</Link>
-                        <Link href="/docs" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Docs</Link>
+                        <Link href="/devcontext/architecture" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Architecture</Link>
+                        <Link href="/devcontext/decisions" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Decisions</Link>
+                        <Link href="/devcontext/docs" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Docs</Link>
                     </nav>
                 </header>
             </ScrollReveal>

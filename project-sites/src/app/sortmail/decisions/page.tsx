@@ -3,7 +3,7 @@ import { FadeIn } from '@/components/shared/FadeIn';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'SortMail — Engineering Decisions & Tradeoffs',
+  title: 'SortMail · Engineering Decisions & Tradeoffs',
   description: 'Technical design decisions, tradeoffs, and architectural rationales behind SortMail.',
   alternates: {
     canonical: 'https://sortmail.rounakneema.in/decisions',

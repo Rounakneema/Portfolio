@@ -4,7 +4,7 @@ import { FadeIn } from '@/components/shared/FadeIn';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'SortMail — System Topology & Architecture',
+  title: 'SortMail · System Topology & Architecture',
   description: 'Deep dive into the system topology, single-pass pipeline, and push-based SSE architecture driving SortMail.',
   alternates: {
     canonical: 'https://sortmail.rounakneema.in/architecture',

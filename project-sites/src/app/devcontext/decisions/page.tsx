@@ -18,10 +18,10 @@ export default function DecisionsPage() {
                         <span className="text-[#58a6ff] bg-[#222] px-2 py-1">Ref: devcontext/decisions</span>
                     </div>
                     <nav className="flex gap-6 border-l border-[#1f6feb]/30 pl-6 text-sm">
-                        <Link href="/" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Analysis Pipeline</Link>
-                        <Link href="/architecture" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Architecture</Link>
-                        <Link href="/decisions" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Interview Engine</Link>
-                        <Link href="/docs" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Docs</Link>
+                        <Link href="/devcontext" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Analysis Pipeline</Link>
+                        <Link href="/devcontext/architecture" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Architecture</Link>
+                        <Link href="/devcontext/decisions" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Decisions</Link>
+                        <Link href="/devcontext/docs" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300">Docs</Link>
                     </nav>
                 </header>
             </ScrollReveal>

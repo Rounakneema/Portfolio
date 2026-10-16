@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge Decisions — Container Hardening & Metrics',
+  title: 'PipelineForge Decisions · Container Hardening & Metrics',
   description: 'Engineering trade-offs, distroless container packaging, and k6 load testing benchmarks for PipelineForge.',
   alternates: {
     canonical: 'https://pipelineforge.rounakneema.in/decisions',

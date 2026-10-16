@@ -7,9 +7,16 @@ interface ProjectEmailIntakeProps {
     slug: string;
     projectName: string;
     isLight?: boolean;
+    customClasses?: {
+        container?: string;
+        input?: string;
+        button?: string;
+        muted?: string;
+        accent?: string;
+    };
 }
 
-export function ProjectEmailIntake({ slug, projectName, isLight = false }: ProjectEmailIntakeProps) {
+export function ProjectEmailIntake({ slug, projectName, isLight = false, customClasses }: ProjectEmailIntakeProps) {
     const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -56,16 +63,16 @@ export function ProjectEmailIntake({ slug, projectName, isLight = false }: Proje
         }
     };
 
-    const containerBg = isLight 
+    const containerBg = customClasses?.container || (isLight 
         ? 'bg-neutral-100/70 border-neutral-200 text-neutral-900' 
-        : 'bg-white/[0.02] border-white/10 text-white';
-    const inputBg = isLight 
+        : 'bg-white/[0.02] border-white/10 text-white');
+    const inputBg = customClasses?.input || (isLight 
         ? 'bg-white border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:border-neutral-900' 
-        : 'bg-black/60 border-white/15 text-white placeholder-zinc-500 focus:border-white';
-    const buttonBg = isLight 
+        : 'bg-black/60 border-white/15 text-white placeholder-zinc-500 focus:border-white');
+    const buttonBg = customClasses?.button || (isLight 
         ? 'bg-neutral-900 hover:bg-neutral-800 text-white' 
-        : 'bg-white hover:bg-neutral-200 text-black';
-    const mutedText = isLight ? 'text-neutral-500' : 'text-zinc-400';
+        : 'bg-white hover:bg-neutral-200 text-black');
+    const mutedText = customClasses?.muted || (isLight ? 'text-neutral-500' : 'text-zinc-400');
 
     if (isSubmitted) {
         return (

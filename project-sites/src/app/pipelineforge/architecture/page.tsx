@@ -4,7 +4,7 @@ import MermaidDiagram from '@/components/Mermaid';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge Architecture — GitOps CI/CD Topology',
+  title: 'PipelineForge Architecture · GitOps CI/CD Topology',
   description: 'Technical architecture, container pipeline flow, and Kubernetes cluster configuration for PipelineForge.',
   alternates: {
     canonical: 'https://pipelineforge.rounakneema.in/architecture',

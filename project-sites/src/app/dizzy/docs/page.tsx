@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Dizzy Protocol Specs — Semantic Buffer & Figma Bridge',
+  title: 'Dizzy Protocol Specs · Semantic Buffer & Figma Bridge',
   description: 'Technical specifications for the Dizzy voice-to-Figma semantic buffer, WebSocket protocol, and plugin API bridge.',
   alternates: {
     canonical: 'https://dizzy.rounakneema.in/docs',

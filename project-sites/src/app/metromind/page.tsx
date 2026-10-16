@@ -28,7 +28,6 @@ import { SearchableFaq } from '@/components/shared/SearchableFaq';
 import { projectFaqs } from '@/lib/projectFaqs';
 import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 import { MetroMindDemo } from '@/components/metromind/MetroMindDemo';
-import { MetroMindFooter } from '@/components/metromind/MetroMindNav';
 
 export const metadata: Metadata = {
   title: 'MetroMind · Transit Document Intelligence Engine',
@@ -652,8 +651,6 @@ export default function MetroMindHome() {
           </div>
         </section>
 
-        {/* Global Footer */}
-        <MetroMindFooter />
       </div>
     </div>
   );

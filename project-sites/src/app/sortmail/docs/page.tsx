@@ -3,7 +3,7 @@ import { FadeIn } from '@/components/shared/FadeIn';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'SortMail — Data Contracts & Schema Docs',
+  title: 'SortMail · Data Contracts & Schema Docs',
   description: 'Schema specifications, Data Transfer Object (DTO) contracts, and SSE event formats for SortMail.',
   alternates: {
     canonical: 'https://sortmail.rounakneema.in/docs',

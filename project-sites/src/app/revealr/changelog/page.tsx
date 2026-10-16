@@ -5,7 +5,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-    title: 'Changelog — Revealr Network Scanner',
+    title: 'Changelog · Revealr Network Scanner',
     description: 'Development history, version milestones, and feature additions for Revealr.',
     alternates: { canonical: 'https://revealr.rounakneema.in/changelog' },
 };
@@ -18,7 +18,7 @@ const changelog = [
         changes: [
             { type: 'feat', text: 'Initial release with high-concurrency Go scanning engine' },
             { type: 'feat', text: 'SQLite-backed stateful scan persistence and resume capability' },
-            { type: 'feat', text: 'Network drift detection — diff between current and historical scan results' },
+            { type: 'feat', text: 'Network drift detection: diff between current and historical scan results' },
             { type: 'feat', text: 'Python plugin IPC bridge for extensible fingerprinting' },
             { type: 'feat', text: 'Scan profiles: Paranoid, Stealthy, Polite, Aggressive' },
             { type: 'feat', text: 'Raw socket packet generation with token-bucket rate limiter' },

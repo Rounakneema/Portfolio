@@ -5,7 +5,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Benchmarks — Revealr Network Scanner',
+  title: 'Benchmarks · Revealr Network Scanner',
   description: 'Measured performance methodology and throughput targets for Revealr on controlled, authorized networks.',
   alternates: { canonical: 'https://revealr.rounakneema.in/benchmarks' },
 };
@@ -31,7 +31,7 @@ export default function RevealrBenchmarks() {
           <div className="max-w-3xl">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-lime-300">Performance profile</p>
             <h1 className="mt-5 text-balance text-2xl font-black leading-[0.93] tracking-tight text-white sm:text-2xl">Tune the signal, not just the speed.</h1>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">Revealr exposes rate and profile controls so authorized assessments can match the constraints of the environment—quietly, deliberately, and without losing context.</p>
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">Revealr exposes rate and profile controls so authorized assessments can match the constraints of the environment, operating quietly, deliberately, and without losing context.</p>
           </div>
 
           <StaggerContainer>

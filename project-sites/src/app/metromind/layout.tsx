@@ -1,4 +1,5 @@
 import { MetroMindNav } from '@/components/metromind/MetroMindNav';
+import { ProjectFooter } from '@/components/ProjectFooter';
 
 export default function MetroMindLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function MetroMindLayout({ children }: { children: React.ReactNod
       <div className="flex-1">
         {children}
       </div>
+      <ProjectFooter slug="metromind" />
     </div>
   );
 }
