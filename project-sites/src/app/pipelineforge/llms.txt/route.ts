@@ -15,7 +15,7 @@ export async function GET() {
 ## Overview
 ${project.fullDescription}
 
-- [Official Domain](https://revealr.rounakneema.in)
+- [Official Domain](https://pipelineforge.rounakneema.in)
 - [Author: Rounak Neema](https://rounakneema.in)
 - [Source Repository](https://github.com/Rounakneema)
 

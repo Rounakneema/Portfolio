@@ -1,154 +1,100 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import MermaidDiagram from '@/components/Mermaid';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge Architecture | Topology & Flows',
-  description: 'Deep dive into the DevSecOps GitOps pipeline topology, cluster design, and data flows of PipelineForge.',
+  title: 'PipelineForge Architecture — GitOps CI/CD Topology',
+  description: 'Technical architecture, container pipeline flow, and Kubernetes cluster configuration for PipelineForge.',
+  alternates: {
+    canonical: 'https://pipelineforge.rounakneema.in/architecture',
+  },
 };
 
 export default function ArchitecturePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
-        <ProjectJsonLd slug="pipelineforge" pageType="Architecture" />
-      <ScrollReveal direction="up" delay={0.1}>
-        <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
-          <div className="text-xl">
-            <Link href="/" className="hover:bg-white hover:text-black transition-all duration-300 hover:-translate-y-1 hover:border-[#f97316] px-2 py-1">← BACK TO PIPELINEFORGE</Link>
-          </div>
-          <div className="text-right flex flex-col items-end">
-            <div className="bg-white text-black px-2 py-1 text-sm font-black mb-1">ARCHITECTURE</div>
-          </div>
-        </header>
-      </ScrollReveal>
+    <div className="w-full bg-white text-neutral-900 selection:bg-neutral-900 selection:text-white font-sans min-h-screen">
+      <ProjectJsonLd slug="pipelineforge" pageType="Architecture" />
 
-      <main className="p-6 md:p-12 lg:p-24 overflow-hidden">
-        <ScrollReveal direction="up" delay={0.1}>
-          <h1 className="text-2xl font-black uppercase tracking-tighter leading-tight mb-12 border-b-8 border-white pb-6">
-            PIPELINE TOPOLOGY
+      <main className="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 lg:pt-24 pb-32">
+        
+        {/* Header */}
+        <header className="mb-20">
+          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono mb-4">
+            PIPELINE ARCHITECTURE
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.05] mb-6">
+            Pipeline Topology
           </h1>
-        </ScrollReveal>
+          <p className="text-lg lg:text-xl font-normal text-neutral-600 max-w-3xl leading-relaxed">
+            End-to-end container delivery flow from commit to automated Kubernetes rollout.
+          </p>
+        </header>
 
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24">
-            <h2 className="text-3xl font-black uppercase tracking-tighter mb-6 bg-white text-black inline-block px-4 py-2">System Overview</h2>
-            <p className="text-xl leading-relaxed max-w-4xl mb-8">
-              PipelineForge utilizes a GitOps methodology powered by GitHub Actions, containerized using Docker multi-stage builds (distroless), and orchestrated on Kubernetes via Helm charts. Below is the raw topology of the DevSecOps pipeline.
-            </p>
-            
-            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto text-green-400">
-              <MermaidDiagram chart={`flowchart TD
-    DEV[DEVELOPER] -->|git push| REPO[GITHUB REPOSITORY]
-    REPO -->|triggers| CI[GITHUB ACTIONS CI/CD]
-    REPO -->|configuration| HELM[HELM CHARTS]
-    CI --> LINT[1. Lint & Test Go]
-    LINT --> BUILD[2. Build Multi-stage Docker<br/>golang:1.21-alpine -> distroless]
-    BUILD --> SCAN[3. Security Scan Trivy<br/>FAIL IF HIGH/CRITICAL CVEs]
-    SCAN --> PUSH[4. Push Image]
-    PUSH --> REGISTRY[CONTAINER REGISTRY]
-    HELM --> REGISTRY
-    REGISTRY -->|pull| K8S[KUBERNETES CLUSTER]
-    K8S --> SVC[INGRESS / SVC<br/>Traffic Routing]
-    K8S --> HPA[HPA<br/>Scales 1..8 on CPU > 70%]
-    K8S --> DEPLOY[DEPLOYMENT]
-    DEPLOY --> PODS[POD 1 ... POD N<br/>Distroless Go Binary]`} />
-            </div>
-          </section>
-        </ScrollReveal>
-
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24">
-            <h2 className="text-3xl font-black uppercase tracking-tighter mb-6 bg-white text-black inline-block px-4 py-2">Kubernetes Architecture</h2>
-            <p className="text-xl leading-relaxed max-w-4xl mb-8">
-              The Kubernetes environment is managed via Helm. It includes advanced networking and scaling configurations to ensure high availability and security inside the cluster boundary.
-            </p>
-            
-            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto text-cyan-400">
-              <MermaidDiagram chart={`flowchart TD
-    subgraph K8S_NS [KUBERNETES NAMESPACE pipelineforge]
-        NP[NETWORK POLICY<br/>Default Deny All<br/>Allow Ingress on 8080]
-        
-        SVC[SERVICE ClusterIP<br/>Port: 80 --> 8080]
-        HPA[HORIZONTAL POD AUTOSCALER<br/>Target CPU: 70%]
-        
-        SVC --> HPA
-        
-        DEPLOY[DEPLOYMENT<br/>Replicas: 1 to 8]
-        SVC --> DEPLOY
-        HPA --> DEPLOY
-        
-        POD1[POD App<br/>- Liveness Probe<br/>- Readiness Probe<br/>- Resource Limits]
-        POD2[POD App<br/>- Liveness Probe<br/>- Readiness Probe<br/>- Resource Limits]
-        
-        DEPLOY --> POD1
-        DEPLOY --> POD2
-    end`} />
-            </div>
-          </section>
-        </ScrollReveal>
-
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24">
-            <h2 className="text-3xl font-black uppercase tracking-tighter mb-6 bg-white text-black inline-block px-4 py-2">
-              Container Footprint &amp; Attack Surface Benchmarks
+        {/* System Diagram */}
+        <section className="mb-24">
+          <div className="border-b border-neutral-200 pb-4 mb-8">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Delivery Workflow Diagram
             </h2>
-            <p className="text-xl leading-relaxed max-w-4xl mb-8">
-              A breakdown of container image reduction, CVE elimination, and build pipeline speed comparing standard Debian, Alpine, and Google Distroless runtime bases.
-            </p>
+          </div>
+          
+          <div className="bg-neutral-50/70 border border-neutral-200/90 rounded-2xl p-6 md:p-10 overflow-x-auto shadow-sm">
+            <MermaidDiagram chart={`
+flowchart TD
+    DEV[Developer Commit] -->|git push| REPO[GitHub Repository]
+    REPO -->|trigger| CI[GitHub Actions Runner]
+    CI --> LINT[1. Static Analysis & Go Unit Tests]
+    LINT --> BUILD[2. Multi-Stage Docker Build<br/>golang:1.21-alpine -> distroless/static]
+    BUILD --> SCAN[3. Trivy Security Scan<br/>Halt if High or Critical CVEs]
+    SCAN --> PUSH[4. Push to Container Registry]
+    PUSH --> REGISTRY[Container Registry]
+    
+    REGISTRY -->|pull| K8S[Kubernetes Cluster]
+    HELM[Helm Chart Values] --> K8S
+    K8S --> INGRESS[Ingress Controller<br/>Traffic Routing]
+    K8S --> HPA[HPA Controller<br/>Autoscale on CPU > 70%]
+    K8S --> PODS[Distroless Go Pods<br/>Non-root, read-only rootfs]
+`} />
+          </div>
+        </section>
 
-            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto">
-              <table className="w-full text-left text-sm font-mono border-collapse">
-                <thead>
-                  <tr className="border-b border-white/20 text-[#f97316]">
-                    <th className="py-3 px-4">Base Image</th>
-                    <th className="py-3 px-4">Final Size</th>
-                    <th className="py-3 px-4">Reduction</th>
-                    <th className="py-3 px-4">Shell / Package Mgr</th>
-                    <th className="py-3 px-4">Trivy CVEs</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10">
-                  <tr className="text-zinc-400">
-                    <td className="py-3 px-4 font-bold text-white">golang:1.21 (Debian Bookworm)</td>
-                    <td className="py-3 px-4">1,120 MB</td>
-                    <td className="py-3 px-4">Baseline (0%)</td>
-                    <td className="py-3 px-4">bash, apt, coreutils</td>
-                    <td className="py-3 px-4 text-red-400 font-bold">14 High / Critical</td>
-                  </tr>
-                  <tr className="text-zinc-400">
-                    <td className="py-3 px-4 font-bold text-white">golang:1.21-alpine (Multi-stage)</td>
-                    <td className="py-3 px-4">18.2 MB</td>
-                    <td className="py-3 px-4">98.4% reduction</td>
-                    <td className="py-3 px-4">/bin/sh, apk</td>
-                    <td className="py-3 px-4 text-yellow-400">1 Low (musl)</td>
-                  </tr>
-                  <tr className="text-green-400 bg-white/[0.04]">
-                    <td className="py-3 px-4 font-bold text-white">gcr.io/distroless/static:nonroot</td>
-                    <td className="py-3 px-4 font-bold text-emerald-400">8.4 MB</td>
-                    <td className="py-3 px-4 font-bold text-emerald-400">99.3% reduction</td>
-                    <td className="py-3 px-4">None (Zero binaries)</td>
-                    <td className="py-3 px-4 text-emerald-400 font-bold">0 CVEs (Pass)</td>
-                  </tr>
-                </tbody>
-              </table>
+        {/* Pipeline Stages Breakdown */}
+        <section className="border-t border-neutral-200 pt-16">
+          <div className="border-b border-neutral-200 pb-4 mb-12">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Pipeline Stage Breakdown
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+            
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-medium text-[#f97316] block">01</span>
+              <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">Multi-Stage Packaging</h3>
+              <p className="text-neutral-600 leading-relaxed text-base">
+                Compilation happens in an Alpine builder image. The resulting statically linked Go binary is copied into Google&apos;s distroless runtime image. The final artifact contains zero package managers, shells, or OS debugging utilities, shrinking the artifact from 1.1GB to 8.4MB.
+              </p>
             </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-lg border border-[#f97316]/30 bg-[#f97316]/5">
-              <div className="text-xs font-mono text-zinc-300">
-                <span className="font-bold text-[#f97316] uppercase mr-2">// DevSecOps Takeaway:</span>
-                Eliminating shells and package managers prevents post-exploitation reverse shells and satisfies zero-CVE compliance gates.
-              </div>
-              <a
-                href="https://rounakneema.in/freelance/devsecops"
-                className="px-4 py-2 bg-[#f97316] hover:bg-orange-600 text-white font-bold text-xs font-mono uppercase tracking-wider rounded transition-colors shrink-0"
-              >
-                Hire for DevSecOps &rarr;
-              </a>
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-medium text-[#f97316] block">02</span>
+              <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">Trivy Security Gate</h3>
+              <p className="text-neutral-600 leading-relaxed text-base">
+                Before any image pushes to the container registry, Trivy inspects OS layers and binary dependencies for CVEs. The pipeline halts immediately if a High or Critical vulnerability is detected, keeping vulnerable code out of registry storage.
+              </p>
             </div>
-          </section>
-        </ScrollReveal>
+
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-medium text-[#f97316] block">03</span>
+              <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">Kubernetes GitOps</h3>
+              <p className="text-neutral-600 leading-relaxed text-base">
+                Helm releases declare pod security standards, resource limits, and NetworkPolicies. Rolling updates ensure zero downtime, while readiness and liveness probes prevent traffic from reaching uninitialized replicas.
+              </p>
+            </div>
+
+          </div>
+        </section>
 
       </main>
     </div>

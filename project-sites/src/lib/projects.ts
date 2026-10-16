@@ -209,25 +209,25 @@ export const projects: Project[] = [
             { text: 'KUBERNETES', type: 'blue' },
             { text: 'SECURITY', type: 'red' },
         ],
-        tech: ['GitHub Actions', 'Docker', 'Kubernetes', 'Helm', 'Trivy', 'k6'],
+        tech: ['GitHub Actions', 'Docker', 'Kubernetes', 'Helm', 'Trivy', 'k6', 'Go'],
         challenge:
-            'Manual deployments suffer from poor auditability, lack automated vulnerability scanning, missing rollbacks, and unrestricted network access.',
+            'Manual deployments lack automated vulnerability scanning, reproducible container packaging, and reliable rollback mechanisms.',
         solution:
-            'A comprehensive DevSecOps pipeline orchestrating Docker builds, Trivy security gates, and Kubernetes GitOps deployments with 99.3% image size optimization.',
+            'An automated CI/CD pipeline using GitHub Actions, multi-stage Distroless Docker packaging, Trivy vulnerability gates, and Helm deployments to Kubernetes.',
         fullDescription:
-            'PipelineForge represents a full DevSecOps GitOps pipeline. It automates container builds, integrates Trivy for security vulnerability scanning, and manages deployments to Kubernetes. Key achievements include optimizing container images from 1.1GB to 8MB (99.3% reduction) using distroless multi-stage builds. The Kubernetes setup features HPA, NetworkPolicies, zero-downtime rolling updates, and was load-tested with k6 for 500 virtual users.',
+            'PipelineForge demonstrates a complete DevSecOps delivery workflow. The pipeline automates container builds, scans artifacts for CVEs with Trivy before registry push, and deploys to Kubernetes with Helm. Multi-stage Distroless packaging strips OS binaries and package managers, cutting the final container image from 1.1GB to 8.4MB. The deployment includes Horizontal Pod Autoscalers, NetworkPolicies, and was validated under 500 virtual users with k6.',
         bullets: [
-            { label: 'Optimization', text: 'Reduced container size by 99.3% (1.1GB to 8MB) using multi-stage distroless builds.' },
-            { label: 'Security Gates', text: 'Integrated Trivy vulnerability scanning into the CI/CD deployment flow.' },
-            { label: 'Kubernetes', text: 'Implemented NetworkPolicies, resource quotas, HPA, and readiness/liveness probes.' },
-            { label: 'Validation', text: 'Validated zero-downtime rolling updates using k6 load testing with 500 virtual users.' },
+            { label: 'Container Optimization', text: 'Reduced container size from 1.1GB to 8.4MB using multi-stage Distroless builds.' },
+            { label: 'Security Gates', text: 'Automated Trivy vulnerability gates that block deployment on High or Critical CVEs.' },
+            { label: 'Kubernetes Hardening', text: 'Configured NetworkPolicies, resource limits, HPA, and health probes.' },
+            { label: 'Load Validation', text: 'Validated zero-downtime rollouts under 500 virtual users using k6.' },
         ],
         links: [],
         metrics: [
-            { label: 'Size Reduction', value: '99.3%' },
-            { label: 'Load Test', value: '500 VUs' },
-            { label: 'Orchestration', value: 'K8s' },
-            { label: 'Status', value: 'Implemented' },
+            { label: 'Image Reduction', value: '99.3%' },
+            { label: 'P95 Latency', value: '<5ms' },
+            { label: 'Load Tested', value: '500 VUs' },
+            { label: 'Deploy Target', value: 'Kubernetes' },
         ],
     },
     {

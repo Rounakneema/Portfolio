@@ -1,267 +1,196 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'PipelineForge | Engineering Docs',
-  description: 'Raw engineering documentation, YAML manifests, and CI/CD scripts for PipelineForge.',
+  title: 'PipelineForge Documentation — Manifests & Workflows',
+  description: 'Production manifests, multi-stage Dockerfiles, GitHub Actions workflows, and Helm configurations for PipelineForge.',
+  alternates: {
+    canonical: 'https://pipelineforge.rounakneema.in/docs',
+  },
 };
 
 export default function PipelineForgeDocsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-mono selection:bg-white selection:text-black">
-        <ProjectJsonLd slug="pipelineforge" pageType="Docs" />
-      {/* Navigation / Header */}
-      <ScrollReveal direction="up" delay={0.1}>
-        <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter sticky top-0 bg-[#0a0a0a] z-10">
-          <div className="text-xl">
-            <Link href="/" className="hover:bg-white hover:text-black transition-all duration-300 px-2 py-1 hover:-translate-y-1 hover:border-[#f97316] inline-block">← BACK TO PROJECT</Link>
-          </div>
-          <div className="text-right flex flex-col items-end">
-            <div className="bg-white text-black px-2 py-1 text-sm font-black mb-1">DEVSECOPS</div>
-            <div className="text-sm">DOCS: PIPELINEFORGE</div>
-          </div>
-        </header>
-      </ScrollReveal>
+    <div className="w-full bg-white text-neutral-900 selection:bg-neutral-900 selection:text-white font-sans min-h-screen">
+      <ProjectJsonLd slug="pipelineforge" pageType="Docs" />
 
-      <main className="p-6 md:p-12 lg:p-24 overflow-hidden max-w-7xl mx-auto">
-        <ScrollReveal direction="up" delay={0.1}>
-          <h1 className="text-2xl font-black uppercase tracking-tighter leading-none mb-16 border-b-8 border-white pb-8">
-            ENGINEERING <br />DOCS
+      <main className="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 lg:pt-24 pb-32">
+        
+        {/* Header */}
+        <header className="mb-20">
+          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono mb-4">
+            TECHNICAL DOCUMENTATION
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.05] mb-6">
+            Configuration &amp; Manifests
           </h1>
-        </ScrollReveal>
+          <p className="text-lg lg:text-xl font-normal text-neutral-600 max-w-3xl leading-relaxed">
+            Production Dockerfile specifications, GitHub Actions workflow definitions, and Kubernetes Helm values.
+          </p>
+        </header>
 
-        {/* Section 1: Docker Optimization */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24 relative">
-            <div className="absolute -left-12 top-0 bottom-0 w-4 bg-white hidden lg:block"></div>
-            <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">01. Image Optimization</h2>
-            <p className="text-xl mb-6 leading-relaxed">Multi-stage distroless builds to achieve 99.3% reduction (1.1GB → 8MB).</p>
-            
-            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
-              <div className="text-gray-400 mb-2 border-b-2 border-gray-600 pb-2 flex justify-between">
-                <span>Dockerfile</span>
-                <span>build-stage &gt; final-stage</span>
-              </div>
-              <pre className="text-sm leading-relaxed">
-<code className="text-blue-400"># Stage 1: Build</code>
-{`
+        {/* Section 01: Dockerfile */}
+        <section id="dockerfile" className="mb-24">
+          <div className="border-b border-neutral-200 pb-4 mb-10">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Container Specification
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight mt-4">
+              Multi-Stage Distroless Dockerfile
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="md:col-span-5 text-neutral-600 text-base leading-relaxed space-y-4">
+              <p>
+                The first build stage uses <code className="bg-neutral-100 px-1.5 py-0.5 rounded text-neutral-800 font-mono text-xs">golang:1.21-alpine</code> to download modules and compile a static Go binary with CGO disabled.
+              </p>
+              <p>
+                The second stage copies only the compiled binary into <code className="bg-neutral-100 px-1.5 py-0.5 rounded text-neutral-800 font-mono text-xs">gcr.io/distroless/static-debian11</code>. The container runs under a non-root user (UID 65532) with no shell access.
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="bg-neutral-950 p-6 sm:p-8 rounded-2xl font-mono text-xs text-neutral-300 overflow-x-auto border border-neutral-800 shadow-inner">
+                <div className="text-neutral-500 mb-4 uppercase tracking-widest font-bold text-[10px] border-b border-neutral-800 pb-3">
+                  Dockerfile
+                </div>
+                <pre className="leading-relaxed">
+{`# Stage 1: Build
 FROM golang:1.21-alpine AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o /pipelineforge ./cmd/server
-`}
-<code className="text-green-400"># Stage 2: Distroless Final</code>
-{`
-FROM gcr.io/distroless/static-debian11
-COPY --from=builder /pipelineforge /
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o /pipelineforge ./cmd/server
+
+# Stage 2: Distroless Runtime
+FROM gcr.io/distroless/static-debian11:nonroot
+WORKDIR /
+COPY --from=builder /pipelineforge /pipelineforge
 USER nonroot:nonroot
 EXPOSE 8080
 ENTRYPOINT ["/pipelineforge"]`}
-              </pre>
+                </pre>
+              </div>
             </div>
-          </section>
-        </ScrollReveal>
+          </div>
+        </section>
 
-        {/* Section 2: GitHub Actions & Trivy */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24 relative">
-            <div className="absolute -left-12 top-0 bottom-0 w-4 bg-red-500 hidden lg:block"></div>
-            <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">02. Security Gates (CI)</h2>
-            <p className="text-xl mb-6 leading-relaxed">GitHub Actions pipeline integrating Trivy for severe vulnerability scanning before push.</p>
-            
-            <StaggerContainer>
-              <StaggerItem>
-                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto mb-8 hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
-                  <div className="text-gray-400 mb-2 border-b-2 border-gray-600 pb-2 flex justify-between">
-                    <span>.github/workflows/ci.yml</span>
-                    <span>build-and-scan job</span>
-                  </div>
-                  <pre className="text-sm leading-relaxed text-yellow-300">
-{`name: DevSecOps Pipeline
-on: [push, pull_request]
+        {/* Section 02: GitHub Actions CI/CD */}
+        <section id="cicd" className="mb-24 border-t border-neutral-200 pt-16">
+          <div className="border-b border-neutral-200 pb-4 mb-10">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              CI/CD Automation
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight mt-4">
+              GitHub Actions Security Pipeline
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="md:col-span-5 text-neutral-600 text-base leading-relaxed space-y-4">
+              <p>
+                Every push triggers unit tests and linting. Once tests pass, the action builds the container image and runs Trivy in severity mode.
+              </p>
+              <p>
+                If Trivy finds any High or Critical vulnerabilities, the job halts. Only passing images are tagged and pushed to the container registry for Helm deployment.
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="bg-neutral-950 p-6 sm:p-8 rounded-2xl font-mono text-xs text-neutral-300 overflow-x-auto border border-neutral-800 shadow-inner">
+                <div className="text-neutral-500 mb-4 uppercase tracking-widest font-bold text-[10px] border-b border-neutral-800 pb-3">
+                  .github/workflows/deploy.yml
+                </div>
+                <pre className="leading-relaxed">
+{`name: Build, Scan & Deploy
+on:
+  push:
+    branches: [ main ]
 
 jobs:
-  build-and-scan:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Build image
-        run: docker build -t rounakneema/pipelineforge:\${{ github.sha }} .
+      - name: Build Local Image
+        run: docker build -t pipelineforge:\${{ github.sha }} .
 
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy Vulnerability Scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'rounakneema/pipelineforge:\${{ github.sha }}'
+          image-ref: 'pipelineforge:\${{ github.sha }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'`}
-                  </pre>
-                </div>
-              </StaggerItem>
+          severity: 'HIGH,CRITICAL'
 
-              <StaggerItem>
-                <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl text-green-400 font-mono text-sm overflow-x-auto hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300">
-                  <div className="text-gray-500 mb-2 border-b border-gray-700 pb-2">TERMINAL TRACE // TRIVY SCAN</div>
-                  <pre className="leading-relaxed">
-{`$ trivy image rounakneema/pipelineforge:a1b2c3d
-2026-09-25T10:12:33.123Z  INFO  Vulnerability scanning enabled
-2026-09-25T10:12:35.456Z  INFO  Detected OS: debian
-2026-09-25T10:12:35.456Z  INFO  Detecting vulnerabilities...
-
-rounakneema/pipelineforge:a1b2c3d (debian 11.7)
-================================================
-Total: 0 (HIGH: 0, CRITICAL: 0)
-
-[SUCCESS] No critical or high vulnerabilities found.`}
-                  </pre>
-                </div>
-              </StaggerItem>
-            </StaggerContainer>
-          </section>
-        </ScrollReveal>
-
-        {/* Section 3: Kubernetes Manifests */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-24 relative">
-            <div className="absolute -left-12 top-0 bottom-0 w-4 bg-blue-500 hidden lg:block"></div>
-            <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">03. GitOps & K8s Definitions</h2>
-            <p className="text-xl mb-6 leading-relaxed">Zero-downtime rolling updates and Horizontal Pod Autoscaling.</p>
-            
-            <StaggerContainer>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <StaggerItem>
-                  <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 h-full">
-                    <div className="text-gray-400 mb-2 border-b-2 border-gray-600 pb-2">deployment.yaml</div>
-                    <pre className="text-xs leading-relaxed text-blue-200">
-{`apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: pipelineforge
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: pipelineforge
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-  template:
-    metadata:
-      labels:
-        app: pipelineforge
-    spec:
-      containers:
-        - name: app
-          image: rounakneema/pipelineforge:latest
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "250m"
-              memory: "256Mi"
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 5`}
-                    </pre>
-                  </div>
-                </StaggerItem>
-
-                <StaggerItem>
-                  <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 h-full">
-                    <div className="text-gray-400 mb-2 border-b-2 border-gray-600 pb-2">hpa.yaml</div>
-                    <pre className="text-xs leading-relaxed text-purple-300">
-{`apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: pipelineforge-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: pipelineforge
-  minReplicas: 3
-  maxReplicas: 10
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 70
-    - type: Resource
-      resource:
-        name: memory
-        target:
-          type: Utilization
-          averageUtilization: 80`}
-                    </pre>
-                  </div>
-                </StaggerItem>
+      - name: Deploy via Helm
+        run: |
+          helm upgrade --install pipelineforge ./helm/pipelineforge \\
+            --set image.tag=\${{ github.sha }} \\
+            --namespace prod`}
+                </pre>
               </div>
-            </StaggerContainer>
-          </section>
-        </ScrollReveal>
-
-        {/* Section 4: Load Testing Trace */}
-        <ScrollReveal direction="up" delay={0.1}>
-          <section className="mb-12 relative">
-            <div className="absolute -left-12 top-0 bottom-0 w-4 bg-green-500 hidden lg:block"></div>
-            <h2 className="text-2xl font-black uppercase mb-8 tracking-tight">04. Load Validation</h2>
-            <p className="text-xl mb-6 leading-relaxed">k6 load testing trace confirming SLA under 500 VUs.</p>
-            
-            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl text-gray-300 font-mono text-sm overflow-x-auto border-l-4 border-l-green-500 hover:-translate-y-1 hover:border-l-green-500 hover:border-[#f97316] transition-all duration-300">
-              <pre className="leading-relaxed">
-{`$ k6 run loadtest.js --vus 500 --duration 1m
-
-          /\\      |‾‾| /‾‾/   /‾‾/   
-     /\\  /  \\     |  |/  /   /  /    
-    /  \\/    \\    |     (   /   ‾‾\\  
-   /          \\   |  |\\  \\ |  (‾)  | 
-  / __________ \\  |__| \\__\\ \\_____/ .io
-
-  execution: local
-     script: loadtest.js
-     output: -
-
-  scenarios: (100.00%) 1 scenario, 500 max VUs, 1m30s max duration (incl. graceful stop):
-           * default: 500 looping VUs for 1m0s (gracefulStop: 30s)
-
-     ✓ status is 200
-     ✓ latency is < 50ms
-
-     checks.........................: 100.00% ✓ 145020      ✗ 0    
-     data_received..................: 21 MB   340 kB/s
-     data_sent......................: 12 MB   190 kB/s
-     http_req_duration..............: avg=3.2ms    min=1.1ms   med=2.8ms   max=45.2ms p(90)=4.8ms   p(95)=5.9ms 
-     http_req_failed................: 0.00%   ✓ 0           ✗ 145020
-     iterations.....................: 145020  2375.12/s
-     vus............................: 500     min=500       max=500`}
-              </pre>
             </div>
-          </section>
-        </ScrollReveal>
-        
-        <ScrollReveal direction="up" delay={0.1}>
-          <footer className="mt-32 pt-12 border-t-4 border-white text-center">
-              <p className="text-xl font-bold uppercase mb-4 tracking-tight">END OF DOCUMENTATION</p>
-              <Link href="/" className="inline-block bg-white/5 border border-white/10 backdrop-blur-md rounded-lg shadow-xl px-6 py-3 hover:bg-white hover:text-black transition-all duration-300 font-bold uppercase hover:-translate-y-1 hover:border-[#f97316]">
-                Return to Overview
-              </Link>
-          </footer>
-        </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Section 03: Kubernetes Helm Values */}
+        <section id="helm" className="border-t border-neutral-200 pt-16">
+          <div className="border-b border-neutral-200 pb-4 mb-10">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Cluster Manifests
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight mt-4">
+              Kubernetes Hardening &amp; Helm Values
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="md:col-span-5 text-neutral-600 text-base leading-relaxed space-y-4">
+              <p>
+                The Helm chart sets strict container security contexts: read-only root filesystems, dropping all Linux capabilities, and disallowing privilege escalation.
+              </p>
+              <p>
+                Horizontal Pod Autoscalers scale pods between 2 and 8 replicas based on CPU target thresholds, while readiness and liveness probes ensure zero-downtime rolling updates.
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="bg-neutral-950 p-6 sm:p-8 rounded-2xl font-mono text-xs text-neutral-300 overflow-x-auto border border-neutral-800 shadow-inner">
+                <div className="text-neutral-500 mb-4 uppercase tracking-widest font-bold text-[10px] border-b border-neutral-800 pb-3">
+                  helm/pipelineforge/values.yaml
+                </div>
+                <pre className="leading-relaxed">
+{`replicaCount: 2
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+  capabilities:
+    drop: ["ALL"]
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 70`}
+                </pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
     </div>
   );
