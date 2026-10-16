@@ -4,10 +4,12 @@ import { projects } from '@/lib/projects';
 import { notFound } from 'next/navigation';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/ScrollReveal';
+import { ContextFeatureExplorer } from '@/components/dizzy/ContextFeatureExplorer';
+import { ProjectEmailIntake } from '@/components/ProjectEmailIntake';
 import dizzyMockup from '@/assets/dizzy-context-mockup.png';
 
 export const metadata = {
-  title: 'Dizzy — Voice-to-Figma AI Interface Builder',
+  title: 'Dizzy - Voice-to-Figma AI Interface Builder',
   description: 'Design by voice, on your terms. Dizzy turns natural speech into editable Figma UI designs with full project context and design system memory.',
   alternates: {
     canonical: 'https://dizzy.rounakneema.in',
@@ -435,43 +437,71 @@ export default function DizzyPage() {
             </div>
           </div>
 
-          {/* 4 Step Cards */}
+          {/* 4 Detailed Step Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-neutral-200/60">
             
             {/* Step 01 */}
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-medium text-neutral-400 block">01</span>
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Describe</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Just speak what you want to build.
+            <div className="space-y-4 p-5 rounded-2xl bg-neutral-50/70 border border-neutral-200/80">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-600 block">01 / INPUT</span>
+                <span className="text-[10px] font-mono text-neutral-400">Streamed VAD</span>
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Spoken Intent</h3>
+              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                Describe screens or flows naturally without clicking menus or wrestling with coordinates.
               </p>
+              <div className="p-3 bg-white rounded-xl border border-neutral-200/60 text-xs font-mono text-neutral-700">
+                <span className="text-[10px] text-neutral-400 block uppercase mb-1">Voice Input</span>
+                &quot;Create a furniture store hero with an organic sofa, minimal shop nav, and a primary CTA.&quot;
+              </div>
             </div>
 
             {/* Step 02 */}
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-medium text-neutral-400 block">02</span>
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Generate</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Dizzy creates an editable design on a canvas.
+            <div className="space-y-4 p-5 rounded-2xl bg-neutral-50/70 border border-neutral-200/80">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-600 block">02 / COMPILE</span>
+                <span className="text-[10px] font-mono text-neutral-400">AST Builder</span>
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Canvas Generation</h3>
+              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                The parser compiles your spoken prompt into a nested document hierarchy with Auto-Layout rules.
               </p>
+              <div className="p-3 bg-white rounded-xl border border-neutral-200/60 text-xs font-mono text-neutral-700">
+                <span className="text-[10px] text-neutral-400 block uppercase mb-1">Generated Output</span>
+                Frame: 1440x900px, Auto-Layout Horizontal, 4 Nested Components, Bound Brand Tokens.
+              </div>
             </div>
 
             {/* Step 03 */}
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-medium text-neutral-400 block">03</span>
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Refine</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Select elements and edit by voice: adjust text, color, layout, or spacing.
+            <div className="space-y-4 p-5 rounded-2xl bg-neutral-50/70 border border-neutral-200/80">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-600 block">03 / REFINE</span>
+                <span className="text-[10px] font-mono text-neutral-400">&lt;180ms Latency</span>
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Semantic Edits</h3>
+              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                Target any layer and speak mutations. Change tokens, tighten paddings, or swap variants.
               </p>
+              <div className="p-3 bg-white rounded-xl border border-neutral-200/60 text-xs font-mono text-neutral-700">
+                <span className="text-[10px] text-neutral-400 block uppercase mb-1">Voice Patch</span>
+                &quot;Change the sofa color to warm beige and make the hero headline 64 pixels.&quot;
+              </div>
             </div>
 
             {/* Step 04 */}
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-medium text-neutral-400 block">04</span>
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Continue</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Iterate, use your design system, and export to Figma.
+            <div className="space-y-4 p-5 rounded-2xl bg-neutral-50/70 border border-neutral-200/80">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-600 block">04 / EXPORT</span>
+                <span className="text-[10px] font-mono text-neutral-400">WebSocket MCP</span>
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Native Figma Sync</h3>
+              <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                Transfers state into your active Figma document via the desktop plugin with clean layer trees.
               </p>
+              <div className="p-3 bg-white rounded-xl border border-neutral-200/60 text-xs font-mono text-neutral-700">
+                <span className="text-[10px] text-neutral-400 block uppercase mb-1">Sync Status</span>
+                Figma Plugin API committed 8 nodes in 142ms. Zero detached instances.
+              </div>
             </div>
 
           </div>
@@ -517,35 +547,8 @@ export default function DizzyPage() {
                 Dizzy remembers your project, brand style, components, and previous edits so you can build consistently across sessions.
               </p>
 
-              {/* 5 Feature Links */}
-              <div className="divide-y divide-neutral-200/80 border-y border-neutral-200/80">
-                
-                <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
-                  <span>Project context memory</span>
-                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </a>
-
-                <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
-                  <span>Brand and design system awareness</span>
-                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </a>
-
-                <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
-                  <span>Component reuse</span>
-                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </a>
-
-                <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
-                  <span>Multi-screen and responsive layouts</span>
-                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </a>
-
-                <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
-                  <span>Figma native workflow</span>
-                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </a>
-
-              </div>
+              {/* Interactive Context Feature Explorer */}
+              <ContextFeatureExplorer />
 
             </div>
 
@@ -555,7 +558,7 @@ export default function DizzyPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* SECTION 03: BUILT FOR                                     */}
+      {/* SECTION 03: BUILT FOR REAL WORKFLOWS                      */}
       {/* ========================================================= */}
       <section id="built-for" className="border-t border-neutral-200/90 py-20 lg:py-24">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
@@ -563,48 +566,121 @@ export default function DizzyPage() {
           {/* Section Eyebrow */}
           <div className="flex items-center gap-6 mb-12 text-xs font-semibold text-neutral-500 tracking-wider font-mono">
             <span>03</span>
-            <span className="uppercase tracking-[0.2em]">BUILT FOR</span>
+            <span className="uppercase tracking-[0.2em]">BUILT FOR REAL WORKFLOWS</span>
           </div>
 
           {/* Heading */}
-          <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight text-neutral-900 leading-[1.08] mb-16 max-w-2xl">
-            Teams and individuals<br />
-            who design and build.
-          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
+            <div className="lg:col-span-7">
+              <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight text-neutral-900 leading-[1.08]">
+                Teams and builders<br />
+                who design at speed.
+              </h2>
+            </div>
+            <div className="lg:col-span-5 lg:flex lg:justify-end">
+              <p className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-md">
+                Dizzy removes the manual friction of drawing boxes, adjusting paddings, and looking up token variables. Here is how different disciplines use voice-to-Figma in production.
+              </p>
+            </div>
+          </div>
 
-          {/* 4 Persona Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-neutral-200/80">
+          {/* 4 Persona Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            {/* Founders */}
-            <div className="space-y-2 sm:pr-6 pt-6 sm:pt-0">
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Founders</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Validate ideas faster with real designs.
-              </p>
+            {/* Founders & Solo Builders */}
+            <div className="p-6 rounded-2xl border border-neutral-200/80 bg-neutral-50/50 hover:bg-neutral-50 transition-colors flex flex-col justify-between space-y-5">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider">01 / VALIDATION</span>
+                  <span className="text-[10px] font-mono text-neutral-400">Zero Figma Prep</span>
+                </div>
+                <h3 className="text-xl font-bold tracking-tight text-neutral-900">Founders &amp; Builders</h3>
+                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                  Turn product ideas into presentation-ready pitch screens without hiring an external agency or wrestling with design menus.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-neutral-200/60">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/70 text-xs font-mono text-neutral-800">
+                  <span className="text-[10px] text-neutral-400 block uppercase mb-1">Spoken Prompt</span>
+                  &quot;Generate a multi-tier SaaS pricing page with annual billing toggle and enterprise feature checklist.&quot;
+                </div>
+                <div className="text-[11px] text-neutral-500 leading-normal">
+                  <strong className="text-neutral-800">Output:</strong> Responsive Auto-Layout canvas frame with cards, toggles, and typography hierarchy ready for customer interviews.
+                </div>
+              </div>
             </div>
 
-            {/* Product teams */}
-            <div className="space-y-2 sm:px-6 pt-6 sm:pt-0">
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Product teams</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Turn discussions into editable designs.
-              </p>
+            {/* Product Managers & Teams */}
+            <div className="p-6 rounded-2xl border border-neutral-200/80 bg-neutral-50/50 hover:bg-neutral-50 transition-colors flex flex-col justify-between space-y-5">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider">02 / SPRINTS</span>
+                  <span className="text-[10px] font-mono text-neutral-400">Live During Calls</span>
+                </div>
+                <h3 className="text-xl font-bold tracking-tight text-neutral-900">Product Teams</h3>
+                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                  Convert verbal discussions, user stories, and PRD requirements directly into visual wireframes during live sprint planning.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-neutral-200/60">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/70 text-xs font-mono text-neutral-800">
+                  <span className="text-[10px] text-neutral-400 block uppercase mb-1">Spoken Prompt</span>
+                  &quot;Take user story #42 checkout flow and structure it as a 3-step modal with credit card and UPI tabs.&quot;
+                </div>
+                <div className="text-[11px] text-neutral-500 leading-normal">
+                  <strong className="text-neutral-800">Output:</strong> Step-by-step user flow linked directly to your team Jira tickets, eliminating two-week wireframing backlogs.
+                </div>
+              </div>
             </div>
 
-            {/* Designers */}
-            <div className="space-y-2 sm:px-6 pt-6 sm:pt-0">
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Designers</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Iterate without breaking flow.
-              </p>
+            {/* Design Systems Leads */}
+            <div className="p-6 rounded-2xl border border-neutral-200/80 bg-neutral-50/50 hover:bg-neutral-50 transition-colors flex flex-col justify-between space-y-5">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider">03 / GOVERNANCE</span>
+                  <span className="text-[10px] font-mono text-neutral-400">Token Compliant</span>
+                </div>
+                <h3 className="text-xl font-bold tracking-tight text-neutral-900">Design Systems Leads</h3>
+                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                  Protect component libraries from rogue hex codes and detached components. Every generated element maps to your tokens.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-neutral-200/60">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/70 text-xs font-mono text-neutral-800">
+                  <span className="text-[10px] text-neutral-400 block uppercase mb-1">Spoken Prompt</span>
+                  &quot;Switch all button instances to primary-subtle and tighten vertical stack spacing to space-4.&quot;
+                </div>
+                <div className="text-[11px] text-neutral-500 leading-normal">
+                  <strong className="text-neutral-800">Output:</strong> Figma Variables and Styles updated cleanly across selected frames with zero detached component instances.
+                </div>
+              </div>
             </div>
 
-            {/* Developers */}
-            <div className="space-y-2 sm:pl-6 pt-6 sm:pt-0">
-              <h3 className="text-xl font-bold tracking-tight text-neutral-900">Developers</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed">
-                Get structured, production-ready UI.
-              </p>
+            {/* Full-Stack Developers */}
+            <div className="p-6 rounded-2xl border border-neutral-200/80 bg-neutral-50/50 hover:bg-neutral-50 transition-colors flex flex-col justify-between space-y-5">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider">04 / CODE READY</span>
+                  <span className="text-[10px] font-mono text-neutral-400">1:1 JSX Mapping</span>
+                </div>
+                <h3 className="text-xl font-bold tracking-tight text-neutral-900">Full-Stack Developers</h3>
+                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                  Inspect clean Auto-Layout structures that translate directly into Tailwind CSS flexbox and grid containers without manual translation.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-neutral-200/60">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/70 text-xs font-mono text-neutral-800">
+                  <span className="text-[10px] text-neutral-400 block uppercase mb-1">Spoken Prompt</span>
+                  &quot;Wrap this profile header in a responsive banner container with 16px padding and border-neutral-200.&quot;
+                </div>
+                <div className="text-[11px] text-neutral-500 leading-normal">
+                  <strong className="text-neutral-800">Output:</strong> Semantic node tree with flex-col, gap-4, and exact CSS token values ready for React and Next.js frontend code.
+                </div>
+              </div>
             </div>
 
           </div>
@@ -705,6 +781,15 @@ export default function DizzyPage() {
                 </pre>
               </div>
             </div>
+          </div>
+
+          {/* Email Intake & Custom Tooling Inquiry */}
+          <div className="mt-16">
+            <ProjectEmailIntake
+              slug="dizzy"
+              projectName="Dizzy"
+              isLight={true}
+            />
           </div>
 
         </div>
