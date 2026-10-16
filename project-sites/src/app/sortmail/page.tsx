@@ -218,6 +218,13 @@ export default function SortMailPage() {
                                 <div className="text-[#22c55e]">[✓] Deadline Extracted: 2026-10-02T17:00:00Z</div>
                                 <div className="text-[#ef4444]">[!] Threat Blocked: Invoice.pdf.exe (MIME mismatch: application/x-dosexec)</div>
                             </div>
+
+                            <div className="pt-6 border-t border-zinc-800">
+                                <h4 className="text-lg font-bold text-white mb-2">Can we hire you for custom email automation or LLM workflow tooling?</h4>
+                                <p className="text-zinc-400 font-light text-sm leading-relaxed">
+                                    Yes. We build custom email intelligence layers, automated inbox extractors, and secure document pipelines for professional services and enterprises. Explore our <a href="https://rounakneema.in/freelance/ai-development" className="text-amber-500 underline font-bold">AI development services</a> or <a href="https://rounakneema.in/contact" className="text-white underline font-bold">start a direct project inquiry</a>.
+                                </p>
+                            </div>
                         </div>
                     </section>
                 </ScrollReveal>

@@ -8,54 +8,54 @@ const servicePillarMap: Record<string, {
 }> = {
     revealr: {
         title: 'Need High-Throughput Go Systems or Security Tooling?',
-        description: 'Hire Rounak Neema for custom concurrent backend development, raw socket networking, and vulnerability mapping engines.',
+        description: 'We build custom concurrent Go network engines, raw socket packet analyzers, and automated vulnerability mapping tools tailored for your infrastructure.',
         url: 'https://rounakneema.in/freelance/software-development',
     },
     metromind: {
         title: 'Need Enterprise OCR & Vector Search Pipelines?',
-        description: 'Hire Rounak Neema for asynchronous document ingestion, Milvus vector search architectures, and semantic retrieval systems.',
+        description: 'We engineer asynchronous document ingestion pipelines, Milvus vector search architectures, and semantic retrieval systems so your teams find answers in seconds.',
         url: 'https://rounakneema.in/freelance/ai-development',
     },
     osa: {
         title: 'Need Air-Gapped Security Audits & Threat Baselines?',
-        description: 'Hire Rounak Neema for authorized web application testing, offline log behavioral baselining, and API security evaluations.',
+        description: 'We deliver authorized security assessments, offline log anomaly baselining, and zero-telemetry audit tools designed for high-compliance, air-gapped perimeters.',
         url: 'https://rounakneema.in/freelance/cybersecurity',
     },
     sortmail: {
         title: 'Need Semantic Email Intelligence & Workflow Automation?',
-        description: 'Hire Rounak Neema for automated deadline extraction, semantic document classification, and secure email ingestion pipelines.',
+        description: 'We automate your high-volume inboxes with instant deadline extraction, AI document classification, and zero-trust threat blocking.',
         url: 'https://rounakneema.in/freelance/ai-development',
     },
     pipelineforge: {
         title: 'Need Distroless Docker Migrations & CI/CD Security Gates?',
-        description: 'Hire Rounak Neema to reduce container attack surfaces by 90%+, eliminate CVEs with Distroless packaging, and automate Trivy security gates.',
+        description: 'We shrink your container attack surface by 99%+, eliminate CVEs with Distroless packaging, and automate Trivy security gates before code reaches production.',
         url: 'https://rounakneema.in/freelance/devsecops',
     },
     devcontext: {
         title: 'Need AST Codebase Grounding & Code Intelligence?',
-        description: 'Hire Rounak Neema to build hallucination-free AI code inspection tools backed by abstract syntax tree verification.',
+        description: 'We build hallucination-free AI codebase inspection tools backed by abstract syntax tree verification for your engineering and technical hiring teams.',
         url: 'https://rounakneema.in/freelance/ai-development',
     },
     axiomos: {
         title: 'Need Local-First Private AI & Go Daemons?',
-        description: 'Hire Rounak Neema for private on-premise LLM integrations with Ollama, client-side telemetry, and local agent runtimes.',
+        description: 'We integrate private on-premise LLMs with Ollama and lightweight Go background daemons so your sensitive data never leaves your infrastructure.',
         url: 'https://rounakneema.in/freelance/ai-development',
     },
     'axiom-os': {
         title: 'Need Local-First Private AI & Go Daemons?',
-        description: 'Hire Rounak Neema for private on-premise LLM integrations with Ollama, client-side telemetry, and local agent runtimes.',
+        description: 'We integrate private on-premise LLMs with Ollama and lightweight Go background daemons so your sensitive data never leaves your infrastructure.',
         url: 'https://rounakneema.in/freelance/ai-development',
     },
     dizzy: {
         title: 'Need Voice-to-Canvas & Multimodal Tooling?',
-        description: 'Hire Rounak Neema for custom multimodal interface engineering, semantic state synchronizers, and Figma MCP integrations.',
+        description: 'We craft custom generative UI engines, semantic state compilers, and Figma MCP integrations to accelerate your product design and prototyping sprints.',
         url: 'https://rounakneema.in/freelance/ai-development',
     },
 };
 
 const defaultService = {
     title: 'Available for Freelance Software & Security Consulting',
-    description: 'Hire Rounak Neema for high-reliability Go backends, authorized cybersecurity assessments, and GitOps DevSecOps pipelines.',
+    description: 'We partner with startups and engineering teams to deliver high-reliability Go backends, authorized cybersecurity assessments, and GitOps DevSecOps pipelines.',
     url: 'https://rounakneema.in/freelance',
 };
 

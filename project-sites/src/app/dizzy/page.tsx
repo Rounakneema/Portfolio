@@ -20,7 +20,8 @@ const dizzyJsonLd = {
         { question: "What is Dizzy?", answer: "Dizzy is a context-aware voice-to-design agent that lives directly inside Figma. It generates real, editable Auto-Layout components rather than static images." },
         { question: "How does voice-controlled UI generation work?", answer: "We use a Web Speech API client with Voice Activity Detection to accumulate speech, which is then parsed by a two-pass NLP architecture to extract strict design intent. This intent is sent to Figma as a JSON Blueprint." },
         { question: "How does Dizzy interact with Figma?", answer: "It operates via a bidirectional WebSocket bridge. The Figma plugin streams the current selection context up to the edge orchestrator, and receives geometric mutations and blueprints back to draw natively." },
-        { question: "What is the semantic command buffer?", answer: "It is the intermediate state where unstructured human intent ('make this blue') is resolved against the current Figma selection context into a strict geometric mutation payload." }
+        { question: "What is the semantic command buffer?", answer: "It is the intermediate state where unstructured human intent ('make this blue') is resolved against the current Figma selection context into a strict geometric mutation payload." },
+        { question: "Can we hire you for generative UI tooling or custom Figma MCP plugins?", answer: "Yes. We engineer bespoke voice-to-canvas agents, semantic state compilers, and custom Figma MCP integrations to accelerate product design and developer handoffs. Explore our AI development services or start a direct project inquiry." }
     ]
 };
 

@@ -1,4 +1,4 @@
-﻿import { ProjectFooter } from '@/components/ProjectFooter';
+import { ProjectFooter } from '@/components/ProjectFooter';
 import { RevealrNav, RevealrFooter } from '@/components/revealr/RevealrNav';
 
 export default function RevealrLayout({
@@ -11,9 +11,8 @@ export default function RevealrLayout({
       <RevealrNav />
       <main className="flex-1">
         {children}
-            <ProjectFooter slug="revealr" />
+        <ProjectFooter slug="revealr" />
       </main>
-      <RevealrFooter />
     </div>
   );
 }

@@ -293,14 +293,26 @@ export default function AxiomPage() {
                     </section>
                 </ScrollReveal>
 
-                {/* SECTION 6: CTA / FOOTER */}
+                {/* SECTION 6: CTA / FREELANCE SHOWCASE */}
                 <ScrollReveal direction="up" delay={0.1}>
-                    <section className="mt-32 text-center">
-                        <h2 className="text-4xl font-black uppercase tracking-tight mb-6">Ready to stop slacking?</h2>
-                        <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">Dive into the source code and see how deep OS hooks and local LLMs can redefine productivity.</p>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-black font-black uppercase tracking-widest px-10 py-5 rounded-lg hover:bg-[#00d4aa] transition-colors text-lg shadow-xl">
-                            View Source Code on GitHub
-                        </a>
+                    <section className="mt-32 text-center max-w-3xl mx-auto">
+                        <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#00d4aa] border border-[#00d4aa]/30 bg-[#00d4aa]/10 px-3 py-1 rounded-full inline-block mb-4">
+                            Freelance &amp; Consulting
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight mb-6">
+                            Need Local-First Private AI or Custom Go Daemons?
+                        </h2>
+                        <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                            We integrate private on-premise LLMs with Ollama and lightweight background daemons so your proprietary data never leaks to cloud providers.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="https://rounakneema.in/freelance/ai-development" className="inline-block bg-[#00d4aa] text-black font-black uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-white transition-all text-sm shadow-xl">
+                                Explore AI Services &rarr;
+                            </a>
+                            <a href="https://rounakneema.in/contact" className="inline-block bg-white/5 border border-white/20 text-white font-bold uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-white/10 transition-colors text-sm">
+                                Start Client Inquiry
+                            </a>
+                        </div>
                     </section>
                 </ScrollReveal>
             </div>

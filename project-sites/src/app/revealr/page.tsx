@@ -59,8 +59,22 @@ export default function RevealrHome() {
       <ScrollReveal direction="up" delay={0.1}>
         <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
           <ProjectJsonLd slug="revealr" />
-          <h1 className="sr-only">Revealr - High-Speed Go Network Scanner &amp; Vulnerability Mapping Tool</h1>
-          <div className="relative mx-auto mt-16 max-w-6xl p-2 md:mt-20 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl shadow-xl transition-all duration-300">
+          
+          {/* Visible Customer & Recruiter Hero */}
+          <div className="text-center max-w-4xl mx-auto mb-14">
+            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-lime-400 font-bold border border-lime-400/20 bg-lime-400/10 px-3 py-1 rounded-full inline-block mb-4">
+              Concurrent Go Reconnaissance Engine
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase tracking-tighter leading-tight mb-6">
+              Map Your Attack Surface <br />
+              <span className="text-lime-400">In Sub-Seconds.</span>
+            </h1>
+            <p className="text-zinc-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              We engineered Revealr to solve scanner amnesia. You get 50,000+ ports/minute throughput backed by persistent SQLite state memory that detects infrastructure drift the moment an unauthorized port opens.
+            </p>
+          </div>
+
+          <div className="relative mx-auto max-w-6xl p-2 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl shadow-xl transition-all duration-300">
             <div className="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-b from-lime-300/20 via-transparent to-transparent blur-sm" />
             <div className="overflow-hidden rounded-xl border border-white/[0.07] bg-[#090c0b]">
               <div className="flex items-center justify-between border-b border-white/[0.07] bg-white/[0.02] px-4 py-3 sm:px-5">
@@ -301,9 +315,9 @@ $ revealr scan --target 127.0.0.1 --ports 1-65535 --rate 5000 --json
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-lime-400 mb-3">Who built Revealr?</h3>
+                <h3 className="text-xl font-bold text-lime-400 mb-3">Can we hire you for custom security or high-throughput Go backend tooling?</h3>
                 <p className="text-zinc-300 leading-relaxed text-lg">
-                  Revealr was designed and engineered by Rounak Neema as part of a research initiative into high-performance network security tooling and stateful attack surface management.
+                  Yes. We engineer bespoke high-concurrency Go backends, raw socket network tools, and vulnerability management pipelines for organizations needing reliable, high-speed infrastructure. Explore our <a href="https://rounakneema.in/freelance/software-development" className="text-lime-400 underline font-bold">software development services</a> or <a href="https://rounakneema.in/contact" className="text-white underline font-bold">start a direct project inquiry</a>.
                 </p>
               </div>
             </div>

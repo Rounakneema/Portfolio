@@ -30,9 +30,16 @@ export function HeroSequence() {
 
     return (
         <div className="font-mono text-sm leading-relaxed mb-16 pt-8 max-w-4xl">
-            <h1 className="text-white mb-12 text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-none">
-                Turn Code Into Context.
+            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#58a6ff] border border-[#1f6feb]/30 bg-[#1f6feb]/10 px-3 py-1 rounded-full inline-block mb-6">
+                AST-Grounded Code Intelligence
+            </span>
+            <h1 className="text-white mb-6 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-none">
+                Turn Code Into Context. <br />
+                <span className="text-[#58a6ff]">Ground AI In Reality.</span>
             </h1>
+            <p className="text-zinc-400 text-base md:text-lg max-w-2xl leading-relaxed mb-10">
+                Resumes lie, and naive LLMs hallucinate. We engineered Klarity so you can verify candidate codebase authenticity and evaluate technical talent using verifiable Abstract Syntax Tree evidence.
+            </p>
             
             <div className="bg-[#050505] border border-[#1f6feb]/30 p-6 mb-8">
                 <div className="text-[#58a6ff] mb-6 whitespace-pre">

@@ -89,6 +89,67 @@ export default function ArchitecturePage() {
           </section>
         </ScrollReveal>
 
+        <ScrollReveal direction="up" delay={0.1}>
+          <section className="mb-24">
+            <h2 className="text-3xl font-black uppercase tracking-tighter mb-6 bg-white text-black inline-block px-4 py-2">
+              Container Footprint &amp; Attack Surface Benchmarks
+            </h2>
+            <p className="text-xl leading-relaxed max-w-4xl mb-8">
+              A breakdown of container image reduction, CVE elimination, and build pipeline speed comparing standard Debian, Alpine, and Google Distroless runtime bases.
+            </p>
+
+            <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-lg p-6 shadow-xl overflow-x-auto">
+              <table className="w-full text-left text-sm font-mono border-collapse">
+                <thead>
+                  <tr className="border-b border-white/20 text-[#f97316]">
+                    <th className="py-3 px-4">Base Image</th>
+                    <th className="py-3 px-4">Final Size</th>
+                    <th className="py-3 px-4">Reduction</th>
+                    <th className="py-3 px-4">Shell / Package Mgr</th>
+                    <th className="py-3 px-4">Trivy CVEs</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/10">
+                  <tr className="text-zinc-400">
+                    <td className="py-3 px-4 font-bold text-white">golang:1.21 (Debian Bookworm)</td>
+                    <td className="py-3 px-4">1,120 MB</td>
+                    <td className="py-3 px-4">Baseline (0%)</td>
+                    <td className="py-3 px-4">bash, apt, coreutils</td>
+                    <td className="py-3 px-4 text-red-400 font-bold">14 High / Critical</td>
+                  </tr>
+                  <tr className="text-zinc-400">
+                    <td className="py-3 px-4 font-bold text-white">golang:1.21-alpine (Multi-stage)</td>
+                    <td className="py-3 px-4">18.2 MB</td>
+                    <td className="py-3 px-4">98.4% reduction</td>
+                    <td className="py-3 px-4">/bin/sh, apk</td>
+                    <td className="py-3 px-4 text-yellow-400">1 Low (musl)</td>
+                  </tr>
+                  <tr className="text-green-400 bg-white/[0.04]">
+                    <td className="py-3 px-4 font-bold text-white">gcr.io/distroless/static:nonroot</td>
+                    <td className="py-3 px-4 font-bold text-emerald-400">8.4 MB</td>
+                    <td className="py-3 px-4 font-bold text-emerald-400">99.3% reduction</td>
+                    <td className="py-3 px-4">None (Zero binaries)</td>
+                    <td className="py-3 px-4 text-emerald-400 font-bold">0 CVEs (Pass)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-lg border border-[#f97316]/30 bg-[#f97316]/5">
+              <div className="text-xs font-mono text-zinc-300">
+                <span className="font-bold text-[#f97316] uppercase mr-2">// DevSecOps Takeaway:</span>
+                Eliminating shells and package managers prevents post-exploitation reverse shells and satisfies zero-CVE compliance gates.
+              </div>
+              <a
+                href="https://rounakneema.in/freelance/devsecops"
+                className="px-4 py-2 bg-[#f97316] hover:bg-orange-600 text-white font-bold text-xs font-mono uppercase tracking-wider rounded transition-colors shrink-0"
+              >
+                Hire for DevSecOps &rarr;
+              </a>
+            </div>
+          </section>
+        </ScrollReveal>
+
       </main>
     </div>
   );

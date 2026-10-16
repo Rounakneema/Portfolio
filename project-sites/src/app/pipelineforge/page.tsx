@@ -30,7 +30,7 @@ export default function PipelineForgePage() {
       <ScrollReveal direction="up" delay={0.1}>
         <header className="border-b-4 border-white p-6 flex justify-between items-center uppercase font-bold tracking-tighter">
           <div className="text-xl">
-            <Link href="/" className="hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 hover:bg-white hover:text-black px-2 py-1 rounded">← INDEX</Link>
+            <a href="https://rounakneema.in/projects" className="hover:-translate-y-1 hover:border-[#f97316] transition-all duration-300 hover:bg-white hover:text-black px-2 py-1 rounded">← ALL PROJECTS</a>
           </div>
           <div className="text-right flex flex-col items-end">
             <div className="bg-white text-black px-2 py-1 text-sm font-black mb-1">DEVSECOPS</div>
@@ -40,6 +40,22 @@ export default function PipelineForgePage() {
       </ScrollReveal>
 
       <main className="p-6 md:p-12 lg:p-24 overflow-hidden">
+        {/* Visible Customer & Recruiter Hero */}
+        <ScrollReveal direction="up" delay={0.1}>
+          <div className="mb-14 text-center max-w-4xl mx-auto">
+            <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#f97316] border border-[#f97316]/30 bg-[#f97316]/10 px-3 py-1 rounded-full inline-block mb-4">
+              GitOps DevSecOps Automation
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter leading-tight mb-6 text-white">
+              Eliminate 99.3% Of Your <br />
+              <span className="text-[#f97316]">Container Attack Surface.</span>
+            </h1>
+            <p className="text-zinc-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              We engineered PipelineForge to demonstrate production-grade zero-CVE container delivery. You get automated multi-stage Distroless builds, strict Trivy security gates, and Kubernetes GitOps rollouts that keep unverified images out of production.
+            </p>
+          </div>
+        </ScrollReveal>
+
         {/* Hero Section - Interactive Pipeline */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="mb-24 flex flex-col items-center border-4 border-[#30363d] p-8 md:p-16 relative bg-white/5 backdrop-blur-md rounded-lg shadow-xl">
@@ -143,7 +159,7 @@ Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)`}</code></pre>
                 { num: "04", q: "What orchestration platform is used?", a: "The deployment environment and GitOps pipeline are orchestrated using Kubernetes and Helm." },
                 { num: "05", q: "What role does GitHub Actions play?", a: "GitHub Actions serves as the CI runner to build, test, and push the application before GitOps syncs." },
                 { num: "06", q: "How is performance tested?", a: "Load testing is conducted using K6 to simulate 500 VUs and ensure latency remains under 5ms." },
-                { num: "07", q: "Who built PipelineForge?", a: "PipelineForge was architected and engineered by Rounak Neema." }
+                { num: "07", q: "Can we hire you for DevSecOps, container reduction, or CI/CD pipelines?", a: "Yes. We partner with engineering teams to shrink container attack surfaces by 90%+, eliminate CVEs with Distroless packaging, and automate Trivy security gates before code reaches production. Explore our DevSecOps services or start a direct project inquiry." }
               ].map((faq, i) => (
                 <StaggerItem key={i}>
                   <details className="group [&_summary::-webkit-details-marker]:hidden border-b border-[#333] pb-4 hover:-translate-y-1 transition-all duration-300">

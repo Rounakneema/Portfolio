@@ -26,7 +26,7 @@ export default function DevContextPage() {
             { question: "How does it prevent hallucinated assessments?", answer: "It utilizes repository grounding to anchor AI responses in actual codebase reality, significantly reducing hallucinated assessments." },
             { question: "How does repository grounding work?", answer: "Repository grounding works by analyzing the candidate's actual code repository, understanding its context, and feeding this precise context to the AI (Amazon Bedrock / Claude)." },
             { question: "What is the primary tech stack?", answer: "The primary stack includes React for the frontend and AWS Serverless for scalable backend processing." },
-            { question: "Who built Klarity?", answer: "Klarity was built by Rounak Neema." },
+            { question: "Can we hire you for AI code intelligence or custom evaluation tooling?", answer: "Yes. We build hallucination-free code inspection engines, AST verification pipelines, and AI engineering tools for technical teams. Explore our AI development services or start a direct project inquiry." },
             { question: "What AI models does Klarity use?", answer: "Klarity leverages Amazon Bedrock and Claude for its AI capabilities." },
             { question: "What is the key differentiator of Klarity?", answer: "The key differentiator is its robust repository grounding mechanism." }
         ]
@@ -36,16 +36,20 @@ export default function DevContextPage() {
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#1f6feb] selection:text-[#fff] overflow-x-hidden">
-            <ProjectJsonLd slug="devcontext" />`n            <h1 className="sr-only">Klarity - AI Repository Intelligence for Technical Recruiting</h1>
+            <ProjectJsonLd slug="devcontext" />
+            <h1 className="sr-only">Klarity - AI Repository Intelligence for Technical Recruiting</h1>
             {/* Header */}
             <ScrollReveal direction="up" delay={0.1}>
                 <header className="p-4 md:p-8 border-b border-[#333] flex flex-col md:flex-row justify-between items-start md:items-center text-xs uppercase tracking-widest gap-4">
-                    <div className="flex gap-4">
-                        <span className="text-[#58a6ff] bg-[#1f6feb]/10 border border-[#1f6feb]/30 px-2 py-1">Project Ref: {project.slug}</span>
-                        <span className="text-[#58a6ff] bg-[#1f6feb]/10 border border-[#1f6feb]/30 px-2 py-1">Status: {project.status}</span>
+                    <div className="flex gap-4 items-center">
+                        <a href="https://rounakneema.in/projects" className="text-zinc-400 hover:text-white transition-colors">
+                            ← ALL PROJECTS
+                        </a>
+                        <span className="text-zinc-600">/</span>
+                        <span className="text-[#58a6ff] bg-[#1f6feb]/10 border border-[#1f6feb]/30 px-2 py-1 font-bold">Klarity.AI</span>
                     </div>
                     <nav className="flex gap-6 border-l border-[#333] pl-6 overflow-x-auto w-full md:w-auto">
-                        <Link href="/" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Analysis Pipeline</Link>
+                        <Link href="/devcontext" className="text-white border-b border-[#1f6feb] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Analysis Pipeline</Link>
                         <Link href="/grounding" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Grounding</Link>
                         <Link href="/architecture" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Architecture</Link>
                         <Link href="/interview" className="text-[#666] hover:text-[#58a6ff] hover:-translate-y-1 hover:border-[#1f6feb] transition-all duration-300 whitespace-nowrap">Interview Engine</Link>

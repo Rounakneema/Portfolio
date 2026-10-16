@@ -49,20 +49,28 @@ export default function OSAPage() {
                 }
             `}} />
 
-            {/* HEADER */}
-            
-            <ProjectJsonLd slug="osa" />`n            <h1 className="sr-only">OSA - Offline Security Auditor for Air-Gapped Environments</h1>
+            <ProjectJsonLd slug="osa" />
+            <h1 className="sr-only">OSA - Offline Security Auditor for Air-Gapped Environments</h1>
             <div className="max-w-7xl mx-auto px-6 pt-12 md:pt-16">
             </div>
 
-            {/* NEW HERO - LOG STREAM */}
+            {/* HERO - LOG STREAM */}
             <ScrollReveal direction="up" delay={0.1}>
-                <div className="max-w-7xl mx-auto px-6 py-16">
-                    <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight uppercase">
-                            SECURITY ANALYTICS WITHOUT THE NETWORK.
-                        </h2>
-                        <div className="flex gap-4 text-xs font-bold text-[#ffb800] uppercase tracking-widest flex-wrap">
+                <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+                    <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div className="max-w-3xl">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#ffb800] border border-[#ffb800]/20 bg-[#ffb800]/10 px-3 py-1 rounded-full inline-block mb-4">
+                                Air-Gapped Security Engineering
+                            </span>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase leading-tight mb-4">
+                                Security Analytics <br />
+                                <span className="text-[#ffb800]">Without The Network.</span>
+                            </h2>
+                            <p className="text-zinc-400 text-base md:text-lg leading-relaxed">
+                                When your infrastructure is strictly air-gapped, standard cloud SIEMs are useless. We engineered OSA so you can ingest millions of offline log events in &lt;200ms with zero network packets leaving your secure perimeter.
+                            </p>
+                        </div>
+                        <div className="flex gap-4 text-xs font-bold text-[#ffb800] uppercase tracking-widest flex-wrap shrink-0">
                             <span>ZERO DEPENDENCIES</span>
                             <span className="text-[#333] hidden md:inline">/</span>
                             <span>&lt;200ms PIPELINE</span>
@@ -251,6 +259,13 @@ $ osa audit --logs /var/log/auth.log --offline
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div>
+                                    <h3 className="text-xl font-bold text-[#ffb800] mb-3">Can we hire you for air-gapped security audits or custom tooling?</h3>
+                                    <p className="text-zinc-300 leading-relaxed text-lg">
+                                        Yes. We deliver authorized security evaluations, offline log anomaly baselining, and zero-telemetry audit tools designed for high-compliance, air-gapped perimeters. Explore our <a href="https://rounakneema.in/freelance/cybersecurity" className="text-[#ffb800] underline font-bold">cybersecurity services</a> or <a href="https://rounakneema.in/contact" className="text-white underline font-bold">start a direct project inquiry</a>.
+                                    </p>
                                 </div>
                             </div>
                         </section>

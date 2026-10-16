@@ -75,7 +75,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 \tw.Header().Set("X-Content-Type-Options", "nosniff")
 \tw.Header().Set("X-Frame-Options", "DENY")
 \tw.Header().Set("X-XSS-Protection", "1; mode=block")
-\tw.Header().Set("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; img-src 'self' data: https:; font-src 'self' https: data:;")
+\tw.Header().Set("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; img-src 'self' data: https:; font-src 'self' https: data:; connect-src 'self' https:;")
 \tw.Header().Set("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
 
 \treqPath := r.URL.Path
