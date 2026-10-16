@@ -328,25 +328,25 @@ export const projects: Project[] = [
             { text: 'VOICE', type: 'red' },
             { text: 'FIGMA', type: 'blue' },
         ],
-        tech: ['Voice/JEV', 'Figma MCP', 'Semantic Buffer', 'Agents'],
+        tech: ['Web Speech API', 'Figma Plugin API', 'Figma MCP', 'TypeScript', 'WebSockets'],
         challenge:
-            'Traditional generative UI tools output flattened PNGs or uneditable code. Designers need voice-driven generation that produces native, editable Figma objects.',
+            'Most generative design tools output static images or throwaway mockups. Designers need voice tools that directly update Auto-Layout components and design tokens in Figma.',
         solution:
-            'An agentic architecture translating streaming speech into a semantic command buffer, generating structured design operations via Figma MCP.',
+            'A client-side voice listener that maps spoken instructions to an in-memory document tree, pushing incremental property updates through the Figma Plugin API.',
         fullDescription:
-            'Dizzy is a product architecture concept for voice-driven UI design. Instead of generating images, it streams voice input to an agent that builds a semantic command buffer. This buffer translates intent into structured operations for the Figma MCP, allowing the system to progressively modify native Figma designs. Later commands can intelligently update earlier decisions rather than creating entirely new assets.',
+            'Dizzy connects voice input directly to a Figma document. The system transcribes audio in real time, resolves spoken instructions against the active selection, and computes minimal property diffs. When you say "make the card wider" or "change the theme to dark slate", the engine patches only the affected frames and styles while leaving the rest of the canvas intact.',
         bullets: [
-            { label: 'Native Output', text: 'Manipulates native Figma objects via Figma MCP instead of generating images.' },
-            { label: 'Semantic Buffer', text: 'Maintains structured design state to allow progressive and contextual modifications.' },
-            { label: 'Workflow', text: 'JEV/Streaming Voice â†’ Agent Intent â†’ Design Operations â†’ Figma MCP.' },
-            { label: 'Vision', text: 'Expanding into an agentic product design loop integrating visual comparison and code generation.' },
+            { label: 'Native Figma Output', text: 'Updates editable Auto-Layout frames and design tokens through the Figma Plugin API.' },
+            { label: 'Semantic Command Tree', text: 'Maintains document state in memory to allow incremental property edits without regenerating full screens.' },
+            { label: 'Speech Pipeline', text: 'Web Speech API with Voice Activity Detection feeds partial transcripts to property-specific parsers.' },
+            { label: 'Design System Alignment', text: 'Resolves color and spacing requests against defined design tokens rather than random hex values.' },
         ],
         links: [],
         metrics: [
             { label: 'Input', value: 'Streaming Voice' },
             { label: 'Output', value: 'Figma Native' },
-            { label: 'Integration', value: 'Figma MCP' },
-            { label: 'State', value: 'Semantic Buffer' },
+            { label: 'Integration', value: 'Figma Plugin + MCP' },
+            { label: 'State', value: 'AST Buffer' },
         ],
     },
 ];

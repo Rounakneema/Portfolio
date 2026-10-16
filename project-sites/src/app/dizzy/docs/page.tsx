@@ -2,63 +2,74 @@ import { Metadata } from 'next';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Dizzy Protocol Specs - Semantic Buffer & MCP',
-  description: 'Technical documentation for the Dizzy Voice-to-Figma system.',
+  title: 'Dizzy Protocol Specs — Semantic Buffer & Figma Bridge',
+  description: 'Technical specifications for the Dizzy voice-to-Figma semantic buffer, WebSocket protocol, and plugin API bridge.',
+  alternates: {
+    canonical: 'https://dizzy.rounakneema.in/docs',
+  },
 };
 
 export default function DizzyDocsPage() {
   return (
-    <div className="w-full bg-black text-white selection:bg-[#ff3366] selection:text-white font-sans">
-        <ProjectJsonLd slug="dizzy" pageType="Docs" />
+    <div className="w-full bg-white text-neutral-900 selection:bg-neutral-900 selection:text-white font-sans min-h-screen">
+      <ProjectJsonLd slug="dizzy" pageType="Docs" />
       
-      <main className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-32">
+      <main className="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 lg:pt-24 pb-32">
         
-        <header className="mb-24 md:mb-32">
-          <h1 className="text-[clamp(3rem,6vw,8rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100 mb-8">
-            ENGINEERING <br/>
-            <span className="text-[#ff3366]">DOCS.</span>
-          </h1>
-          <div className="border-t border-zinc-900 pt-6">
-            <p className="text-xl lg:text-2xl font-light text-zinc-400 max-w-3xl leading-relaxed tracking-tight">
-              v1.0.4-alpha / Protocol Specifications
-            </p>
+        {/* Header */}
+        <header className="mb-20">
+          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono mb-4">
+            TECHNICAL DOCUMENTATION
           </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.05] mb-6">
+            Protocol Specifications
+          </h1>
+          <p className="text-lg lg:text-xl font-normal text-neutral-600 max-w-3xl leading-relaxed">
+            Data models, streaming WebSocket packets, and plugin execution primitives for the Dizzy engine.
+          </p>
         </header>
 
-        <section className="mb-32">
-          <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Ast Definition</h2>
-            <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">SEMANTIC BUFFER AST</h3>
+        {/* Section 01: AST Definition */}
+        <section className="mb-24">
+          <div className="border-b border-neutral-200 pb-4 mb-10">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              AST Schema
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight mt-4">
+              Semantic Buffer Tree
+            </h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
-            <div className="md:col-span-5 text-zinc-400 font-light text-lg leading-relaxed space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="md:col-span-5 text-neutral-600 text-base leading-relaxed space-y-4">
               <p>
-                The Semantic Buffer is a stateful tree that receives intention-based nodes from the Voice-to-JSON stream.
+                The semantic buffer is a typed tree representing your Figma canvas. The schema validator enforces valid node types, layout modes, and numeric ranges before sending any command to the plugin bridge.
               </p>
               <p>
-                Unlike raw LLM outputs (which frequently hallucinate unstructured JSON), this component guarantees structural type safety before execution via the Figma MCP.
+                Every node retains its corresponding native Figma object ID in <code className="bg-neutral-100 px-1.5 py-0.5 rounded text-neutral-800 font-mono text-xs">_figma_ref</code> so future voice commands update existing elements instead of creating duplicates.
               </p>
             </div>
             <div className="md:col-span-7">
-              <div className="bg-[#050505] p-8 font-mono text-xs md:text-sm text-zinc-400 overflow-x-auto border border-zinc-900">
-                <div className="text-zinc-600 mb-6 uppercase tracking-widest font-bold text-[10px] border-b border-zinc-800 pb-4">Schema definition: BufferNode (TypeScript)</div>
-                <pre className="text-[#ff3366]">
+              <div className="bg-neutral-950 p-6 sm:p-8 rounded-xl font-mono text-xs text-neutral-300 overflow-x-auto border border-neutral-800 shadow-inner">
+                <div className="text-neutral-500 mb-4 uppercase tracking-widest font-bold text-[10px] border-b border-neutral-800 pb-3">
+                  Schema: BufferNode (TypeScript)
+                </div>
+                <pre className="leading-relaxed">
 {`interface BufferNode {
-  id: string;               // UUID-v4
-  type: ElementType;        // 'FRAME' | 'TEXT' | 'BUTTON' | 'INPUT'
-  intent: string;           // Original JEV transcript snippet
+  id: string;               // UUID-v4 identifier
+  type: 'FRAME' | 'TEXT' | 'BUTTON' | 'IMAGE';
+  intent: string;           // Transcribed voice command
   properties: {
-    layout: 'FLEX' | 'GRID' | 'ABSOLUTE';
-    direction?: 'HORIZONTAL' | 'VERTICAL';
+    layout: 'HORIZONTAL' | 'VERTICAL' | 'NONE';
     padding?: [number, number, number, number];
     gap?: number;
-    fill?: HexColor | 'TRANSPARENT';
-    stroke?: HexColor;
+    fill?: string;          // Hex color or token key
     cornerRadius?: number;
+    width?: number | 'HUG' | 'FILL';
+    height?: number | 'HUG' | 'FILL';
   };
   children: BufferNode[];
-  _mcp_ref?: string;        // Native Figma node ID after MCP realization
+  _figma_ref?: string;      // Figma native node ID
 }`}
                 </pre>
               </div>
@@ -66,79 +77,91 @@ export default function DizzyDocsPage() {
           </div>
         </section>
 
-        <section className="mb-32">
-          <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Data Streaming</h2>
-            <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">VOICE STREAMING PROTOCOL</h3>
+        {/* Section 02: Streaming Protocol */}
+        <section className="mb-24 border-t border-neutral-200 pt-16">
+          <div className="border-b border-neutral-200 pb-4 mb-10">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Network Protocol
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight mt-4">
+              WebSocket Event Loop (Port 4040)
+            </h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
-            <div className="md:col-span-5 text-zinc-400 font-light text-lg leading-relaxed space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="md:col-span-5 text-neutral-600 text-base leading-relaxed space-y-4">
               <p>
-                Voice streams are chunked via WebRTC and piped to the JEV endpoint.
+                The client chunks microphone input into 250ms audio frames and streams them to the transcription worker over WebSocket.
               </p>
               <p>
-                Partial transcripts are eagerly resolved into diffs against the Semantic Buffer to provide real-time UI feedback while the user is still speaking.
+                When a partial transcript contains an explicit property keyword (like &quot;padding&quot;, &quot;darker&quot;, or &quot;blue&quot;), the engine calculates an immediate preview diff and sends it to the Figma plugin.
               </p>
             </div>
             <div className="md:col-span-7">
-              <div className="bg-[#050505] p-8 font-mono text-xs md:text-sm text-zinc-400 overflow-x-auto border border-zinc-900">
-                <div className="text-zinc-600 mb-6 uppercase tracking-widest font-bold text-[10px] border-b border-zinc-800 pb-4">Terminal trace: WebSocket Engine (Port 8080)</div>
-                <div className="space-y-2">
-                  <div className="text-zinc-300">[15:42:01.102] INFO: ws_connect client=v_designer_99</div>
-                  <div className="text-zinc-600">{"<"} AUDIO_CHUNK [4096 bytes]</div>
-                  <div className="text-zinc-600">{"<"} AUDIO_CHUNK [4096 bytes]</div>
-                  <div className="text-amber-500">{">"} PARTIAL_JSON: {`{"transcript": "add a red button", "confidence": 0.89}`}</div>
-                  <div className="text-zinc-600">{"<"} AUDIO_CHUNK [4096 bytes]</div>
-                  <div className="text-green-500">{">"} COMMIT_JSON: {`{"transcript": "add a red button that says submit", "intent_parsed": true}`}</div>
-                  <div className="text-[#ff3366]">{"*"} BUFFER_DIFF: +Node(type=BUTTON, fill=#FF0000, text="Submit")</div>
+              <div className="bg-neutral-950 p-6 sm:p-8 rounded-xl font-mono text-xs text-neutral-300 overflow-x-auto border border-neutral-800 shadow-inner">
+                <div className="text-neutral-500 mb-4 uppercase tracking-widest font-bold text-[10px] border-b border-neutral-800 pb-3">
+                  Live Session Stream
+                </div>
+                <div className="space-y-1.5 text-xs">
+                  <div className="text-neutral-500">[15:42:01.102] connect: client=local_designer_1</div>
+                  <div className="text-neutral-500">[15:42:01.350] audio: 4096 bytes chunk received</div>
+                  <div className="text-amber-400">[15:42:01.420] transcript: &quot;add a primary button&quot; (conf: 0.91)</div>
+                  <div className="text-blue-400">[15:42:01.440] patch: +Node(type: &quot;BUTTON&quot;, text: &quot;Submit&quot;, fill: &quot;#111827&quot;)</div>
+                  <div className="text-emerald-400">[15:42:01.455] figma_sync: 1 node created in 15ms</div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mb-16">
-          <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Plugin Execution</h2>
-            <h3 className="text-3xl font-black text-zinc-100 tracking-tighter mt-6">FIGMA MCP OPERATIONS</h3>
+        {/* Section 03: Plugin Execution */}
+        <section className="border-t border-neutral-200 pt-16">
+          <div className="border-b border-neutral-200 pb-4 mb-10">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Plugin Runtime
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight mt-4">
+              Figma Plugin API Bridge
+            </h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
-            <div className="md:col-span-5 text-zinc-400 font-light text-lg leading-relaxed space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="md:col-span-5 text-neutral-600 text-base leading-relaxed space-y-4">
               <p>
-                The MCP server polls the Semantic Buffer and executes atomic design operations via Figma's native Plugin API.
+                The Figma plugin listens for local mutation messages. It reads the targeted node from Figma&apos;s current selection and applies Auto-Layout dimensions directly through the official Plugin API.
               </p>
               <p>
-                By maintaining the <code className="bg-zinc-900 text-[#ff3366] px-2 py-1 border border-zinc-800">_mcp_ref</code>, future edits target existing nodes rather than re-generating elements from scratch.
+                Because changes use native Figma frame properties, the result is completely editable with standard keyboard shortcuts and mouse clicks.
               </p>
             </div>
             <div className="md:col-span-7">
-              <div className="bg-[#050505] p-8 font-mono text-xs md:text-sm text-zinc-400 overflow-x-auto border border-zinc-900 relative">
-                <div className="absolute top-0 right-0 px-4 py-2 bg-zinc-900 text-zinc-300 text-xs font-bold uppercase border-b border-l border-zinc-800">operation.ts</div>
-                <pre className="text-zinc-300 mt-6">
-{`async function executeMcpCommand(node: BufferNode) {
-  if (node._mcp_ref) {
-    // Node exists, apply mutation (progressive editing)
-    const figmaNode = await figma.getNodeByIdAsync(node._mcp_ref);
-    if (figmaNode && figmaNode.type === 'FRAME') {
-      figmaNode.fills = [{ type: 'SOLID', color: hexToFigmaRgb(node.properties.fill) }];
+              <div className="bg-neutral-950 p-6 sm:p-8 rounded-xl font-mono text-xs text-neutral-300 overflow-x-auto border border-neutral-800 shadow-inner">
+                <div className="text-neutral-500 mb-4 uppercase tracking-widest font-bold text-[10px] border-b border-neutral-800 pb-3">
+                  plugin/mutator.ts
+                </div>
+                <pre className="leading-relaxed">
+{`async function applyNodeMutation(node: BufferNode) {
+  if (node._figma_ref) {
+    const frame = await figma.getNodeByIdAsync(node._figma_ref);
+    if (frame && frame.type === 'FRAME') {
+      if (node.properties.fill) {
+        frame.fills = [{ type: 'SOLID', color: hexToRgb(node.properties.fill) }];
+      }
+      if (node.properties.padding) {
+        frame.paddingTop = node.properties.padding[0];
+        frame.paddingRight = node.properties.padding[1];
+        frame.paddingBottom = node.properties.padding[2];
+        frame.paddingLeft = node.properties.padding[3];
+      }
     }
     return;
   }
 
-  // Create new native Figma node
+  // Create new Auto-Layout frame
   const frame = figma.createFrame();
-  frame.name = \`\${node.type}_\${node.id.substring(0, 4)}\`;
-  
-  // Apply Auto-Layout semantics
-  if (node.properties.layout === 'FLEX') {
-    frame.layoutMode = node.properties.direction || 'HORIZONTAL';
-    frame.itemSpacing = node.properties.gap || 0;
-  }
-  
-  // Persist reference back to buffer for future modifications
-  node._mcp_ref = frame.id;
+  frame.layoutMode = node.properties.layout === 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL';
+  frame.itemSpacing = node.properties.gap || 12;
+  node._figma_ref = frame.id;
   figma.currentPage.appendChild(frame);
 }`}
                 </pre>

@@ -15,23 +15,23 @@ export const metadata = {
 const dizzyFaq = [
   {
     question: "What is Dizzy?",
-    answer: "Dizzy is a context-aware voice-to-design agent that operates directly on a digital canvas and bridges natively into Figma. Instead of generating flattened, uneditable pixel graphics, Dizzy parses spoken intent and synthesizes clean, editable Auto-Layout components with strict token adherence."
+    answer: "Dizzy translates voice commands into native Figma components. You speak layout changes or interface prompts, and Dizzy updates Auto-Layout frames on your canvas using your existing design tokens."
   },
   {
     question: "How does voice-controlled UI generation work?",
-    answer: "We use a low-latency Web Speech pipeline coupled with Voice Activity Detection (VAD) to capture speech. An edge-based AST parser resolves your spoken intent against your active canvas hierarchy into a minimal JSON blueprint containing layout, spacing, and typographic properties."
+    answer: "A client-side Voice Activity Detection listener captures audio in real time. The parser maps your phrases against the selected Figma node ID and emits JSON patches with updated layout, spacing, or color values."
   },
   {
     question: "How does Dizzy synchronize natively with Figma?",
-    answer: "Dizzy uses a bidirectional WebSocket bridge communicating with the Figma Plugin API and Figma MCP server. The bridge extracts active frame coordinates, design tokens, and components, allowing real-time geometric mutations without manual imports."
+    answer: "A local WebSocket server connects the web canvas to the Figma desktop plugin. When the parser produces a mutation, the plugin applies it directly to the active document through the Figma Plugin API."
   },
   {
     question: "What is the semantic command buffer?",
-    answer: "The semantic command buffer is an intermediate state engine. When you say 'make the sidebar narrower' or 'switch to modern furniture hero', the buffer maps conversational instructions into explicit, non-destructive mutation sets (e.g. sidebar.width: 320 → 240) rather than rebuilding the canvas from scratch."
+    answer: "The command buffer is an in-memory tree of your document. If you say 'make the sidebar narrower', the engine calculates the numeric change (sidebar width from 320px to 240px) and patches that single property. Unselected layers remain untouched."
   },
   {
     question: "Can we hire you for generative UI tooling or custom Figma MCP plugins?",
-    answer: "Yes. We engineer bespoke voice-to-canvas agents, semantic state compilers, and custom Figma MCP integrations to accelerate product design and developer handoffs. Explore our AI development services or start a direct project inquiry."
+    answer: "Yes. We build custom Figma plugins, voice-driven canvas tools, and MCP servers for engineering and design teams. Reach out through our contact page or email rounakneema414@gmail.com."
   }
 ];
 
@@ -428,7 +428,7 @@ export default function DizzyPage() {
             </div>
             <div className="lg:col-span-5 lg:flex lg:justify-end">
               <p className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-md">
-                Go from an idea to a complete, editable design in seconds. Make changes by voice, select specific elements, and refine with precision — without breaking your flow.
+                Go from an idea to a complete, editable design in seconds. Make changes by voice, select specific elements, and refine with precision without breaking your flow.
               </p>
             </div>
           </div>
@@ -459,7 +459,7 @@ export default function DizzyPage() {
               <span className="text-xs font-mono font-medium text-neutral-400 block">03</span>
               <h3 className="text-xl font-bold tracking-tight text-neutral-900">Refine</h3>
               <p className="text-neutral-600 text-sm leading-relaxed">
-                Select elements and edit by voice — text, style, layout, or spacing.
+                Select elements and edit by voice: adjust text, color, layout, or spacing.
               </p>
             </div>
 
@@ -606,35 +606,35 @@ export default function DizzyPage() {
               </h2>
 
               <p className="text-neutral-600 text-base sm:text-lg leading-relaxed mb-10">
-                Dizzy remembers your project, brand style, components, and previous edits — so you can build consistently across sessions.
+                Dizzy remembers your project, brand style, components, and previous edits so you can build consistently across sessions.
               </p>
 
-              {/* 5 Feature Links with Arrows */}
+              {/* 5 Feature Links */}
               <div className="divide-y divide-neutral-200/80 border-y border-neutral-200/80">
                 
                 <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
                   <span>Project context memory</span>
-                  <span className="text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all">→</span>
+                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </a>
 
                 <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
                   <span>Brand and design system awareness</span>
-                  <span className="text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all">→</span>
+                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </a>
 
                 <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
                   <span>Component reuse</span>
-                  <span className="text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all">→</span>
+                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </a>
 
                 <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
                   <span>Multi-screen and responsive layouts</span>
-                  <span className="text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all">→</span>
+                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </a>
 
                 <a href="#workflow" className="py-4 text-sm sm:text-base font-medium text-neutral-900 flex items-center justify-between group hover:text-black hover:pl-1 transition-all">
                   <span>Figma native workflow</span>
-                  <span className="text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all">→</span>
+                  <svg className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </a>
 
               </div>
@@ -722,15 +722,17 @@ export default function DizzyPage() {
             <div className="hidden sm:flex gap-3">
               <a
                 href="/dizzy/architecture"
-                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors"
+                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
               >
-                Architecture Spec →
+                <span>Architecture Spec</span>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
               </a>
               <a
                 href="/dizzy/docs"
-                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors"
+                className="px-4 py-2 border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
               >
-                System Docs →
+                <span>System Docs</span>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
               </a>
             </div>
           </div>
@@ -783,23 +785,15 @@ export default function DizzyPage() {
               </div>
 
               <div>
-                <span className="block text-neutral-500 font-mono text-xs mb-2">Live Session Trace Simulation</span>
+                <span className="block text-neutral-500 font-mono text-xs mb-2">Live Session Trace</span>
                 <pre className="font-mono text-xs bg-neutral-950 text-neutral-200 p-5 rounded-xl overflow-x-auto leading-relaxed border border-neutral-800 shadow-inner">
-{`$ dizzy listen --session "Acme Dashboard" --mcp ws://localhost:4040
-[+] Web Speech Engine: Listening on active microphonic channel...
-[+] Transcribed Spoken Intent: "Make the sidebar narrower and switch accent to cobalt"
-[+] Semantic Diff Engine: Resolving AST mutation against active node #4:218
-[+] Semantic Command Buffer:
-    {
-      "action": "MUTATE_PROPERTIES",
-      "target": "sidebar_container",
-      "mutations": [
-        { "prop": "width", "from": 320, "to": 240 },
-        { "prop": "theme.accent", "from": "#4f46e5", "to": "#1e40af" }
-      ]
-    }
-[+] Figma MCP Bridge: Executing RPC call to active Figma native canvas...
-[✓] Canvas updated in 142ms: Auto-Layout recalculated, zero unselected layers disrupted.`}
+{`$ dizzy listen --session "Acme Dashboard" --port 4040
+[info] Web Speech API active on microphone stream
+[info] Captured phrase: "make the sidebar narrower" (confidence: 0.98)
+[info] Matched node: frame_sidebar (id: 4:218)
+[info] Patch: { width: 240 }
+[info] WebSocket sent 68 bytes to Figma plugin
+[info] Node updated in 142ms`}
                 </pre>
               </div>
             </div>

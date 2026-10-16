@@ -3,79 +3,94 @@ import MermaidDiagram from '@/components/Mermaid';
 import { ProjectJsonLd } from '@/components/ProjectJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Dizzy Architecture Spec',
-  description: 'Deep dive into the voice-to-Figma JEV agent topology.',
+  title: 'Dizzy Architecture Spec — Voice-to-Figma Engine',
+  description: 'System topology, WebSocket bridge, and semantic buffer architecture for the Dizzy voice-to-Figma engine.',
+  alternates: {
+    canonical: 'https://dizzy.rounakneema.in/architecture',
+  },
 };
 
 export default function DizzyArchitecturePage() {
   return (
-    <div className="w-full bg-black text-white selection:bg-[#ff3366] selection:text-white font-sans">
-        <ProjectJsonLd slug="dizzy" pageType="Architecture" />
+    <div className="w-full bg-white text-neutral-900 selection:bg-neutral-900 selection:text-white font-sans min-h-screen">
+      <ProjectJsonLd slug="dizzy" pageType="Architecture" />
       
-      <main className="max-w-[1600px] mx-auto px-6 md:px-12 pt-24 lg:pt-40 pb-32">
+      <main className="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 lg:pt-24 pb-32">
         
-        <header className="mb-24 md:mb-32">
-          <h1 className="text-[clamp(3rem,6vw,8rem)] font-black uppercase tracking-tighter leading-[0.85] text-zinc-100 mb-8">
-            ARCHITECTURE <br/>
-            <span className="text-[#ff3366]">SPEC.</span>
-          </h1>
-          <div className="border-t border-zinc-900 pt-6">
-            <p className="text-xl lg:text-2xl font-light text-zinc-400 max-w-3xl leading-relaxed tracking-tight">
-              Voice-to-Figma JEV Agent Topology
-            </p>
+        {/* Header */}
+        <header className="mb-20">
+          <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-500 font-mono mb-4">
+            SYSTEM SPECIFICATION
           </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.05] mb-6">
+            Architecture Spec
+          </h1>
+          <p className="text-lg lg:text-xl font-normal text-neutral-600 max-w-3xl leading-relaxed">
+            Voice-to-Figma WebSocket bridge and semantic AST compiler topology.
+          </p>
         </header>
 
-        <section className="mb-32">
-          <div className="border-b border-zinc-800 pb-6 mb-12">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Topology Overview</h2>
+        {/* Diagram Section */}
+        <section className="mb-24">
+          <div className="border-b border-neutral-200 pb-4 mb-8">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Topology Overview
+            </h2>
           </div>
           
-          <div className="bg-[#050505] border border-zinc-900 p-8 md:p-12 overflow-x-auto">
+          <div className="bg-neutral-50/70 border border-neutral-200/90 rounded-2xl p-6 md:p-10 overflow-x-auto shadow-sm">
             <MermaidDiagram chart={`
 flowchart TD
-    User["[ USER CONTEXT ]"]
+    User["User Voice Stream"]
     
-    Gateway["<b>VOICE GATEWAY (JEV)</b><br/>├─► VAD (Voice Activity Detection)<br/>├─► Streaming STT (Speech-to-Text)<br/>└─► Context Injection (Current Figma Canvas State)"]
+    Gateway["<b>Voice Gateway</b><br/>Web Speech VAD + Audio Streaming<br/>Canvas Context Injection (Selected Node ID)"]
     
-    Orchestrator["<b>AGENTIC ORCHESTRATOR</b><br/>├─► Router: Maps intent to specific sub-agents<br/>│   ├─► Layout Agent (Flexbox/Grids)<br/>│   ├─► Typography Agent (Fonts, Weights)<br/>│   └─► Styling Agent (Colors, Shadows, Borders)<br/>├─► State Manager: Tracks semantic changes<br/>└─► TypeSafe Output Validator"]
+    Orchestrator["<b>Intent Parser & Router</b><br/>Layout Handler (Flexbox & Grids)<br/>Typography Handler (Fonts & Hierarchy)<br/>Styling Handler (Fills & Borders)<br/>AST Schema Validator"]
     
-    Buffer["<b>SEMANTIC BUFFER TO FIGMA MCP</b><br/>├─► Diff Engine: Calculates minimal updates<br/>├─► Figma Plugin Bridge (WebSocket/REST)<br/>└─► Native Object Generator (Frames, Text, Vectors)"]
+    Buffer["<b>Semantic Command Buffer</b><br/>Diff Engine (Minimal Property Delta)<br/>WebSocket Bridge to Plugin (Port 4040)<br/>Native Node Object Generator"]
     
-    Figma["[ FIGMA NATIVE APPLICATION ]"]
+    Figma["<b>Figma Native Desktop App</b><br/>Auto-Layout Frame Mutation via Plugin API"]
 
-    User -- "(Streaming Audio)" --> Gateway
-    Gateway -- "(Transcribed Intents + Canvas State)" --> Orchestrator
-    Orchestrator -- "(Structured Semantic Buffer)" --> Buffer
-    Buffer -- "(RPC / IPC Commands)" --> Figma
+    User --> Gateway
+    Gateway --> Orchestrator
+    Orchestrator --> Buffer
+    Buffer --> Figma
 `} />
           </div>
         </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
-          <div className="md:col-span-12 border-b border-zinc-800 pb-6">
-            <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Layer Definitions</h2>
+        {/* Layer Definitions */}
+        <section className="border-t border-neutral-200 pt-16">
+          <div className="border-b border-neutral-200 pb-4 mb-12">
+            <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest font-mono">
+              Layer Definitions
+            </h2>
           </div>
 
-          <div className="md:col-span-4 group">
-            <h3 className="text-3xl font-black text-zinc-100 mb-6 tracking-tighter group-hover:text-[#ff3366] transition-colors">1. JEV Voice Gateway</h3>
-            <p className="text-zinc-400 leading-relaxed font-light text-lg">
-              The entry point uses the JEV (Just Enough Voice) paradigm. Instead of waiting for a complete sentence, it streams audio and uses partial transcriptions. Crucially, it injects the current Figma canvas state (e.g., selected nodes, current theme) as context. This allows users to say &quot;make *this* darker&quot; and the system understands what *this* refers to.
-            </p>
-          </div>
-          
-          <div className="md:col-span-4 group">
-            <h3 className="text-3xl font-black text-zinc-100 mb-6 tracking-tighter group-hover:text-[#ff3366] transition-colors">2. Agentic Orchestrator</h3>
-            <p className="text-zinc-400 leading-relaxed font-light text-lg">
-              A hierarchical multi-agent setup. A primary router parses the stream and decides which specialist agent should handle the modification. This avoids a single massive prompt context. The TypeSafe Output Validator ensures that the agents only emit JSON that conforms strictly to our internal Semantic Buffer schema.
-            </p>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-medium text-neutral-400 block">01</span>
+              <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">Voice Ingestion</h3>
+              <p className="text-neutral-600 leading-relaxed text-base">
+                The client captures microphone audio with Voice Activity Detection and emits partial transcriptions before you finish speaking. The parser pairs the active transcript with the selected node in Figma. If you select a button and say &quot;make this darker&quot;, the engine reads the fill property directly from the selected node rather than guessing.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-medium text-neutral-400 block">02</span>
+              <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">Intent Parsing</h3>
+              <p className="text-neutral-600 leading-relaxed text-base">
+                A routing parser inspects the incoming text and maps it to a property handler: layout, typography, or styling. Splitting parsing by domain keeps prompt contexts small and fast. A schema validator checks the generated JSON against our AST definitions before passing it down the pipeline.
+              </p>
+            </div>
 
-          <div className="md:col-span-4 group">
-            <h3 className="text-3xl font-black text-zinc-100 mb-6 tracking-tighter group-hover:text-[#ff3366] transition-colors">3. Semantic Buffer & MCP</h3>
-            <p className="text-zinc-400 leading-relaxed font-light text-lg">
-              Rather than directly executing raw UI commands, the system maintains a &quot;Semantic Buffer&quot; (an intermediate representation of the UI). When a new voice command arrives, it updates this buffer. A Diff Engine then calculates the delta between the buffer and the actual Figma canvas, pushing only the necessary changes via the Figma MCP plugin. This allows for native, non-destructive editing of Figma nodes.
-            </p>
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-medium text-neutral-400 block">03</span>
+              <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">Semantic Buffer</h3>
+              <p className="text-neutral-600 leading-relaxed text-base">
+                The system maintains an in-memory tree of your document. When a command arrives, the engine updates this tree and computes a property delta against the active canvas. A local WebSocket bridge sends only the changed attributes to the Figma plugin, mutating the selected Auto-Layout nodes without touching the rest of your canvas.
+              </p>
+            </div>
           </div>
         </section>
 

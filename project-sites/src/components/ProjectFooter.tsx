@@ -47,8 +47,8 @@ const servicePillarMap: Record<string, {
         url: 'https://rounakneema.in/freelance/ai-development',
     },
     dizzy: {
-        title: 'Need Voice-to-Canvas & Multimodal Tooling?',
-        description: 'We craft custom generative UI engines, semantic state compilers, and Figma MCP integrations to accelerate your product design and prototyping sprints.',
+        title: 'Need Voice-to-Canvas or Custom Figma Tooling?',
+        description: 'We build custom Figma plugins, voice-driven canvas prototypes, and MCP integrations for product design and engineering teams.',
         url: 'https://rounakneema.in/freelance/ai-development',
     },
 };
