@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Check, CheckSquare, GitFork, Github, Layers, MessageSquare, GitBranch, Terminal, FileCode, Cpu, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Check, CheckSquare, Github, Layers, GitBranch, Terminal, FileCode, Cpu, ShieldCheck } from 'lucide-react';
 
 interface ProjectSample {
   slug: string;
@@ -82,7 +82,8 @@ const samples: Record<string, ProjectSample> = {
 export function DevContextHero() {
   const [selectedSample, setSelectedSample] = useState<string>('revealr');
   const [inputUrl, setInputUrl] = useState<string>(samples.revealr.repo);
-  const [activeTab, setActiveTab] = useState<'architecture' | 'overview' | 'tech' | 'decisions'>('architecture');
+  const [viewMode, setViewMode] = useState<'flatlay' | 'interactive'>('flatlay');
+  const [activeTab, setActiveTab] = useState<'architecture' | 'overview' | 'tech'>('architecture');
   const [activeNode, setActiveNode] = useState<string | null>(null);
 
   const current = samples[selectedSample] || samples.revealr;
@@ -201,9 +202,38 @@ export function DevContextHero() {
                       Paste your GitHub link
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono text-[#71717a] bg-[#f4efe4] px-2 py-0.5 rounded">
-                    Public Repo
-                  </span>
+                  
+                  <div className="flex items-center gap-2">
+                    {/* View Mode Toggle */}
+                    <div className="flex bg-[#f4efe4] p-0.5 rounded-md text-[10px] font-mono">
+                      <button
+                        type="button"
+                        onClick={() => setViewMode('flatlay')}
+                        className={`px-2 py-0.5 rounded transition-all ${
+                          viewMode === 'flatlay'
+                            ? 'bg-white text-[#18181b] font-bold shadow-2xs'
+                            : 'text-[#71717a] hover:text-[#18181b]'
+                        }`}
+                      >
+                        Desk Board
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setViewMode('interactive')}
+                        className={`px-2 py-0.5 rounded transition-all ${
+                          viewMode === 'interactive'
+                            ? 'bg-white text-[#18181b] font-bold shadow-2xs'
+                            : 'text-[#71717a] hover:text-[#18181b]'
+                        }`}
+                      >
+                        Interactive Tree
+                      </button>
+                    </div>
+
+                    <span className="text-[10px] font-mono text-[#71717a] bg-[#f4efe4] px-2 py-0.5 rounded hidden sm:inline">
+                      Public Repo
+                    </span>
+                  </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-stretch gap-2">
@@ -216,12 +246,11 @@ export function DevContextHero() {
                   />
                   <button
                     onClick={() => {
-                      // Toggle or refresh sample
                       if (inputUrl.includes('Revealr')) setSelectedSample('revealr');
                       else if (inputUrl.includes('MetroMind')) setSelectedSample('metromind');
                       else setSelectedSample('sortmail');
                     }}
-                    className="px-4 py-2 bg-[#18181b] hover:bg-black text-white text-xs font-bold rounded-lg transition-all shrink-0 flex items-center justify-center gap-1.5 shadow-xs"
+                    className="px-4 py-2 bg-[#18181b] hover:bg-black text-white text-xs font-bold rounded-lg transition-all shrink-0 flex items-center justify-center gap-1.5 shadow-xs active:scale-95"
                   >
                     <span>Analyze</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -229,237 +258,237 @@ export function DevContextHero() {
                 </div>
 
                 {/* Preloaded Demo Buttons */}
-                <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-mono">
-                  <span className="text-[#a1a1aa]">Try demo:</span>
-                  {(['revealr', 'metromind', 'sortmail'] as const).map((key) => (
-                    <button
-                      key={key}
-                      onClick={() => handleSelectSample(key)}
-                      className={`px-2.5 py-1 rounded-md text-[10px] font-semibold transition-all ${
-                        selectedSample === key
-                          ? 'bg-[#1d4ed8] text-white shadow-xs'
-                          : 'bg-[#f4efe4] hover:bg-[#ede6d8] text-[#52525b]'
-                      }`}
-                    >
-                      {samples[key].name}
-                    </button>
-                  ))}
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[11px] font-mono">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[#a1a1aa]">Try demo:</span>
+                    {(['revealr', 'metromind', 'sortmail'] as const).map((key) => (
+                      <button
+                        key={key}
+                        onClick={() => handleSelectSample(key)}
+                        className={`px-2.5 py-1 rounded-md text-[10px] font-semibold transition-all ${
+                          selectedSample === key
+                            ? 'bg-[#1d4ed8] text-white shadow-xs'
+                            : 'bg-[#f4efe4] hover:bg-[#ede6d8] text-[#52525b]'
+                        }`}
+                      >
+                        {samples[key].name}
+                      </button>
+                    ))}
+                  </div>
+
+                  <span className="text-[10px] text-emerald-700 font-bold flex items-center gap-1">
+                    <Check className="w-3 h-3" />
+                    <span>AST Grounded</span>
+                  </span>
                 </div>
               </div>
 
-              {/* Blueprint Card: "Your Project, Explained" */}
-              <div className="p-5 sm:p-6 rounded-xl bg-white border border-[#e4ded2] shadow-sm relative">
-                
-                {/* Header & Tabs */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[#e5ded2]">
-                  <div>
-                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-[#1d4ed8]">
-                      CODEBASE GROUNDING
-                    </span>
-                    <h3 className="text-xl font-bold text-[#18181b] tracking-tight">
-                      {current.name}, Explained
-                    </h3>
+              {/* VIEW 1: THE USER'S EXACT AUTHENTIC DESK FLATLAY ARTWORK */}
+              {viewMode === 'flatlay' ? (
+                <div className="relative group">
+                  <div className="relative overflow-hidden rounded-xl bg-transparent transition-transform duration-300 group-hover:scale-[1.008]">
+                    <img
+                      src="/images/devcontext/devcontext-desk-composition.png"
+                      alt="DevContext Architecture Blueprint, Interview Questions, and Preparation Desk"
+                      className="w-full h-auto drop-shadow-xl select-none"
+                    />
                   </div>
 
-                  {/* Tabs */}
-                  <div className="flex flex-wrap gap-1 text-[11px] font-medium font-sans bg-[#f7f5ee] p-1 rounded-lg border border-[#e5ded2]">
-                    <button
-                      onClick={() => setActiveTab('architecture')}
-                      className={`px-3 py-1 rounded-md transition-all ${
-                        activeTab === 'architecture'
-                          ? 'bg-white text-[#18181b] font-bold shadow-xs'
-                          : 'text-[#71717a] hover:text-[#18181b]'
-                      }`}
-                    >
-                      Architecture
-                    </button>
-                    <button
-                      onClick={() => setActiveTab('overview')}
-                      className={`px-3 py-1 rounded-md transition-all ${
-                        activeTab === 'overview'
-                          ? 'bg-white text-[#18181b] font-bold shadow-xs'
-                          : 'text-[#71717a] hover:text-[#18181b]'
-                      }`}
-                    >
-                      Overview
-                    </button>
-                    <button
-                      onClick={() => setActiveTab('tech')}
-                      className={`px-3 py-1 rounded-md transition-all ${
-                        activeTab === 'tech'
-                          ? 'bg-white text-[#18181b] font-bold shadow-xs'
-                          : 'text-[#71717a] hover:text-[#18181b]'
-                      }`}
-                    >
-                      Tech Stack
-                    </button>
-                  </div>
-                </div>
-
-                {/* Tab 1: Architecture Blueprint (Hand-drawn style) */}
-                {activeTab === 'architecture' && (
-                  <div className="space-y-4">
-                    <p className="text-xs text-[#52525b] leading-relaxed">
-                      Hand-drawn component topology synthesized directly from repository imports, configuration files, and API route declarations.
-                    </p>
-
-                    {/* Architecture Node Diagram */}
-                    <div className="p-4 sm:p-6 rounded-xl bg-[#faf8f3] border-2 border-dashed border-[#d6caba] relative">
-                      
-                      {/* Top Row: Client -> API -> Database */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center text-center font-mono text-xs">
-                        
-                        {/* Node: Client */}
-                        <div
-                          onMouseEnter={() => setActiveNode('client')}
-                          onMouseLeave={() => setActiveNode(null)}
-                          className="p-3.5 rounded-lg bg-white border border-[#18181b]/30 shadow-xs hover:border-[#1d4ed8] hover:shadow-md transition-all cursor-pointer group"
-                        >
-                          <div className="text-[10px] text-[#71717a] uppercase font-sans">Front/Interface</div>
-                          <div className="font-bold text-[#18181b] mt-0.5 group-hover:text-[#1d4ed8]">{current.client}</div>
-                        </div>
-
-                        {/* Node: API Gateway */}
-                        <div
-                          onMouseEnter={() => setActiveNode('api')}
-                          onMouseLeave={() => setActiveNode(null)}
-                          className="p-3.5 rounded-lg bg-[#dbeafe] border-2 border-[#1d4ed8] shadow-sm hover:shadow-md transition-all cursor-pointer"
-                        >
-                          <div className="text-[10px] text-[#1e40af] uppercase font-sans font-semibold">Core Orchestration</div>
-                          <div className="font-bold text-[#1e40af] mt-0.5">{current.api}</div>
-                        </div>
-
-                        {/* Node: Database */}
-                        <div
-                          onMouseEnter={() => setActiveNode('database')}
-                          onMouseLeave={() => setActiveNode(null)}
-                          className="p-3.5 rounded-lg bg-white border border-[#18181b]/30 shadow-xs hover:border-[#1d4ed8] hover:shadow-md transition-all cursor-pointer group"
-                        >
-                          <div className="text-[10px] text-[#71717a] uppercase font-sans">Primary Storage</div>
-                          <div className="font-bold text-[#18181b] mt-0.5 group-hover:text-[#1d4ed8]">{current.database}</div>
-                        </div>
-                      </div>
-
-                      {/* Middle SVG Flow Lines */}
-                      <div className="hidden sm:flex justify-around items-center py-2 text-[#9ca3af]">
-                        <span>&darr;</span>
-                        <span>&darr;</span>
-                        <span>&darr;</span>
-                      </div>
-
-                      {/* Bottom Row: Auth, Workers, Storage */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center text-center font-mono text-xs mt-2 sm:mt-0">
-                        
-                        <div className="p-3 rounded-lg bg-white/80 border border-[#d6caba] text-xs">
-                          <span className="text-[10px] text-[#71717a] block">Security</span>
-                          <span className="font-semibold text-[#18181b]">{current.auth}</span>
-                        </div>
-
-                        <div className="p-3 rounded-lg bg-white/80 border border-[#d6caba] text-xs">
-                          <span className="text-[10px] text-[#71717a] block">Async Queue</span>
-                          <span className="font-semibold text-[#18181b]">{current.workers}</span>
-                        </div>
-
-                        <div className="p-3 rounded-lg bg-white/80 border border-[#d6caba] text-xs">
-                          <span className="text-[10px] text-[#71717a] block">Cache / Vectors</span>
-                          <span className="font-semibold text-[#18181b]">{current.storage}</span>
-                        </div>
-                      </div>
+                  {/* Floating Context Pill below the image */}
+                  <div className="mt-4 p-3.5 rounded-xl bg-white border border-[#e4ded2] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span className="font-bold text-[#18181b]">Grounding Active: {current.name}</span>
+                      <span className="text-[#a1a1aa] hidden sm:inline">&bull;</span>
+                      <span className="text-[#52525b] truncate max-w-xs">{current.tagline}</span>
                     </div>
-                  </div>
-                )}
-
-                {/* Tab 2: Overview */}
-                {activeTab === 'overview' && (
-                  <div className="p-4 rounded-xl bg-[#faf8f3] border border-[#e4ded2] space-y-3 font-sans text-xs text-[#52525b] leading-relaxed">
-                    <p>
-                      <strong className="text-[#18181b] font-semibold">Repository Summary:</strong> {current.tagline}.
-                    </p>
-                    <p>
-                      DevContext inspected the abstract syntax trees, function signatures, and dependencies to ground every explanation directly in the author code.
-                    </p>
-                  </div>
-                )}
-
-                {/* Tab 3: Tech Stack */}
-                {activeTab === 'tech' && (
-                  <div className="p-4 rounded-xl bg-[#faf8f3] border border-[#e4ded2] space-y-3">
-                    <span className="text-[10px] font-mono text-[#71717a] uppercase font-bold">Detected Technologies</span>
-                    <div className="flex flex-wrap gap-2">
-                      {current.techStack.map((tech) => (
-                        <span key={tech} className="px-3 py-1 rounded-full bg-white border border-[#d6caba] text-xs font-mono font-semibold text-[#18181b]">
+                    <div className="flex flex-wrap gap-1 text-[10px]">
+                      {current.techStack.slice(0, 3).map((tech) => (
+                        <span key={tech} className="px-2 py-0.5 rounded bg-[#f4efe4] text-[#18181b] font-semibold">
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
-                )}
-
-              </div>
-
-              {/* Lined Paper: Interview Questions Card */}
-              <div className="mt-5 p-5 sm:p-6 rounded-xl bg-[#fefefe] border border-[#e4ded2] shadow-xs relative">
-                
-                {/* Visual binder hole on left */}
-                <div className="absolute left-3 top-4 w-2.5 h-2.5 rounded-full bg-[#ded6c5] border border-[#c4baa7]" />
-
-                <div className="pl-4">
-                  <div className="flex items-center justify-between mb-3 border-b border-[#e5ded2] pb-2">
-                    <span className="font-bold text-sm font-sans text-[#18181b] flex items-center gap-2">
-                      <span>Interview Questions for {current.name}</span>
-                    </span>
-                    <span className="text-[10px] font-mono text-[#1d4ed8] bg-blue-50 px-2 py-0.5 rounded font-bold">
-                      Grounded
-                    </span>
-                  </div>
-
-                  <ul className="space-y-2 text-xs font-sans text-[#3f3f46]">
-                    {current.questions.map((q, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 leading-relaxed hover:text-[#18181b] transition-colors">
-                        <span className="w-4 h-4 rounded-full bg-[#18181b] text-white flex items-center justify-center text-[10px] font-mono shrink-0 mt-0.5 font-bold">
-                          {idx + 1}
+                </div>
+              ) : (
+                /* VIEW 2: INTERACTIVE BLUEPRINT TOPOLOGY TREE */
+                <div className="space-y-5 animate-in fade-in duration-200">
+                  {/* Blueprint Card: "Your Project, Explained" */}
+                  <div className="p-5 sm:p-6 rounded-xl bg-white border border-[#e4ded2] shadow-sm relative">
+                    
+                    {/* Header & Tabs */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[#e5ded2]">
+                      <div>
+                        <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-[#1d4ed8]">
+                          CODEBASE GROUNDING
                         </span>
-                        <span>{q}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+                        <h3 className="text-xl font-bold text-[#18181b] tracking-tight">
+                          {current.name}, Explained
+                        </h3>
+                      </div>
 
-              {/* FLOATING STICKY NOTES AND POLAROID OVERLAYS */}
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
-                {/* Yellow Sticky Note with red pin */}
-                <div className="p-4 rounded-sm bg-[#fef9c3] border border-[#fef08a] shadow-md rotate-[-1deg] relative">
-                  {/* Pushpin */}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 border border-red-700 shadow-xs flex items-center justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/70"></span>
+                      {/* Tabs */}
+                      <div className="flex flex-wrap gap-1 text-[11px] font-medium font-sans bg-[#f7f5ee] p-1 rounded-lg border border-[#e5ded2]">
+                        <button
+                          onClick={() => setActiveTab('architecture')}
+                          className={`px-3 py-1 rounded-md transition-all ${
+                            activeTab === 'architecture'
+                              ? 'bg-white text-[#18181b] font-bold shadow-xs'
+                              : 'text-[#71717a] hover:text-[#18181b]'
+                          }`}
+                        >
+                          Architecture
+                        </button>
+                        <button
+                          onClick={() => setActiveTab('overview')}
+                          className={`px-3 py-1 rounded-md transition-all ${
+                            activeTab === 'overview'
+                              ? 'bg-white text-[#18181b] font-bold shadow-xs'
+                              : 'text-[#71717a] hover:text-[#18181b]'
+                          }`}
+                        >
+                          Overview
+                        </button>
+                        <button
+                          onClick={() => setActiveTab('tech')}
+                          className={`px-3 py-1 rounded-md transition-all ${
+                            activeTab === 'tech'
+                              ? 'bg-white text-[#18181b] font-bold shadow-xs'
+                              : 'text-[#71717a] hover:text-[#18181b]'
+                          }`}
+                        >
+                          Tech Stack
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Tab 1: Architecture Blueprint (Hand-drawn style) */}
+                    {activeTab === 'architecture' && (
+                      <div className="space-y-4">
+                        <p className="text-xs text-[#52525b] leading-relaxed">
+                          Component topology synthesized directly from repository imports, configuration files, and API route declarations.
+                        </p>
+
+                        {/* Architecture Node Diagram */}
+                        <div className="p-4 sm:p-6 rounded-xl bg-[#faf8f3] border-2 border-dashed border-[#d6caba] relative">
+                          
+                          {/* Top Row: Client -> API -> Database */}
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center text-center font-mono text-xs">
+                            
+                            <div
+                              onMouseEnter={() => setActiveNode('client')}
+                              onMouseLeave={() => setActiveNode(null)}
+                              className="p-3.5 rounded-lg bg-white border border-[#18181b]/30 shadow-xs hover:border-[#1d4ed8] hover:shadow-md transition-all cursor-pointer group"
+                            >
+                              <div className="text-[10px] text-[#71717a] uppercase font-sans">Front/Interface</div>
+                              <div className="font-bold text-[#18181b] mt-0.5 group-hover:text-[#1d4ed8]">{current.client}</div>
+                            </div>
+
+                            <div
+                              onMouseEnter={() => setActiveNode('api')}
+                              onMouseLeave={() => setActiveNode(null)}
+                              className="p-3.5 rounded-lg bg-[#dbeafe] border-2 border-[#1d4ed8] shadow-sm hover:shadow-md transition-all cursor-pointer"
+                            >
+                              <div className="text-[10px] text-[#1e40af] uppercase font-sans font-semibold">Core Orchestration</div>
+                              <div className="font-bold text-[#1e40af] mt-0.5">{current.api}</div>
+                            </div>
+
+                            <div
+                              onMouseEnter={() => setActiveNode('database')}
+                              onMouseLeave={() => setActiveNode(null)}
+                              className="p-3.5 rounded-lg bg-white border border-[#18181b]/30 shadow-xs hover:border-[#1d4ed8] hover:shadow-md transition-all cursor-pointer group"
+                            >
+                              <div className="text-[10px] text-[#71717a] uppercase font-sans">Primary Storage</div>
+                              <div className="font-bold text-[#18181b] mt-0.5 group-hover:text-[#1d4ed8]">{current.database}</div>
+                            </div>
+                          </div>
+
+                          {/* Middle Flow Lines */}
+                          <div className="hidden sm:flex justify-around items-center py-2 text-[#9ca3af]">
+                            <span>&darr;</span>
+                            <span>&darr;</span>
+                            <span>&darr;</span>
+                          </div>
+
+                          {/* Bottom Row: Auth, Workers, Storage */}
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center text-center font-mono text-xs mt-2 sm:mt-0">
+                            
+                            <div className="p-3 rounded-lg bg-white/80 border border-[#d6caba] text-xs">
+                              <span className="text-[10px] text-[#71717a] block">Security</span>
+                              <span className="font-semibold text-[#18181b]">{current.auth}</span>
+                            </div>
+
+                            <div className="p-3 rounded-lg bg-white/80 border border-[#d6caba] text-xs">
+                              <span className="text-[10px] text-[#71717a] block">Async Queue</span>
+                              <span className="font-semibold text-[#18181b]">{current.workers}</span>
+                            </div>
+
+                            <div className="p-3 rounded-lg bg-white/80 border border-[#d6caba] text-xs">
+                              <span className="text-[10px] text-[#71717a] block">Cache / Vectors</span>
+                              <span className="font-semibold text-[#18181b]">{current.storage}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Tab 2: Overview */}
+                    {activeTab === 'overview' && (
+                      <div className="p-4 rounded-xl bg-[#faf8f3] border border-[#e4ded2] space-y-3 font-sans text-xs text-[#52525b] leading-relaxed">
+                        <p>
+                          <strong className="text-[#18181b] font-semibold">Repository Summary:</strong> {current.tagline}.
+                        </p>
+                        <p>
+                          DevContext inspected abstract syntax trees, function signatures, and dependencies to ground every explanation directly in the author code.
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Tab 3: Tech Stack */}
+                    {activeTab === 'tech' && (
+                      <div className="p-4 rounded-xl bg-[#faf8f3] border border-[#e4ded2] space-y-3">
+                        <span className="text-[10px] font-mono text-[#71717a] uppercase font-bold">Detected Technologies</span>
+                        <div className="flex flex-wrap gap-2">
+                          {current.techStack.map((tech) => (
+                            <span key={tech} className="px-3 py-1 rounded-full bg-white border border-[#d6caba] text-xs font-mono font-semibold text-[#18181b]">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                   </div>
-                  <div className="font-serif italic font-bold text-sm text-[#713f12] text-center pt-2 leading-relaxed">
-                    &ldquo;Understand<br />Explain<br />Prepare<br />Present&rdquo;
+
+                  {/* Lined Paper: Interview Questions Card */}
+                  <div className="p-5 sm:p-6 rounded-xl bg-[#fefefe] border border-[#e4ded2] shadow-xs relative">
+                    <div className="absolute left-3 top-4 w-2.5 h-2.5 rounded-full bg-[#ded6c5] border border-[#c4baa7]" />
+
+                    <div className="pl-4">
+                      <div className="flex items-center justify-between mb-3 border-b border-[#e5ded2] pb-2">
+                        <span className="font-bold text-sm font-sans text-[#18181b] flex items-center gap-2">
+                          <span>Interview Questions for {current.name}</span>
+                        </span>
+                        <span className="text-[10px] font-mono text-[#1d4ed8] bg-blue-50 px-2 py-0.5 rounded font-bold">
+                          Grounded
+                        </span>
+                      </div>
+
+                      <ul className="space-y-2 text-xs font-sans text-[#3f3f46]">
+                        {current.questions.map((q, idx) => (
+                          <li key={idx} className="flex items-start gap-2.5 leading-relaxed hover:text-[#18181b] transition-colors">
+                            <span className="w-4 h-4 rounded-full bg-[#18181b] text-white flex items-center justify-center text-[10px] font-mono shrink-0 mt-0.5 font-bold">
+                              {idx + 1}
+                            </span>
+                            <span>{q}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-
-                {/* Index Card: Clear Explanation Checklist */}
-                <div className="p-4 rounded-lg bg-white border border-[#e4ded2] shadow-xs space-y-1.5 text-[11px] font-sans text-[#44403c]">
-                  <div className="font-bold text-xs uppercase tracking-wider text-[#18181b] mb-1">
-                    Clear Explanation
-                  </div>
-                  <div className="flex items-center gap-1.5 text-emerald-700 font-medium">
-                    <Check className="w-3.5 h-3.5" />
-                    <span>Project overview &amp; architecture</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-emerald-700 font-medium">
-                    <Check className="w-3.5 h-3.5" />
-                    <span>Tech stack trade-offs</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-emerald-700 font-medium">
-                    <Check className="w-3.5 h-3.5" />
-                    <span>Design decisions &amp; scaling</span>
-                  </div>
-                </div>
-
-              </div>
+              )}
 
             </div>
 
