@@ -5,6 +5,7 @@ import { ArrowRight, Check, CheckSquare, Github, Terminal, Play, RotateCcw, Ligh
 
 export function DevContextWorkflow() {
   const [activeQuestion, setActiveQuestion] = useState<number>(0);
+  const [userRepo, setUserRepo] = useState<string>('https://github.com/rounakneema/Revealr');
   const [userAnswer, setUserAnswer] = useState<string>(
     'We implemented a decoupled worker queue using RabbitMQ and Go raw sockets to minimize packet drop rates under high concurrent burst loads.'
   );
@@ -68,55 +69,55 @@ export function DevContextWorkflow() {
           {/* ============================================================ */}
           <div className="rounded-2xl bg-[#fcfbfa] border border-[#ded7c8] p-5 shadow-md flex flex-col justify-between hover:shadow-lg transition-all relative group">
             
-            {/* Top Tape decoration */}
-            <div className="absolute -top-2.5 left-8 w-16 h-4 bg-blue-400/50 backdrop-blur-xs -rotate-2 rounded-xs pointer-events-none" />
+            {/* Authentic Washi Tape Pinned at Top Left */}
+            <img
+              src="/images/devcontext/assets/tape-blue.png"
+              alt="Washi tape"
+              className="absolute -top-3.5 left-6 w-16 h-auto -rotate-2 select-none pointer-events-none drop-shadow-2xs z-20"
+            />
 
             <div>
-              {/* Header: Number + Title */}
-              <div className="flex items-center gap-3 mb-2">
-                <span className="w-8 h-8 rounded-full bg-[#1d4ed8] text-white flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-xs">
-                  01
-                </span>
-                <h3 className="font-bold text-base text-[#18181b] tracking-tight">
-                  Paste your GitHub link
-                </h3>
+              {/* Authentic Physical Step 01 Paper Card */}
+              <div className="relative rounded-xl overflow-hidden mb-3 group-hover:scale-[1.01] transition-transform">
+                <img
+                  src="/images/devcontext/devcontext-step1-card.png"
+                  alt="01 Paste your GitHub link - Connect any public repository in seconds"
+                  className="w-full h-auto drop-shadow-xs select-none"
+                />
               </div>
-              <p className="text-xs text-[#52525b] mb-5 leading-relaxed">
-                Connect any public repository in seconds.
-              </p>
 
-              {/* Mini Browser UI Card */}
-              <div className="rounded-xl bg-white border border-[#e4ded2] p-3 shadow-xs space-y-3">
-                {/* Browser 3 dots */}
-                <div className="flex items-center gap-1.5 pb-2 border-b border-[#f0ebe0]">
-                  <span className="w-2 h-2 rounded-full bg-[#e57373]" />
-                  <span className="w-2 h-2 rounded-full bg-[#ffb74d]" />
-                  <span className="w-2 h-2 rounded-full bg-[#81c784]" />
-                  <span className="text-[10px] font-mono text-[#a1a1aa] ml-2">github.com</span>
+              {/* Interactive Quick Repository Input */}
+              <div className="p-3 rounded-xl bg-white border border-[#e4ded2] shadow-2xs space-y-2">
+                <div className="flex items-center justify-between text-[10px] font-mono text-[#71717a]">
+                  <span className="font-bold text-[#18181b]">Quick Input Bar</span>
+                  <span className="text-emerald-700 font-bold">Public AST</span>
                 </div>
 
-                {/* Input Simulation */}
-                <div className="flex items-center gap-2 p-2 rounded-md bg-[#faf8f3] border border-[#dcd4c6]">
-                  <Github className="w-3.5 h-3.5 text-[#18181b] shrink-0" />
-                  <span className="text-[11px] font-mono text-[#52525b] truncate">
-                    github.com/username/project
-                  </span>
+                <div className="flex items-center gap-1.5">
+                  <div className="flex-1 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#faf8f3] border border-[#dcd4c6]">
+                    <Github className="w-3.5 h-3.5 text-[#18181b] shrink-0" />
+                    <input
+                      type="text"
+                      value={userRepo}
+                      onChange={(e) => setUserRepo(e.target.value)}
+                      placeholder="https://github.com/..."
+                      className="w-full bg-transparent text-[11px] font-mono text-[#18181b] outline-none"
+                    />
+                  </div>
+                  <a
+                    href="#analyze"
+                    className="px-3 py-1.5 bg-[#18181b] hover:bg-black text-white text-[11px] font-bold rounded-lg transition-all flex items-center gap-1 shrink-0 shadow-2xs active:scale-95"
+                  >
+                    <span>Scan</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </a>
                 </div>
-
-                {/* Black Action Button */}
-                <button
-                  type="button"
-                  className="w-full py-2 bg-[#18181b] hover:bg-black text-white text-xs font-bold font-sans rounded-lg transition-all flex items-center justify-center gap-1.5 shadow-xs"
-                >
-                  <span>Analyze</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
               </div>
             </div>
 
             <div className="mt-4 pt-3 border-t border-[#f0ebe0] flex items-center justify-between text-[10px] font-mono text-[#71717a]">
               <span>Public AST Parse</span>
-              <span className="text-emerald-700 font-bold">Ready</span>
+              <span className="text-emerald-700 font-bold">100% Grounded</span>
             </div>
           </div>
 
@@ -125,8 +126,12 @@ export function DevContextWorkflow() {
           {/* ============================================================ */}
           <div className="rounded-2xl bg-[#fcfbfa] border border-[#ded7c8] p-5 shadow-md flex flex-col justify-between hover:shadow-lg transition-all relative group">
             
-            {/* Top Tape decoration */}
-            <div className="absolute -top-2.5 left-10 w-16 h-4 bg-amber-400/50 backdrop-blur-xs rotate-1 rounded-xs pointer-events-none" />
+            {/* Authentic Grid Washi Tape */}
+            <img
+              src="/images/devcontext/assets/tape-grid.png"
+              alt="Grid Washi tape"
+              className="absolute -top-3.5 left-8 w-16 h-auto rotate-1 select-none pointer-events-none drop-shadow-2xs z-20"
+            />
 
             <div>
               {/* Header: Number + Title */}
@@ -187,8 +192,12 @@ export function DevContextWorkflow() {
           {/* ============================================================ */}
           <div className="rounded-2xl bg-[#fcfbfa] border border-[#ded7c8] p-5 shadow-md flex flex-col justify-between hover:shadow-lg transition-all relative group">
             
-            {/* Top Tape decoration */}
-            <div className="absolute -top-2.5 left-10 w-16 h-4 bg-emerald-400/50 backdrop-blur-xs -rotate-1 rounded-xs pointer-events-none" />
+            {/* Authentic Kraft Washi Tape */}
+            <img
+              src="/images/devcontext/assets/tape-kraft.png"
+              alt="Kraft Washi tape"
+              className="absolute -top-3.5 left-8 w-16 h-auto -rotate-1 select-none pointer-events-none drop-shadow-2xs z-20"
+            />
 
             <div>
               {/* Header: Number + Title */}
@@ -248,8 +257,12 @@ export function DevContextWorkflow() {
           {/* ============================================================ */}
           <div className="rounded-2xl bg-[#fcfbfa] border border-[#ded7c8] p-5 shadow-md flex flex-col justify-between hover:shadow-lg transition-all relative group">
             
-            {/* Top Tape decoration */}
-            <div className="absolute -top-2.5 left-10 w-16 h-4 bg-purple-400/50 backdrop-blur-xs rotate-2 rounded-xs pointer-events-none" />
+            {/* Authentic Periwinkle Washi Tape */}
+            <img
+              src="/images/devcontext/assets/tape-periwinkle.png"
+              alt="Periwinkle Washi tape"
+              className="absolute -top-3.5 left-8 w-16 h-auto rotate-2 select-none pointer-events-none drop-shadow-2xs z-20"
+            />
 
             <div>
               {/* Header: Number + Title */}
@@ -327,7 +340,7 @@ export function DevContextWorkflow() {
         <div className="mt-14 pt-4 flex flex-col lg:flex-row items-center justify-between gap-8">
           
           {/* Left Desk Note */}
-          <div className="hidden lg:flex items-center gap-3 p-3 rounded-lg bg-white/70 border border-[#ded7c8] shadow-2xs font-mono text-xs text-[#52525b] rotate-[-1deg]">
+          <div className="hidden lg:flex items-center gap-3 p-3 rounded-lg bg-white/80 border border-[#ded7c8] shadow-2xs font-mono text-xs text-[#52525b] rotate-[-1deg]">
             <span className="text-[#a1a1aa]">&gt;</span>
             <span>_Ideas</span>
             <span className="text-[#d4cebf]">&bull;</span>
@@ -349,7 +362,7 @@ export function DevContextWorkflow() {
             </div>
 
             {/* Tape Body */}
-            <div className="px-6 sm:px-8 py-3 rounded-sm bg-[#fef08a]/80 backdrop-blur-xs border-y border-[#fde047] shadow-sm rotate-[-0.5deg]">
+            <div className="px-6 sm:px-8 py-3 rounded-sm bg-[#fef08a]/85 backdrop-blur-xs border-y border-[#fde047] shadow-sm rotate-[-0.5deg]">
               <div className="flex items-center justify-center gap-2.5 text-xs sm:text-sm font-sans font-bold text-[#713f12]">
                 <Lightbulb className="w-4 h-4 text-[#854d0e] shrink-0" />
                 <span>Know your code. Explain your choices. Walk into the interview prepared.</span>
@@ -357,8 +370,8 @@ export function DevContextWorkflow() {
             </div>
           </div>
 
-          {/* Right Spiral Notebook Checklist */}
-          <div className="p-4 rounded-xl bg-white border border-[#ded7c8] shadow-sm text-xs font-sans text-[#27272a] space-y-1.5 rotate-[1deg]">
+          {/* Right Spiral Notebook Checklist with Authentic Yellow Note Accent */}
+          <div className="relative p-4 rounded-xl bg-white border border-[#ded7c8] shadow-sm text-xs font-sans text-[#27272a] space-y-1.5 rotate-[1deg]">
             <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#71717a] border-b border-[#f0ebe0] pb-1 flex items-center justify-between">
               <span>OUTCOMES</span>
               <span className="w-2 h-2 rounded-full bg-emerald-500" />

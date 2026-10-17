@@ -10,7 +10,11 @@ export function DevContextArchitectureBanner() {
       <div className="relative rounded-2xl bg-white border border-[#ded7c8] p-8 md:p-10 shadow-sm overflow-hidden group hover:shadow-md transition-all">
         
         {/* Top blue washi tape */}
-        <div className="absolute -top-2 left-12 w-24 h-4 bg-blue-400/50 -rotate-1 rounded-xs pointer-events-none" />
+        <img
+          src="/images/devcontext/assets/tape-blue.png"
+          alt="Washi tape"
+          className="absolute -top-3.5 left-12 w-24 h-auto -rotate-1 select-none pointer-events-none drop-shadow-2xs z-20"
+        />
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
           <div className="space-y-3 max-w-2xl">

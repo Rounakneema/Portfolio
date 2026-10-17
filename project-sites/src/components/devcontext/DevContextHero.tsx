@@ -112,7 +112,11 @@ export function DevContextHero() {
             {/* Taped Eyebrow Badge */}
             <div className="inline-block relative">
               {/* Top blue washi tape */}
-              <div className="absolute -top-2 left-6 w-12 h-3.5 bg-blue-400/60 backdrop-blur-xs rotate-[-3deg] rounded-xs pointer-events-none" />
+              <img
+                src="/images/devcontext/assets/tape-periwinkle.png"
+                alt="Washi tape"
+                className="absolute -top-3 left-6 w-14 h-auto -rotate-3 select-none pointer-events-none drop-shadow-2xs z-20 opacity-90"
+              />
               <div className="px-4 py-1.5 rounded-sm bg-[#dce6fa] border border-[#bfdbfe] text-[#1e40af] font-mono text-[11px] font-bold uppercase tracking-wider shadow-xs rotate-[-1deg]">
                 TURN YOUR GITHUB INTO INTERVIEW CONFIDENCE
               </div>
@@ -188,7 +192,11 @@ export function DevContextHero() {
           <div className="lg:col-span-7 relative">
             
             {/* Top Blue Washi Tape holding the canvas */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-36 h-6 bg-blue-500/80 backdrop-blur-xs -rotate-1 rounded-xs shadow-xs z-30 pointer-events-none" />
+            <img
+              src="/images/devcontext/assets/tape-blue.png"
+              alt="Washi tape"
+              className="absolute -top-4 left-1/2 -translate-x-1/2 w-36 h-auto -rotate-1 select-none pointer-events-none drop-shadow-xs z-30"
+            />
 
             {/* MAIN DESK SHEET CONTAINER */}
             <div className="rounded-2xl border border-[#ded7c8] bg-[#fbf9f3] p-5 sm:p-7 shadow-xl relative overflow-hidden">

@@ -57,7 +57,11 @@ export function DevContextFeatures() {
         {/* Section Header with Paper Tape Accent */}
         <div className="text-center max-w-3xl mx-auto mb-16 relative">
           <div className="inline-block relative mb-3">
-            <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-28 h-4 bg-blue-400/50 -rotate-1 rounded-xs pointer-events-none" />
+            <img
+              src="/images/devcontext/assets/tape-blue.png"
+              alt="Washi tape"
+              className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-28 h-auto -rotate-1 select-none pointer-events-none drop-shadow-2xs z-20"
+            />
             <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#1d4ed8] bg-[#dce6fa] px-3.5 py-1 rounded-sm border border-[#bfdbfe]">
               TECHNICAL FOUNDATIONS
             </span>
